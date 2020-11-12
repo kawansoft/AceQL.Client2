@@ -10,7 +10,7 @@ namespace AceQL.Client.Api.Util.Test
     {
         public FileUtilTest()
         {
-            // Comments
+    
         }
 
         public String GetUserFolderPath()
