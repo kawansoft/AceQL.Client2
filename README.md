@@ -11,7 +11,7 @@
 
    * [Fundamentals](#fundamentals)
       * [Contributors](#contributors)
-      * [Technical operating environment – Portable Class Library](#technical-operating-environment--portable-class-library)
+      * [Technical operating environment](#technical-operating-environment)
       * [License](#license)
       * [AceQL Server side compatibility](#aceql-server-side-compatibility)
       * [AceQL C# Client SDK installation](#aceql-c-client-sdk-installation)
@@ -67,18 +67,18 @@ On the remote side, like the AceQL Server access to the SQL database using Java 
 
 Thanks to Gilles Echégut for the great input on the development and the documentation of [Advanced Features](#advanced-features).
 
-## Technical operating environment – Portable Class Library
+## Technical operating environment
 
-The AceQL C# Client SDK is entirely written in C# and is packaged as a Portable Class Library, which works on Windows Desktop and on Android, iOS & macOS with Xamarin.
+The AceQL C# Client SDK is entirely written in C# and is packaged as a [.Net Standard 2.0](https://docs.microsoft.com/en-us/dotnet/standard/net-standard) Library, which works on Windows Desktop and on Android, iOS & macOS with Xamarin.
 
 The targets of the library are:
 
-- NetFramework 4.5
-- ASP.NETCore 1.0
-- Windows8.x, Windows 10.
-- Xamarin.Android
-- Xamarin.iOS/ Xamarin.iOS Classic
-- Xamarin.Mac
+- .NET Core and .NET 5 2.0
+- NetFramework 4.6.1
+- Xamarin.Android 8.0
+- Xamarin.iOS/ Xamarin.iOS Classic 10.14
+- Xamarin.Mac 3.8
+- Windows Universal Platform 10.0.16299
 
 ## License
 
