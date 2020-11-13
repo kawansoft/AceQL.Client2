@@ -20,9 +20,9 @@ namespace AceQL.Client.Src.Api.Util
         private bool traceOn;
 
         /// <summary>
-        /// The trace file for debug
+        /// The trace filePath for debug
         /// </summary>
-        private string file;
+        private string filePath;
 
         /// <summary>
         /// Says if trace is on
@@ -51,17 +51,17 @@ namespace AceQL.Client.Src.Api.Util
         }
 
         /// <summary>
-        /// Gets the name of the trace file.
+        /// Gets the name of the trace filePath.
         /// </summary>
-        /// <returns>The name name fo the trace file</returns>
+        /// <returns>The name name fo the trace filePath</returns>
         internal string GetTraceFileName()
         {
-            if (file == null)
+            if (filePath == null)
             {
-                file = AceQLCommandUtil.GetTraceFile();
+                filePath = AceQLCommandUtil.GetTraceFile();
             }
 
-            return file;
+            return filePath;
         }
 
         /// <summary>
@@ -72,12 +72,12 @@ namespace AceQL.Client.Src.Api.Util
         {
             if (traceOn)
             {
-                if (file == null)
+                if (filePath == null)
                 {
                     AceQLCommandUtil.GetTraceFile();
                 }
                 contents = DateTime.Now + " " + contents;
-                using (StreamWriter sw = File.AppendText(file))
+                using (StreamWriter sw = File.AppendText(filePath))
                 {
                     sw.WriteLine(contents);
                 }

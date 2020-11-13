@@ -1,11 +1,11 @@
 /*
- * This file is part of AceQL C# Client SDK.
+ * This filePath is part of AceQL C# Client SDK.
  * AceQL C# Client SDK: Remote SQL access over HTTP with AceQL HTTP.                                 
  * Copyright (C) 2020,  KawanSoft SAS
  * (http://www.kawansoft.com). All rights reserved.                                
  *                                                                               
  * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
+ * you may not use this filePath except in compliance with the License.
  * You may obtain a copy of the License at
  * 
  *     http://www.apache.org/licenses/LICENSE-2.0
@@ -53,7 +53,7 @@ namespace AceQL.Client.Api.Util
         /// </summary>
         private readonly List<String> blobIds = new List<string>();
         /// <summary>
-        /// The BLOB file streams
+        /// The BLOB filePath streams
         /// </summary>
         private readonly List<Stream> blobStreams = new List<Stream>();
 
@@ -265,7 +265,7 @@ namespace AceQL.Client.Api.Util
         }
 
         ///// <summary>
-        ///// Gets the user folder path.
+        ///// Gets the user folder filePath.
         ///// </summary>
         ///// <returns>String.</returns>
         //public static String GetUserFolderPath()
@@ -274,13 +274,13 @@ namespace AceQL.Client.Api.Util
         //}
 
         /// <summary>
-        /// Returns the file corresponding to the trace file. Value is: AceQLPclFolder/trace.txt.
+        /// Returns the filePath corresponding to the trace filePath. Value is: AceQLPclFolder/trace.txt.
         /// </summary>
-        /// <returns>the file corresponding to the trace file.</returns>
+        /// <returns>the filePath corresponding to the trace filePath.</returns>
         public static String GetTraceFile()
         {
-            string path = FileUtil2.GetUserFolderPath() + "\\Trace_" + DateTime.Now.ToString("yyyyMMdd_HHmm") + "_" + Guid.NewGuid().ToString() + ".txt";
-            return path;
+            string filePath = FileUtil2.GetUserFolderPath() + "\\Trace_" + DateTime.Now.ToString("yyyyMMdd_HHmm") + "_" + Guid.NewGuid().ToString() + ".txt";
+            return filePath;
         }
 
         /// <summary>

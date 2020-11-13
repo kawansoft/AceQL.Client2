@@ -1,11 +1,11 @@
 /*
- * This file is part of AceQL C# Client SDK.
+ * This filePath is part of AceQL C# Client SDK.
  * AceQL C# Client SDK: Remote SQL access over HTTP with AceQL HTTP.                                 
  * Copyright (C) 2020,  KawanSoft SAS
  * (http://www.kawansoft.com). All rights reserved.                                
  *                                                                               
  * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
+ * you may not use this filePath except in compliance with the License.
  * You may obtain a copy of the License at
  * 
  *     http://www.apache.org/licenses/LICENSE-2.0
@@ -278,7 +278,6 @@ namespace AceQL.Client.Api.Http
                         { "client_version", VersionValues.VERSION}
                     };
 
-                    //await simpleTracer.Trace("Before CallWithPostAsyncReturnString: " + theUrl);
                     simpleTracer.Trace("Before CallWithPostAsyncReturnString: " + theUrl);
                     String result = await httpManager.CallWithPostAsyncReturnString(new Uri(theUrl), parametersMap).ConfigureAwait(false);
 
@@ -660,9 +659,9 @@ namespace AceQL.Client.Api.Http
         /// <exception cref="System.ArgumentNullException">
         /// blobId is null!
         /// or
-        /// file is null!
+        /// filePath is null!
         /// </exception>
-        /// <exception cref="System.IO.FileNotFoundException">file does not exist: " + file</exception>
+        /// <exception cref="System.IO.FileNotFoundException">filePath does not exist: " + filePath</exception>
         /// <exception cref="AceQLException">HTTP_FAILURE" + " " + httpStatusDescription - 0</exception>
         internal async Task<String> BlobUploadAsync(String blobId, Stream stream, long totalLength)
         {

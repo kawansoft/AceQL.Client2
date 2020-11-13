@@ -1,11 +1,11 @@
 ﻿/*
- * This file is part of AceQL C# Client SDK.
+ * This filePath is part of AceQL C# Client SDK.
  * AceQL C# Client SDK: Remote SQL access over HTTP with AceQL HTTP.                                 
  * Copyright (C) 2020,  KawanSoft SAS
  * (http://www.kawansoft.com). All rights reserved.                                
  *                                                                               
  * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
+ * you may not use this filePath except in compliance with the License.
  * You may obtain a copy of the License at
  * 
  *     http://www.apache.org/licenses/LICENSE-2.0
@@ -247,7 +247,7 @@ namespace AceQL.Client.Api
         {
             try
             {
-                string file = FileUtil2.GetUniqueResultSetFile();
+                string filePath = FileUtil2.GetUniqueResultSetFile();
 
                 bool isStoredProcedure = (commandType == CommandType.StoredProcedure ? true : false);
                 Boolean isPreparedStatement = false;
@@ -257,7 +257,7 @@ namespace AceQL.Client.Api
                 {
                     try
                     {
-                        FileUtil2.CopyHttpStreamToFile(file, input, aceQLHttpApi.GzipResult);
+                        FileUtil2.CopyHttpStreamToFile(filePath, input, aceQLHttpApi.GzipResult);
                     }
                     catch (Exception exception)
                     {
@@ -279,7 +279,7 @@ namespace AceQL.Client.Api
 
                 this.executeQueryRetryCount = 0;
 
-                StreamResultAnalyzer streamResultAnalyzer = new StreamResultAnalyzer(file, aceQLHttpApi.HttpStatusCode);
+                StreamResultAnalyzer streamResultAnalyzer = new StreamResultAnalyzer(filePath, aceQLHttpApi.HttpStatusCode);
                 if (!streamResultAnalyzer.IsStatusOK())
                 {
                     throw new AceQLException(streamResultAnalyzer.GetErrorMessage(),
@@ -290,8 +290,7 @@ namespace AceQL.Client.Api
 
                 int rowsCount = 0;
 
-                //using (Stream readStreamCout = await file.OpenAsync(PCLStorage.FileAccess.Read).ConfigureAwait(false))
-                using (Stream readStreamCout = System.IO.File.OpenRead(file))
+                using (Stream readStreamCout = System.IO.File.OpenRead(filePath))
                 {
                     RowCounter rowCounter = new RowCounter(readStreamCout);
                     rowsCount = rowCounter.Count();
@@ -299,17 +298,15 @@ namespace AceQL.Client.Api
 
                 if (isStoredProcedure)
                 {
-                    //using (Stream readStreamOutParms = await file.OpenAsync(PCLStorage.FileAccess.Read).ConfigureAwait(false))
-                    using (Stream readStreamOutParms = System.IO.File.OpenRead(file))
+                    using (Stream readStreamOutParms = System.IO.File.OpenRead(filePath))
                     {
                         UpdateOutParametersValues(readStreamOutParms, Parameters);
                     }
                 }
 
-                //Stream readStream = await file.OpenAsync(PCLStorage.FileAccess.Read).ConfigureAwait(false);
-                Stream readStream = System.IO.File.OpenRead(file);
+                Stream readStream = System.IO.File.OpenRead(filePath);
 
-                AceQLDataReader aceQLDataReader = new AceQLDataReader(file, readStream, rowsCount, connection);
+                AceQLDataReader aceQLDataReader = new AceQLDataReader(filePath, readStream, rowsCount, connection);
                 return aceQLDataReader;
 
             }
@@ -369,7 +366,7 @@ namespace AceQL.Client.Api
                 // Replace all @parms with ? in sql command
                 cmdText = aceQLCommandUtil.ReplaceParmsWithQuestionMarks();
 
-                String file = FileUtil2.GetUniqueResultSetFile();
+                String filePath = FileUtil2.GetUniqueResultSetFile();
 
                 bool isStoredProcedure = (commandType == CommandType.StoredProcedure ? true : false);
                 bool isPreparedStatement = true;
@@ -378,7 +375,7 @@ namespace AceQL.Client.Api
                 {
                     try
                     {
-                        FileUtil2.CopyHttpStreamToFile(file, input, aceQLHttpApi.GzipResult);
+                        FileUtil2.CopyHttpStreamToFile(filePath, input, aceQLHttpApi.GzipResult);
                     }
                     catch (Exception exception)
                     {
@@ -400,7 +397,7 @@ namespace AceQL.Client.Api
 
                 this.executeQueryRetryCount = 0;
 
-                StreamResultAnalyzer streamResultAnalyzer = new StreamResultAnalyzer(file, aceQLHttpApi.HttpStatusCode);
+                StreamResultAnalyzer streamResultAnalyzer = new StreamResultAnalyzer(filePath, aceQLHttpApi.HttpStatusCode);
                 if (!streamResultAnalyzer.IsStatusOK())
                 {
                     throw new AceQLException(streamResultAnalyzer.GetErrorMessage(),
@@ -411,8 +408,7 @@ namespace AceQL.Client.Api
 
                 int rowsCount = 0;
 
-                //using (Stream readStreamCout = await file.OpenAsync(PCLStorage.FileAccess.Read).ConfigureAwait(false))
-                using (Stream readStreamCout = System.IO.File.OpenRead(file))
+                using (Stream readStreamCout = System.IO.File.OpenRead(filePath))
                 {
                     RowCounter rowCounter = new RowCounter(readStreamCout);
                     rowsCount = rowCounter.Count();
@@ -420,17 +416,15 @@ namespace AceQL.Client.Api
 
                 if (isStoredProcedure)
                 {
-                    //using (Stream readStreamOutParms = await file.OpenAsync(PCLStorage.FileAccess.Read).ConfigureAwait(false))
-                    using (Stream readStreamOutParms = System.IO.File.OpenRead(file))
+                    using (Stream readStreamOutParms = System.IO.File.OpenRead(filePath))
                     {
                         UpdateOutParametersValues(readStreamOutParms, Parameters);
                     }
                 }
 
-                //Stream readStream = await file.OpenAsync(PCLStorage.FileAccess.Read).ConfigureAwait(false);
-                Stream readStream = System.IO.File.OpenRead(file);
+                Stream readStream = System.IO.File.OpenRead(filePath);
 
-                AceQLDataReader aceQLDataReader = new AceQLDataReader(file, readStream, rowsCount, connection);
+                AceQLDataReader aceQLDataReader = new AceQLDataReader(filePath, readStream, rowsCount, connection);
                 return aceQLDataReader;
 
             }
@@ -451,7 +445,7 @@ namespace AceQL.Client.Api
 
 
         /// <summary>
-        /// Copies the HTTP stream to file.
+        /// Copies the HTTP stream to filePath.
         /// </summary>
         /// <param name="path">The path.</param>
         /// <param name="input">The input.</param>

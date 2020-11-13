@@ -1,11 +1,11 @@
 /*
- * This file is part of AceQL C# Client SDK.
+ * This filePath is part of AceQL C# Client SDK.
  * AceQL C# Client SDK: Remote SQL access over HTTP with AceQL HTTP.                                 
  * Copyright (C) 2020,  KawanSoft SAS
  * (http://www.kawansoft.com). All rights reserved.                                
  *                                                                               
  * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
+ * you may not use this filePath except in compliance with the License.
  * You may obtain a copy of the License at
  * 
  *     http://www.apache.org/licenses/LICENSE-2.0
@@ -32,7 +32,7 @@ namespace AceQL.Client.Api
 {
     /// <summary>
     /// Class <see cref="AceQLDataReader"/>. Provides a way of reading a forward-only stream of rows from a remote database
-    /// transferred in a local file.
+    /// transferred in a local filePath.
     /// <para/>Note that all data of the stream are already downloaded when <see cref="AceQLDataReader"/> is created.
     /// </summary>
     public class AceQLDataReader : IDisposable
@@ -57,21 +57,21 @@ namespace AceQL.Client.Api
         private Dictionary<string, int> colIndexesPerColName = new Dictionary<string, int>();
 
         /// <summary>
-        /// The JSON file containing the Result Set
+        /// The JSON filePath containing the Result Set
         /// </summary>
-        private readonly string file;
+        private readonly string filePath;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AceQLDataReader"/> class.
         /// </summary>
-        /// <param name="file">The JSON file containing the Result Set. Passed only for delete action.</param>
-        /// <param name="readStream">The reading stream on file.</param>
-        /// <param name="rowsCount">The number of rows in the file/result set.</param>
+        /// <param name="filePath">The JSON filePath containing the Result Set. Passed only for delete action.</param>
+        /// <param name="readStream">The reading stream on filePath.</param>
+        /// <param name="rowsCount">The number of rows in the filePath/result set.</param>
         /// <param name="connection">The AceQL connection.</param>
-        /// <exception cref="System.ArgumentNullException">The file is null.</exception>
-        internal AceQLDataReader(string file, Stream readStream, int rowsCount, AceQLConnection connection)
+        /// <exception cref="System.ArgumentNullException">The filePath is null.</exception>
+        internal AceQLDataReader(string filePath, Stream readStream, int rowsCount, AceQLConnection connection)
         {
-            this.file = file ?? throw new ArgumentNullException("file is null!");
+            this.filePath = filePath ?? throw new ArgumentNullException("filePath is null!");
             this.rowsCount = rowsCount;
 
             this.aceQLHttpApi = connection.aceQLHttpApi;
@@ -750,8 +750,7 @@ namespace AceQL.Client.Api
 
                 if (! DEBUG)
                 {
-                    //file.DeleteAsync();
-                    FileInfo fileInfo = new FileInfo(file);
+                    FileInfo fileInfo = new FileInfo(filePath);
                     fileInfo.Delete();
                 }
 

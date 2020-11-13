@@ -30,11 +30,11 @@ namespace AceQL.Client.Api.Util
         }
 
         /// <summary>
-        /// Copies the HTTP stream to file.
+        /// Copies the HTTP stream to filePath.
         /// </summary>
         /// <param name="path">The path.</param>
         /// <param name="input">The input.</param>
-        /// <param name="GzipResult">if set to <c>true</c>, stream will be unzipped before copy to file.</param>
+        /// <param name="GzipResult">if set to <c>true</c>, stream will be unzipped before copy to filePath.</param>
         public static void CopyHttpStreamToFile(String path, Stream input, bool GzipResult)
         {
             if (input != null)

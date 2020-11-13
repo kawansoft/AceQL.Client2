@@ -1,11 +1,11 @@
 /*
- * This file is part of AceQL C# Client SDK.
+ * This filePath is part of AceQL C# Client SDK.
  * AceQL C# Client SDK: Remote SQL access over HTTP with AceQL HTTP.                                 
  * Copyright (C) 2020,  KawanSoft SAS
  * (http://www.kawansoft.com). All rights reserved.                                
  *                                                                               
  * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
+ * you may not use this filePath except in compliance with the License.
  * You may obtain a copy of the License at
  * 
  *     http://www.apache.org/licenses/LICENSE-2.0
@@ -36,7 +36,7 @@ using System.Threading.Tasks;
 namespace AceQL.Client.Api.Http
 {
     /// <summary>
-    /// Allows file upload (Blobs) using streaming and supporting progress indicators
+    /// Allows filePath upload (Blobs) using streaming and supporting progress indicators
     /// </summary>
     internal class FormUploadStream
     {
@@ -46,7 +46,7 @@ namespace AceQL.Client.Api.Http
         private int proxyAuthenticationCallCount;
 
         /// <summary>
-        /// Uploads a file using a blob reference.
+        /// Uploads a filePath using a blob reference.
         /// </summary>
         /// <param name="url"></param>
         /// <param name="proxyUri"></param>
@@ -111,7 +111,7 @@ namespace AceQL.Client.Api.Http
             {
                 var multipart = new MultipartFormDataContent();
                 multipart.Add(stringContentBlobId, '"' + "blob_id" + '"');
-                multipart.Add(new StreamContent(stream), '"' + "file" + '"', '"' + blobId + '"');
+                multipart.Add(new StreamContent(stream), '"' + "filePath" + '"', '"' + blobId + '"');
 
                 if (DEBUG)
                 {

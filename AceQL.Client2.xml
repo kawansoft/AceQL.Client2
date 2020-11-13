@@ -171,9 +171,9 @@
             <exception cref="T:System.ArgumentNullException">
             blobId is null!
             or
-            file is null!
+            filePath is null!
             </exception>
-            <exception cref="T:System.IO.FileNotFoundException">file does not exist: " + file</exception>
+            <exception cref="T:System.IO.FileNotFoundException">filePath does not exist: " + filePath</exception>
             <exception cref="T:AceQL.Client.Api.AceQLException">HTTP_FAILURE" + " " + httpStatusDescription - 0</exception>
         </member>
         <member name="M:AceQL.Client.Api.Http.AceQLHttpApi.GetBlobLengthAsync(System.String)">
@@ -268,12 +268,12 @@
         </member>
         <member name="T:AceQL.Client.Api.Http.FormUploadStream">
             <summary>
-            Allows file upload (Blobs) using streaming and supporting progress indicators
+            Allows filePath upload (Blobs) using streaming and supporting progress indicators
             </summary>
         </member>
         <member name="M:AceQL.Client.Api.Http.FormUploadStream.UploadAsync(System.String,System.String,System.Net.ICredentials,System.Int32,System.Boolean,System.String,System.IO.Stream,System.Int64,AceQL.Client.Api.AceQLProgressIndicator,System.Threading.CancellationToken,System.Boolean,System.Collections.Generic.Dictionary{System.String,System.String})">
             <summary>
-            Uploads a file using a blob reference.
+            Uploads a filePath using a blob reference.
             </summary>
             <param name="url"></param>
             <param name="proxyUri"></param>
@@ -1371,7 +1371,7 @@
         </member>
         <member name="F:AceQL.Client.Api.Util.AceQLCommandUtil.blobStreams">
             <summary>
-            The BLOB file streams
+            The BLOB filePath streams
             </summary>
         </member>
         <member name="P:AceQL.Client.Api.Util.AceQLCommandUtil.BlobIds">
@@ -1412,9 +1412,9 @@
         </member>
         <member name="M:AceQL.Client.Api.Util.AceQLCommandUtil.GetTraceFile">
             <summary>
-            Returns the file corresponding to the trace file. Value is: AceQLPclFolder/trace.txt.
+            Returns the filePath corresponding to the trace filePath. Value is: AceQLPclFolder/trace.txt.
             </summary>
-            <returns>the file corresponding to the trace file.</returns>
+            <returns>the filePath corresponding to the trace filePath.</returns>
         </member>
         <member name="M:AceQL.Client.Api.Util.AceQLCommandUtil.CheckAllParametersExistInSqlCommand(System.Collections.Generic.HashSet{System.String},AceQL.Client.Api.AceQLParameterCollection)">
             <summary>
@@ -1465,11 +1465,11 @@
         </member>
         <member name="M:AceQL.Client.Api.Util.FileUtil2.CopyHttpStreamToFile(System.String,System.IO.Stream,System.Boolean)">
             <summary>
-            Copies the HTTP stream to file.
+            Copies the HTTP stream to filePath.
             </summary>
             <param name="path">The path.</param>
             <param name="input">The input.</param>
-            <param name="GzipResult">if set to <c>true</c>, stream will be unzipped before copy to file.</param>
+            <param name="GzipResult">if set to <c>true</c>, stream will be unzipped before copy to filePath.</param>
         </member>
         <member name="M:AceQL.Client.Api.Util.FileUtil2.GetUniqueResultSetFile">
             <summary>
@@ -1480,7 +1480,7 @@
         <member name="T:AceQL.Client.Api.Util.OutParamBuilder">
             <summary>
             Class OutParamBuilder.
-            Parses the result out Json file and extracts the callable statement / stored procedure out parameters dictionnaries.
+            Parses the result out Json filePath and extracts the callable statement / stored procedure out parameters dictionnaries.
             <seealso cref="T:System.IDisposable" />
             </summary>
         </member>
@@ -1498,7 +1498,7 @@
             <summary>
             Constructor
             </summary>
-            <param name="readStream">The reading stream on file.</param>
+            <param name="readStream">The reading stream on filePath.</param>
         </member>
         <member name="M:AceQL.Client.Api.Util.OutParamBuilder.BuildOutParametersDicts">
             <summary>
@@ -1565,7 +1565,7 @@
         </member>
         <member name="F:AceQL.Client.Api.Util.Parms.TRACE_TXT">
             <summary>
-            The default trace file name.
+            The default trace filePath name.
             </summary>
         </member>
         <member name="T:AceQL.Client.Api.Util.ResultAnalyzer">
@@ -1655,14 +1655,14 @@
         </member>
         <member name="T:AceQL.Client.Api.Util.RowCounter">
             <summary>
-            Counts rows in a JSON file.
+            Counts rows in a JSON filePath.
             </summary>
         </member>
         <member name="M:AceQL.Client.Api.Util.RowCounter.#ctor(System.IO.Stream)">
             <summary>
             Constructor
             </summary>
-            <param name="readStream">The reading stream on file.</param>
+            <param name="readStream">The reading stream on filePath.</param>
         </member>
         <member name="M:AceQL.Client.Api.Util.RowCounter.Count">
             <summary>
@@ -1721,7 +1721,7 @@
             <summary>
             Constructor
             </summary>
-            <param name="readStream">The reading stream on file.</param>
+            <param name="readStream">The reading stream on filePath.</param>
         </member>
         <member name="M:AceQL.Client.Api.Util.RowParser.BuildRowNum(System.Int32)">
             <summary>
@@ -1756,7 +1756,7 @@
         </member>
         <member name="T:AceQL.Client.Api.Util.StreamResultAnalyzer">
             <summary>
-            Class <see cref="T:AceQL.Client.Api.Util.StreamResultAnalyzer"/>. Allows to analyze the result of a downloaded result of a SQL query stored in a local PC file.
+            Class <see cref="T:AceQL.Client.Api.Util.StreamResultAnalyzer"/>. Allows to analyze the result of a downloaded result of a SQL query stored in a local PC filePath.
             </summary>
         </member>
         <member name="F:AceQL.Client.Api.Util.StreamResultAnalyzer.errorType">
@@ -1778,9 +1778,9 @@
             <summary>
             Initializes a new instance of the <see cref="T:AceQL.Client.Api.Util.StreamResultAnalyzer"/> class.
             </summary>
-            <param name="file">The file to analyze.</param>
+            <param name="filePath">The filePath to analyze.</param>
             <param name="httpStatusCode">The http status code.</param>
-            <exception cref="T:System.ArgumentNullException">The file is null.</exception>
+            <exception cref="T:System.ArgumentNullException">The filePath is null.</exception>
         </member>
         <member name="M:AceQL.Client.Api.Util.StreamResultAnalyzer.IsStatusOK">
             <summary>
@@ -1933,7 +1933,7 @@
         </member>
         <member name="M:AceQL.Client.Api.AceQLCommand.CopyHttpStreamToFile(System.String,System.IO.Stream)">
             <summary>
-            Copies the HTTP stream to file.
+            Copies the HTTP stream to filePath.
             </summary>
             <param name="path">The path.</param>
             <param name="input">The input.</param>
@@ -2206,10 +2206,10 @@
         </member>
         <member name="P:AceQL.Client.Api.AceQLConnection.GzipResult">
             <summary>
-            Gets or sets a value indicating whether SQL result sets are returned compressed with the GZIP file format
+            Gets or sets a value indicating whether SQL result sets are returned compressed with the GZIP filePath format
             before download. Defaults to true.
             </summary>
-            <value>True if SQL result sets are returned compressed with the GZIP file format
+            <value>True if SQL result sets are returned compressed with the GZIP filePath format
             before download.</value>
         </member>
         <member name="P:AceQL.Client.Api.AceQLConnection.ConnectionTimeout">
@@ -2273,7 +2273,7 @@
         <member name="T:AceQL.Client.Api.AceQLDataReader">
             <summary>
             Class <see cref="T:AceQL.Client.Api.AceQLDataReader"/>. Provides a way of reading a forward-only stream of rows from a remote database
-            transferred in a local file.
+            transferred in a local filePath.
             <para/>Note that all data of the stream are already downloaded when <see cref="T:AceQL.Client.Api.AceQLDataReader"/> is created.
             </summary>
         </member>
@@ -2282,20 +2282,20 @@
             The instance that does all http stuff
             </summary>
         </member>
-        <member name="F:AceQL.Client.Api.AceQLDataReader.file">
+        <member name="F:AceQL.Client.Api.AceQLDataReader.filePath">
             <summary>
-            The JSON file containing the Result Set
+            The JSON filePath containing the Result Set
             </summary>
         </member>
         <member name="M:AceQL.Client.Api.AceQLDataReader.#ctor(System.String,System.IO.Stream,System.Int32,AceQL.Client.Api.AceQLConnection)">
             <summary>
             Initializes a new instance of the <see cref="T:AceQL.Client.Api.AceQLDataReader"/> class.
             </summary>
-            <param name="file">The JSON file containing the Result Set. Passed only for delete action.</param>
-            <param name="readStream">The reading stream on file.</param>
-            <param name="rowsCount">The number of rows in the file/result set.</param>
+            <param name="filePath">The JSON filePath containing the Result Set. Passed only for delete action.</param>
+            <param name="readStream">The reading stream on filePath.</param>
+            <param name="rowsCount">The number of rows in the filePath/result set.</param>
             <param name="connection">The AceQL connection.</param>
-            <exception cref="T:System.ArgumentNullException">The file is null.</exception>
+            <exception cref="T:System.ArgumentNullException">The filePath is null.</exception>
         </member>
         <member name="M:AceQL.Client.Api.AceQLDataReader.ReadAsync(System.Threading.CancellationToken)">
             <summary>
@@ -3443,9 +3443,9 @@
             The trace on
             </summary>
         </member>
-        <member name="F:AceQL.Client.Src.Api.Util.SimpleTracer.file">
+        <member name="F:AceQL.Client.Src.Api.Util.SimpleTracer.filePath">
             <summary>
-            The trace file for debug
+            The trace filePath for debug
             </summary>
         </member>
         <member name="M:AceQL.Client.Src.Api.Util.SimpleTracer.IsTraceOn">
@@ -3467,9 +3467,9 @@
         </member>
         <member name="M:AceQL.Client.Src.Api.Util.SimpleTracer.GetTraceFileName">
             <summary>
-            Gets the name of the trace file.
+            Gets the name of the trace filePath.
             </summary>
-            <returns>The name name fo the trace file</returns>
+            <returns>The name name fo the trace filePath</returns>
         </member>
         <member name="M:AceQL.Client.Src.Api.Util.SimpleTracer.Trace(System.String)">
             <summary>

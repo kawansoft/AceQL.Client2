@@ -1,11 +1,11 @@
 ﻿/*
- * This file is part of AceQL C# Client SDK.
+ * This filePath is part of AceQL C# Client SDK.
  * AceQL C# Client SDK: Remote SQL access over HTTP with AceQL HTTP.                                 
  * Copyright (C) 2020,  KawanSoft SAS
  * (http://www.kawansoft.com). All rights reserved.                                
  *                                                                               
  * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
+ * you may not use this filePath except in compliance with the License.
  * You may obtain a copy of the License at
  * 
  *     http://www.apache.org/licenses/LICENSE-2.0
@@ -447,10 +447,10 @@ namespace AceQL.Client.Api
 
 
         /// <summary>
-        /// Gets or sets a value indicating whether SQL result sets are returned compressed with the GZIP file format
+        /// Gets or sets a value indicating whether SQL result sets are returned compressed with the GZIP filePath format
         /// before download. Defaults to true.
         /// </summary>
-        /// <value>True if SQL result sets are returned compressed with the GZIP file format
+        /// <value>True if SQL result sets are returned compressed with the GZIP filePath format
         /// before download.</value>
         public bool GzipResult
         {

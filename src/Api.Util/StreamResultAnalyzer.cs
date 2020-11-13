@@ -1,11 +1,11 @@
 /*
- * This file is part of AceQL C# Client SDK.
+ * This filePath is part of AceQL C# Client SDK.
  * AceQL C# Client SDK: Remote SQL access over HTTP with AceQL HTTP.                                 
  * Copyright (C) 2020,  KawanSoft SAS
  * (http://www.kawansoft.com). All rights reserved.                                
  *                                                                               
  * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
+ * you may not use this filePath except in compliance with the License.
  * You may obtain a copy of the License at
  * 
  *     http://www.apache.org/licenses/LICENSE-2.0
@@ -27,7 +27,7 @@ using System.Threading.Tasks;
 namespace AceQL.Client.Api.Util
 {
     /// <summary>
-    /// Class <see cref="StreamResultAnalyzer"/>. Allows to analyze the result of a downloaded result of a SQL query stored in a local PC file.
+    /// Class <see cref="StreamResultAnalyzer"/>. Allows to analyze the result of a downloaded result of a SQL query stored in a local PC filePath.
     /// </summary>
     internal class StreamResultAnalyzer
     {
@@ -46,8 +46,8 @@ namespace AceQL.Client.Api.Util
 
         private readonly HttpStatusCode httpStatusCode;
 
-        // The JSON file containing Result Set
-        private readonly string file;
+        // The JSON filePath containing Result Set
+        private readonly string filePath;
 
         public HttpStatusCode HttpStatusCode => httpStatusCode;
 
@@ -55,12 +55,12 @@ namespace AceQL.Client.Api.Util
         /// <summary>
         /// Initializes a new instance of the <see cref="StreamResultAnalyzer"/> class.
         /// </summary>
-        /// <param name="file">The file to analyze.</param>
+        /// <param name="filePath">The filePath to analyze.</param>
         /// <param name="httpStatusCode">The http status code.</param>
-        /// <exception cref="System.ArgumentNullException">The file is null.</exception>
-        public StreamResultAnalyzer(string file, HttpStatusCode httpStatusCode)
+        /// <exception cref="System.ArgumentNullException">The filePath is null.</exception>
+        public StreamResultAnalyzer(string filePath, HttpStatusCode httpStatusCode)
         {
-            this.file = file ?? throw new ArgumentNullException("file is null!");
+            this.filePath = filePath ?? throw new ArgumentNullException("filePath is null!");
             this.httpStatusCode = httpStatusCode;
         }
 
@@ -70,7 +70,7 @@ namespace AceQL.Client.Api.Util
         /// <returns><c>true</c> if [is status ok]; otherwise, <c>false</c>.</returns>
         internal bool IsStatusOK()
         {
-            using (Stream stream = System.IO.File.OpenRead(file))
+            using (Stream stream = System.IO.File.OpenRead(filePath))
             {
                 TextReader textReader = new StreamReader(stream);
                 var reader = new JsonTextReader(textReader);

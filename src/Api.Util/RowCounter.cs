@@ -1,11 +1,11 @@
 /*
- * This file is part of AceQL C# Client SDK.
+ * This filePath is part of AceQL C# Client SDK.
  * AceQL C# Client SDK: Remote SQL access over HTTP with AceQL HTTP.                                 
  * Copyright (C) 2020,  KawanSoft SAS
  * (http://www.kawansoft.com). All rights reserved.                                
  *                                                                               
  * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
+ * you may not use this filePath except in compliance with the License.
  * You may obtain a copy of the License at
  * 
  *     http://www.apache.org/licenses/LICENSE-2.0
@@ -26,7 +26,7 @@ using System.Threading.Tasks;
 namespace AceQL.Client.Api.Util
 {
     /// <summary>
-    /// Counts rows in a JSON file.
+    /// Counts rows in a JSON filePath.
     /// </summary>
     internal class RowCounter
     {
@@ -36,7 +36,7 @@ namespace AceQL.Client.Api.Util
         /// <summary>
         /// Constructor
         /// </summary>
-        /// <param name="readStream">The reading stream on file.</param>
+        /// <param name="readStream">The reading stream on filePath.</param>
         public RowCounter(Stream readStream)
         {
             StreamReader streamReader = new StreamReader(readStream);
@@ -52,7 +52,7 @@ namespace AceQL.Client.Api.Util
             Trace();
 
             // Necessary because a SQL columns could have the name "row_count".
-            // We know that we are reading the good end of file "row_count" if
+            // We know that we are reading the good end of filePath "row_count" if
             // We are not any more in a array
             bool isInsideArray = false;
 
