@@ -22,8 +22,6 @@ namespace AceQL.Client.Src.Api.Util
         internal static string SubstringBefore(string str, string separator)
         {
 
-            File.ReadAllText(path);
-
             if (str == null || str.Length == 0)
             {
                 return str;

@@ -282,7 +282,7 @@ namespace AceQL.Client.Api
                 this.executeQueryRetryCount = 0;
 
                 StreamResultAnalyzer streamResultAnalyzer = new StreamResultAnalyzer(file, aceQLHttpApi.HttpStatusCode);
-                if (!await streamResultAnalyzer.IsStatusOkAsync().ConfigureAwait(false))
+                if (!streamResultAnalyzer.IsStatusOkAsync())
                 {
                     throw new AceQLException(streamResultAnalyzer.GetErrorMessage(),
                         streamResultAnalyzer.GetErrorType(),
@@ -423,7 +423,7 @@ namespace AceQL.Client.Api
                 this.executeQueryRetryCount = 0;
 
                 StreamResultAnalyzer streamResultAnalyzer = new StreamResultAnalyzer(file, aceQLHttpApi.HttpStatusCode);
-                if (!await streamResultAnalyzer.IsStatusOkAsync().ConfigureAwait(false))
+                if (!streamResultAnalyzer.IsStatusOkAsync())
                 {
                     throw new AceQLException(streamResultAnalyzer.GetErrorMessage(),
                         streamResultAnalyzer.GetErrorType(),

@@ -44,7 +44,7 @@ namespace AceQL.Client.Api.Util
                 {
                     using (GZipStream decompressionStream = new GZipStream(input, CompressionMode.Decompress))
                     {
-                        using (var stream = System.IO.File.OpenRead(path))
+                        using (var stream = System.IO.File.OpenWrite(path))
                         {
                             decompressionStream.CopyTo(stream);
                         }
@@ -52,7 +52,7 @@ namespace AceQL.Client.Api.Util
                 }
                 else
                 {
-                    using (var stream = System.IO.File.OpenRead(path))
+                    using (var stream = System.IO.File.OpenWrite(path))
                     {
                         input.CopyTo(stream);
                     }

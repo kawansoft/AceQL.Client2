@@ -53,7 +53,7 @@ namespace AceQL.Client.Src.Api.Util
         /// Gets the name of the trace file.
         /// </summary>
         /// <returns>The name name fo the trace file</returns>
-        internal async Task<String> GetTraceFileName()
+        internal string GetTraceFileName()
         {
             if (file == null)
             {

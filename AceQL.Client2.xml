@@ -1,0 +1,3613 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>AceQL.Client2</name>
+    </assembly>
+    <members>
+        <member name="T:AceQL.Client.Api.File.PortableFile">
+            <summary>
+            Class a <see cref="T:AceQL.Client.Api.File.PortableFile"/>
+            <para/>
+            Equivalent in our Portable Class Library of Windows System.IO.File for some important methods not included
+            in PCLStorage, such as AppendAllTextAsync() or GetLengthAsync().
+            <para/>
+            Methods are all async, as storage methods are async on some OS.
+            Implementation uses PCLStorage (https://github.com/dsplaisted/PCLStorage).
+            </summary>
+        </member>
+        <member name="M:AceQL.Client.Api.File.PortableFile.AppendAllTextAsync(System.String,System.String)">
+            <summary>
+            Opens a <see cref="!:IFile"/>, appends the specified string to the file, and then closes the file.
+            If the file does not exist, this method creates a file, writes the specified string to the file, then closes the file.
+            </summary>
+            <param name="file">The <see cref="!:IFile"/> to append the specified string to.</param>
+            <param name="contents">The string to append to the <see cref="!:IFile"/>.</param>
+            <returns></returns>
+            <exception cref="T:System.ArgumentNullException">The file is null.</exception>
+        </member>
+        <member name="M:AceQL.Client.Api.File.PortableFile.GetLengthAsync(System.String)">
+            <summary>
+            Returns the <see cref="!:IFile" /> length.
+            </summary>
+            <param name="file">The file.</param>
+            <returns>The <see cref="!:IFile" /> length.</returns>
+            <exception cref="T:System.ArgumentNullException">file is null!</exception>
+        </member>
+        <member name="T:AceQL.Client.Api.Http.AceQLHttpApi">
+            <summary>
+            Class <see cref="T:AceQL.Client.Api.Http.AceQLHttpApi"/>. Allows to create a Connection to the remote server
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Http.AceQLHttpApi.server">
+            <summary>
+            The server URL
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Http.AceQLHttpApi.database">
+            <summary>
+            The database
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Http.AceQLHttpApi.proxyUri">
+            <summary>
+            The Web Proxy Uri
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Http.AceQLHttpApi.proxyCredentials">
+            <summary>
+            The credentials
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Http.AceQLHttpApi.timeout">
+            <summary>
+            The timeout in milliseconds
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Http.AceQLHttpApi.requestHeaders">
+            <summary>
+            The request headers added by the user
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Http.AceQLHttpApi.prettyPrinting">
+            <summary>
+            The pretty printing
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Http.AceQLHttpApi.gzipResult">
+            <summary>
+            The gzip result
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Http.AceQLHttpApi.url">
+            <summary>
+            The URL
+            </summary>
+        </member>
+        <member name="M:AceQL.Client.Api.Http.AceQLHttpApi.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:AceQL.Client.Api.Http.AceQLHttpApi"/> class.
+            </summary>
+        </member>
+        <member name="M:AceQL.Client.Api.Http.AceQLHttpApi.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:AceQL.Client.Api.Http.AceQLHttpApi"/> class.
+            </summary>
+            <param name="connectionString">The connection string.
+            </param>"
+            <exception cref="T:System.ArgumentException">connectionString token does not contain a = separator: " + line</exception>
+        </member>
+        <member name="M:AceQL.Client.Api.Http.AceQLHttpApi.ResetRequestHeaders">
+            <summary>
+            Resets the request headers.
+            </summary>
+        </member>
+        <member name="M:AceQL.Client.Api.Http.AceQLHttpApi.AddRequestHeader(System.String,System.String)">
+            <summary>
+            Adds A request header. This will be added at each server call.
+            </summary>
+            <param name="name">The header name.</param>
+            <param name="value">The header value.</param>
+        </member>
+        <member name="M:AceQL.Client.Api.Http.AceQLHttpApi.OpenAsync">
+            <summary>
+            Opens this instance.
+            </summary>
+            <exception cref="T:System.ArgumentNullException"> if a required parameter extracted from connection string is missing.
+            </exception>
+            <exception cref="T:AceQL.Client.Api.AceQLException"> if any other Exception occurs.
+            </exception>
+        </member>
+        <member name="M:AceQL.Client.Api.Http.AceQLHttpApi.DummyGetCallForProxyAuthentication">
+            <summary>
+            Dummies the get call for proxy authentication.
+            Hack to force a first GET on just aceql servlet if we are with a proxy, just to avoid system failure
+            Because of a bug in C#, if a POST is done first to detect a 407 (proxy auth asked), HttpClient throws an Exception
+            </summary>
+        </member>
+        <member name="P:AceQL.Client.Api.Http.AceQLHttpApi.GzipResult">
+            <summary>
+            Gets a value indicating whether [gzip result] is on or off.
+            </summary>
+            <value><c>true</c> if [gzip result]; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.Http.AceQLHttpApi.Timeout">
+            <summary>
+            The timeout in milliseconds
+            </summary>
+        </member>
+        <member name="P:AceQL.Client.Api.Http.AceQLHttpApi.UseCancellationToken">
+            <summary>
+            Says it use has passed a CancellationToken
+            </summary>
+        </member>
+        <member name="P:AceQL.Client.Api.Http.AceQLHttpApi.HttpStatusCode">
+            <summary>
+            Gets the HTTP status code of hte latsexecuted HTTP call
+            </summary>
+            <value>The HTTP status code.</value>
+        </member>
+        <member name="M:AceQL.Client.Api.Http.AceQLHttpApi.CallApiNoResultAsync(System.String,System.String)">
+            <summary>
+            Calls the API no result.
+            </summary>
+            <param name="commandName">Name of the command.</param>
+            <param name="commandOption">The command option.</param>
+            <exception cref="T:System.ArgumentNullException">commandName is null!</exception>
+            <exception cref="T:AceQL.Client.Api.AceQLException">
+            HTTP_FAILURE" + " " + httpStatusDescription - 0
+            or
+            or
+            0
+            </exception>
+        </member>
+        <member name="M:AceQL.Client.Api.Http.AceQLHttpApi.CallApiWithResultAsync(System.String,System.String)">
+            <summary>
+            Calls the API with result.
+            </summary>
+            <param name="commandName">Name of the command.</param>
+            <param name="commandOption">The command option.</param>
+            <exception cref="T:System.ArgumentNullException">commandName is null!</exception>
+            <exception cref="T:AceQL.Client.Api.AceQLException">
+            HTTP_FAILURE" + " " + httpStatusDescription - 0
+            or
+            or
+            0
+            </exception>
+        </member>
+        <member name="M:AceQL.Client.Api.Http.AceQLHttpApi.CallWithGetAsync(System.String,System.String)">
+            <summary>
+            Calls the with get.
+            </summary>
+            <param name="action">The action.</param>
+            <param name="actionParameter">The action parameter.</param>
+            <returns>String.</returns>
+        </member>
+        <member name="M:AceQL.Client.Api.Http.AceQLHttpApi.UpdateOutParametersValues(System.String,AceQL.Client.Api.AceQLParameterCollection)">
+            <summary>
+            Update the OUT parameters values
+            </summary>
+            <param name="result"></param>
+            <param name="parameters"></param>
+        </member>
+        <member name="M:AceQL.Client.Api.Http.AceQLHttpApi.BlobUploadAsync(System.String,System.IO.Stream,System.Int64)">
+            <summary>
+            Uploads a Blob/Clob on the server.
+            </summary>
+            <param name="blobId">the Blob/Clob Id</param>
+            <param name="stream">the stream of the Blob/Clob</param>
+            <param name="totalLength">the total length of all BLOBs to upload</param>
+            <returns>The result as JSON format.</returns>
+            <exception cref="T:System.ArgumentNullException">
+            blobId is null!
+            or
+            file is null!
+            </exception>
+            <exception cref="T:System.IO.FileNotFoundException">file does not exist: " + file</exception>
+            <exception cref="T:AceQL.Client.Api.AceQLException">HTTP_FAILURE" + " " + httpStatusDescription - 0</exception>
+        </member>
+        <member name="M:AceQL.Client.Api.Http.AceQLHttpApi.GetBlobLengthAsync(System.String)">
+            <summary>
+            Returns the server Blob/Clob length.
+            </summary>
+            <param name="blobId">the Blob/Clob Id.</param>
+            <returns>the server Blob/Clob length.</returns>
+        </member>
+        <member name="M:AceQL.Client.Api.Http.AceQLHttpApi.BlobDownloadAsync(System.String)">
+             <summary>
+             Downloads a Blob/Clob from the server.
+             </summary>
+             <param name="blobId">the Blob/Clob Id</param>
+            
+             <returns>the Blob input stream</returns>
+        </member>
+        <member name="M:AceQL.Client.Api.Http.AceQLHttpApi.DbSchemaDownloadAsync(System.String,System.String)">
+            <summary>
+            Databases the schema download.
+            </summary>
+            <param name="format">The format.</param>
+            <param name="tableName">Name of the table.</param>
+            <returns>Task&lt;Stream&gt;.</returns>
+            <exception cref="T:System.ArgumentNullException">format is null!</exception>
+            <exception cref="T:AceQL.Client.Api.AceQLException">0</exception>
+            
+        </member>
+        <member name="M:AceQL.Client.Api.Http.AceQLHttpApi.GetDbMetadataAsync">
+            <summary>
+            Gets the database metadata.
+            </summary>
+            <returns>Task&lt;System.String&gt;.</returns>
+            <exception cref="T:AceQL.Client.Api.AceQLException">
+            0
+            </exception>
+        </member>
+        <member name="M:AceQL.Client.Api.Http.AceQLHttpApi.GetTableNamesAsync(System.String)">
+            <summary>
+            Gets the table names.
+            </summary>
+            <param name="tableType">Type of the table.</param>
+            <returns>Task&lt;TableNamesDto&gt;.</returns>
+            <exception cref="T:AceQL.Client.Api.AceQLException">
+            0
+            </exception>
+        </member>
+        <member name="M:AceQL.Client.Api.Http.AceQLHttpApi.GetTableAsync(System.String)">
+            <summary>
+            Gets the table.
+            </summary>
+            <param name="tableName">Name of the table.</param>
+            <returns>Task&lt;TableDto&gt;.</returns>
+            <exception cref="T:AceQL.Client.Api.AceQLException">
+            0
+            </exception>
+        </member>
+        <member name="M:AceQL.Client.Api.Http.AceQLHttpApi.ResetCancellationToken">
+            <summary>
+            To be call at end of each of each public aysnc(CancellationToken) calls to reset to false the usage of a CancellationToken with http calls
+            and some reader calls.
+            </summary>
+        </member>
+        <member name="M:AceQL.Client.Api.Http.AceQLHttpApi.SetCancellationToken(System.Threading.CancellationToken)">
+            <summary>
+            Sets the CancellationToken asked by user to pass for the current public xxxAsync() call api.
+            </summary>
+            <param name="cancellationToken">CancellationToken asked by user to pass for the current public xxxAsync() call api.</param>
+        </member>
+        <member name="M:AceQL.Client.Api.Http.AceQLHttpApi.GetProgressIndicator">
+            <summary>
+            Returns the progress indicator variable that will store Blob/Clob upload or download progress between 0 and 100.
+            </summary>
+            <returns>The progress indicator variable that will store Blob/Clob upload or download progress between 0 and 100.</returns>
+        </member>
+        <member name="M:AceQL.Client.Api.Http.AceQLHttpApi.SetProgressIndicator(AceQL.Client.Api.AceQLProgressIndicator)">
+            <summary>
+            Sets the progress indicator variable that will store Blob/Clob upload or download progress between 0 and 100. Will be used by progress indicators to show the progress.
+            </summary>
+            <param name="progressIndicator">The progress variable.</param>
+        </member>
+        <member name="M:AceQL.Client.Api.Http.AceQLHttpApi.GetVersion">
+            <summary>
+            Returns the SDK current Version.
+            </summary>
+            <returns>the SDK current Version.</returns>
+        </member>
+        <member name="M:AceQL.Client.Api.Http.AceQLHttpApi.CloseAsync">
+            <summary>
+            Closes the connection to the remote database and closes the http session.
+            </summary>
+        </member>
+        <member name="T:AceQL.Client.Api.Http.FormUploadStream">
+            <summary>
+            Allows file upload (Blobs) using streaming and supporting progress indicators
+            </summary>
+        </member>
+        <member name="M:AceQL.Client.Api.Http.FormUploadStream.UploadAsync(System.String,System.String,System.Net.ICredentials,System.Int32,System.Boolean,System.String,System.IO.Stream,System.Int64,AceQL.Client.Api.AceQLProgressIndicator,System.Threading.CancellationToken,System.Boolean,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            Uploads a file using a blob reference.
+            </summary>
+            <param name="url"></param>
+            <param name="proxyUri"></param>
+            <param name="credentials"></param>
+            <param name="timeout"></param>
+            <param name="enableDefaultSystemAuthentication"></param>
+            <param name="blobId"></param>
+            <param name="stream"></param>
+            <param name="totalLength"></param> 
+            <param name="progressIndicator"></param>
+            <param name="cancellationToken"></param> 
+            <param name="useCancellationToken"></param>
+            <param name="requestHeaders">The request headers to add to all requests.</param>
+            <returns></returns>
+        </member>
+        <member name="T:AceQL.Client.Api.Http.UriWebProxy">
+            <summary>
+            <see cref="T:AceQL.Client.Api.Http.UriWebProxy"/>Class. Allows to create a web proxy thats interfaces an <see cref="T:System.Net.IWebProxy"/> from an URI.
+            </summary>
+        </member>
+        <member name="M:AceQL.Client.Api.Http.UriWebProxy.#ctor(System.Uri)">
+            <summary>
+            Builds an <see cref="T:System.Net.IWebProxy" /> concrete implementation.
+            </summary>
+            <param name="proxyUri">The proxy URI. Example: <c>new Uri("http://localhost:8080")</c>.</param>
+            <exception cref="T:System.ArgumentNullException">proxyUri is null!</exception>
+        </member>
+        <member name="P:AceQL.Client.Api.Http.UriWebProxy.Credentials">
+            <summary>
+            Credentials to send to the proxy server for authentication.
+            </summary>
+            <value>The credentials.</value>
+        </member>
+        <member name="M:AceQL.Client.Api.Http.UriWebProxy.GetProxy(System.Uri)">
+            <summary>
+            Specifies the protocols for authentication.
+            </summary>
+            <param name="destination">The destination.</param>
+            <returns>System.Uri.</returns>
+        </member>
+        <member name="M:AceQL.Client.Api.Http.UriWebProxy.IsBypassed(System.Uri)">
+            <summary>
+            Indicates that the proxy should not be used for the specified host.
+            </summary>
+            <param name="host">
+              <see cref="T:System.Uri" /> of the host whose proxy usage is to be verified.</param>
+            <returns><c>true</c> if the proxy server should not be used for <paramref name="host" /> ; else <c>false</c>.</returns>
+        </member>
+        <member name="T:AceQL.Client.Api.Metadata.Dto.JdbcDatabaseMetaDataDto">
+            <summary>
+            Class JdbcDatabaseMetaDataDto.
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Metadata.Dto.JdbcDatabaseMetaDataDto.jdbcDatabaseMetaData">
+            <summary>
+            The JDBC database meta data
+            </summary>
+        </member>
+        <member name="M:AceQL.Client.Api.Metadata.Dto.JdbcDatabaseMetaDataDto.#ctor(AceQL.Client.Api.Metadata.JdbcDatabaseMetaData)">
+            <summary>
+            Initializes a new instance of the <see cref="T:AceQL.Client.Api.Metadata.Dto.JdbcDatabaseMetaDataDto"/> class.
+            </summary>
+            <param name="jdbcDatabaseMetaData">The JDBC database meta data.</param>
+        </member>
+        <member name="P:AceQL.Client.Api.Metadata.Dto.JdbcDatabaseMetaDataDto.JdbcDatabaseMetaData">
+            <summary>
+            Gets the JDBC database meta data.
+            </summary>
+            <value>The JDBC database meta data.</value>
+        </member>
+        <member name="T:AceQL.Client.Api.Metadata.Dto.TableDto">
+            <summary>
+            Contains the list of tables of the database.
+            @author Nicolas de Pomereu
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Metadata.Dto.TableDto.status">
+            <summary>
+            The status
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Metadata.Dto.TableDto.table">
+            <summary>
+            The table
+            </summary>
+        </member>
+        <member name="M:AceQL.Client.Api.Metadata.Dto.TableDto.#ctor(AceQL.Client.Api.Metadata.Table)">
+            <summary>
+            Initializes a new instance of the <see cref="T:AceQL.Client.Api.Metadata.Dto.TableDto"/> class.
+            </summary>
+            <param name="table">The table.</param>
+        </member>
+        <member name="P:AceQL.Client.Api.Metadata.Dto.TableDto.Status">
+            <summary>
+            Gets the status.
+            </summary>
+            <value>The status.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.Metadata.Dto.TableDto.Table">
+            <summary>
+            Gets the table.
+            </summary>
+            <value>The table.</value>
+        </member>
+        <member name="M:AceQL.Client.Api.Metadata.Dto.TableDto.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents this instance.
+            </summary>
+            <returns>A <see cref="T:System.String" /> that represents this instance.</returns>
+        </member>
+        <member name="T:AceQL.Client.Api.Metadata.Dto.TableNamesDto">
+            <summary>
+            Contains the list of tables of the database.
+            @author Nicolas de Pomereu
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Metadata.Dto.TableNamesDto.status">
+            <summary>
+            The status
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Metadata.Dto.TableNamesDto.tableNames">
+            <summary>
+            The table names
+            </summary>
+        </member>
+        <member name="M:AceQL.Client.Api.Metadata.Dto.TableNamesDto.#ctor(System.Collections.Generic.List{System.String})">
+            <summary>
+            Initializes a new instance of the <see cref="T:AceQL.Client.Api.Metadata.Dto.TableNamesDto"/> class.
+            </summary>
+            <param name="tableNames">The table names.</param>
+        </member>
+        <member name="P:AceQL.Client.Api.Metadata.Dto.TableNamesDto.Status">
+            <summary>
+            Gets the status.
+            </summary>
+            <value>The status.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.Metadata.Dto.TableNamesDto.TableNames">
+            <summary>
+            Gets the table names.
+            </summary>
+            <value>The table names.</value>
+        </member>
+        <member name="M:AceQL.Client.Api.Metadata.Dto.TableNamesDto.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents this instance.
+            </summary>
+            <returns>A <see cref="T:System.String" /> that represents this instance.</returns>
+        </member>
+        <member name="T:AceQL.Client.Api.Metadata.CatalogAndSchema">
+            <summary>
+            Parent of all metadata of objects: they all belong to a catalog and schema.
+            </summary>
+        </member>
+        <member name="P:AceQL.Client.Api.Metadata.CatalogAndSchema.Catalog">
+            <summary>Gets or sets the catalog.</summary>
+            <value>The catalog.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.Metadata.CatalogAndSchema.Schema">
+            <summary>
+            Gets or sets the schema.
+            </summary>
+            <value>The schema.</value>
+        </member>
+        <member name="T:AceQL.Client.Api.Metadata.Column">
+            <summary>
+            Class Column. A SQL Column with it's defining elements.
+            Implements the <see cref="T:AceQL.Client.Api.Metadata.CatalogAndSchema" />
+            </summary>
+            <seealso cref="T:AceQL.Client.Api.Metadata.CatalogAndSchema" />
+        </member>
+        <member name="F:AceQL.Client.Api.Metadata.Column.columnName">
+                 * <pre>
+                 * <code>
+                databaseMetaData.getColumns(customer_auto) 1: null                                1.TABLE_CAT String => table catalog (may be null)
+                databaseMetaData.getColumns(customer_auto) 2: public                              2.TABLE_SCHEM String => table schema (may be null)
+                databaseMetaData.getColumns(customer_auto) 3: customer_auto                       3.TABLE_NAME String => table name
+                databaseMetaData.getColumns(customer_auto) 4: phone                               4.COLUMN_NAME String => column name
+            
+                databaseMetaData.getColumns(customer_auto) 5: 12                                  5.DATA_TYPE int => SQL type from java.sql.Types
+                databaseMetaData.getColumns(customer_auto) 6: varchar                             6.TYPE_NAME String => Data source dependent type name,for a UDT the type name is fu
+                databaseMetaData.getColumns(customer_auto) 7: 32                                  7.COLUMN_SIZE int => column size.
+                databaseMetaData.getColumns(customer_auto) 8: null                                8.BUFFER_LENGTH is not used.
+                databaseMetaData.getColumns(customer_auto) 9: 0                                   9.DECIMAL_DIGITS int => the number of fractional digits. Null is returned for data
+                databaseMetaData.getColumns(customer_auto) 10: 10                                 10.NUM_PREC_RADIX int => Radix (typically either 10 or 2)
+                databaseMetaData.getColumns(customer_auto) 11: 1                                  11.NULLABLE int => is NULL allowed. â—¦ columnNoNulls - might not allow NULL values
+                databaseMetaData.getColumns(customer_auto) 12: null                               12.REMARKS String => comment describing column (may be null)
+                databaseMetaData.getColumns(customer_auto) 13: null                               13.COLUMN_DEF String => default value for the column, which should be interpreted as a string when the value is enclosed in single quotes (may be null)
+                databaseMetaData.getColumns(customer_auto) 14: null                               14.SQL_DATA_TYPE int => unused
+                databaseMetaData.getColumns(customer_auto) 15: null                               15.SQL_DATETIME_SUB int => unused
+                databaseMetaData.getColumns(customer_auto) 16: 32                                 16.CHAR_OCTET_LENGTH int => for char types themaximum number of bytes in the column
+                databaseMetaData.getColumns(customer_auto) 17: 8                                  17.ORDINAL_POSITION int => index of column in table(starting at 1)
+                databaseMetaData.getColumns(customer_auto) 18: YES                                18.IS_NULLABLE String => ISO rules are used to determine the nullability for a column. â—¦ YES --- if the column can include NULLs
+                databaseMetaData.getColumns(customer_auto) 19: null                               19.SCOPE_CATALOG String => catalog of table that is the scopeof a reference attribute (null if DATA_TYPE isn't REF)
+                databaseMetaData.getColumns(customer_auto) 20: null                               20.SCOPE_SCHEMA String => schema of table that is the scopeof a reference attribute (null if the DATA_TYPE isn't REF)
+                databaseMetaData.getColumns(customer_auto) 21: null                               21.SCOPE_TABLE String => table name that this the scopeof a reference attribute (null if the DATA_TYPE isn't REF)
+                databaseMetaData.getColumns(customer_auto) 22: null                               22.SOURCE_DATA_TYPE short => source type of a distinct type or user-generatedRef type, SQL type from java.sql.Types (null if
+                databaseMetaData.getColumns(customer_auto) 23: NO                                 23.IS_AUTOINCREMENT String => Indicates whether this column is auto incremented â—¦ YES --- if the column is auto incremented
+                 </code>
+                 * </pre>
+                 *
+                 * !
+            <summary>
+            The column name
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Metadata.Column.tableName">
+            <summary>
+            The table name
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Metadata.Column.typeName">
+            <summary>
+            The type name
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Metadata.Column.size">
+            <summary>
+            The size
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Metadata.Column.decimalDigits">
+            <summary>
+            The decimal digits
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Metadata.Column.radix">
+            <summary>
+            The radix
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Metadata.Column.nullable">
+            <summary>
+            The nullable
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Metadata.Column.remarks">
+            <summary>
+            The remarks
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Metadata.Column.defaultValue">
+            <summary>
+            The default value
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Metadata.Column.charOctetLength">
+            <summary>
+            The character octet length
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Metadata.Column.ordinalPosition">
+            <summary>
+            The ordinal position
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Metadata.Column.isNullable">
+            <summary>
+            The is nullable
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Metadata.Column.scopeCatalog">
+            <summary>
+            The scope catalog
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Metadata.Column.scopeSchema">
+            <summary>
+            The scope schema
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Metadata.Column.scopeTable">
+            <summary>
+            The scope table
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Metadata.Column.sourceDataType">
+            <summary>
+            The source data type
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Metadata.Column.isAutoincrement">
+            <summary>
+            The is autoincrement
+            </summary>
+        </member>
+        <member name="P:AceQL.Client.Api.Metadata.Column.ColumnName">
+            <summary>
+            Gets or sets the name of the column.
+            </summary>
+            <value>The name of the column.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.Metadata.Column.TableName">
+            <summary>
+            Gets or sets the name of the table.
+            </summary>
+            <value>The name of the table.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.Metadata.Column.TypeName">
+            <summary>
+            Gets or sets the name of the type.
+            </summary>
+            <value>The name of the type.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.Metadata.Column.Size">
+            <summary>
+            Gets or sets the size.
+            </summary>
+            <value>The size.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.Metadata.Column.DecimalDigits">
+            <summary>
+            Gets or sets the decimal digits.
+            </summary>
+            <value>The decimal digits.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.Metadata.Column.Radix">
+            <summary>
+            Gets or sets the radix.
+            </summary>
+            <value>The radix.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.Metadata.Column.Nullable">
+            <summary>
+            Gets or sets the nullable.
+            </summary>
+            <value>The nullable.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.Metadata.Column.Remarks">
+            <summary>
+            Gets or sets the remarks.
+            </summary>
+            <value>The remarks.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.Metadata.Column.DefaultValue">
+            <summary>
+            Gets or sets the default value.
+            </summary>
+            <value>The default value.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.Metadata.Column.CharOctetLength">
+            <summary>
+            Gets or sets the length of the character octet.
+            </summary>
+            <value>The length of the character octet.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.Metadata.Column.OrdinalPosition">
+            <summary>
+            Gets or sets the ordinal position.
+            </summary>
+            <value>The ordinal position.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.Metadata.Column.IsNullable">
+            <summary>
+            Gets or sets the is nullable.
+            </summary>
+            <value>The is nullable.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.Metadata.Column.ScopeCatalog">
+            <summary>
+            Gets or sets the scope catalog.
+            </summary>
+            <value>The scope catalog.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.Metadata.Column.ScopeSchema">
+            <summary>
+            Gets or sets the scope schema.
+            </summary>
+            <value>The scope schema.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.Metadata.Column.ScopeTable">
+            <summary>
+            Gets or sets the scope table.
+            </summary>
+            <value>The scope table.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.Metadata.Column.SourceDataType">
+            <summary>
+            Gets or sets the type of the source data.
+            </summary>
+            <value>The type of the source data.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.Metadata.Column.IsAutoincrement">
+            <summary>
+            Gets or sets the is autoincrement.
+            </summary>
+            <value>The is autoincrement.</value>
+        </member>
+        <member name="M:AceQL.Client.Api.Metadata.Column.Equals(System.Object)">
+            <summary>
+            Determines whether the specified <see cref="T:System.Object" /> is equal to this instance.
+            </summary>
+            <param name="obj">Objet à comparer avec l'objet actif.</param>
+            <returns><c>true</c> if the specified <see cref="T:System.Object" /> is equal to this instance; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:AceQL.Client.Api.Metadata.Column.GetHashCode">
+            <summary>
+            Returns a hash code for this instance.
+            </summary>
+            <returns>A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.</returns>
+        </member>
+        <member name="M:AceQL.Client.Api.Metadata.Column.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents this instance.
+            </summary>
+            <returns>A <see cref="T:System.String" /> that represents this instance.</returns>
+        </member>
+        <member name="T:AceQL.Client.Api.Metadata.ExportedKey">
+            <summary>
+            Class ExportedKey.A SQL Foreign Key.
+            Implements the <see cref="T:AceQL.Client.Api.Metadata.ForeignKey" />
+            </summary>
+            <seealso cref="T:AceQL.Client.Api.Metadata.ForeignKey" />
+        </member>
+        <member name="T:AceQL.Client.Api.Metadata.ForeignKey">
+            <summary>
+            Class ForeignKey. A SQL Foreign Key.
+            Implements the <see cref="T:AceQL.Client.Api.Metadata.CatalogAndSchema" />
+            </summary>
+            <seealso cref="T:AceQL.Client.Api.Metadata.CatalogAndSchema" />
+        </member>
+        <member name="F:AceQL.Client.Api.Metadata.ForeignKey.importedKeyCascade">
+            <summary>
+            The imported key cascade
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Metadata.ForeignKey.importedKeyRestrict">
+            <summary>
+            The imported key restrict
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Metadata.ForeignKey.importedKeySetNull">
+            <summary>
+            The imported key set null
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Metadata.ForeignKey.importedKeyNoAction">
+            <summary>
+            The imported key no action
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Metadata.ForeignKey.importedKeySetDefault">
+            <summary>
+            The imported key set default
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Metadata.ForeignKey.importedKeyInitiallyDeferred">
+            <summary>
+            The imported key initially deferred
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Metadata.ForeignKey.importedKeyInitiallyImmediate">
+            <summary>
+            The imported key initially immediate
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Metadata.ForeignKey.importedKeyNotDeferrable">
+            <summary>
+            The imported key not deferrable
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Metadata.ForeignKey.primaryKeyTable">
+            <summary>
+            The primary key table
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Metadata.ForeignKey.primaryKeyColumn">
+            <summary>
+            The primary key column
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Metadata.ForeignKey.foreignKeyCatalog">
+            <summary>
+            The foreign key catalog
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Metadata.ForeignKey.foreignKeySchema">
+            <summary>
+            The foreign key schema
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Metadata.ForeignKey.foreignKeyTable">
+            <summary>
+            The foreign key table
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Metadata.ForeignKey.foreignKeyColumn">
+            <summary>
+            The foreign key column
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Metadata.ForeignKey.keySequence">
+            <summary>
+            The key sequence
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Metadata.ForeignKey.updateRule">
+            <summary>
+            The update rule
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Metadata.ForeignKey.deleteRule">
+            <summary>
+            The delete rule
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Metadata.ForeignKey.foreignKeyName">
+            <summary>
+            The foreign key name
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Metadata.ForeignKey.primaryKeyName">
+            <summary>
+            The primary key name
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Metadata.ForeignKey.deferrability">
+            <summary>
+            The deferrability
+            </summary>
+        </member>
+        <member name="P:AceQL.Client.Api.Metadata.ForeignKey.PrimaryKeyTable">
+            <summary>
+            Gets or sets the primary key table.
+            </summary>
+            <value>The primary key table.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.Metadata.ForeignKey.PrimaryKeyColumn">
+            <summary>
+            Gets or sets the primary key column.
+            </summary>
+            <value>The primary key column.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.Metadata.ForeignKey.ForeignKeyCatalog">
+            <summary>
+            Gets or sets the foreign key catalog.
+            </summary>
+            <value>The foreign key catalog.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.Metadata.ForeignKey.ForeignKeySchema">
+            <summary>
+            Gets or sets the foreign key schema.
+            </summary>
+            <value>The foreign key schema.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.Metadata.ForeignKey.ForeignKeyTable">
+            <summary>
+            Gets or sets the foreign key table.
+            </summary>
+            <value>The foreign key table.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.Metadata.ForeignKey.ForeignKeyColumn">
+            <summary>
+            Gets or sets the foreign key column.
+            </summary>
+            <value>The foreign key column.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.Metadata.ForeignKey.KeySequence">
+            <summary>
+            Gets or sets the key sequence.
+            </summary>
+            <value>The key sequence.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.Metadata.ForeignKey.UpdateRule">
+            <summary>
+            Gets or sets the update rule.
+            </summary>
+            <value>The update rule.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.Metadata.ForeignKey.DeleteRule">
+            <summary>
+            Gets or sets the delete rule.
+            </summary>
+            <value>The delete rule.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.Metadata.ForeignKey.ForeignKeyName">
+            <summary>
+            Gets or sets the name of the foreign key.
+            </summary>
+            <value>The name of the foreign key.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.Metadata.ForeignKey.PrimaryKeyName">
+            <summary>
+            Gets or sets the name of the primary key.
+            </summary>
+            <value>The name of the primary key.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.Metadata.ForeignKey.Deferrability">
+            <summary>
+            Gets or sets the deferrability.
+            </summary>
+            <value>The deferrability.</value>
+        </member>
+        <member name="M:AceQL.Client.Api.Metadata.ForeignKey.Equals(System.Object)">
+            <summary>
+            Determines whether the specified <see cref="T:System.Object" /> is equal to this instance.
+            </summary>
+            <param name="obj">Objet à comparer avec l'objet actif.</param>
+            <returns><c>true</c> if the specified <see cref="T:System.Object" /> is equal to this instance; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:AceQL.Client.Api.Metadata.ForeignKey.GetHashCode">
+            <summary>
+            Returns a hash code for this instance.
+            </summary>
+            <returns>A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.</returns>
+        </member>
+        <member name="M:AceQL.Client.Api.Metadata.ForeignKey.ToString">
+            <summary>
+            Retourne une chaîne qui représente l'objet actif.
+            </summary>
+            <returns>Chaîne qui représente l'objet actif.</returns>
+        </member>
+        <member name="T:AceQL.Client.Api.Metadata.ImportedKey">
+            <summary>
+            Class ImportedKey. A SQL Foreign Key.
+            Implements the <see cref="T:AceQL.Client.Api.Metadata.ForeignKey" />
+            </summary>
+            <seealso cref="T:AceQL.Client.Api.Metadata.ForeignKey" />
+        </member>
+        <member name="T:AceQL.Client.Api.Metadata.Index">
+            <summary>
+            Class Index. A SQL Index with it's defining elements.
+            Implements the <see cref="T:AceQL.Client.Api.Metadata.CatalogAndSchema" />
+            </summary>
+            <seealso cref="T:AceQL.Client.Api.Metadata.CatalogAndSchema" />
+        </member>
+        <member name="F:AceQL.Client.Api.Metadata.Index.tableIndexStatistic">
+            <summary>
+            The table index statistic
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Metadata.Index.tableIndexClustered">
+            <summary>
+            The table index clustered
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Metadata.Index.tableIndexHashed">
+            <summary>
+            The table index hashed
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Metadata.Index.tableIndexOther">
+            <summary>
+            The table index other
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Metadata.Index.indexName">
+            <summary>
+            The index name
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Metadata.Index.tableName">
+            <summary>
+            The table name
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Metadata.Index.nonUnique">
+            <summary>
+            The non unique
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Metadata.Index.indexQualifier">
+            <summary>
+            The index qualifier
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Metadata.Index.type">
+            <summary>
+            The type
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Metadata.Index.ordinalPosition">
+            <summary>
+            The ordinal position
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Metadata.Index.columnName">
+            <summary>
+            The column name
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Metadata.Index.ascendingOrDescending">
+            <summary>
+            The ascending or descending
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Metadata.Index.cardinality">
+            <summary>
+            The cardinality
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Metadata.Index.pages">
+            <summary>
+            The pages
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Metadata.Index.filterCondition">
+            <summary>
+            The filter condition
+            </summary>
+        </member>
+        <member name="P:AceQL.Client.Api.Metadata.Index.IndexName">
+            <summary>
+            Gets or sets the name of the index.
+            </summary>
+            <value>The name of the index.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.Metadata.Index.TableName">
+            <summary>
+            Gets or sets the name of the table.
+            </summary>
+            <value>The name of the table.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.Metadata.Index.NonUnique">
+            <summary>
+            Gets or sets a value indicating whether [non unique].
+            </summary>
+            <value><c>true</c> if [non unique]; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.Metadata.Index.IndexQualifier">
+            <summary>
+            Gets or sets the index qualifier.
+            </summary>
+            <value>The index qualifier.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.Metadata.Index.Type">
+            <summary>
+            Gets or sets the type.
+            </summary>
+            <value>The type.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.Metadata.Index.OrdinalPosition">
+            <summary>
+            Gets or sets the ordinal position.
+            </summary>
+            <value>The ordinal position.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.Metadata.Index.ColumnName">
+            <summary>
+            Gets or sets the name of the column.
+            </summary>
+            <value>The name of the column.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.Metadata.Index.AscendingOrDescending">
+            <summary>
+            Gets or sets the ascending or descending.
+            </summary>
+            <value>The ascending or descending.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.Metadata.Index.Cardinality">
+            <summary>
+            Gets or sets the cardinality.
+            </summary>
+            <value>The cardinality.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.Metadata.Index.Pages">
+            <summary>
+            Gets or sets the pages.
+            </summary>
+            <value>The pages.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.Metadata.Index.FilterCondition">
+            <summary>
+            Gets or sets the filter condition.
+            </summary>
+            <value>The filter condition.</value>
+        </member>
+        <member name="M:AceQL.Client.Api.Metadata.Index.Equals(System.Object)">
+            <summary>
+            Determines whether the specified <see cref="T:System.Object" /> is equal to this instance.
+            </summary>
+            <param name="obj">Objet à comparer avec l'objet actif.</param>
+            <returns><c>true</c> if the specified <see cref="T:System.Object" /> is equal to this instance; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:AceQL.Client.Api.Metadata.Index.GetHashCode">
+            <summary>
+            Returns a hash code for this instance.
+            </summary>
+            <returns>A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.</returns>
+        </member>
+        <member name="M:AceQL.Client.Api.Metadata.Index.ToString">
+            <summary>
+            Retourne une chaîne qui représente l'objet actif.
+            </summary>
+            <returns>Chaîne qui représente l'objet actif.</returns>
+        </member>
+        <member name="T:AceQL.Client.Api.Metadata.JdbcDatabaseMetaData">
+            <summary>
+            Class JdbcDatabaseMetaData. An instance contains main SQL meta info sent by the remote JDBC Driver.
+            The info matches the JDBC <a href="https://docs.oracle.com/javase/8/docs/api/java/sql/DatabaseMetaData.html">DatabaseMetaData</a> main values.
+            </summary>
+        </member>
+        <member name="T:AceQL.Client.Api.Metadata.PrimaryKey">
+            <summary>
+            Class PrimaryKey. A SQL Primary Key with it's defining elements.
+            Implements the <see cref="T:AceQL.Client.Api.Metadata.CatalogAndSchema" />
+            </summary>
+            <seealso cref="T:AceQL.Client.Api.Metadata.CatalogAndSchema" />
+        </member>
+        <member name="F:AceQL.Client.Api.Metadata.PrimaryKey.tableName">
+            <summary>
+            The table name
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Metadata.PrimaryKey.columnName">
+            <summary>
+            The column name
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Metadata.PrimaryKey.keySequence">
+            <summary>
+            The key sequence
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Metadata.PrimaryKey.primaryKeyName">
+            <summary>
+            The primary key name
+            </summary>
+        </member>
+        <member name="P:AceQL.Client.Api.Metadata.PrimaryKey.TableName">
+            <summary>
+            Gets or sets the name of the table.
+            </summary>
+            <value>The name of the table.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.Metadata.PrimaryKey.ColumnName">
+            <summary>
+            Gets or sets the name of the column.
+            </summary>
+            <value>The name of the column.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.Metadata.PrimaryKey.KeySequence">
+            <summary>
+            Gets or sets the key sequence.
+            </summary>
+            <value>The key sequence.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.Metadata.PrimaryKey.PrimaryKeyName">
+            <summary>
+            Gets or sets the name of the primary key.
+            </summary>
+            <value>The name of the primary key.</value>
+        </member>
+        <member name="M:AceQL.Client.Api.Metadata.PrimaryKey.GetHashCode">
+            <summary>
+            Returns a hash code for this instance.
+            </summary>
+            <returns>A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.</returns>
+        </member>
+        <member name="M:AceQL.Client.Api.Metadata.PrimaryKey.Equals(System.Object)">
+            <summary>
+            Determines whether the specified <see cref="T:System.Object" /> is equal to this instance.
+            </summary>
+            <param name="obj">Objet à comparer avec l'objet actif.</param>
+            <returns><c>true</c> if the specified <see cref="T:System.Object" /> is equal to this instance; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:AceQL.Client.Api.Metadata.PrimaryKey.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents this instance.
+            </summary>
+            <returns>A <see cref="T:System.String" /> that represents this instance.</returns>
+        </member>
+        <member name="T:AceQL.Client.Api.Metadata.RemoteDatabaseMetaData">
+            <summary>
+            Class RemoteDatabaseMetaData. Allows to retrieve metadata info of the remote SQL database:
+            <ul><li>Schema description.</li><li>Databases object wrappers: Tables, Columns, Indexes, etc.</li>
+            </ul>
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Metadata.RemoteDatabaseMetaData.aceQLHttpApi">
+            <summary>
+            The Http instance that does all Http stuff
+            </summary>
+        </member>
+        <member name="M:AceQL.Client.Api.Metadata.RemoteDatabaseMetaData.#ctor(AceQL.Client.Api.AceQLConnection)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="aceQLConnection">the Connection to the remote database.</param>
+            <exception cref="T:System.ArgumentNullException">aceQLConnection is null!</exception>
+        </member>
+        <member name="M:AceQL.Client.Api.Metadata.RemoteDatabaseMetaData.DbSchemaDownloadAsync">
+            <summary>
+            Downloads into a stream the schema of the remote database using HTML format.
+            </summary>
+            <returns>Task&lt;Stream&gt;.</returns>
+        </member>
+        <member name="M:AceQL.Client.Api.Metadata.RemoteDatabaseMetaData.DbSchemaDownloadAsync(System.String)">
+            <summary>
+            Downloads into a stream the schema of the remote database, using the specified format.
+            </summary>
+            <param name="format">The format. "html" or "text". Defaults to "html" if null.</param>
+            <returns>Task&lt;Stream&gt;.</returns>
+        </member>
+        <member name="M:AceQL.Client.Api.Metadata.RemoteDatabaseMetaData.DbSchemaDownloadAsync(System.String,System.String)">
+            <summary>
+            Downloads into a stream the schema of the remote database.
+            </summary>
+            <param name="format">The format. "html" or "text". Defaults to "html" if null.</param>
+            <param name="tableName">the table name, without dot separator. Defaults to all tables if null.</param>
+            <returns>Task&lt;Stream&gt;.</returns>
+            <exception cref="T:System.ArgumentException">Invalid format value. Must be \"html\" or \"text\". is: " + format</exception>
+        </member>
+        <member name="M:AceQL.Client.Api.Metadata.RemoteDatabaseMetaData.GetJdbcDatabaseMetaDataAsync">
+            <summary>
+            Gets the JDBC  meta data of the remote database.
+            </summary>
+            <returns>Task&lt;JdbcDatabaseMetaDataDto&gt;.</returns>
+        </member>
+        <member name="M:AceQL.Client.Api.Metadata.RemoteDatabaseMetaData.GetTableNamesAsync">
+            <summary>
+            Returns the table names of the remote database.
+            </summary>
+            <returns>Task&lt;List&lt;TableName&gt;&gt;.</returns>
+        </member>
+        <member name="M:AceQL.Client.Api.Metadata.RemoteDatabaseMetaData.GetTableNamesAsync(System.String)">
+            <summary>
+            Returns the table names of the remote database.
+            </summary>
+            <param name="tableType">tableType the table type. Can be null. Possible values: "table", "view", etc. Defaults to all types if null passed.</param>
+            <returns>Task&lt;List&lt;TableName&gt;&gt;.</returns>
+        </member>
+        <member name="M:AceQL.Client.Api.Metadata.RemoteDatabaseMetaData.GetTableAsync(System.String)">
+            <summary>
+            Returns a table object with all it's elements from the remote database.
+            </summary>
+            <param name="name">The name of the table without dot separator.</param>
+            <returns>Task&lt;Table&gt;.</returns>
+            <exception cref="T:System.ArgumentNullException">name is null!</exception>
+        </member>
+        <member name="T:AceQL.Client.Api.Metadata.Table">
+            <summary>
+            Class Table. A SQL Table with it's defining elements.
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Metadata.Table.TABLE">
+            <summary>
+            The table
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Metadata.Table.VIEW">
+            <summary>
+            The view
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Metadata.Table.tableName">
+            <summary>
+            The table name
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Metadata.Table.tableType">
+            <summary>
+            The table type
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Metadata.Table.remarks">
+            <summary>
+            The remarks
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Metadata.Table.columns">
+            <summary>
+            The columns
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Metadata.Table.primaryKeys">
+            <summary>
+            The primary keys
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Metadata.Table.indexes">
+            <summary>
+            The indexes
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Metadata.Table.importedforeignKeys">
+            <summary>
+            The importedforeign keys
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Metadata.Table.exportedforeignKeys">
+            <summary>
+            The exportedforeign keys
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Metadata.Table.catalog">
+            <summary>
+            The catalog
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Metadata.Table.schema">
+            <summary>
+            The schema
+            </summary>
+        </member>
+        <member name="P:AceQL.Client.Api.Metadata.Table.TableName">
+            <summary>
+            Gets or sets the name of the table.
+            </summary>
+            <value>The name of the table.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.Metadata.Table.TableType">
+            <summary>
+            Gets or sets the type of the table.
+            </summary>
+            <value>The type of the table.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.Metadata.Table.Remarks">
+            <summary>
+            Gets or sets the remarks.
+            </summary>
+            <value>The remarks.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.Metadata.Table.Columns">
+            <summary>
+            Gets or sets the columns.
+            </summary>
+            <value>The columns.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.Metadata.Table.PrimaryKeys">
+            <summary>
+            Gets or sets the primary keys.
+            </summary>
+            <value>The primary keys.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.Metadata.Table.Indexes">
+            <summary>
+            Gets or sets the indexes.
+            </summary>
+            <value>The indexes.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.Metadata.Table.ImportedforeignKeys">
+            <summary>
+            Gets or sets the importedforeign keys.
+            </summary>
+            <value>The importedforeign keys.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.Metadata.Table.ExportedforeignKeys">
+            <summary>
+            Gets or sets the exportedforeign keys.
+            </summary>
+            <value>The exportedforeign keys.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.Metadata.Table.Catalog">
+            <summary>
+            Gets or sets the catalog.
+            </summary>
+            <value>The catalog.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.Metadata.Table.Schema">
+            <summary>
+            Gets or sets the schema.
+            </summary>
+            <value>The schema.</value>
+        </member>
+        <member name="M:AceQL.Client.Api.Metadata.Table.Equals(System.Object)">
+            <summary>
+            Determines whether the specified <see cref="T:System.Object" /> is equal to this instance.
+            </summary>
+            <param name="obj">Objet à comparer avec l'objet actif.</param>
+            <returns><c>true</c> if the specified <see cref="T:System.Object" /> is equal to this instance; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:AceQL.Client.Api.Metadata.Table.GetHashCode">
+            <summary>
+            Returns a hash code for this instance.
+            </summary>
+            <returns>A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.</returns>
+        </member>
+        <member name="M:AceQL.Client.Api.Metadata.Table.ToString">
+            <summary>
+            Retourne une chaîne qui représente l'objet actif.
+            </summary>
+            <returns>Chaîne qui représente l'objet actif.</returns>
+        </member>
+        <member name="T:AceQL.Client.Api.Util.AceQLCommandUtil">
+            <summary>
+            Class AceQLCommandUtil.
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Util.AceQLCommandUtil.cmdText">
+            <summary>
+            The command text
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Util.AceQLCommandUtil.Parameters">
+            <summary>
+            The parameters
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Util.AceQLCommandUtil.blobIds">
+            <summary>
+            The BLOB ids
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Util.AceQLCommandUtil.blobStreams">
+            <summary>
+            The BLOB file streams
+            </summary>
+        </member>
+        <member name="P:AceQL.Client.Api.Util.AceQLCommandUtil.BlobIds">
+            <summary>
+            Gets the BLOB ids.
+            </summary>
+            <value>The BLOB ids.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.Util.AceQLCommandUtil.BlobStreams">
+            <summary>
+            Gets the BLOB streams.
+            </summary>
+            <value>The BLOB streams.</value>
+        </member>
+        <member name="M:AceQL.Client.Api.Util.AceQLCommandUtil.#ctor(System.String,AceQL.Client.Api.AceQLParameterCollection)">
+            <summary>
+            Initializes a new instance of the <see cref="T:AceQL.Client.Api.Util.AceQLCommandUtil"/> class.
+            </summary>
+            <param name="cmdText">The command text.</param>
+            <param name="Parameters">The parameters.</param>
+            <exception cref="T:System.ArgumentNullException">
+            cmdText is null!
+            or
+            Parameters is null!
+            </exception>
+        </member>
+        <member name="M:AceQL.Client.Api.Util.AceQLCommandUtil.GetPreparedStatementParameters">
+            <summary>
+            Gets the prepared statement parameters.
+            </summary>
+            <returns>The Parameters List</returns>
+        </member>
+        <member name="M:AceQL.Client.Api.Util.AceQLCommandUtil.BuildUniqueBlobId">
+            <summary>
+            Builds a unique Blob ID.
+            </summary>
+            <returns>a unique Blob ID.</returns>
+        </member>
+        <member name="M:AceQL.Client.Api.Util.AceQLCommandUtil.GetTraceFile">
+            <summary>
+            Returns the file corresponding to the trace file. Value is: AceQLPclFolder/trace.txt.
+            </summary>
+            <returns>the file corresponding to the trace file.</returns>
+        </member>
+        <member name="M:AceQL.Client.Api.Util.AceQLCommandUtil.CheckAllParametersExistInSqlCommand(System.Collections.Generic.HashSet{System.String},AceQL.Client.Api.AceQLParameterCollection)">
+            <summary>
+            Checks all parameters exist in SQL command. Will throw an Exception if a parameter is missing.
+            </summary>
+            <param name="theParamsSetInSqlCommand">The parameters set in SQL command.</param>
+            <param name="parameters">The parameters.</param>
+        </member>
+        <member name="M:AceQL.Client.Api.Util.AceQLCommandUtil.GetValidParamsInSqlCommand">
+            <summary>
+            Gets the valid parameters.
+            </summary>
+            <returns>HashSet&lt;System.String&gt;.</returns>
+        </member>
+        <member name="M:AceQL.Client.Api.Util.AceQLCommandUtil.ReplaceParmsWithQuestionMarks">
+            <summary>
+            Replaces the parms with question marks.
+            </summary>
+            <returns>System.String.</returns>
+        </member>
+        <member name="M:AceQL.Client.Api.Util.AceQLCommandUtil.ConvertToTimestamp(System.DateTime)">
+            <summary>
+            Dates the time to unix timestamp.
+            </summary>
+            <param name="dateTime">The UNIX date time in milliseconds</param>
+            <returns>String.</returns>
+        </member>
+        <member name="T:AceQL.Client.Api.Util.AceQLTypes">
+             <summary>   The main supported SQL types. </summary>
+            
+             <remarks>   Nicolas De Pomereu, 19/05/2017. </remarks>
+        </member>
+        <member name="T:AceQL.Client.Api.Util.ConsoleEmul">
+            <summary>
+            Console emulator as in Portable Class Library we don't have access to Console.
+            </summary>
+        </member>
+        <member name="M:AceQL.Client.Api.Util.FileUtil2.GetUserFolderPath">
+            <summary>
+            Gets the user folder path.
+            </summary>
+            <returns>String.</returns>
+        </member>
+        <member name="M:AceQL.Client.Api.Util.FileUtil2.CopyHttpStreamToFile(System.String,System.IO.Stream,System.Boolean)">
+            <summary>
+            Copies the HTTP stream to file.
+            </summary>
+            <param name="path">The path.</param>
+            <param name="input">The input.</param>
+            <param name="GzipResult">if set to <c>true</c>, stream will be unzipped before copy to file.</param>
+        </member>
+        <member name="M:AceQL.Client.Api.Util.FileUtil2.GetUniqueResultSetFile">
+            <summary>
+            Generates a unique File on the system for the downloaded result set content.
+            </summary>
+            <returns>A unique File on the system.</returns>
+        </member>
+        <member name="T:AceQL.Client.Api.Util.OutParamBuilder">
+            <summary>
+            Class OutParamBuilder.
+            Parses the result out Json file and extracts the callable statement / stored procedure out parameters dictionnaries.
+            <seealso cref="T:System.IDisposable" />
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Util.OutParamBuilder.traceOn">
+            <summary>
+            The trace on
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Util.OutParamBuilder.valuesPerParamIndex">
+            <summary>
+            The values per col index
+            </summary>
+        </member>
+        <member name="M:AceQL.Client.Api.Util.OutParamBuilder.#ctor(System.IO.Stream)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="readStream">The reading stream on file.</param>
+        </member>
+        <member name="M:AceQL.Client.Api.Util.OutParamBuilder.BuildOutParametersDicts">
+            <summary>
+            Buils the out parameter dictionnaries reading Json in stream.s
+            </summary>
+        </member>
+        <member name="M:AceQL.Client.Api.Util.OutParamBuilder.GetvaluesPerParamIndex">
+            <summary>
+            Retuns the dict of parameter indexes/values.
+            </summary>
+            <returns>The dict of parameter indexes/values</returns>
+        </member>
+        <member name="M:AceQL.Client.Api.Util.OutParamBuilder.GetvaluesPerParamName">
+            <summary>
+            Retuns the dict of parameter name/values.
+            </summary>
+            <returns>The dict of parameter name/values.</returns>
+        </member>
+        <member name="M:AceQL.Client.Api.Util.OutParamBuilder.IsTraceOn">
+            Says if trace is on
+            
+            @return true if trace is on
+            <summary>
+            Determines whether [is trace on].
+            </summary>
+            <returns><c>true</c> if [is trace on]; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:AceQL.Client.Api.Util.OutParamBuilder.SetTraceOn(System.Boolean)">
+            Sets the trace on/off
+            
+            @param traceOn
+                       if true, trace will be on
+            <summary>
+            Sets the trace on.
+            </summary>
+            <param name="traceOn">if set to <c>true</c> [trace on].</param>
+        </member>
+        <member name="M:AceQL.Client.Api.Util.OutParamBuilder.Trace">
+            <summary>
+            Traces this instance.
+            </summary>
+        </member>
+        <member name="M:AceQL.Client.Api.Util.OutParamBuilder.Trace(System.String)">
+            <summary>
+            Traces the specified s.
+            </summary>
+            <param name="s">The s.</param>
+        </member>
+        <member name="M:AceQL.Client.Api.Util.OutParamBuilder.Dispose">
+            <summary>
+            Releases all resources used by the current instance of the <see cref="T:AceQL.Client.Api.Util.OutParamBuilder"/> class. 
+            This is recommended in order to delete the local corresponding temporary files.
+            </summary>
+        </member>
+        <member name="T:AceQL.Client.Api.Util.Parms">
+            <summary>
+            Parameters for SDK.
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Util.Parms.ACEQL_PCL_FOLDER">
+            <summary>
+            The AceQL default storage folder.
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Util.Parms.TRACE_TXT">
+            <summary>
+            The default trace file name.
+            </summary>
+        </member>
+        <member name="T:AceQL.Client.Api.Util.ResultAnalyzer">
+            <summary>
+            Class <see cref="T:AceQL.Client.Api.Util.ResultAnalyzer"/>. Used to analyze a JSON response from the AceQL server.
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Util.ResultAnalyzer.jsonResult">
+            <summary>
+            The json result
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Util.ResultAnalyzer.invalidJsonStream">
+            <summary>
+            We try to find status. If error parsing, invalidJsonStream = true
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Util.ResultAnalyzer.parseException">
+            Exception when parsing the JSON stream. Future usage 
+        </member>
+        <member name="M:AceQL.Client.Api.Util.ResultAnalyzer.#ctor(System.String,System.Net.HttpStatusCode)">
+            <summary>
+            Initializes a new instance of the <see cref="T:AceQL.Client.Api.Util.ResultAnalyzer"/> class.
+            </summary>
+            <param name="jsonResult">The json result.</param>
+            <param name="httpStatusCode">The http status code.</param>
+            <exception cref="T:System.ArgumentNullException">jsonResult is null!</exception>
+        </member>
+        <member name="M:AceQL.Client.Api.Util.ResultAnalyzer.IsStatusOk">
+            <summary>
+            Determines whether the SQL command correctly executed on server side.
+            </summary>
+            <returns><c>true</c> if [is status ok]; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:AceQL.Client.Api.Util.ResultAnalyzer.IsInvalidJsonStream">
+            <summary>
+            Says if the JSON Stream is invalid.
+            </summary>
+            <returns>true if JSN stream is invalid</returns>
+        </member>
+        <member name="M:AceQL.Client.Api.Util.ResultAnalyzer.GetResult(System.String)">
+            <summary>
+            Gets the result for a a key name
+            </summary>
+            <param name="name">The name.</param>
+            <returns>System.String.</returns>
+        </member>
+        <member name="M:AceQL.Client.Api.Util.ResultAnalyzer.GetResult">
+            <summary>
+            Gets the result for the key name "result"
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:AceQL.Client.Api.Util.ResultAnalyzer.GetValue(System.String)">
+            <summary>
+            Gets the value.
+            </summary>
+            <param name="name">The name.</param>
+            <returns>System.String.</returns>
+            <exception cref="T:System.ArgumentNullException">name is null!</exception>
+            <exception cref="T:System.Exception">Illegal name: " + name</exception>
+        </member>
+        <member name="M:AceQL.Client.Api.Util.ResultAnalyzer.GetErrorId">
+            <summary>
+            Gets the error_type.
+            </summary>
+            <returns>System.Int32.</returns>
+        </member>
+        <member name="M:AceQL.Client.Api.Util.ResultAnalyzer.GetErrorMessage">
+            <summary>
+            Gets the error_message.
+            </summary>
+            <returns>System.String.</returns>
+        </member>
+        <member name="M:AceQL.Client.Api.Util.ResultAnalyzer.GetStackTrace">
+            <summary>
+            Gets the remote stack_trace.
+            </summary>
+            <returns>String.</returns>
+        </member>
+        <member name="M:AceQL.Client.Api.Util.ResultAnalyzer.GetIntvalue(System.String)">
+            <summary>
+            Gets the int value.
+            </summary>
+            <param name="name">The name.</param>
+            <returns>System.Int32.</returns>
+        </member>
+        <member name="T:AceQL.Client.Api.Util.RowCounter">
+            <summary>
+            Counts rows in a JSON file.
+            </summary>
+        </member>
+        <member name="M:AceQL.Client.Api.Util.RowCounter.#ctor(System.IO.Stream)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="readStream">The reading stream on file.</param>
+        </member>
+        <member name="M:AceQL.Client.Api.Util.RowCounter.Count">
+            <summary>
+            Gets the row count.
+            </summary>
+            <returns>System.Int32.</returns>
+        </member>
+        <member name="M:AceQL.Client.Api.Util.RowCounter.IsTraceOn">
+            Says if trace is on
+            
+            @return true if trace is on
+            <summary>
+            Determines whether [is trace on].
+            </summary>
+            <returns><c>true</c> if [is trace on]; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:AceQL.Client.Api.Util.RowCounter.SetTraceOn(System.Boolean)">
+            Sets the trace on/off
+            
+            @param traceOn
+                       if true, trace will be on
+            <summary>
+            Sets the trace on.
+            </summary>
+            <param name="traceOn">if set to <c>true</c> [trace on].</param>
+        </member>
+        <member name="M:AceQL.Client.Api.Util.RowCounter.Trace">
+            <summary>
+            Traces this instance.
+            </summary>
+        </member>
+        <member name="M:AceQL.Client.Api.Util.RowCounter.Trace(System.String)">
+            <summary>
+            Traces the specified string.
+            </summary>
+            <param name="theString">The string to trace.</param>
+        </member>
+        <member name="T:AceQL.Client.Api.Util.RowParser">
+            <summary>
+            Class RowParser.
+            We pass a TextReader instead of a PortableFile as we want the methods to be all sync for end user.
+            <seealso cref="T:System.IDisposable" />
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Util.RowParser.traceOn">
+            <summary>
+            The trace on
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Util.RowParser.valuesPerColIndex">
+            <summary>
+            The values per col index
+            </summary>
+        </member>
+        <member name="M:AceQL.Client.Api.Util.RowParser.#ctor(System.IO.Stream)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="readStream">The reading stream on file.</param>
+        </member>
+        <member name="M:AceQL.Client.Api.Util.RowParser.BuildRowNum(System.Int32)">
+            <summary>
+            Builds the row number.
+            </summary>
+            <param name="rowNum">The row number.</param>
+        </member>
+        <member name="M:AceQL.Client.Api.Util.RowParser.IsTraceOn">
+            Says if trace is on
+            
+            @return true if trace is on
+            <summary>
+            Determines whether [is trace on].
+            </summary>
+            <returns><c>true</c> if [is trace on]; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:AceQL.Client.Api.Util.RowParser.SetTraceOn(System.Boolean)">
+            Sets the trace on/off
+            
+            @param traceOn
+                       if true, trace will be on
+            <summary>
+            Sets the trace on.
+            </summary>
+            <param name="traceOn">if set to <c>true</c> [trace on].</param>
+        </member>
+        <member name="M:AceQL.Client.Api.Util.RowParser.Trace(System.String)">
+            <summary>
+            Traces the specified s.
+            </summary>
+            <param name="s">The s.</param>
+        </member>
+        <member name="T:AceQL.Client.Api.Util.StreamResultAnalyzer">
+            <summary>
+            Class <see cref="T:AceQL.Client.Api.Util.StreamResultAnalyzer"/>. Allows to analyze the result of a downloaded result of a SQL query stored in a local PC file.
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Util.StreamResultAnalyzer.errorType">
+            <summary>
+            The error identifier
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Util.StreamResultAnalyzer.errorMessage">
+            <summary>
+            The error message
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Util.StreamResultAnalyzer.stackTrace">
+            <summary>
+            The stack trace
+            </summary>
+        </member>
+        <member name="M:AceQL.Client.Api.Util.StreamResultAnalyzer.#ctor(System.String,System.Net.HttpStatusCode)">
+            <summary>
+            Initializes a new instance of the <see cref="T:AceQL.Client.Api.Util.StreamResultAnalyzer"/> class.
+            </summary>
+            <param name="file">The file to analyze.</param>
+            <param name="httpStatusCode">The http status code.</param>
+            <exception cref="T:System.ArgumentNullException">The file is null.</exception>
+        </member>
+        <member name="M:AceQL.Client.Api.Util.StreamResultAnalyzer.IsStatusOkAsync">
+            <summary>
+            Determines whether the SQL correctly executed on server side.
+            </summary>
+            <returns><c>true</c> if [is status ok]; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:AceQL.Client.Api.Util.StreamResultAnalyzer.ParseErrorKeywords(Newtonsoft.Json.JsonTextReader)">
+            <summary>
+            Parses the error keywords.
+            </summary>
+            <param name="reader">The reader.</param>
+        </member>
+        <member name="M:AceQL.Client.Api.Util.StreamResultAnalyzer.GetErrorMessage">
+            <summary>
+            Gets the error message.
+            </summary>
+            <returns>The error message</returns>
+        </member>
+        <member name="M:AceQL.Client.Api.Util.StreamResultAnalyzer.GetErrorType">
+            <summary>
+            Gets the error type.
+            </summary>
+            <returns>The error type.</returns>
+        </member>
+        <member name="M:AceQL.Client.Api.Util.StreamResultAnalyzer.GetStackTrace">
+            <summary>
+            Gets the remote stack trace.
+            </summary>
+            <returns>The remote stack trace.</returns>
+        </member>
+        <member name="T:AceQL.Client.Api.AceQLCommand">
+            <summary>Represents a SQL statement to execute against a remote SQL database.</summary>
+        </member>
+        <member name="F:AceQL.Client.Api.AceQLCommand.aceQLHttpApi">
+            <summary>
+            The instance that does all http stuff
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.AceQLCommand.cmdText">
+            <summary>
+            The text of the query.
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.AceQLCommand.connection">
+            <summary>
+            The AceQL connection
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.AceQLCommand.transaction">
+            <summary>
+            The associated AceQLTransaction. 
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.AceQLCommand.parameters">
+            <summary>
+            The parameters
+            </summary>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLCommand.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:AceQL.Client.Api.AceQLCommand"/> class.
+            </summary>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLCommand.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:AceQL.Client.Api.AceQLCommand"/> class with the text of the query.
+            </summary>
+            <param name="cmdText">The text of the query.</param>
+            <exception cref="T:System.ArgumentNullException">If cmdText is null.
+            </exception>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLCommand.#ctor(System.String,AceQL.Client.Api.AceQLConnection)">
+            <summary>
+            Initializes a new instance of the <see cref="T:AceQL.Client.Api.AceQLCommand"/> class with the text of the query 
+            and a <see cref="T:AceQL.Client.Api.AceQLConnection"/>.
+            </summary>
+            <param name="cmdText">The text of the query.</param>
+            <param name="connection">A <see cref="T:AceQL.Client.Api.AceQLConnection"/> that represents the connection to a remote database.</param>
+            <exception cref="T:System.ArgumentNullException">
+            If cmdText is null
+            or
+            connection is null.
+            </exception>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLCommand.#ctor(System.String,AceQL.Client.Api.AceQLConnection,AceQL.Client.Api.AceQLTransaction)">
+            <summary>
+            Initializes a new instance of the <see cref="T:AceQL.Client.Api.AceQLCommand"/> class with the text of the query and a 
+            <see cref="T:AceQL.Client.Api.AceQLConnection"/>, and the <see cref="T:AceQL.Client.Api.AceQLTransaction"/>.
+            </summary>
+            <param name="cmdText">The text of the query.</param>
+            <param name="connection">A <see cref="T:AceQL.Client.Api.AceQLConnection"/> that represents the connection to a remote database.</param>
+            <param name="transaction">A <see cref="T:AceQL.Client.Api.AceQLTransaction"/>.</param>
+            <exception cref="T:System.ArgumentNullException">
+            If cmdText is null or connection or transaction is null.
+            </exception>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLCommand.ExecuteReaderAsync(System.Threading.CancellationToken)">
+            <summary>
+            Sends the <see cref="T:AceQL.Client.Api.AceQLCommand"/>.CommandText to the <see cref="T:AceQL.Client.Api.AceQLConnection"/> and builds an <see cref="T:AceQL.Client.Api.AceQLDataReader"/>.
+            <para/>The cancellation token can be used to can be used to request that the operation be abandoned before the http request timeout.
+            </summary>
+            <param name="cancellationToken">The cancellation instruction.</param>
+            <returns>An <see cref="T:AceQL.Client.Api.AceQLDataReader"/>object.</returns>
+            <exception cref="T:AceQL.Client.Api.AceQLException">If any Exception occurs.</exception>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLCommand.ExecuteReaderAsync">
+            <summary>
+             Sends the <see cref="T:AceQL.Client.Api.AceQLCommand"/>.CommandText to the <see cref="T:AceQL.Client.Api.AceQLConnection"/> and builds an <see cref="T:AceQL.Client.Api.AceQLDataReader"/>.
+            </summary>
+            <returns>An <see cref="T:AceQL.Client.Api.AceQLDataReader"/>object.</returns>
+            <exception cref="T:AceQL.Client.Api.AceQLException">If any Exception occurs.</exception>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLCommand.Prepare">
+            <summary>
+            Creates a prepared version of the command. Optional call.
+            Note that the remote statement will always be a prepared statement if
+            the command contains parameters.
+            </summary>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLCommand.ExecuteNonQueryAsync(System.Threading.CancellationToken)">
+            <summary>
+            Executes the SQL statement against the connection and returns the number of rows affected.
+            <para/>The cancellation token can be used to can be used to request that the operation be abandoned before the http request timeout.
+            </summary>
+            <param name="cancellationToken">The cancellation instruction.</param>
+            <returns>The number of rows affected.</returns>
+            <exception cref="T:AceQL.Client.Api.AceQLException">If any Exception occurs.</exception>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLCommand.ExecuteNonQueryAsync">
+            <summary>
+            Executes the SQL statement against the connection and returns the number of rows affected.
+            </summary>
+            <returns>The number of rows affected.</returns>
+            <exception cref="T:AceQL.Client.Api.AceQLException">If any Exception occurs.</exception>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLCommand.ExecuteQueryAsStatementAsync">
+            <summary>
+            Executes the query as statement.
+            </summary>
+            <returns>An <see cref="T:AceQL.Client.Api.AceQLDataReader"/>object.</returns>
+            <exception cref="T:AceQL.Client.Api.AceQLException">If any Exception occurs.</exception>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLCommand.ExecuteQueryAsPreparedStatementAsync">
+            <summary>
+            Executes the query as prepared statement.
+            </summary>
+            <returns>An <see cref="T:AceQL.Client.Api.AceQLDataReader"/> object.</returns>
+            <exception cref="T:AceQL.Client.Api.AceQLException">If any Exception occurs.</exception>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLCommand.ExecuteUpdateAsPreparedStatementAsync">
+            <summary>
+            Executes the update as prepared statement.
+            </summary>
+            <returns>System.Int32.</returns>
+            <exception cref="T:AceQL.Client.Api.AceQLException">
+            </exception>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLCommand.ExecuteUpdateAsStatementAsync">
+            <summary>
+            Executes the update as statement.
+            </summary>
+            <returns>System.Int32.</returns>
+            <exception cref="T:AceQL.Client.Api.AceQLException">
+            </exception>
+        </member>
+        <member name="P:AceQL.Client.Api.AceQLCommand.CommandText">
+            <summary>
+            Gets ot set SQL statement to execute against a remote SQL database.
+            </summary>
+            <value>The SQL statement to execute against a remote SQL database.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.AceQLCommand.Connection">
+            <summary>
+            Gets or sets the <see cref="T:AceQL.Client.Api.AceQLConnection"/> used by this instance of <see cref="T:AceQL.Client.Api.AceQLCommand"/>.
+            </summary>
+            <value>The remote database connection.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.AceQLCommand.Transaction">
+            <summary>
+            Gets or sets the <see cref="T:AceQL.Client.Api.AceQLTransaction"/> used by this instance of <see cref="T:AceQL.Client.Api.AceQLCommand"/>.
+            </summary>
+            <value>The <see cref="T:AceQL.Client.Api.AceQLTransaction"/>.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.AceQLCommand.Parameters">
+            <summary>
+            Gets the <see cref="T:AceQL.Client.Api.AceQLParameterCollection"/>.
+            </summary>
+            <value>The <see cref="T:AceQL.Client.Api.AceQLParameterCollection"/>.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.AceQLCommand.CommandType">
+            <summary>
+            Gets or sets a value indicating how the CommandText property is to be interpreted.
+            </summary>
+            <value>The <see cref="P:AceQL.Client.Api.AceQLCommand.CommandType"/>.</value>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLCommand.Dispose">
+            <summary>
+            Disposes this instance. This call is optional and does nothing because all resources are released after 
+            each other <see cref="T:AceQL.Client.Api.AceQLCommand"/> method call. Class implements <see cref="T:System.IDisposable"/> to ease code migration.
+            </summary>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLCommand.Dispose(System.Boolean)">
+            <summary>
+            Releases unmanaged and - optionally - managed resources.
+            </summary>
+            <param name="v"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
+        </member>
+        <member name="T:AceQL.Client.Api.AceQLConnection">
+            <summary>
+            Class <see cref="T:AceQL.Client.Api.AceQLConnection"/>. Allows to create a database connection to the remote server.
+            </summary>
+            <seealso cref="T:System.IDisposable" />
+        </member>
+        <member name="F:AceQL.Client.Api.AceQLConnection.closeAsyncDone">
+            <summary>
+             Says if connection is closed
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.AceQLConnection.logoutAsyncDone">
+            <summary>
+             Says if user has done a logout/logoff
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.AceQLConnection.defaultWebProxy">
+            <summary>
+            The default web proxy that the end user may set
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.AceQLConnection.requestRetry">
+            <summary>
+            The request retry/
+            </summary>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLConnection.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:AceQL.Client.Api.AceQLConnection"/> class.
+            </summary>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLConnection.AddRequestHeader(System.String,System.String)">
+            <summary>
+            Adds A request header. The header will be added at each server call.
+            </summary>
+            <param name="name">The header name.</param>
+            <param name="value">The header value.</param>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLConnection.ResetRequestHeaders">
+            <summary>
+            Resets the request headers. The previously added headers with <see cref="M:AceQL.Client.Api.AceQLConnection.AddRequestHeader(System.String,System.String)"/> will be suppressed.
+            </summary>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLConnection.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:AceQL.Client.Api.AceQLConnection"/> class  when given a string that contains the connection string.
+            </summary>
+            <param name="connectionString">The connection used to open the remote database.</param>
+            <exception cref="T:System.ArgumentNullException">If connectionString is null.</exception>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLConnection.#ctor(System.String,AceQL.Client.Api.AceQLCredential)">
+            <summary>
+            Initializes a new instance of the <see cref="T:AceQL.Client.Api.AceQLConnection"/> class  when given a string that contains the connection string 
+            and an <see cref="T:AceQL.Client.Api.AceQLCredential"/> object that contains the username and password.
+            </summary>
+            <param name="connectionString">A connection string that does not use any of the following connection string keywords: Username
+            or Password.</param>
+            <param name="credential"><see cref="T:AceQL.Client.Api.AceQLCredential"/> object. </param>
+            <exception cref="T:System.ArgumentNullException">If connectionString is null or <see cref="T:AceQL.Client.Api.AceQLCredential"/> is null.</exception>
+            <exception cref="T:System.ArgumentException">connectionString token does not contain a = separator: " + line</exception>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLConnection.GetAceQLLocalFolder">
+            <summary>
+            Gets the path to the local AceQL folder where SQL queries results are stored.
+            </summary>
+            <returns>The path to the local AceQL folder.</returns>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLConnection.GetRemoteDatabaseMetaData">
+            <summary>
+            Creates a RemoteDatabaseMetaData in order to query remote database metadata info.
+            </summary>
+            <returns>RemoteDatabaseMetaData.</returns>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLConnection.OpenAsync">
+            <summary>
+            Opens a connection with the remote database.
+            </summary>
+            <exception cref="T:AceQL.Client.Api.AceQLException">If any Exception occurs.</exception>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLConnection.OpenAsync(System.Threading.CancellationToken)">
+            <summary>
+            Opens a connection with the remote database.
+            <para/>The cancellation token can be used to can be used to request that the operation be abandoned before the http request timeout.
+            </summary>
+            <param name="cancellationToken">The cancellation instruction.</param>
+            <exception cref="T:AceQL.Client.Api.AceQLException">If any Exception occurs.</exception>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLConnection.BeginTransactionAsync(System.Threading.CancellationToken)">
+            <summary>
+            Initializes a <see cref="T:AceQL.Client.Api.AceQLTransaction"/>object. This will put the remote connection in auto commit mode off.
+            <para/>The cancellation token can be used to can be used to request that the operation be abandoned before the http request timeout.
+            </summary>
+            <param name="cancellationToken">The cancellation instruction.</param>
+            <returns>A new <see cref="T:AceQL.Client.Api.AceQLTransaction"/> object.</returns>
+            <exception cref="T:AceQL.Client.Api.AceQLException">If any Exception occurs.</exception>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLConnection.BeginTransactionAsync">
+            <summary>
+            Initializes a <see cref="T:AceQL.Client.Api.AceQLTransaction"/>object. This will put the remote connection in auto commit mode off.
+            </summary>
+            <returns>A new <see cref="T:AceQL.Client.Api.AceQLTransaction"/> object.</returns>
+            <exception cref="T:AceQL.Client.Api.AceQLException">If any Exception occurs.</exception>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLConnection.BeginTransactionAsync(AceQL.Client.Api.IsolationLevel,System.Threading.CancellationToken)">
+            <summary>
+            Initializes a new <see cref="T:AceQL.Client.Api.AceQLTransaction"/>object with the specified isolation level.
+            This will put the remote connection in auto commit mode off.
+            <para/>The cancellation token can be used to can be used to request that the operation be abandoned before the http request timeout.
+            </summary>
+            <param name="isolationLevel">The isolation level.</param>
+            <param name="cancellationToken">The cancellation instruction.</param>
+            <returns>A new <see cref="T:AceQL.Client.Api.AceQLTransaction"/> object.</returns>
+            <exception cref="T:AceQL.Client.Api.AceQLException">If any Exception occurs.</exception>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLConnection.BeginTransactionAsync(AceQL.Client.Api.IsolationLevel)">
+            <summary>
+            Initializes a new <see cref="T:AceQL.Client.Api.AceQLTransaction"/>object with the specified isolation level.
+            This will put the remote connection in auto commit mode off.
+            </summary>
+            <param name="isolationLevel">The isolation level.</param>
+            <returns>A new <see cref="T:AceQL.Client.Api.AceQLTransaction"/> object.</returns>
+            <exception cref="T:AceQL.Client.Api.AceQLException">If any Exception occurs.</exception>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLConnection.CloseAsync">
+            <summary>
+            Closes the connection to the remote database. 
+            This is the preferred method of closing any open connection.
+            </summary>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLConnection.LogoutAsync">
+            <summary>
+            Closes the session to the remote AceQL server and Close on server all the connections to the database. 
+            This is the preferred method of closing any open connection.
+            </summary>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLConnection.Dispose">
+            <summary>
+            If connection has not been closed by an explicit call to <see cref="T:AceQL.Client.Api.AceQLConnection"/>CloseAsync:
+            calls silently <see cref="T:AceQL.Client.Api.AceQLConnection"/>CloseAsync without reporting any Exception.
+            <para/>
+            As the call is not awaited, execution of the 
+            current method continues before the call to is <see cref="T:AceQL.Client.Api.AceQLConnection"/>CloseAsync completed.
+            </summary>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLConnection.Dispose(System.Boolean)">
+            <summary>
+            Releases unmanaged and - optionally - managed resources.
+            </summary>
+            <param name="v"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLConnection.GetProgressIndicator">
+            <summary>
+            Returns the progress indicator variable that will store Blob/Clob upload progress between 0 and 100.
+            </summary>
+            <returns>The progress indicator variable that will store Blob/Clob upload progress between 0 and 100.</returns>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLConnection.SetProgressIndicator(AceQL.Client.Api.AceQLProgressIndicator)">
+            <summary>
+            Sets the progress indicator variable that will store Blob/Clob upload progress between 0 and 100.
+            </summary>
+            <param name="progressIndicator">The progress indicator variable that will store Blob/Clob upload progress between 0 and 100.</param>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLConnection.GetClientVersion">
+            <summary>
+            Returns the AceQL Client SDK current Version.
+            </summary>
+            <returns>the AceQL SDK current Version.</returns>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLConnection.GetServerVersionAsync(System.Threading.CancellationToken)">
+            <summary>
+            Returns the remote AceQL HTTP Server Version.
+            <para/>The cancellation token can be used to can be used to request that the operation be abandoned before the http request timeout.
+            </summary>
+            <param name="cancellationToken">The cancellation instruction.</param>
+            <returns>the remote  AceQL Server Version.</returns>
+            <exception cref="T:AceQL.Client.Api.AceQLException">If any Exception occurs.</exception>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLConnection.GetServerVersionAsync">
+            <summary>
+            Returns the remote AceQL HTTP Server Version.
+            </summary>
+            <returns>the remote  AceQL Server Version.</returns>
+            <exception cref="T:AceQL.Client.Api.AceQLException">If any Exception occurs.</exception>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLConnection.GetDefaultWebProxy">
+            <summary>
+            Gets the default web proxy set. Returns null if none was previously set by <see cref="M:AceQL.Client.Api.AceQLConnection.SetDefaultWebProxy(System.Net.IWebProxy)"/>.
+            </summary>
+            <returns>The default web proxy set. Returns null if none was previously set by <see cref="M:AceQL.Client.Api.AceQLConnection.SetDefaultWebProxy(System.Net.IWebProxy)"/>.</returns>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLConnection.SetDefaultWebProxy(System.Net.IWebProxy)">
+            <summary>
+            Sets the default web proxy to use. Allows to force to use on some environments (Windows, ...)  <c>System.Net.WebRequest.GetSystemProxy()</c> instead of <see cref="P:System.Net.WebRequest.DefaultWebProxy"/>.
+            </summary>
+            <param name="webProxy">The default web proxy that will be used.</param>
+        </member>
+        <member name="P:AceQL.Client.Api.AceQLConnection.ConnectionString">
+            <summary>
+            Gets or sets the connection string used to connect to the remote database.
+            </summary>
+            <value>The connection string used to connect to the remote database.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.AceQLConnection.Database">
+            <summary>
+            Gets the current database in use.
+            </summary>
+            <value>The current database in use.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.AceQLConnection.GzipResult">
+            <summary>
+            Gets or sets a value indicating whether SQL result sets are returned compressed with the GZIP file format
+            before download. Defaults to true.
+            </summary>
+            <value>True if SQL result sets are returned compressed with the GZIP file format
+            before download.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.AceQLConnection.ConnectionTimeout">
+            <summary>
+            Gets the time to wait in milliseconds while trying to establish a connection before terminating the attempt and generating an error.
+            If value is 0, <see cref="T:System.Net.Http.HttpClient"/> default will value be used.
+            </summary>
+        </member>
+        <member name="P:AceQL.Client.Api.AceQLConnection.Credential">
+            <summary>
+            Gets or sets the <see cref="T:AceQL.Client.Api.AceQLCredential"/> object for this connection. 
+            </summary>
+            <value>The <see cref="T:AceQL.Client.Api.AceQLCredential"/> object for this connection.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.AceQLConnection.RequestRetry">
+            <summary>
+            Gets or sets a value indicating whether a failed request will be retried. The retry will be done once, without compression. Defaults to false.
+            </summary>
+            <value><c>true</c> if a failed request will be retried without compression.; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="T:AceQL.Client.Api.AceQLCredential">
+            <summary>
+            <see cref="T:AceQL.Client.Api.AceQLCredential"/> provides a more secure way than using a connection string to specify the username, password or Session ID for a login attempt.
+            <para/>Note that this version does not encrypt the password. This could and should be done in a future version.
+            </summary>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLCredential.#ctor(System.String,System.Char[])">
+            <summary>
+            Creates an object of type <see cref="T:AceQL.Client.Api.AceQLCredential"/>.
+            </summary>
+            <param name="username">The username.</param>
+            <param name="password">The password.</param>
+            <exception cref="T:System.ArgumentNullException">If username or password is null. </exception>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLCredential.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:AceQL.Client.Api.AceQLCredential"/> class. This constructor allows authentication without a password using a 
+            session_id value returned by AceQL login API on server side.
+            </summary>
+            <param name="username">The username.</param>
+            <param name="sessionId">The session_id value returned by AceQL login API on server side.</param>
+        </member>
+        <member name="P:AceQL.Client.Api.AceQLCredential.Username">
+            <summary>
+            Returns the username component of the <see cref="T:AceQL.Client.Api.AceQLCredential" /> object.
+            </summary>
+            <value>The username.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.AceQLCredential.Password">
+            <summary>
+            Returns the password component of the <see cref="T:AceQL.Client.Api.AceQLCredential" /> object.
+            </summary>
+            <value>The password.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.AceQLCredential.SessionId">
+            <summary>
+            Gets the Session ID created by AceQL on server side.
+            </summary>
+            <value>The Session ID created by AceQL on server side.</value>
+        </member>
+        <member name="T:AceQL.Client.Api.AceQLDataReader">
+            <summary>
+            Class <see cref="T:AceQL.Client.Api.AceQLDataReader"/>. Provides a way of reading a forward-only stream of rows from a remote database
+            transferred in a local file.
+            <para/>Note that all data of the stream are already downloaded when <see cref="T:AceQL.Client.Api.AceQLDataReader"/> is created.
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.AceQLDataReader.aceQLHttpApi">
+            <summary>
+            The instance that does all http stuff
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.AceQLDataReader.file">
+            <summary>
+            The JSON file containing the Result Set
+            </summary>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLDataReader.#ctor(System.String,System.IO.Stream,System.Int32,AceQL.Client.Api.AceQLConnection)">
+            <summary>
+            Initializes a new instance of the <see cref="T:AceQL.Client.Api.AceQLDataReader"/> class.
+            </summary>
+            <param name="file">The JSON file containing the Result Set. Passed only for delete action.</param>
+            <param name="readStream">The reading stream on file.</param>
+            <param name="rowsCount">The number of rows in the file/result set.</param>
+            <param name="connection">The AceQL connection.</param>
+            <exception cref="T:System.ArgumentNullException">The file is null.</exception>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLDataReader.ReadAsync(System.Threading.CancellationToken)">
+            <summary>
+            Advances the reader to the next record. 
+            Method is provided only for consistency: same method exists in SQLServer SqlDataReader class.
+            <para/>
+            It's cleaner to use <see cref="T:AceQL.Client.Api.AceQLDataReader"/>.Read() because data are read from a <see cref="T:System.IO.TextReader"/> 
+            (all data are already downloaded when <see cref="T:AceQL.Client.Api.AceQLDataReader"/> is created.)
+            </summary>
+            <param name="cancellationToken">The cancellation instruction.</param> 
+            <returns>true if there are more rows; otherwise, false.</returns>
+            <exception cref="T:AceQL.Client.Api.AceQLException">If any Exception occurs.</exception>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLDataReader.Read">
+            <summary>
+            Advances the reader to the next record.
+            </summary>
+            <returns>true if there are more rows; otherwise, false.</returns>
+            <exception cref="T:AceQL.Client.Api.AceQLException">If any Exception occurs.</exception>
+        </member>
+        <member name="P:AceQL.Client.Api.AceQLDataReader.Item(System.String)">
+            <summary>
+            Gets the value for  the specified name.
+            </summary>
+            <param name="name">The name.</param>
+            <returns>The value.</returns>
+        </member>
+        <member name="P:AceQL.Client.Api.AceQLDataReader.Item(System.Int32)">
+            <summary>
+            Gets the value for  the specified ordinal.
+            </summary>
+            <param name="ordinal">The ordinal.</param>
+            <returns>The value.</returns>
+        </member>
+        <member name="P:AceQL.Client.Api.AceQLDataReader.FieldCount">
+            <summary>
+            Gets the number of columns in the current row.
+            </summary>
+            <value>The number of columns in the current row.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.AceQLDataReader.HasRows">
+            <summary>Gets a value that indicates whether the <see cref="T:AceQL.Client.Api.AceQLDataReader"/> contains one or more rows.
+            </summary>
+            <value>true if the <see cref="T:AceQL.Client.Api.AceQLDataReader"/> contains one or more rows; otherwise.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.AceQLDataReader.IsClosed">
+            <summary>
+            Retrieves a Boolean value that indicates whether the specified <see cref="T:AceQL.Client.Api.AceQLDataReader"/> 
+            instance has been closed.
+            </summary>
+            <value>true if the specified <see cref="T:AceQL.Client.Api.AceQLDataReader"/> instance is closed; otherwise false.</value>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLDataReader.GetStreamAsync(System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Downloads the Blob and gets the stream.
+            <para/>The cancellation token can be used to can be used to request that the operation be abandoned before the http request timeout.
+            </summary>
+            <param name="ordinal">The ordinal.</param>
+            <param name="cancellationToken">The cancellation instruction.</param>
+            <returns>The Stream to read the downloaded Blob.</returns>
+            <exception cref="T:AceQL.Client.Api.AceQLException">If any Exception occurs.</exception>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLDataReader.GetStreamAsync(System.Int32)">
+            <summary>
+            Downloads the Blob and gets a reading <see cref="T:System.IO.Stream"/>.
+            </summary>
+            <param name="ordinal">The ordinal.</param>
+            <returns>The <see cref="T:System.IO.Stream"/> to read the downloaded Blob.</returns>
+            <exception cref="T:AceQL.Client.Api.AceQLException">If any Exception occurs.</exception>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLDataReader.GetBoolean(System.Int32)">
+            <summary>
+            Gets the value of the specified column as a Boolean.
+            </summary>
+            <param name="ordinal">The zero-based column ordinal.</param>
+            <returns>The value of the specified column.</returns>
+            <exception cref="T:AceQL.Client.Api.AceQLException">If any Exception occurs.</exception>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLDataReader.GetByte(System.Int32)">
+            <summary>
+            Gets the byte.
+            </summary>
+            <param name="ordinal">The ordinal.</param>
+            <returns>System.Byte.</returns>
+            <exception cref="T:System.NotSupportedException"></exception>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLDataReader.GetBytes(System.Int32,System.Int64,System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Gets the bytes.
+            </summary>
+            <param name="ordinal">The ordinal.</param>
+            <param name="dataOffset">The data offset.</param>
+            <param name="buffer">The buffer.</param>
+            <param name="bufferOffset">The buffer offset.</param>
+            <param name="length">The length.</param>
+            <returns>System.Int64.</returns>
+            <exception cref="T:System.NotSupportedException"></exception>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLDataReader.GetChar(System.Int32)">
+            <summary>
+            Gets the character.
+            </summary>
+            <param name="ordinal">The ordinal.</param>
+            <returns>System.Char.</returns>
+            <exception cref="T:System.NotSupportedException"></exception>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLDataReader.GetChars(System.Int32,System.Int64,System.Char[],System.Int32,System.Int32)">
+            <summary>
+            Gets the chars.
+            </summary>
+            <param name="ordinal">The ordinal.</param>
+            <param name="dataOffset">The data offset.</param>
+            <param name="buffer">The buffer.</param>
+            <param name="bufferOffset">The buffer offset.</param>
+            <param name="length">The length.</param>
+            <returns>System.Int64.</returns>
+            <exception cref="T:System.NotSupportedException"></exception>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLDataReader.GetDataTypeName(System.Int32)">
+            <summary>
+            Gets the name of the data type.
+            </summary>
+            <param name="ordinal">The ordinal.</param>
+            <returns>System.String.</returns>
+            <exception cref="T:System.NotSupportedException"></exception>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLDataReader.GetDateTime(System.Int32)">
+            <summary>
+            Gets the value of the specified column as a <see cref="T:System.DateTime"/>.
+            </summary>
+            <param name="ordinal">The zero-based column ordinal.</param>
+            <returns>The value of the specified column.</returns>
+            <exception cref="T:AceQL.Client.Api.AceQLException">If any Exception occurs.</exception>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLDataReader.GetDecimal(System.Int32)">
+            <summary>
+            Gets the value of the specified column as a Decimal.
+            </summary>
+            <param name="ordinal">The zero-based column ordinal.</param>
+            <returns>The value of the specified column.</returns>
+            <exception cref="T:AceQL.Client.Api.AceQLException">If any Exception occurs.</exception>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLDataReader.GetDouble(System.Int32)">
+            <summary>
+            Gets the value of the specified column as a Double.
+            </summary>
+            <param name="ordinal">The zero-based column ordinal.</param>
+            <returns>The value of the specified column.</returns>
+            <exception cref="T:AceQL.Client.Api.AceQLException">If any Exception occurs.</exception>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLDataReader.GetFloat(System.Int32)">
+            <summary>
+            Gets the value of the specified column as a float.
+            </summary>
+            <param name="ordinal">The zero-based column ordinal.</param>
+            <returns>The value of the specified column.</returns>
+            <exception cref="T:AceQL.Client.Api.AceQLException">If any Exception occurs.</exception>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLDataReader.GetInt16(System.Int32)">
+            <summary>
+            Gets the value of the specified column as a 16-bit signed integer.
+            </summary>
+            <param name="ordinal">The zero-based column ordinal.</param>
+            <returns>The value of the specified column.</returns>
+            <exception cref="T:AceQL.Client.Api.AceQLException">If any Exception occurs.</exception>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLDataReader.GetInt32(System.Int32)">
+            <summary>
+            Gets the value of the specified column as a 32-bit signed integer.
+            </summary>
+            <param name="ordinal">The zero-based column ordinal.</param>
+            <returns>The value of the specified column.</returns>
+            <exception cref="T:AceQL.Client.Api.AceQLException">If any Exception occurs.</exception>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLDataReader.GetInt64(System.Int32)">
+            <summary>
+            Gets the value of the specified column as a 64-bit signed integer.
+            </summary>
+            <param name="ordinal">The zero-based column ordinal.</param>
+            <returns>The value of the specified column.</returns>
+            <exception cref="T:AceQL.Client.Api.AceQLException">If any Exception occurs.</exception>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLDataReader.GetName(System.Int32)">
+            <summary>
+            Gets the name of the specified column.
+            </summary>
+            <param name="ordinal">The zero-based column ordinal.</param>
+            <returns>The name of the specified column.</returns>
+            <exception cref="T:AceQL.Client.Api.AceQLException">If any Exception occurs.</exception>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLDataReader.GetOrdinal(System.String)">
+            <summary>
+            Gets the column ordinal, given the name of the column.
+            </summary>
+            <param name="name">The name of the column.</param>
+            <returns>The zero-based column ordinal.</returns>
+            <exception cref="T:AceQL.Client.Api.AceQLException">If any Exception occurs.</exception>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLDataReader.GetString(System.Int32)">
+            <summary>
+            Gets the value of the specified column as a string.
+            </summary>
+            <param name="ordinal">The zero-based column ordinal.</param>
+            <returns>The value of the specified column.</returns>
+            <exception cref="T:AceQL.Client.Api.AceQLException">If any Exception occurs.</exception>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLDataReader.GetValue(System.Int32)">
+            <summary>
+            Gets the value of the specified column in its native format.
+            </summary>
+            <param name="ordinal">The zero-based column ordinal.</param>
+            <returns>The value of the specified column.</returns>
+            <exception cref="T:AceQL.Client.Api.AceQLException">If any Exception occurs.</exception>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLDataReader.IsDBNull(System.Int32)">
+            <summary>
+             Gets a value that indicates whether the column contains non-existent or missing values.
+            </summary>
+            <param name="ordinal">The ordinal.</param>
+            <returns>true if column contains non-existent or missing values, else false.</returns>
+            <exception cref="T:AceQL.Client.Api.AceQLException">If any Exception occurs.</exception>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLDataReader.Close">
+            <summary>
+            Closes the <see cref="T:AceQL.Client.Api.AceQLDataReader"/>instance. Same as call to <see cref="T:AceQL.Client.Api.AceQLDataReader"/>.Dispose().
+            </summary>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLDataReader.Dispose">
+            <summary>
+            Releases all resources used by the current instance of the <see cref="T:AceQL.Client.Api.AceQLDataReader"/> class. 
+            This is recommended in order to delete the local corresponding temporary files.
+            </summary>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLDataReader.Dispose(System.Boolean)">
+            <summary>
+            Releases unmanaged and - optionally - managed resources.
+            </summary>
+            <param name="v"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
+        </member>
+        <member name="T:AceQL.Client.Api.AceQLException">
+            <summary>
+            Class <see cref="T:AceQL.Client.Api.AceQLException"/>. All client and server side exceptions raised are wrapped in an <see cref="T:AceQL.Client.Api.AceQLException"/>.
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.AceQLException.httpStatusCode">
+            <summary>
+            The HTTP status code.
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.AceQLException.reason">
+            <summary>
+            The reason.
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.AceQLException.errorType">
+            <summary>
+            The error type.
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.AceQLException.remoteStackTrace">
+            <summary>
+            The remote Java stack trace.
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.AceQLException.exceptionCause">
+            <summary>
+            The exception.
+            </summary>
+        </member>
+        <member name="P:AceQL.Client.Api.AceQLException.Reason">
+            <summary>
+            Gets the error message.
+            </summary>
+            <value>The error message.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.AceQLException.ErrorType">
+            <summary>
+            Gets the error type:
+            <list type="table">
+            <item><description>0 for local <see cref="T:AceQL.Client.Api.AceQLException"/>.</description></item>
+            <item><description>1 for JDBC Driver Exception on the server.</description></item>
+            <item><description>2 for AceQL Java Exception on the server.</description></item>
+            <item><description>3 for AceQL Security Exception on the server.</description></item>
+            <item><description>4 for AceQL failure.</description></item>
+            </list>
+            </summary>
+            <value>The error type.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.AceQLException.RemoteStackTrace">
+            <summary>
+            Gets the remote Java stack trace.
+            </summary>
+            <value>The remote Java stack trace.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.AceQLException.ExceptionCause">
+            <summary>
+            Gets the <see cref="T:System.Exception"/> that is the cause.
+            </summary>
+            <value>The <see cref="T:System.Exception"/>.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.AceQLException.HttpStatusCode">
+            <summary>
+            Gets the HTTP status code.
+            </summary>
+            <value>The HTTP status code.</value>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLException.#ctor(System.String,System.Int32,System.Exception,System.Net.HttpStatusCode)">
+            <summary>
+            Initializes a new instance of the <see cref="T:AceQL.Client.Api.AceQLException"/> class.
+            Corresponds to a client side failure/exception thrown.
+            </summary>
+            <param name="reason">The reason.</param>
+            <param name="errorType">The error type.</param>
+            <param name="exceptionCause">The <see cref="T:System.Exception"/> cause.</param>
+            <param name="httpStatusCode">The http status code.</param>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLException.#ctor(System.String,System.Int32,System.String,System.Net.HttpStatusCode)">
+            <summary>
+            Initializes a new instance of the <see cref="T:AceQL.Client.Api.AceQLException"/> class.
+            Corresponds to a Java Exception raised on server side.
+            </summary>
+            <param name="reason">The reason.</param>
+            <param name="errorType">The error type.</param>
+            <param name="remoteStackTrace">The remote Java stack trace.</param>
+            <param name="httpStatusCode">The http status code.</param>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLException.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents this instance.
+            </summary>
+            <returns>A <see cref="T:System.String"/> that represents this instance.</returns>
+        </member>
+        <member name="T:AceQL.Client.Api.AceQLNullType">
+            <summary>
+            Specifies the SQL type to pass to the server when setting a value to NULL with <see cref="T:AceQL.Client.Api.AceQLParameter"/>.
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.AceQLNullType.BIT">
+            <summary>
+            SQL type BIT.
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.AceQLNullType.TINYINT">
+            <summary>
+            SQL type TINYINT.
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.AceQLNullType.BIGINT">
+            <summary>
+            SQL type BIGINT.
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.AceQLNullType.SMALLINT">
+            <summary>
+            SQL type SMALLINT.
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.AceQLNullType.INTEGER">
+            <summary>
+            SQL type INTEGER.
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.AceQLNullType.FLOAT">
+            <summary>
+            SQL type FLOAT.
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.AceQLNullType.REAL">
+            <summary>
+            SQL type REAL.
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.AceQLNullType.DOUBLE">
+            <summary>
+            SQL type DOUBLE.
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.AceQLNullType.NUMERIC">
+            <summary>
+            SQL type NUMERIC.
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.AceQLNullType.DECIMAL">
+            <summary>
+            SQL type DECIMAL.
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.AceQLNullType.CHAR">
+            <summary>
+            SQL type CHAR.
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.AceQLNullType.VARCHAR">
+            <summary>
+            SQL type VARCHAR.
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.AceQLNullType.DATE">
+            <summary>
+            SQL type DATE.
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.AceQLNullType.TIME">
+            <summary>
+            SQL type TIME.
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.AceQLNullType.TIMESTAMP">
+            <summary>
+            SQL type TIMESTAMP.
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.AceQLNullType.BLOB">
+            <summary>
+            SQL type BLOB.
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.AceQLNullType.CLOB">
+            <summary>
+            SQL type CLOB.
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.AceQLNullType.BOOLEAN">
+            <summary>
+            SQL type BOOLEAN.
+            </summary>
+        </member>
+        <member name="T:AceQL.Client.Api.AceQLNullValue">
+            <summary>
+            Allows to pass a null value as parameter for remote SQL execution.
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.AceQLNullValue.aceQLNullType">
+            <summary>
+            The enum value of the null type.
+            </summary>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLNullValue.#ctor(AceQL.Client.Api.AceQLNullType)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="aceQLNullType">The type to associate the null value to.</param>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLNullValue.GetAceQLNullType">
+            <summary>
+            Returns the type to use on remote server for the null value.
+            </summary>
+        </member>
+        <member name="T:AceQL.Client.Api.AceQLParameter">
+            <summary>
+            Represents a parameter to an <see cref="T:AceQL.Client.Api.AceQLCommand"/>.
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.AceQLParameter.parameterName">
+            <summary>
+            The parameter name
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.AceQLParameter.theValue">
+            <summary>
+            The value
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.AceQLParameter.aceQLNullType">
+            <summary>
+            The database type
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.AceQLParameter.blobLength">
+            <summary>
+            The length of the BLOB to upload
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.AceQLParameter.direction">
+            <summary>
+            The parameter direction Input, InputOutput, Output. Defaults to Input.
+            </summary>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLParameter.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:AceQL.Client.Api.AceQLParameter"/> class.
+            </summary>
+            <param name="parameterName">Name of the parameter.</param>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLParameter.#ctor(System.String,AceQL.Client.Api.AceQLNullValue)">
+            <summary>
+            Initializes a new instance of the <see cref="T:AceQL.Client.Api.AceQLParameter"/> class to pass a NULL value to the remote SQL
+            database using an AceQLNullValue class instance.
+            </summary>
+            <param name="parameterName">Name of the parameter to set with a NULL value.</param>
+            <param name="value">The <see cref="T:AceQL.Client.Api.AceQLNullValue"/>value.</param>
+            <exception cref="T:System.ArgumentNullException">If parameterName or the value is null.</exception>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLParameter.CheckParameterName(System.String)">
+            <summary>
+            Checks the name of the parameter. It must not contain separator values as defined AceQLCommandUtil.PARM_SEPARATORS.
+            </summary>
+            <param name="parameterName">Name of the parameter.</param>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLParameter.#ctor(System.String,System.Object)">
+            <summary>
+            Initializes a new instance of the <see cref="T:AceQL.Client.Api.AceQLParameter"/> class.
+            </summary>
+            <param name="parameterName">Name of the parameter.</param>
+            <param name="value">The value. Cannot be null.</param>
+            <exception cref="T:System.ArgumentNullException">If parameterName or value is null.</exception>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLParameter.#ctor(System.String,System.IO.Stream,System.Int64)">
+            <summary>
+            Initializes a new instance of the <see cref="T:AceQL.Client.Api.AceQLParameter"/> class.
+            To be used for Blobs.
+            </summary>
+            <param name="parameterName">Name of the parameter.</param>
+            <param name="value">The Blob stream. Cannot be null.</param>
+            <param name="length">The Blob stream length.</param>
+            <exception cref="T:System.ArgumentNullException">If parameterName or value is null.</exception>
+        </member>
+        <member name="P:AceQL.Client.Api.AceQLParameter.ParameterName">
+            <summary>
+            Gets name of the <see cref="T:AceQL.Client.Api.AceQLParameter"/> name.
+            </summary>
+            <value>The name of the parameter.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.AceQLParameter.Value">
+            <summary>
+            Gets the value of the parameter.
+            </summary>
+            <value>The value of the parameter.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.AceQLParameter.Direction">
+            <summary>
+            Gets or sets a value that indicates whether the parameter is input-only, 
+            output-only, bidirectional, 
+            or a stored procedure return value parameter.
+            </summary>
+        </member>
+        <member name="P:AceQL.Client.Api.AceQLParameter.IsNullValue">
+            <summary>
+            Says it the <see cref="T:AceQL.Client.Api.AceQLParameter"/> has been asked to be null with <see cref="T:AceQL.Client.Api.AceQLParameterCollection"/>.AddNull.
+            </summary>
+        </member>
+        <member name="P:AceQL.Client.Api.AceQLParameter.SqlNullType">
+            <summary>
+            The SQL type.
+            </summary>
+        </member>
+        <member name="P:AceQL.Client.Api.AceQLParameter.BlobLength">
+            <summary>
+            The BLOB length to upload
+            </summary>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLParameter.ToString">
+            <summary>
+            Gets a string that contains <see cref="T:AceQL.Client.Api.AceQLParameter"/>.ParameterName
+            </summary>
+            <returns>A string that contains <see cref="T:AceQL.Client.Api.AceQLParameter"/></returns>
+        </member>
+        <member name="T:AceQL.Client.Api.AceQLParameterCollection">
+            <summary>
+            Represents a collection of parameters associated with an <see cref="T:AceQL.Client.Api.AceQLCommand"/>
+            and their respective mappings to columns.
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.AceQLParameterCollection.aceqlParameters">
+            <summary>
+            The AceQL Parameters
+            </summary>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLParameterCollection.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:AceQL.Client.Api.AceQLParameterCollection"/> class.
+            </summary>
+            <param name="cmdText">The SQL command text.</param>
+            <exception cref="T:System.ArgumentNullException">If cmdText is null.</exception>
+        </member>
+        <member name="P:AceQL.Client.Api.AceQLParameterCollection.Count">
+            <summary>
+            Specifies the number of items in the collection.
+            </summary>
+            <value>The number of items in the collection.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.AceQLParameterCollection.SyncRoot">
+            <summary>
+            Specifies the <see cref="T:System.Object" /> to be used to synchronize access to the collection. Not implemented.
+            </summary>
+            <value>The synchronize root.</value>
+            <exception cref="T:System.NotSupportedException"></exception>
+        </member>
+        <member name="P:AceQL.Client.Api.AceQLParameterCollection.IsFixedSize">
+            <summary>
+            Specifies whether the collection is a fixed size. Not implemented.
+            </summary>
+            <value><c>true</c> if this instance is fixed size; otherwise, <c>false</c>.</value>
+            <exception cref="T:System.NotSupportedException"></exception>
+        </member>
+        <member name="P:AceQL.Client.Api.AceQLParameterCollection.IsReadOnly">
+            <summary>
+            Specifies whether the collection is read-only.
+            </summary>
+            <value><c>true</c> if this instance is read only; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.AceQLParameterCollection.IsSynchronized">
+            <summary>
+            Specifies whether the collection is synchronized. Not implemented.
+            </summary>
+            <value><c>true</c> if this instance is synchronized; otherwise, <c>false</c>.</value>
+            <exception cref="T:System.NotSupportedException"></exception>
+        </member>
+        <member name="P:AceQL.Client.Api.AceQLParameterCollection.CmdText">
+            <summary>
+            Gets the command text.
+            </summary>
+            <value>The command text.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.AceQLParameterCollection.Item(System.Int32)">
+            <summary>
+            Returns parameter at specified index.
+            </summary>
+            <param name="index">The index.</param>
+            <returns>the <see cref="T:AceQL.Client.Api.AceQLParameter"/> at index.</returns>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLParameterCollection.Clear">
+            <summary>
+            Removes all <see cref="T:AceQL.Client.Api.AceQLParameter"/> objects from the <see cref="T:AceQL.Client.Api.AceQLParameterCollection"/>
+            </summary>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLParameterCollection.Contains(System.String)">
+            <summary>
+            Determines whether the specified parameter name is in this <see cref="T:AceQL.Client.Api.AceQLParameterCollection"/>.
+            </summary>
+            <param name="value">The value.</param>
+            <returns>true if the <see cref="T:AceQL.Client.Api.AceQLParameterCollection"/> contains the value; otherwise false.</returns>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLParameterCollection.Contains(System.Object)">
+            <summary>
+            Determines whether the specified System.Object is in this <see cref="T:AceQL.Client.Api.AceQLParameterCollection"/>.
+            </summary>
+            <param name="value">The value.</param>
+            <returns>true if the <see cref="T:AceQL.Client.Api.AceQLParameterCollection"/> contains the value; otherwise false.</returns>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLParameterCollection.CopyTo(System.Array,System.Int32)">
+            <summary>
+            Copies the elements of the <see cref="T:System.Collections.ICollection"/> to an <see cref="T:System.Array"/>, starting at a particular <see cref="T:System.Array"/> index.
+            Not implemented.
+            </summary>
+            <param name="array">The one-dimensional<see cref="T:System.Array"/>that is the destination of the elements copied from <see cref="T:System.Collections.ICollection"/>. 
+                                The <see cref="T:System.Array"/>must have zero-based indexing.</param>
+            <param name="index">The zero-based index in array at which copying begins.</param>
+            <exception cref="T:System.NotSupportedException"></exception>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLParameterCollection.GetEnumerator">
+            <summary>
+            Exposes the <see cref="T:System.Collections.IEnumerable"/>.GetEnumerator" method, which supports a simple iteration over a collection by a .NET Framework data provider.
+            </summary>
+            <returns>An <see cref="T:System.Collections.IEnumerator"/> that can be used to iterate through the collection.</returns>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLParameterCollection.IndexOf(System.String)">
+            <summary>
+             Gets the location of the specified <see cref="T:AceQL.Client.Api.AceQLParameter"/> with the specified name.
+            </summary>
+            <param name="parameterName">Name of the parameter.</param>
+            <returns> The case-sensitive name of the <see cref="T:AceQL.Client.Api.AceQLParameter"/> to find.</returns>
+            <exception cref="T:System.ArgumentNullException">If parameterName is null.</exception>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLParameterCollection.AddWithValue(System.String,System.Object)">
+            <summary>
+             Adds a value to the end of the <see cref="T:AceQL.Client.Api.AceQLParameterCollection"/>.
+            </summary>
+            <param name="parameterName">The name of the parameter.</param>
+            <param name="value">The value to be added. Cannot ne bull.</param>
+            <exception cref="T:System.ArgumentNullException">If parameterName or value is null.</exception>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLParameterCollection.AddWithValue(System.String,System.IO.Stream,System.Int64)">
+            <summary>
+            Adds a value to the end of the <see cref="T:AceQL.Client.Api.AceQLParameterCollection"/>.
+            To be used for Blobs insert or update.
+            </summary>
+            <param name="parameterName">Name of the parameter.</param>
+            <param name="stream">The Blob stream to read. Cannot be null.</param>
+            <param name="length">The Blob stream length.</param>
+            <exception cref="T:System.ArgumentNullException">If parameterName or stream is null.</exception>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLParameterCollection.Add(AceQL.Client.Api.AceQLParameter)">
+            <summary>
+            Adds the specified <see cref="T:AceQL.Client.Api.AceQLParameter"/>. object to the <see cref="T:AceQL.Client.Api.AceQLParameterCollection"/>.
+            </summary>
+            <param name="value">The <see cref="T:AceQL.Client.Api.AceQLParameter"/> to add to the collection.</param>
+            <exception cref="T:System.ArgumentNullException">If value is null.</exception>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLParameterCollection.IndexOf(System.Object)">
+            <summary>
+             Gets the location of the specified <see cref="T:System.Object"/> within the collection.
+            </summary>
+            <param name="value">The <see cref="T:System.Object"/> to find.</param>
+            <returns> The zero-based location of the specified <see cref="T:System.Object"/> that is a <see cref="T:AceQL.Client.Api.AceQLParameter"/> within the collection. Returns -1 when the object does not exist in the <see cref="T:AceQL.Client.Api.AceQLParameterCollection"/>.</returns>
+            <exception cref="T:System.ArgumentNullException">If parameterName is null.</exception>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLParameterCollection.Insert(System.Int32,System.Object)">
+            <summary>
+            Inserts an <see cref="T:System.Object"/>into the <see cref="T:AceQL.Client.Api.AceQLParameterCollection"/> at the specified index. 
+            Not implemented.
+            </summary>
+            <param name="index">The zero-based index at which value should be inserted.</param>
+            <param name="value">An <see cref="T:System.Object"/> to be inserted in the <see cref="T:AceQL.Client.Api.AceQLParameterCollection"/>.</param>
+            <exception cref="T:System.NotSupportedException"></exception>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLParameterCollection.Remove(System.Object)">
+            <summary>
+            Removes the specified <see cref="T:AceQL.Client.Api.AceQLParameter"/> from the collection.
+            </summary>
+            <param name="value">The object to Remove from the collection.</param>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLParameterCollection.RemoveAt(System.String)">
+            <summary>
+             Removes the <see cref="T:AceQL.Client.Api.AceQLParameter"/> from the <see cref="T:AceQL.Client.Api.AceQLParameterCollection"/>
+             at the specified parameter name.
+            </summary>
+            <param name="parameterName">The name of the <see cref="T:AceQL.Client.Api.AceQLParameter"/> to Remove.</param>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLParameterCollection.RemoveAt(System.Int32)">
+            <summary>
+             Removes the <see cref="T:AceQL.Client.Api.AceQLParameter"/> from the <see cref="T:AceQL.Client.Api.AceQLParameterCollection"/>
+             at the specified index.
+            </summary>
+            <param name="index">The zero-based index of the <see cref="T:AceQL.Client.Api.AceQLParameter"/> object to Remove.</param>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLParameterCollection.GetAceQLParameter(System.String)">
+            <summary>
+            Gets the <see cref="T:AceQL.Client.Api.AceQLParameter"/> for it's name.
+            </summary>
+            <param name="parameterName">Name of the <see cref="T:AceQL.Client.Api.AceQLParameter"/>.</param>
+            <returns>The <see cref="T:AceQL.Client.Api.AceQLParameter"/> for the parameter name.</returns>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLParameterCollection.GetParameter(System.Int32)">
+            <summary>
+            Gets the <see cref="T:AceQL.Client.Api.AceQLParameter"/> at the index.
+            </summary>
+            <param name="index">The index of <see cref="T:AceQL.Client.Api.AceQLParameter"/>.</param>
+            <returns>The <see cref="T:AceQL.Client.Api.AceQLParameter"/> at index position.</returns>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLParameterCollection.Add(System.Object)">
+            <summary>
+             Adds the specified <see cref="T:AceQL.Client.Api.AceQLParameter"/> object to the <see cref="T:AceQL.Client.Api.AceQLParameterCollection"/>. Not implemented.
+            </summary>
+            <param name="value">An <see cref="T:System.Object"/>.</param>
+            <returns>The index of the new <see cref="T:AceQL.Client.Api.AceQLParameter"/> object.</returns>
+            <exception cref="T:System.NotSupportedException"></exception>
+        </member>
+        <member name="T:AceQL.Client.Api.AceQLProgressIndicator">
+            <summary>
+            <see cref="T:AceQL.Client.Api.AceQLProgressIndicator"/> Class. Allows to get the percentage progress between 0 and 100 for Blob/Clob upload.
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.AceQLProgressIndicator.percent">
+            <summary>   The perccent progress value set by upload thread.</summary>
+        </member>
+        <member name="P:AceQL.Client.Api.AceQLProgressIndicator.Percent">
+            <summary>
+            Gets the upload progress value between 0 and 100.
+            </summary>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLProgressIndicator.ToString">
+            <summary>
+            Returns the string representation of the progress value.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLProgressIndicator.SetValue(System.Int32)">
+            <summary>
+            Sets the value.
+            </summary>
+            <param name="value">The value.</param>
+        </member>
+        <member name="T:AceQL.Client.Api.AceQLTransaction">
+            <summary>
+            Class <see cref="T:AceQL.Client.Api.AceQLTransaction"/>. Allows to define a Transaction in order to execute remote commit or rollback.
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.AceQLTransaction.connection">
+            <summary>
+            The AceQL connection
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.AceQLTransaction.aceQLHttpApi">
+            <summary>
+            The instance that does all http stuff
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.AceQLTransaction.isolationLevel">
+            <summary>
+            The isolation level
+            </summary>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLTransaction.#ctor(AceQL.Client.Api.AceQLConnection)">
+            <summary>
+            Initializes a new instance of the <see cref="T:AceQL.Client.Api.AceQLTransaction"/> class.
+            </summary>
+            <param name="connection">The AceQL connection.</param>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLTransaction.#ctor(AceQL.Client.Api.AceQLConnection,AceQL.Client.Api.IsolationLevel)">
+            <summary>
+            Initializes a new instance of the <see cref="T:AceQL.Client.Api.AceQLTransaction"/> class.
+            </summary>
+            <param name="connection">The AceQL connection.</param>
+            <param name="isolationLevel">The isolation level.</param>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLTransaction.GetTransactionIsolationAsString(AceQL.Client.Api.IsolationLevel)">
+            <summary>
+            Gets the transaction isolation as string.
+            </summary>
+            <param name="transactionIsolationLevel">The transaction isolation level.</param>
+            <returns>The transaction isolation as string.</returns>
+        </member>
+        <member name="P:AceQL.Client.Api.AceQLTransaction.IsolationLevel">
+            <summary>
+            Specifies the isolation level for this transaction.
+            </summary>
+            <value>The isolation level.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.AceQLTransaction.AceQLConnection">
+            <summary>
+            Gets the connection to remote database.
+            </summary>
+            <value>the connection to remote database.</value>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLTransaction.CommitAsync">
+            <summary>
+            Commits the remote database transaction. 
+            <para/>Note that this call will put the remote connection in auto commit mode on after Commit.
+            </summary>
+            <exception cref="T:AceQL.Client.Api.AceQLException">If any Exception occurs.</exception>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLTransaction.RollbackAsync">
+            <summary>
+            Rolls back a transaction from a pending state.
+            <para/>Note that this call will put the remote connection in auto commit mode on after Rollback.
+            </summary>
+            <exception cref="T:AceQL.Client.Api.AceQLException">If any Exception occurs.</exception>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLTransaction.Dispose">
+            <summary>
+            Optional call, does nothing.
+            The opened <see cref="T:AceQL.Client.Api.AceQLTransaction"/> must be closed  by an <see cref="M:AceQL.Client.Api.AceQLTransaction.CommitAsync"/> 
+            or an <see cref="M:AceQL.Client.Api.AceQLTransaction.RollbackAsync"/>
+            
+            <para/>Method is provided for consistency as a DbTransaction (as a SQL Server SqlTransaction) is <see cref="T:System.IDisposable"/>.
+            </summary>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLTransaction.Dispose(System.Boolean)">
+            <summary>
+            Releases unmanaged and - optionally - managed resources.
+            </summary>
+            <param name="v"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
+        </member>
+        <member name="T:AceQL.Client.Api.CommandType">
+            <summary>
+            Specifies how a command string is interpreted.
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.CommandType.Text">
+            <summary>
+            An SQL text command. (Default.)
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.CommandType.StoredProcedure">
+            <summary>
+            The name of a stored procedure.
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.CommandType.TableDirect">
+            <summary>
+            The name of a table.
+            </summary>
+        </member>
+        <member name="T:AceQL.Client.Api.IsolationLevel">
+            <summary>
+            Specifies the transaction locking behavior for the remote connection.
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.IsolationLevel.Unspecified">
+            <summary>
+            A different isolation level than the one specified is being used, but the level cannot be determined.
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.IsolationLevel.ReadUncommitted">
+            <summary>
+            A dirty read is possible, meaning that no shared locks are issued and no exclusive locks are honored.
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.IsolationLevel.ReadCommitted">
+            <summary>
+            Shared locks are held while the data is being read to avoid dirty reads, but the data can be changed before the end of the transaction, resulting in non-repeatable reads or phantom data.
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.IsolationLevel.RepeatableRead">
+            <summary>
+            Locks are placed on all data that is used in a query, preventing other users from updating the data. Prevents non-repeatable reads but phantom rows are still possible.
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.IsolationLevel.Serializable">
+             <summary>
+            A range lock is placed, preventing other users from updating or inserting rows into the dataset until the transaction is complete.
+             </summary>
+        </member>
+        <member name="T:AceQL.Client.Api.ParameterDirection">
+            <summary>
+            Specifies the type of a parameter within a query.
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.ParameterDirection.Input">
+            <summary>
+            The parameter is an input parameter.
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.ParameterDirection.Output">
+            <summary>
+            The parameter is an output parameter.
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.ParameterDirection.InputOutput">
+            <summary>
+            The parameter is capable of both input and output.
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.ParameterDirection.ReturnValue">
+            <summary>
+            The parameter represents a return value from an operation such as a stored procedure,
+            built-in function, or user-defined function.
+            </summary>
+        </member>
+        <member name="T:AceQL.Client.Src.Api.Http.ConnectionStringDecoder">
+            <summary>
+            Class ConnectionStringDecoder. Allows to decode the elemeents of the connection string.
+            </summary>
+        </member>
+        <member name="M:AceQL.Client.Src.Api.Http.ConnectionStringDecoder.Decode(System.String)">
+            <summary>
+            Decodes the specified connection string.
+            </summary>
+            <param name="connectionString">The connection string.</param>
+            <exception cref="T:System.ArgumentException">connectionString does not contain a ; separator: " + connectionString</exception>
+            <exception cref="T:System.ArgumentException">connectionString element token does not contain a = separator: " + line</exception>
+            <exception cref="T:System.ArgumentException">Can not find left of = in connectionString element token. Please correct connection string: " + line</exception>
+            <exception cref="T:System.ArgumentException">Can not find right of = in connectionString element token. Please correct connection string: " + line</exception>
+        </member>
+        <member name="T:AceQL.Client.Src.Api.Http.DefaultWebProxyCreator">
+            <summary>
+            Class DefaultWebProxyCreator. Allows to get the <see cref="P:System.Net.WebRequest.DefaultWebProxy"/> or <c>System.Net.WebRequest.GetSystemProxy()</c> proxy value to use. 
+            </summary>
+        </member>
+        <member name="M:AceQL.Client.Src.Api.Http.DefaultWebProxyCreator.GetWebProxy">
+            <summary>
+            Gets the  the Default Or System proxy in use. Will return null if no Default/System proxy is in use.
+            </summary>
+            <returns>System.Net.IWebProxy.</returns>
+        </member>
+        <member name="T:AceQL.Client.Src.Api.Http.HttpClientHandlerBuilderNew">
+            <summary>
+            Class HttpClientHandlerBuilder. Allows to build an HttpClientHandler.
+            </summary>
+        </member>
+        <member name="M:AceQL.Client.Src.Api.Http.HttpClientHandlerBuilderNew.Build(System.String,System.Net.ICredentials,System.Boolean)">
+            <summary>
+            Builds an HttpClientHandler instance with proxy settings, if necessary. IWebProxy used is System.Net.WebRequest.DefaultWebProxy
+            </summary>
+            <param name="proxyUri">The URI of the web proxy to use.</param>
+            <param name="credentials">The credentials to use for an authenticated proxy. null if none.</param>
+            <param name="enableDefaultSystemAuthentication">if True ==> call HttpClientHandler.UseDefaultCredentials = true</param>
+            <returns>The HtpClientHandler.</returns>
+        </member>
+        <member name="T:AceQL.Client.Src.Api.Http.HttpClientHandlerCreator">
+            <summary>
+            Class HttpClientHandlerCreator. HttpClientHandler creation to be used with HttpClient.
+            </summary>
+        </member>
+        <member name="M:AceQL.Client.Src.Api.Http.HttpClientHandlerCreator.#ctor(System.Net.IWebProxy,System.Net.ICredentials,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:AceQL.Client.Src.Api.Http.HttpClientHandlerCreator"/> class.
+            </summary>
+            <param name="webProxy">The proxy to use. If null, there is no proxy to use.</param>
+            <param name="credentials">The credentials. Can be null.</param>
+            <param name="enableDefaultSystemAuthentication">if set to <c>true</c> [enable default system authentication].</param>
+        </member>
+        <member name="M:AceQL.Client.Src.Api.Http.HttpClientHandlerCreator.GetHttpClientHandler">
+            <summary>
+            Creates the HttpClientHandler instance with or without a web proxy.
+            </summary>
+            <returns>HttpClientHandler.</returns>
+        </member>
+        <member name="T:AceQL.Client.Src.Api.Http.HttpManager">
+            <summary>
+            Class HttpManager. A wrapped HttpClient tool that van do everything
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Src.Api.Http.HttpManager.timeout">
+            <summary>
+            The timeout in milliseconds
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Src.Api.Http.HttpManager.httpStatusCode">
+            <summary>
+            The HTTP status code
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Src.Api.Http.HttpManager.httpClient">
+            <summary>
+            The HTTP client
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Src.Api.Http.HttpManager.proxy">
+            <summary>
+            The proxy. Is null if no Defaut/System proxy and no used defined proxy.
+            </summary>
+        </member>
+        <member name="M:AceQL.Client.Src.Api.Http.HttpManager.#ctor(System.String,System.Net.ICredentials,System.Int32,System.Boolean,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            Initializes a new instance of the <see cref="T:AceQL.Client.Src.Api.Http.HttpManager"/> class.
+            </summary>
+            <param name="proxyUri">The proxy URI.</param>
+            <param name="proxyCredentials">The proxy credentials.</param>
+            <param name="timeout">The timeout.</param>
+            <param name="enableDefaultSystemAuthentication">if set to <c>true</c> [enable default system authentication].</param>
+            <param name="requestHeaders">The request headers to add to all requests.</param>
+        </member>
+        <member name="M:AceQL.Client.Src.Api.Http.HttpManager.BuildHttpClient(System.String,System.Net.ICredentials,System.Boolean,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            Builds the HTTP client.
+            </summary>
+            <param name="proxyUri">The proxy URI.</param>
+            <param name="proxyCredentials">The proxy credentials.</param>
+            <param name="enableDefaultSystemAuthentication">if set to <c>true</c> [enable default system authentication].</param>
+            <param name="requestHeaders">The request headers to add to all requests.</param>
+        </member>
+        <member name="M:AceQL.Client.Src.Api.Http.HttpManager.AddRequestHeaders(System.Net.Http.HttpClient,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            Add request headers to the HttpClient instance.
+            </summary>
+            <param name="httpClient"></param>
+            <param name="requestHeaders"></param>
+        </member>
+        <member name="P:AceQL.Client.Src.Api.Http.HttpManager.UseCancellationToken">
+            <summary>
+            Says it use has passed a CancellationToken
+            </summary>
+        </member>
+        <member name="P:AceQL.Client.Src.Api.Http.HttpManager.HttpStatusCode">
+            <summary>
+            Gets the HTTP status code of the last HTTP call.
+            </summary>
+            <value>The HTTP status code.</value>
+        </member>
+        <member name="P:AceQL.Client.Src.Api.Http.HttpManager.Proxy">
+            <summary>
+            Gets or sets the proxy.
+            </summary>
+            <value>The proxy.</value>
+        </member>
+        <member name="M:AceQL.Client.Src.Api.Http.HttpManager.ResetCancellationToken">
+            <summary>
+            To be call at end of each of each public aysnc(CancellationToken) calls to reset to false the usage of a CancellationToken with http calls
+            and some reader calls.
+            </summary>
+        </member>
+        <member name="M:AceQL.Client.Src.Api.Http.HttpManager.SetCancellationToken(System.Threading.CancellationToken)">
+            <summary>
+            Sets the CancellationToken asked by user to pass for the current public xxxAsync() call api.
+            </summary>
+            <param name="cancellationToken">CancellationToken asked by user to pass for the current public xxxAsync() call api.</param>
+        </member>
+        <member name="M:AceQL.Client.Src.Api.Http.HttpManager.CallWithGetReturnStreamAsync(System.String)">
+            <summary>
+            Calls the with get return stream.
+            </summary>
+            <param name="url">The URL.</param>
+            <returns>Stream.</returns>
+        </member>
+        <member name="M:AceQL.Client.Src.Api.Http.HttpManager.CallWithPostAsync(System.Uri,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            Executes a POST with parameters and returns a Stream
+            </summary>
+            <param name="theUrl">The Url.</param>
+            <param name="parameters">The request parameters.</param>
+            <returns>Stream.</returns>
+            <exception cref="T:System.ArgumentNullException">
+            action is null!
+            or
+            postParameters is null!
+            </exception>
+        </member>
+        <member name="M:AceQL.Client.Src.Api.Http.HttpManager.CallWithGetAsync(System.String)">
+            <summary>
+            Calls the with get.
+            </summary>
+            <param name="url">The URL.</param>
+            <returns>String.</returns>
+            <exception cref="T:System.ArgumentNullException">url is null!</exception>
+        </member>
+        <member name="M:AceQL.Client.Src.Api.Http.HttpManager.SetSimpleTracer(AceQL.Client.Src.Api.Util.SimpleTracer)">
+            <summary>
+            Allowso the parent AceQLHttpApi to set the simple tracer.
+            </summary>
+            <param name="simpleTracer">The simple tracer.</param>
+        </member>
+        <member name="M:AceQL.Client.Src.Api.Http.HttpManager.CallWithPostAsyncReturnString(System.Uri,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            Executes a POST with parameters and returns a Srring
+            </summary>
+            <param name="theUrl">The Url.</param>
+            <param name="parametersMap">The request parameters.</param>
+            <returns>Stream.</returns>
+            <exception cref="T:System.ArgumentNullException">
+            action is null!
+            or
+            postParameters is null!
+            </exception>
+        </member>
+        <member name="M:AceQL.Client.Src.Api.Http.HttpManager.Dispose">
+            <summary>
+            Disposes the HttpClient 
+            </summary>
+        </member>
+        <member name="T:AceQL.Client.Src.Api.Http.HttpRetryManager">
+            <summary>
+            Class HttpRetryManager. Allows to define retry options. Fist implementation is for 407 retry. 
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Src.Api.Http.HttpRetryManager.proxyAuthenticationCallLimit">
+            <summary>
+            The proxy authentication call limit. Defaults to one retry.
+            </summary>
+        </member>
+        <member name="P:AceQL.Client.Src.Api.Http.HttpRetryManager.ProxyAuthenticationCallLimit">
+            <summary>
+            Gets or sets the proxy authentication call limit. This is the limit of retry when an HTTP call return 407
+            </summary>
+            <value>The proxy authentication call limit.</value>
+        </member>
+        <member name="T:AceQL.Client.Src.Api.Util.SimpleTracer">
+            <summary>
+            Class Tracer. Allows to create a single instance for a trace action.
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Src.Api.Util.SimpleTracer.traceOn">
+            <summary>
+            The trace on
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Src.Api.Util.SimpleTracer.file">
+            <summary>
+            The trace file for debug
+            </summary>
+        </member>
+        <member name="M:AceQL.Client.Src.Api.Util.SimpleTracer.IsTraceOn">
+            <summary>
+            Says if trace is on
+            </summary>
+            <returns>true if trace is on</returns>
+        </member>
+        <member name="M:AceQL.Client.Src.Api.Util.SimpleTracer.SetTraceOn(System.Boolean)">
+            <summary>
+            Sets the trace on/off
+            </summary>
+            <param name="traceOn">if true, trace will be on; else race will be off</param>
+        </member>
+        <member name="M:AceQL.Client.Src.Api.Util.SimpleTracer.TraceAsync">
+            <summary>
+            Traces this instance.
+            </summary>
+        </member>
+        <member name="M:AceQL.Client.Src.Api.Util.SimpleTracer.GetTraceFileName">
+            <summary>
+            Gets the name of the trace file.
+            </summary>
+            <returns>The name name fo the trace file</returns>
+        </member>
+        <member name="M:AceQL.Client.Src.Api.Util.SimpleTracer.TraceAsync(System.String)">
+            <summary>
+            Traces the specified string.
+            </summary>
+            <param name="contents">The string to trace</param>
+        </member>
+        <member name="T:AceQL.Client.Src.Api.Util.StringUtils">
+            <summary>
+            Class StringUtils. Utilities fro String management.
+            </summary>
+        </member>
+        <member name="M:AceQL.Client.Src.Api.Util.StringUtils.SubstringBefore(System.String,System.String)">
+            <summary>
+            Gets the substring before the first occurrence of a separator. The separator is not returned.
+            </summary>
+            <param name="str">The string.</param>
+            <param name="separator">The separator.</param>
+            <returns>System.String.</returns>
+        </member>
+        <member name="T:AceQL.Client.Src.Api.Util.UserLoginStore">
+            <summary>
+            Stores the session Id per serverUrl/username/database triplet in order to
+            get new AceQL Connection with /get_connection without new login action.
+            </summary>
+        </member>
+        <member name="M:AceQL.Client.Src.Api.Util.UserLoginStore.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:AceQL.Client.Src.Api.Util.UserLoginStore"/> class.
+            </summary>
+            <param name="serverUrl">The AceQL server URL.</param>
+            <param name="username">the client username.</param>
+            <param name="database">The database to which users wants to connect</param>
+            <exception cref="T:System.ArgumentNullException">
+            serverUrl is null!
+            or
+            username is null!
+            or
+            database is null!
+            </exception>
+        </member>
+        <member name="M:AceQL.Client.Src.Api.Util.UserLoginStore.IsAlreadyLogged">
+            <summary>
+            Says if user is already logged (ie. it exist a session_if for (serverUrl, username, database) triplet.
+            </summary>
+            <returns>
+              <c>true</c> if [is already logged]; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:AceQL.Client.Src.Api.Util.UserLoginStore.GetSessionId">
+            <summary>
+            Returns the session If of logged user with (serverUrl, username, database) triplet.
+            </summary>
+            <returns>the stored session Id for the (serverUrl, username, database) triplet.</returns>
+        </member>
+        <member name="M:AceQL.Client.Src.Api.Util.UserLoginStore.SetSessionId(System.String)">
+            <summary>
+            Stores the session Id of a logged user with (serverUrl, username, database) triplet.
+            </summary>
+            <param name="sessionId">The session Id of a logged user.</param>
+        </member>
+        <member name="M:AceQL.Client.Src.Api.Util.UserLoginStore.Remove">
+            <summary>
+            Removes (serverUrl, username, database) triplet. This is to be called at /logout API.
+            </summary>
+        </member>
+        <member name="M:AceQL.Client.Src.Api.Util.UserLoginStore.BuildKey">
+            <summary>
+            Builds the key.
+            </summary>
+            <returns>The built key</returns>
+        </member>
+        <member name="T:AceQL.Client.Tests.Test.ParametersOutIndex">
+            <summary>
+            Class for getting with JSON the out parameter indexes and values.
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Tests.Test.ParametersOutIndex.parameterIndex">
+            <summary>
+            The parameter name
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Tests.Test.ParametersOutIndex.theValue">
+            <summary>
+            The value
+            </summary>
+        </member>
+        <member name="P:AceQL.Client.Tests.Test.ParametersOutIndex.ParameterIndex">
+            <summary>
+            Specifies the out parameter index.
+            </summary>
+        </member>
+        <member name="P:AceQL.Client.Tests.Test.ParametersOutIndex.Value">
+            <summary>
+            Specifies the out parameter value.
+            </summary>
+        </member>
+        <member name="T:AceQL.Client.Tests.Test.ParametersOutName">
+            <summary>
+            Class for getting with JSON the out parameter names and values.
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Tests.Test.ParametersOutName.parameterName">
+            <summary>
+            The parameter name
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Tests.Test.ParametersOutName.theValue">
+            <summary>
+            The value
+            </summary>
+        </member>
+        <member name="P:AceQL.Client.Tests.Test.ParametersOutName.ParameterName">
+            <summary>
+            Specifies the out parameter name.
+            </summary>
+        </member>
+        <member name="P:AceQL.Client.Tests.Test.ParametersOutName.Value">
+            <summary>
+            Specifies the out parameter value.
+            </summary>
+        </member>
+    </members>
+</doc>
