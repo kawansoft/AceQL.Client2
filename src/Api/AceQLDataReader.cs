@@ -25,7 +25,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Threading.Tasks;
-using PCLStorage;
 using System.Threading;
 using System.Globalization;
 
@@ -60,7 +59,7 @@ namespace AceQL.Client.Api
         /// <summary>
         /// The JSON file containing the Result Set
         /// </summary>
-        private readonly IFile file;
+        private readonly string file;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AceQLDataReader"/> class.
@@ -70,7 +69,7 @@ namespace AceQL.Client.Api
         /// <param name="rowsCount">The number of rows in the file/result set.</param>
         /// <param name="connection">The AceQL connection.</param>
         /// <exception cref="System.ArgumentNullException">The file is null.</exception>
-        internal AceQLDataReader(IFile file, Stream readStream, int rowsCount, AceQLConnection connection)
+        internal AceQLDataReader(string file, Stream readStream, int rowsCount, AceQLConnection connection)
         {
             this.file = file ?? throw new ArgumentNullException("file is null!");
             this.rowsCount = rowsCount;
@@ -751,7 +750,9 @@ namespace AceQL.Client.Api
 
                 if (! DEBUG)
                 {
-                    file.DeleteAsync();
+                    //file.DeleteAsync();
+                    FileInfo fileInfo = new FileInfo(file);
+                    fileInfo.Delete();
                 }
 
 #pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed

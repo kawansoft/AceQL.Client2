@@ -1,0 +1,324 @@
+
+                 AceQL C# Client SDK
+                    Release Notes
+
+
+Introduction
+------------
+
+The SDK allows to wrap the AceQL HTTP APIs and 
+eliminate the tedious works of handling communications errors and parsing 
+JSON results.
+
+C# application developers can access remote SQL databases and/or SQL databases 
+in the cloud by simply including standard C# SQL calls in their code, just like 
+they would do for an SQL Server database. 
+
+The AceQL C# Client SDK is licensed under the Apache 2.0 License.
+
+
+AceQL C# Client SDK - Version 6.0 - 13-Nov-2020
+------------------------------------------------
+
+What's New:
+- The library is now a .Net Standard 2.0 library and not anymore a PCL.
+
+
+AceQL C# Client SDK - Version 5.5 - 18-Sep-2020
+------------------------------------------------
+
+What's New:
+- The new AceQLConnection.AddRequestHeader(string name, string value) allows
+  to set request headers for the session. 
+  AceQLConnection.ResetRequestHeaders() allows to reset (added headers are
+  suppressed in subsequent requests).
+- The AceQLConnection.RequestRetry property allows forcing a retry if a 
+  SELECT query failed. If the failure was due to a GZIP issue, the failed 
+  request is retried without any compression. This is experimental and
+  AceQLConnection.RequestRetry default value is false.
+
+
+AceQL C# Client SDK - Version 5.4 - 15-Sep-2020
+------------------------------------------------
+
+What's New:
+- AceQLCommand.Parameters.AddWithValue support now
+  adding parameter names in any order, not only
+  the order of apparition in the SQL string.
+  Aka, for SQL string :
+  sql = "select * from table where col1 = @parm1 and col2 = @parm2"
+  it is now possible to add @parm2 before @parm1:
+  command.Parameters.AddWithValue("@parm2", valueForParm2);
+  command.Parameters.AddWithValue("@parm1", valueForParm1);
+  
+  
+AceQL C# Client SDK - Version 5.3.1 - 11-Aug-2020
+-------------------------------------------------
+
+What's New:
+- Internal: Use the Default/System Web Proxy Credentials if they are set 
+  when creating the HttpClientHandler instance. 
+  This should allow using successfully CredentialCache on some configurations.
+
+
+AceQL C# Client SDK - Version 5.3 - 05-Aug-2020
+-----------------------------------------------
+
+Bugs fixed:
+- A 407 HTTP status code could be returned when using a proxy along with 
+  CredentialCache. This has been fixed.
+
+
+AceQL C# Client SDK - Version 5.2 - 01-Aug-2020
+-----------------------------------------------
+
+What's New:
+- The proxy detection layer has been rewritten.
+- Experimental: The AceQLConnection.setDefaultProxy() method allows 
+  to force the usage of System.Net.WebRequest.GetSystemWebProxy() instead of 
+  System.Net.WebRequest.DefaultWebProxy value for default/global proxy.
+   
+Bugs fixed:
+- The proxy configuration would not be applied if the URL http://www.google.com was 
+  defined as an URL to bypass when using default or system proxy.
+  This has been fixed.
+
+
+AceQL C# Client SDK - Version 5.1 - 17-Jul-2020
+-----------------------------------------------
+
+What's New:
+- New "UseCredentialCache=True" parameter setting in connection string allows
+  AceQL to use automatically the CredentialCache authentications values 
+  for the proxy to use.
+
+
+AceQL C# Client SDK - Version 5.0.2 - 17-Jul-2020
+-------------------------------------------------
+
+What's New:
+- Clean code using Codacy.com and SonarCSharp coding 
+  conventions.
+
+
+AceQL C# Client SDK - Version 5.0.1 - 15-Jul-2020
+-------------------------------------------------
+
+Bugs fixed:
+- When using a WebProxy with authentication, a session could be interrupted 
+  by 407 errors.
+  This is due to a C# bug or feature of the HttClient implementation.
+  A turnaround has been added by allowing to retry each AceQL HTTP call 
+  that returns a 407 HTTP status code.
+
+What's New:
+- For better for stability and perfomances, All HTTP calls during an AceQL session 
+  use the same C# native HttpClient instance.
+- The AceQLConnection trace activation/deactivation methods have suppressed.
+  Tracing is now activated by putting EnableTrace=true in the connection string.
+- The mandatory presence of "Server" and "Database" properties in the connection 
+  string are now checked.
+- AceQLConnection.GetVersion() is now static. 
+- All code follow now Codacy.com and SonarCSharp coding convention.
+
+
+
+AceQL C# Client SDK - Version 5.0 - 14-Jul-2020
+------------------------------------------------
+
+Bugs fixed:
+- On some Locales, setting a parameter with a DateTime value could fail.
+  This has been fixed. 
+- On some Locales, setting a parameter with a double or float value could fail.
+  This has been fixed.
+
+
+AceQL C# Client SDK - Version 4.2.1 - 06-Jun-2020
+-------------------------------------------------
+ 
+What's New:
+- Parameter names checking has been enhanced.
+- Missing parameter values are now more cleanly detected.
+- Parameter errors have now cleaner messages.
+- Most parameter checks are done locally, without submitting the requests 
+  to the remote server.
+
+Bugs fixed:
+- Using a parameter whose name was a substring of the name of another parameter
+  would raise an Exception. 
+  Example: insert into my_table values (@NAME, @NAMESPACE)
+  This has been fixed. 
+
+
+AceQL C# Client SDK - Version 4.2 - 03-Jun-2020
+-----------------------------------------------
+ 
+What's New:
+- Enable default system authentication. This is useful for configurations where a 
+  third party system (for instance IIS) is placed between the client and the AceQL 
+  Server and checks natively the authentication (for instance with Active Directory).
+
+
+AceQL C# Client SDK - Version 4.1 - 01-Jun-2020
+-----------------------------------------------
+ 
+What's New:
+- AceQL allows now client supplementary authentication without a password using 
+  directly an existing AceQL Session ID.
+  This has been asked by our users, because some working environments
+  (Intranet, etc.) require that the client user authenticates himself without 
+  a password. 
+
+
+AceQL C# Client SDK - Version 4.0.3 - 07-Apr-2020
+-------------------------------------------------
+
+What's New:
+- The AceQLConnection.PrettyPrinting property
+  method has been removed, as the server requires JSON 
+  pretty-printing to always be on in order to avoid hazardous 
+  line splitting. 
+
+
+AceQL C# Client SDK - Version 4.0.2 - 20-Jan-2020
+-------------------------------------------------
+
+What's New:
+- RemoteDatabaseMetaData instance creation is now done using
+  AceQLConnection.GetRemoteDatabaseMetaData().
+- Overload RemoteDatabaseMetaData.DbSchemaDownloadAsync() method.
+- Update and clean XML Documentation.
+
+
+AceQL C# Client SDK - Version 4.0 - 15-Jan-2020
+-----------------------------------------------
+
+What's New:
+- The new metadata API allows downloading the remote database schema
+  in HTML or text format, to get the remote database main properties, 
+  to get the list of tables, and to get the details of each table.
+  It also allows wrapping remote tables, columns, indexes, etc into
+  easy to use C# classes: Table, Index, Column, etc.
+
+
+AceQL C# Client SDK - Version 3.0 - 24-dec-2018
+-----------------------------------------------
+
+What's New:
+ - Trace default was on. This would slow down execution.
+   This has been fixed: trace default status is off.
+ - Trace management was static: there was only one trace file for all threads. 
+   This has been fixed: there is now one trace file per thread.
+ - This version allows to call remote stored procedures.
+ - Syntax for setting NULL values has  been changed. See 
+   User Guide.
+ - This version requires AceQL Pro HTTP v2.1 server for 
+   stored procedures calls.
+
+   
+AceQL C# Client SDK - Version 2.0 - 07-mar-2018
+-----------------------------------------------
+
+What's New:
+ - This version is designed to operate with AceQL HTTP v2.0 
+   on server  side.
+ - Creating a new Connection on same database is faster
+   because done without server authentication.
+ - This version is not compatible with AceQL HTTP v1.0 server
+   side.
+
+
+AceQL C# Client SDK - Version 1.1.2 - 29-dec-2017
+-------------------------------------------------
+
+What's New:
+ - Authentication using AceQL /connect API is now done
+   with POST method - instead of GET - for better security and 
+   to avoid password presence in URL.
+
+
+AceQL C# Client SDK - Version 1.1.0 - 20-dec-2017
+-------------------------------------------------
+
+What's New:
+- First release. (End of Beta program).
+
+
+AceQL C# Client SDK - Version 1.0.10 - 12-jul-2017
+--------------------------------------------------
+
+Bugs fixed:
+- Version date was invalid.
+  
+  
+AceQL C# Client SDK - Version 1.0.9 - 07-jul-2017
+-------------------------------------------------
+
+Bugs fixed:
+- Parsing could fail on Result Sets with columns named  "row_n" or row_count".
+  This has been fixed.
+  
+  
+AceQL C# Client SDK - Version 1.0.8 - 05-jul-2017
+-------------------------------------------------
+
+What's New:
+- Row parsing has been optimized and is now faster. 
+
+
+AceQL C# Client SDK - Version 1.0.7 - 26-jun-2017
+-------------------------------------------------
+
+What's New:
+- Support for new simplified JSON format for SQL results.
+
+
+AceQL C# Client SDK - Version 1.0.6 - 16-jun-2017
+-------------------------------------------------
+
+What's New:
+- Add System.Net.Http.Formatting.Extension package  (allows to use again 
+  ProgressMessageHandler). Remove Microsoft.Bcl.Build package.
+
+
+AceQL C# Client SDK - Version 1.0.5 - 29-may-2017
+-------------------------------------------------
+
+What's New:
+- Implementation now supports progress bar for downloads.
+
+
+AceQL C# Client SDK - Version 1.0.4 - 29-may-2017
+-------------------------------------------------
+
+What's New:
+- Remove Microsoft.AspNet.WebApi.Client dependency.
+
+
+AceQL C# Client SDK - Version 1.0.3 - 20-may-2017
+-------------------------------------------------
+
+What's New:
+- Throws an AceQLException if a parameter type is not supported.
+
+
+AceQL C# Client SDK - Version 1.0.2 - 8-may-2017
+-------------------------------------------------
+
+What's New:
+- Add classes and methods to ease MS SQL Server calls migration. 
+
+
+AceQL C# Client SDK - Version 1.0.1 - 1-may-2017
+-------------------------------------------------
+
+What's New:
+- Package is now a Portable Class Library that works with Windows, Android, 
+  and iPhone. Works with Xamarin. 
+
+
+AceQL C# Client SDK - Version 1.0.0 - 29-apr-2017
+-------------------------------------------------
+
+What's New:
+- First release. 

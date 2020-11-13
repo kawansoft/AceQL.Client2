@@ -24,7 +24,6 @@ using System;
 using System.IO;
 using System.Net;
 using System.Threading.Tasks;
-using PCLStorage;
 
 namespace AceQL.Client.Api.Util
 {
@@ -49,7 +48,7 @@ namespace AceQL.Client.Api.Util
         private readonly HttpStatusCode httpStatusCode;
 
         // The JSON file containing Result Set
-        private readonly IFile file;
+        private readonly string file;
 
         public HttpStatusCode HttpStatusCode => httpStatusCode;
 
@@ -60,7 +59,7 @@ namespace AceQL.Client.Api.Util
         /// <param name="file">The file to analyze.</param>
         /// <param name="httpStatusCode">The http status code.</param>
         /// <exception cref="System.ArgumentNullException">The file is null.</exception>
-        public StreamResultAnalyzer(IFile file, HttpStatusCode httpStatusCode)
+        public StreamResultAnalyzer(string file, HttpStatusCode httpStatusCode)
         {
             this.file = file ?? throw new ArgumentNullException("file is null!");
             this.httpStatusCode = httpStatusCode;
@@ -73,7 +72,8 @@ namespace AceQL.Client.Api.Util
         internal async Task<bool> IsStatusOkAsync()
         {
 
-            using (Stream stream = await file.OpenAsync(PCLStorage.FileAccess.Read).ConfigureAwait(false))
+            //using (Stream stream = await file.OpenAsync(PCLStorage.FileAccess.Read).ConfigureAwait(false))
+            using (Stream stream = System.IO.File.OpenRead(file))
             {
                 TextReader textReader = new StreamReader(stream);
                 var reader = new JsonTextReader(textReader);

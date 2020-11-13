@@ -23,7 +23,6 @@ using Newtonsoft.Json;
 using System;
 using System.IO;
 using System.Threading.Tasks;
-using PCLStorage;
 
 namespace AceQL.Client.Api.Util
 {

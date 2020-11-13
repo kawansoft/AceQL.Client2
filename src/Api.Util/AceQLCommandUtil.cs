@@ -19,7 +19,6 @@
 
 
 using AceQL.Client.Src.Api.Util;
-using PCLStorage;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -265,21 +264,23 @@ namespace AceQL.Client.Api.Util
             return blobId;
         }
 
+        ///// <summary>
+        ///// Gets the user folder path.
+        ///// </summary>
+        ///// <returns>String.</returns>
+        //public static String GetUserFolderPath()
+        //{
+        //    return Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+        //}
+
         /// <summary>
         /// Returns the file corresponding to the trace file. Value is: AceQLPclFolder/trace.txt.
         /// </summary>
         /// <returns>the file corresponding to the trace file.</returns>
-        internal static async Task<IFile> GetTraceFileAsync()
+        public static String GetTraceFile()
         {
-            IFolder rootFolder = FileSystem.Current.LocalStorage;
-            IFolder folder = await rootFolder.CreateFolderAsync(Parms.ACEQL_PCL_FOLDER,
-                CreationCollisionOption.OpenIfExists).ConfigureAwait(false);
-
-            //\AppData\Local\KawanSoft\AceQL.Client.Samples\3.0.0.0\AceQLPclFolder
-
-            string pathTraceTxt = "Trace_" + DateTime.Now.ToString("yyyyMMdd_HHmm") + "_" + Guid.NewGuid().ToString() + ".txt";
-            IFile file = await folder.CreateFileAsync(pathTraceTxt, CreationCollisionOption.OpenIfExists).ConfigureAwait(false);
-            return file;
+            string path = FileUtil2.GetUserFolderPath() + "\\Trace_" + DateTime.Now.ToString("yyyyMMdd_HHmm") + "_" + Guid.NewGuid().ToString() + ".txt";
+            return path;
         }
 
         /// <summary>

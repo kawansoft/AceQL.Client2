@@ -49,7 +49,6 @@ namespace AceQL.Client.Api.File
         /// <exception cref="System.ArgumentNullException">The file is null.</exception>
         public static async Task AppendAllTextAsync(string path, string contents)
         {
-
             if (path == null)
             {
                 throw new ArgumentNullException("path is null!");

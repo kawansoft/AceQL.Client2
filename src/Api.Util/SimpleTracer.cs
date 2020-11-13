@@ -21,7 +21,7 @@ namespace AceQL.Client.Src.Api.Util
         /// <summary>
         /// The trace file for debug
         /// </summary>
-        private IFile file;
+        private string file;
 
         /// <summary>
         /// Says if trace is on
@@ -57,10 +57,11 @@ namespace AceQL.Client.Src.Api.Util
         {
             if (file == null)
             {
-                file = await AceQLCommandUtil.GetTraceFileAsync().ConfigureAwait(false);
+                //file = await AceQLCommandUtil.GetTraceFileAsync().ConfigureAwait(false);
+                file = AceQLCommandUtil.GetTraceFile();
             }
 
-            return file.Name;
+            return file;
         }
 
         /// <summary>
@@ -73,7 +74,8 @@ namespace AceQL.Client.Src.Api.Util
             {
                 if (file == null)
                 {
-                    file = await AceQLCommandUtil.GetTraceFileAsync().ConfigureAwait(false);
+                    // file = await AceQLCommandUtil.GetTraceFileAsync().ConfigureAwait(false);
+                    AceQLCommandUtil.GetTraceFile();
                 }
                 contents = DateTime.Now + " " + contents;
                 await PortableFile.AppendAllTextAsync(file, "\r\n" + contents).ConfigureAwait(false);

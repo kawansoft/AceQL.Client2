@@ -22,7 +22,6 @@ using AceQL.Client.Api.Http;
 using AceQL.Client.Api.Metadata;
 using AceQL.Client.Api.Util;
 using AceQL.Client.Src.Api.Util;
-using PCLStorage;
 using System;
 using System.Net;
 using System.Threading;
@@ -135,13 +134,27 @@ namespace AceQL.Client.Api
         /// Gets the path to the local AceQL folder where SQL queries results are stored.
         /// </summary>
         /// <returns>The path to the local AceQL folder.</returns>
+        /// 
+        /*
         public static async Task<string> GetAceQLLocalFolderAsync()
         {
             IFolder rootFolder = FileSystem.Current.LocalStorage;
             IFolder folder = await rootFolder.CreateFolderAsync(Parms.ACEQL_PCL_FOLDER, CreationCollisionOption.OpenIfExists);
             return folder.Path;
         }
+        */
 
+        /// <summary>
+        /// Gets the path to the local AceQL folder where SQL queries results are stored.
+        /// </summary>
+        /// <returns>The path to the local AceQL folder.</returns>
+        public static string GetAceQLLocalFolder()
+        {
+            //IFolder rootFolder = FileSystem.Current.LocalStorage;
+            //IFolder folder = await rootFolder.CreateFolderAsync(Parms.ACEQL_PCL_FOLDER, CreationCollisionOption.OpenIfExists);
+            //return folder.Path;
+            return FileUtil2.GetUserFolderPath();
+        }
 
         /// <summary>
         /// Creates a RemoteDatabaseMetaData in order to query remote database metadata info.
