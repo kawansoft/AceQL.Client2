@@ -70,7 +70,7 @@ namespace AceQL.Client.Api.Util
         /// <returns><c>true</c> if [is status ok]; otherwise, <c>false</c>.</returns>
         internal bool IsStatusOK()
         {
-            using (Stream stream = System.IO.File.OpenRead(filePath))
+            using (Stream stream = File.OpenRead(filePath))
             {
                 TextReader textReader = new StreamReader(stream);
                 var reader = new JsonTextReader(textReader);

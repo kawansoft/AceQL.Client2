@@ -290,7 +290,7 @@ namespace AceQL.Client.Api
 
                 int rowsCount = 0;
 
-                using (Stream readStreamCout = System.IO.File.OpenRead(filePath))
+                using (Stream readStreamCout = File.OpenRead(filePath))
                 {
                     RowCounter rowCounter = new RowCounter(readStreamCout);
                     rowsCount = rowCounter.Count();
@@ -298,13 +298,13 @@ namespace AceQL.Client.Api
 
                 if (isStoredProcedure)
                 {
-                    using (Stream readStreamOutParms = System.IO.File.OpenRead(filePath))
+                    using (Stream readStreamOutParms = File.OpenRead(filePath))
                     {
                         UpdateOutParametersValues(readStreamOutParms, Parameters);
                     }
                 }
 
-                Stream readStream = System.IO.File.OpenRead(filePath);
+                Stream readStream =File.OpenRead(filePath);
 
                 AceQLDataReader aceQLDataReader = new AceQLDataReader(filePath, readStream, rowsCount, connection);
                 return aceQLDataReader;
@@ -408,7 +408,7 @@ namespace AceQL.Client.Api
 
                 int rowsCount = 0;
 
-                using (Stream readStreamCout = System.IO.File.OpenRead(filePath))
+                using (Stream readStreamCout = File.OpenRead(filePath))
                 {
                     RowCounter rowCounter = new RowCounter(readStreamCout);
                     rowsCount = rowCounter.Count();
@@ -416,13 +416,13 @@ namespace AceQL.Client.Api
 
                 if (isStoredProcedure)
                 {
-                    using (Stream readStreamOutParms = System.IO.File.OpenRead(filePath))
+                    using (Stream readStreamOutParms = File.OpenRead(filePath))
                     {
                         UpdateOutParametersValues(readStreamOutParms, Parameters);
                     }
                 }
 
-                Stream readStream = System.IO.File.OpenRead(filePath);
+                Stream readStream = File.OpenRead(filePath);
 
                 AceQLDataReader aceQLDataReader = new AceQLDataReader(filePath, readStream, rowsCount, connection);
                 return aceQLDataReader;
@@ -459,7 +459,7 @@ namespace AceQL.Client.Api
                 {
                     using (GZipStream decompressionStream = new GZipStream(input, CompressionMode.Decompress))
                     {
-                        using (var stream = System.IO.File.OpenRead(path))
+                        using (var stream = File.OpenRead(path))
                         {
                             decompressionStream.CopyTo(stream);
                         }
@@ -467,7 +467,7 @@ namespace AceQL.Client.Api
                 }
                 else
                 {
-                    using (var stream = System.IO.File.OpenRead(path))
+                    using (var stream = File.OpenRead(path))
                     {
                         input.CopyTo(stream);
                     }
