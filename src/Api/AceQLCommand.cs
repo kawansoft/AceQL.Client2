@@ -247,7 +247,6 @@ namespace AceQL.Client.Api
         {
             try
             {
-                //IFile file = await GetUniqueResultSetFileAsync().ConfigureAwait(false);
                 string file = FileUtil2.GetUniqueResultSetFile();
 
                 bool isStoredProcedure = (commandType == CommandType.StoredProcedure ? true : false);
@@ -258,7 +257,6 @@ namespace AceQL.Client.Api
                 {
                     try
                     {
-                        //await CopyHttpStreamToFile(file, input).ConfigureAwait(false);
                         FileUtil2.CopyHttpStreamToFile(file, input, aceQLHttpApi.GzipResult);
                     }
                     catch (Exception exception)
@@ -349,24 +347,6 @@ namespace AceQL.Client.Api
             }
         }
 
-        /*
-        /// <summary>
-        /// Generates a unique File on the system for the downloaded result set content.
-        /// </summary>
-        /// <returns>A unique File on the system.</returns>
-        private static async Task<IFile> GetUniqueResultSetFileAsync()
-        {
-            IFolder rootFolder = FileSystem.Current.LocalStorage;
-            IFolder folder = await rootFolder.CreateFolderAsync(Parms.ACEQL_PCL_FOLDER,
-                CreationCollisionOption.OpenIfExists).ConfigureAwait(false);
-
-            String fileName = Guid.NewGuid().ToString() + "-result-set.txt";
-            IFile file = await folder.CreateFileAsync(fileName, CreationCollisionOption.ReplaceExisting).ConfigureAwait(false);
-
-            return file;
-        }
-        */
-
         /// <summary>
         /// Executes the query as prepared statement.
         /// </summary>
@@ -389,7 +369,6 @@ namespace AceQL.Client.Api
                 // Replace all @parms with ? in sql command
                 cmdText = aceQLCommandUtil.ReplaceParmsWithQuestionMarks();
 
-                //IFile file = await GetUniqueResultSetFileAsync().ConfigureAwait(false);
                 String file = FileUtil2.GetUniqueResultSetFile();
 
                 bool isStoredProcedure = (commandType == CommandType.StoredProcedure ? true : false);
@@ -399,7 +378,6 @@ namespace AceQL.Client.Api
                 {
                     try
                     {
-                        //await CopyHttpStreamToFile(file, input).ConfigureAwait(false);
                         FileUtil2.CopyHttpStreamToFile(file, input, aceQLHttpApi.GzipResult);
                     }
                     catch (Exception exception)
