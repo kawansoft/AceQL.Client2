@@ -18,7 +18,6 @@
  */
 ﻿
 
-using AceQL.Client.Api.File;
 using AceQL.Client.Api.Util;
 using AceQL.Client.Src.Api.Http;
 using System;

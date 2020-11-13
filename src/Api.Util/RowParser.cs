@@ -17,8 +17,6 @@
  * limitations under the License. 
  */
 
-
-using AceQL.Client.Api.File;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;

@@ -18,7 +18,6 @@
  */
 ﻿// ***********************************************************************
 
-using AceQL.Client.Api.File;
 using Newtonsoft.Json;
 using System;
 using System.IO;

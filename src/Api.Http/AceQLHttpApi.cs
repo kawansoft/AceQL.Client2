@@ -18,7 +18,6 @@
  */
 
 
-using AceQL.Client.Api.File;
 using AceQL.Client.Api.Metadata;
 using AceQL.Client.Api.Metadata.Dto;
 using AceQL.Client.Api.Util;
@@ -189,8 +188,8 @@ namespace AceQL.Client.Api.Http
                     simpleTracer.SetTraceOn(true);
                 }
 
-                await simpleTracer.TraceAsync("connectionString: " + connectionString).ConfigureAwait(false);
-                await simpleTracer.TraceAsync("DecodeConnectionString() done!").ConfigureAwait(false);
+                simpleTracer.Trace("connectionString: " + connectionString);
+                simpleTracer.Trace("DecodeConnectionString() done!");
                 
                 if (credential != null)
                 {
@@ -240,14 +239,13 @@ namespace AceQL.Client.Api.Http
 
                 if (userLoginStore.IsAlreadyLogged())
                 {
-                    await simpleTracer.TraceAsync("Get a new connection with get_connection").ConfigureAwait(false);
+                    simpleTracer.Trace("Get a new connection with get_connection");
                     sessionId = userLoginStore.GetSessionId();
 
                     String theUrl = server + "/session/" + sessionId + "/get_connection";
                     String result = await httpManager.CallWithGetAsync(theUrl).ConfigureAwait(false);
 
-                    await simpleTracer.TraceAsync("result: " + result).ConfigureAwait(false);
-
+                    simpleTracer.Trace("result: " + result);
                     ResultAnalyzer resultAnalyzer = new ResultAnalyzer(result,
                         HttpStatusCode);
 
@@ -260,7 +258,9 @@ namespace AceQL.Client.Api.Http
                     }
 
                     String connectionId = resultAnalyzer.GetValue("connection_id");
-                    await simpleTracer.TraceAsync("Ok. New Connection created: " + connectionId).ConfigureAwait(false);
+
+                    //await simpleTracer.Trace("Ok. New Connection created: " + connectionId).ConfigureAwait(false);
+                    simpleTracer.Trace("result: " + result);
 
                     this.url = server + "/session/" + sessionId + "/connection/"
                         + connectionId + "/";
@@ -278,11 +278,13 @@ namespace AceQL.Client.Api.Http
                         { "client_version", VersionValues.VERSION}
                     };
 
-                    await simpleTracer.TraceAsync("Before CallWithPostAsyncReturnString: " + theUrl);
+                    //await simpleTracer.Trace("Before CallWithPostAsyncReturnString: " + theUrl);
+                    simpleTracer.Trace("Before CallWithPostAsyncReturnString: " + theUrl);
                     String result = await httpManager.CallWithPostAsyncReturnString(new Uri(theUrl), parametersMap).ConfigureAwait(false);
 
                     ConsoleEmul.WriteLine("result: " + result);
-                    await simpleTracer.TraceAsync("result: " + result).ConfigureAwait(false);
+                    //await simpleTracer.Trace("result: " + result).ConfigureAwait(false);
+                    simpleTracer.Trace("result: " + result);
 
                     ResultAnalyzer resultAnalyzer = new ResultAnalyzer(result, HttpStatusCode);
                     if (!resultAnalyzer.IsStatusOk())
@@ -298,12 +300,14 @@ namespace AceQL.Client.Api.Http
 
                     this.url = server + "/session/" + theSessionId + "/connection/" + theConnectionId + "/";
                     userLoginStore.SetSessionId(theSessionId);
-                    await simpleTracer.TraceAsync("OpenAsync url: " + this.url).ConfigureAwait(false);
+                    //await simpleTracer.Trace("OpenAsync url: " + this.url).ConfigureAwait(false);
+                    simpleTracer.Trace("OpenAsync url: " + this.url);
                 }
             }
             catch (Exception exception)
             {
-                await simpleTracer.TraceAsync(exception.ToString()).ConfigureAwait(false);
+                //await simpleTracer.Trace(exception.ToString()).ConfigureAwait(false);
+                simpleTracer.Trace(exception.ToString());
 
                 if (exception.GetType() == typeof(AceQLException))
                 {
@@ -439,7 +443,8 @@ namespace AceQL.Client.Api.Http
             }
             catch (Exception exception)
             {
-                await simpleTracer.TraceAsync(exception.ToString()).ConfigureAwait(false);
+                //await simpleTracer.Trace(exception.ToString()).ConfigureAwait(false);
+                simpleTracer.Trace(exception.ToString());
 
                 if (exception.GetType() == typeof(AceQLException))
                 {
@@ -489,7 +494,8 @@ namespace AceQL.Client.Api.Http
             }
             catch (Exception exception)
             {
-                await simpleTracer.TraceAsync(exception.ToString()).ConfigureAwait(false);
+                //await simpleTracer.Trace(exception.ToString()).ConfigureAwait(false);
+                simpleTracer.Trace(exception.ToString());
 
                 if (exception.GetType() == typeof(AceQLException))
                 {
@@ -577,11 +583,12 @@ namespace AceQL.Client.Api.Http
 
             Uri urlWithaction = new Uri(url + action);
 
-            await simpleTracer.TraceAsync("url: " + url + action);
+            //await simpleTracer.Trace("url: " + url + action);
+            simpleTracer.Trace("url: " + url + action);
 
             foreach (KeyValuePair<String, String> p in parametersMap)
             {
-                await simpleTracer.TraceAsync("parm: " + p.Key + " / " + p.Value);
+                simpleTracer.Trace("parm: " + p.Key + " / " + p.Value);
             }
 
             string result = await httpManager.CallWithPostAsyncReturnString(urlWithaction, parametersMap).ConfigureAwait(false);
@@ -756,7 +763,8 @@ namespace AceQL.Client.Api.Http
             }
             catch (Exception exception)
             {
-                await simpleTracer.TraceAsync(exception.ToString()).ConfigureAwait(false);
+                //await simpleTracer.Trace(exception.ToString()).ConfigureAwait(false);
+                simpleTracer.Trace(exception.ToString());
 
                 if (exception.GetType() == typeof(AceQLException))
                 {
@@ -800,7 +808,8 @@ namespace AceQL.Client.Api.Http
             }
             catch (Exception exception)
             {
-                await simpleTracer.TraceAsync(exception.ToString()).ConfigureAwait(false);
+                //await simpleTracer.Trace(exception.ToString()).ConfigureAwait(false);
+                simpleTracer.Trace(exception.ToString());
 
                 if (exception.GetType() == typeof(AceQLException))
                 {
@@ -841,7 +850,8 @@ namespace AceQL.Client.Api.Http
             }
             catch (Exception exception)
             {
-                await simpleTracer.TraceAsync(exception.ToString()).ConfigureAwait(false);
+                //await simpleTracer.Trace(exception.ToString()).ConfigureAwait(false);
+                simpleTracer.Trace(exception.ToString());
 
                 if (exception.GetType() == typeof(AceQLException))
                 {
@@ -899,7 +909,8 @@ namespace AceQL.Client.Api.Http
             }
             catch (Exception exception)
             {
-                await simpleTracer.TraceAsync(exception.ToString()).ConfigureAwait(false);
+                //await simpleTracer.Trace(exception.ToString()).ConfigureAwait(false);
+                simpleTracer.Trace(exception.ToString());
 
                 if (exception.GetType() == typeof(AceQLException))
                 {
@@ -954,7 +965,8 @@ namespace AceQL.Client.Api.Http
             }
             catch (Exception exception)
             {
-                await simpleTracer.TraceAsync(exception.ToString()).ConfigureAwait(false);
+                //await simpleTracer.Trace(exception.ToString()).ConfigureAwait(false);
+                simpleTracer.Trace(exception.ToString());
 
                 if (exception.GetType() == typeof(AceQLException))
                 {

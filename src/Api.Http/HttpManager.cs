@@ -204,16 +204,16 @@ namespace AceQL.Client.Src.Api.Http
             // This is the postdata
             var postData = new List<KeyValuePair<string, string>>();
 
-            await simpleTracer.TraceAsync().ConfigureAwait(false);
-            await simpleTracer.TraceAsync("----------------------------------------").ConfigureAwait(false);
-            await simpleTracer.TraceAsync(theUrl.ToString()).ConfigureAwait(false);
+            simpleTracer.Trace();
+            simpleTracer.Trace("----------------------------------------");
+            simpleTracer.Trace(theUrl.ToString());
 
             foreach (var param in parameters)
             {
                 postData.Add(new KeyValuePair<string, string>(param.Key, param.Value));
-                await simpleTracer.TraceAsync("param: " + param.Key + "/" + param.Value).ConfigureAwait(false);
+                simpleTracer.Trace("param: " + param.Key + "/" + param.Value);
             }
-            await simpleTracer.TraceAsync("----------------------------------------").ConfigureAwait(false);
+            simpleTracer.Trace("----------------------------------------");
 
             HttpContent content = new FormUrlEncodedContent(postData);
 
@@ -272,11 +272,11 @@ namespace AceQL.Client.Src.Api.Http
 
                 var responseString = new StreamReader(stream).ReadToEnd();
 
-                await simpleTracer.TraceAsync().ConfigureAwait(false);
-                await simpleTracer.TraceAsync("----------------------------------------").ConfigureAwait(false);
-                await simpleTracer.TraceAsync(url).ConfigureAwait(false);
-                await simpleTracer.TraceAsync(responseString).ConfigureAwait(false);
-                await simpleTracer.TraceAsync("----------------------------------------").ConfigureAwait(false);
+                 simpleTracer.Trace();
+                 simpleTracer.Trace("----------------------------------------");
+                 simpleTracer.Trace(url);
+                 simpleTracer.Trace(responseString);
+                simpleTracer.Trace("----------------------------------------");
                 
                 return responseString;
             }

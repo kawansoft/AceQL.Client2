@@ -1,7 +1,8 @@
-﻿using AceQL.Client.Api.File;
+﻿
 using AceQL.Client.Api.Util;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -44,9 +45,9 @@ namespace AceQL.Client.Src.Api.Util
         /// <summary>
         /// Traces this instance.
         /// </summary>
-        internal async Task TraceAsync()
+        internal void Trace()
         {
-            await TraceAsync("").ConfigureAwait(false);
+            Trace("");
         }
 
         /// <summary>
@@ -68,7 +69,7 @@ namespace AceQL.Client.Src.Api.Util
         /// Traces the specified string.
         /// </summary>
         /// <param name="contents">The string to trace</param>
-        internal async Task TraceAsync(String contents)
+        internal void Trace(String contents)
         {
             if (traceOn)
             {
@@ -78,7 +79,10 @@ namespace AceQL.Client.Src.Api.Util
                     AceQLCommandUtil.GetTraceFile();
                 }
                 contents = DateTime.Now + " " + contents;
-                await PortableFile.AppendAllTextAsync(file, "\r\n" + contents).ConfigureAwait(false);
+                using (StreamWriter sw = File.AppendText(file))
+                {
+                    sw.WriteLine(contents);
+                }
             }
         }
     }

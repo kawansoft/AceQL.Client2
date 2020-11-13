@@ -4,35 +4,6 @@
         <name>AceQL.Client2</name>
     </assembly>
     <members>
-        <member name="T:AceQL.Client.Api.File.PortableFile">
-            <summary>
-            Class a <see cref="T:AceQL.Client.Api.File.PortableFile"/>
-            <para/>
-            Equivalent in our Portable Class Library of Windows System.IO.File for some important methods not included
-            in PCLStorage, such as AppendAllTextAsync() or GetLengthAsync().
-            <para/>
-            Methods are all async, as storage methods are async on some OS.
-            Implementation uses PCLStorage (https://github.com/dsplaisted/PCLStorage).
-            </summary>
-        </member>
-        <member name="M:AceQL.Client.Api.File.PortableFile.AppendAllTextAsync(System.String,System.String)">
-            <summary>
-            Opens a <see cref="!:IFile"/>, appends the specified string to the file, and then closes the file.
-            If the file does not exist, this method creates a file, writes the specified string to the file, then closes the file.
-            </summary>
-            <param name="file">The <see cref="!:IFile"/> to append the specified string to.</param>
-            <param name="contents">The string to append to the <see cref="!:IFile"/>.</param>
-            <returns></returns>
-            <exception cref="T:System.ArgumentNullException">The file is null.</exception>
-        </member>
-        <member name="M:AceQL.Client.Api.File.PortableFile.GetLengthAsync(System.String)">
-            <summary>
-            Returns the <see cref="!:IFile" /> length.
-            </summary>
-            <param name="file">The file.</param>
-            <returns>The <see cref="!:IFile" /> length.</returns>
-            <exception cref="T:System.ArgumentNullException">file is null!</exception>
-        </member>
         <member name="T:AceQL.Client.Api.Http.AceQLHttpApi">
             <summary>
             Class <see cref="T:AceQL.Client.Api.Http.AceQLHttpApi"/>. Allows to create a Connection to the remote server
@@ -1955,6 +1926,13 @@
             <returns>An <see cref="T:AceQL.Client.Api.AceQLDataReader"/> object.</returns>
             <exception cref="T:AceQL.Client.Api.AceQLException">If any Exception occurs.</exception>
         </member>
+        <member name="M:AceQL.Client.Api.AceQLCommand.CopyHttpStreamToFile(System.String,System.IO.Stream)">
+            <summary>
+            Copies the HTTP stream to file.
+            </summary>
+            <param name="path">The path.</param>
+            <param name="input">The input.</param>
+        </member>
         <member name="M:AceQL.Client.Api.AceQLCommand.ExecuteUpdateAsPreparedStatementAsync">
             <summary>
             Executes the update as prepared statement.
@@ -3477,7 +3455,7 @@
             </summary>
             <param name="traceOn">if true, trace will be on; else race will be off</param>
         </member>
-        <member name="M:AceQL.Client.Src.Api.Util.SimpleTracer.TraceAsync">
+        <member name="M:AceQL.Client.Src.Api.Util.SimpleTracer.Trace">
             <summary>
             Traces this instance.
             </summary>
@@ -3488,7 +3466,7 @@
             </summary>
             <returns>The name name fo the trace file</returns>
         </member>
-        <member name="M:AceQL.Client.Src.Api.Util.SimpleTracer.TraceAsync(System.String)">
+        <member name="M:AceQL.Client.Src.Api.Util.SimpleTracer.Trace(System.String)">
             <summary>
             Traces the specified string.
             </summary>

@@ -317,7 +317,7 @@ namespace AceQL.Client.Api
             }
             catch (Exception exception)
             {
-                await simpleTracer.TraceAsync(exception.ToString()).ConfigureAwait(false);
+                simpleTracer.Trace(exception.ToString());
 
                 if (exception.GetType() == typeof(AceQLException))
                 {
@@ -458,7 +458,7 @@ namespace AceQL.Client.Api
             }
             catch (Exception exception)
             {
-                await simpleTracer.TraceAsync(exception.ToString()).ConfigureAwait(false);
+                simpleTracer.Trace(exception.ToString());
 
                 if (exception.GetType() == typeof(AceQLException))
                 {
@@ -471,37 +471,12 @@ namespace AceQL.Client.Api
             }
         }
 
-        /*
-        /// <summary>
-        /// Copies the HTTP stream to file. Unzip it if it's zipped.
-        /// </summary>
-        /// <param name="file">The file.</param>
-        /// <param name="input">The input.</param>
-        private async Task CopyHttpStreamToFile(IFile file, Stream input)
-        {
-            if (input != null)
-            {
-                if (aceQLHttpApi.GzipResult)
-                {
-                    using (GZipStream decompressionStream = new GZipStream(input, CompressionMode.Decompress))
-                    {
-                        using (var stream = await file.OpenAsync(PCLStorage.FileAccess.ReadAndWrite).ConfigureAwait(false))
-                        {
-                            decompressionStream.CopyTo(stream);
-                        }
-                    }
-                }
-                else
-                {
-                    using (var stream = await file.OpenAsync(PCLStorage.FileAccess.ReadAndWrite).ConfigureAwait(false))
-                    {
-                        input.CopyTo(stream);
-                    }
-                }
-            }
-        }
-        */
 
+        /// <summary>
+        /// Copies the HTTP stream to file.
+        /// </summary>
+        /// <param name="path">The path.</param>
+        /// <param name="input">The input.</param>
         public void CopyHttpStreamToFile(String path, Stream input)
         {
             if (input != null)
@@ -583,7 +558,7 @@ namespace AceQL.Client.Api
             }
             catch (Exception exception)
             {
-                await simpleTracer.TraceAsync(exception.ToString()).ConfigureAwait(false);
+                simpleTracer.Trace(exception.ToString());
 
                 if (exception.GetType() == typeof(AceQLException))
                 {
