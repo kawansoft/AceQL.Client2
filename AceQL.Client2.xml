@@ -1452,6 +1452,11 @@
             Console emulator as in Portable Class Library we don't have access to Console.
             </summary>
         </member>
+        <member name="T:AceQL.Client.Api.Util.FileUtil2">
+            <summary>
+            Class FileUtil2.
+            </summary>
+        </member>
         <member name="M:AceQL.Client.Api.Util.FileUtil2.GetUserFolderPath">
             <summary>
             Gets the user folder path.
@@ -1777,7 +1782,7 @@
             <param name="httpStatusCode">The http status code.</param>
             <exception cref="T:System.ArgumentNullException">The file is null.</exception>
         </member>
-        <member name="M:AceQL.Client.Api.Util.StreamResultAnalyzer.IsStatusOkAsync">
+        <member name="M:AceQL.Client.Api.Util.StreamResultAnalyzer.IsStatusOK">
             <summary>
             Determines whether the SQL correctly executed on server side.
             </summary>

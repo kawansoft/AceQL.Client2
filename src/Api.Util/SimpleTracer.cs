@@ -58,7 +58,6 @@ namespace AceQL.Client.Src.Api.Util
         {
             if (file == null)
             {
-                //file = await AceQLCommandUtil.GetTraceFileAsync().ConfigureAwait(false);
                 file = AceQLCommandUtil.GetTraceFile();
             }
 
@@ -75,7 +74,6 @@ namespace AceQL.Client.Src.Api.Util
             {
                 if (file == null)
                 {
-                    // file = await AceQLCommandUtil.GetTraceFileAsync().ConfigureAwait(false);
                     AceQLCommandUtil.GetTraceFile();
                 }
                 contents = DateTime.Now + " " + contents;

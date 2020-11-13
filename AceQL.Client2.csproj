@@ -3,18 +3,42 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageId>AceQL.Client</PackageId>
+    <Company>KawanSoft</Company>
+    <Description>AceQL allows C# and Xamarin developers to access remote SQL databases and/or SQL databases in the cloud by simply including standard SQL calls in their code. AceQL operates with AceQL HTTP on server side. See www.aceql.com for more info.</Description>
+    <Copyright>Copyright © 2020</Copyright>
+    <PackageLicenseExpression></PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/kawansoft/AceQL.Client2</PackageProjectUrl>
+    <PackageIcon>favicon.png</PackageIcon>
+    <AssemblyVersion>6.0.0.0</AssemblyVersion>
+    <FileVersion>6.0.0.0</FileVersion>
+    <Version>6.0.0</Version>
+    <Authors>KawanSoft</Authors>
+    <PackageReleaseNotes>AceQL is now a .NET Standard 2.0 Library</PackageReleaseNotes>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <DocumentationFile>I:\_dev_awake\aceql-http-main\C#\AceQL.Client2\AceQL.Client2.xml</DocumentationFile>
+    <PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.7" />
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\AceQL.Client\AceQL.Client\favicon.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+    <None Include="LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>

@@ -6,13 +6,12 @@ using System.IO.Compression;
 
 namespace AceQL.Client.Api.Util
 {
+    /// <summary>
+    /// Class FileUtil2.
+    /// </summary>
     class FileUtil2
     {
-        public FileUtil2()
-        {
-    
-        }
-
+      
         /// <summary>
         /// Gets the user folder path.
         /// </summary>
@@ -24,7 +23,7 @@ namespace AceQL.Client.Api.Util
             FileInfo fileInfo = new FileInfo(folderPath);
             if (!fileInfo.Exists)
             {
-                DirectoryInfo di = Directory.CreateDirectory(folderPath);
+                _ = Directory.CreateDirectory(folderPath);
             }
 
             return folderPath;

@@ -68,10 +68,8 @@ namespace AceQL.Client.Api.Util
         /// Determines whether the SQL correctly executed on server side.
         /// </summary>
         /// <returns><c>true</c> if [is status ok]; otherwise, <c>false</c>.</returns>
-        internal bool IsStatusOkAsync()
+        internal bool IsStatusOK()
         {
-
-            //using (Stream stream = await file.OpenAsync(PCLStorage.FileAccess.Read).ConfigureAwait(false))
             using (Stream stream = System.IO.File.OpenRead(file))
             {
                 TextReader textReader = new StreamReader(stream);
