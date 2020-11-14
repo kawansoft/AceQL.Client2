@@ -1,5 +1,5 @@
-![GitHub top language](https://img.shields.io/github/languages/top/kawansoft/AceQL.Client) ![GitHub issues](https://img.shields.io/github/issues/kawansoft/AceQL.Client) ![GitHub](https://img.shields.io/github/license/kawansoft/AceQL.Client) 
-![Nuget](https://img.shields.io/nuget/dt/AceQL.Client)![GitHub last commit (branch)](https://img.shields.io/github/last-commit/kawansoft/AceQL.Client/master)
+![GitHub top language](https://img.shields.io/github/languages/top/kawansoft/AceQL.Client2) ![GitHub issues](https://img.shields.io/github/issues/kawansoft/AceQL.Client2) ![GitHub](https://img.shields.io/github/license/kawansoft/AceQL.Client2) 
+![Nuget](https://img.shields.io/nuget/dt/AceQL.Client)![GitHub last commit (branch)](https://img.shields.io/github/last-commit/kawansoft/AceQL.Client2/master)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/a4f4c37d44544bd5bf7dde9526d9e5eb)](https://www.codacy.com/gh/kawansoft/AceQL.Client?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=kawansoft/AceQL.Client&amp;utm_campaign=Badge_Grade)
 ![GitHub contributors](https://img.shields.io/github/contributors/kawansoft/AceQL.Client)
 
@@ -682,7 +682,7 @@ You then can read `ProgressIndicator.Percent` property in your watching thread.
 
 Some working environments (Intranet, etc.) require that the client user authenticates himself without a password. Thus, it is not possible for this users to authenticate though the AceQL client SDK.
 
-In this case, you may use directly the native HTTP [login](https://github.com/kawansoft/aceql-http/blob/master/aceql-http-6.0-user-guide-api.md#login) API to authenticate the users and retrieve the `session_id` returned by the API.
+In this case, you may use directly the native HTTP [login](https://github.com/kawansoft/aceql-http/blob/master/aceql-http-6.1-user-guide-api.md#login) API to authenticate the users and retrieve the `session_id` returned by the API.
 
 The `session_id` value will be set directly into the `connectionString`  or passed to an `AceQLCredential`:
 
@@ -739,7 +739,7 @@ RemoteDatabaseMetaData remoteDatabaseMetaData = connection.GetRemoteDatabaseMeta
 
 ### Downloading database schema into a file
 
-Downloading a schema into a  `File` is done through the method. See the `RemoteDatabaseMetaData` [Documentation](https://www.aceql.com/rest/soft/6.0/csharpdoc_sdk/):
+Downloading a schema into a  `File` is done through the method. See the `RemoteDatabaseMetaData` [Documentation](https://www.aceql.com/rest/soft_csharp/6.0/csharpdoc_sdk):
 
 ```C#
 string userPath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
@@ -755,7 +755,7 @@ using (Stream stream = await remoteDatabaseMetaData.DbSchemaDownloadAsync())
 }
 ```
 
-See an example of the built HTML schema:  [db_schema.out.html](https://www.aceql.com/rest/soft/6.0/src/db_schema.out.html)
+See an example of the built HTML schema:  [db_schema.out.html](https://www.aceql.com/rest/soft_csharp/6.0/src/db_schema.out.html)
 
 ### Accessing remote database main properties
 
@@ -770,7 +770,7 @@ Console.WriteLine("IsReadOnly   : " + jdbcDatabaseMetaData.IsReadOnly);
 
 ### Getting Details of Tables and Columns
 
-See the `RemoteDatabaseMetaData` [Documentation](https://www.aceql.com/rest/soft/6.0/csharpdoc_sdk/):
+See the `RemoteDatabaseMetaData` [Documentation](https://www.aceql.com/rest/soft_csharp/6.0/csharpdoc_sdk):
 
 ```C#
 Console.WriteLine("Get the table names:");
