@@ -22,7 +22,8 @@ AceQL C# Client SDK - Version 6.0 - 14-Nov-2020
 
 What's New:
 - Starting at version 6.0, the library is now a .Net Standard 2.0 library.
-  If you need the PCL (Portable Class Library) implementation, use version <= 5.5
+  If you need the PCL (Portable Class Library) implementation, please 
+  use version 5.5.
 
 
 AceQL C# Client SDK - Version 5.5 - 18-Sep-2020

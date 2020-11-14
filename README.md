@@ -1,6 +1,6 @@
 ![GitHub top language](https://img.shields.io/github/languages/top/kawansoft/AceQL.Client2) ![GitHub issues](https://img.shields.io/github/issues/kawansoft/AceQL.Client2) ![GitHub](https://img.shields.io/github/license/kawansoft/AceQL.Client2) 
 ![Nuget](https://img.shields.io/nuget/dt/AceQL.Client)![GitHub last commit (branch)](https://img.shields.io/github/last-commit/kawansoft/AceQL.Client2/master)
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/a4f4c37d44544bd5bf7dde9526d9e5eb)](https://www.codacy.com/gh/kawansoft/AceQL.Client?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=kawansoft/AceQL.Client&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/cf679ce3b884458d9a0212345d51baab)](https://www.codacy.com/gh/kawansoft/AceQL.Client2/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=kawansoft/AceQL.Client2&amp;utm_campaign=Badge_Grade)
 ![GitHub contributors](https://img.shields.io/github/contributors/kawansoft/AceQL.Client)
 
 # AceQL HTTP 
