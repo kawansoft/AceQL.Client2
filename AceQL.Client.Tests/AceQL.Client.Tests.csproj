@@ -18,6 +18,7 @@
     <PackageProjectUrl>https://github.com/kawansoft/AceQL.Client2</PackageProjectUrl>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <RepositoryUrl>https://github.com/kawansoft/AceQL.Client2</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
