@@ -18,6 +18,7 @@
     <PackageReleaseNotes>AceQL is now a .NET Standard 2.0 Library</PackageReleaseNotes>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageTags>SQL over http remote jdbc cloud database Xamarin</PackageTags>
+    <Product>AceQL.Client</Product>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
