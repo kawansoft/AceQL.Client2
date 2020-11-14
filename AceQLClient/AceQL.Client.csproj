@@ -22,7 +22,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>I:\_dev_awake\aceql-http-main\C#\AceQL.Client2\AceQL.Client2.xml</DocumentationFile>
+    <DocumentationFile>I:\_dev_awake\aceql-http-main\C#\AceQL.Client2\AceQL.Client.xml</DocumentationFile>
     <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
 
