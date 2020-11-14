@@ -17,7 +17,7 @@ they would do for an SQL Server database.
 The AceQL C# Client SDK is licensed under the Apache 2.0 License.
 
 
-AceQL C# Client SDK - Version 6.0 - 13-Nov-2020
+AceQL C# Client SDK - Version 6.0 - 14-Nov-2020
 ------------------------------------------------
 
 What's New:

@@ -1,0 +1,339 @@
+﻿/*
+ * This file is part of AceQL C# Client SDK.
+ * AceQL C# Client SDK: Remote SQL access over HTTP with AceQL HTTP.                                 
+ * Copyright (C) 2020,  KawanSoft SAS
+ * (http://www.kawansoft.com). All rights reserved.                                
+ *                                                                               
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License. 
+ */
+
+using AceQL.Client.Api;
+using AceQL.Client.Tests;
+using System;
+using System.IO;
+using System.Threading.Tasks;
+
+
+namespace AceQL.Client2.samples
+
+{
+    /// <summary>
+    /// This example: 
+    /// 1) Inserts a Customer and an Order on a remote database. 
+    /// 2) Displays the inserted raws on the console with two SELECT executed on the remote database.
+    /// </summary>
+    class MyRemoteConnection
+    {
+        /// <summary>
+        /// The connection to the remote database
+        /// </summary>
+        AceQLConnection connection;
+
+        public static void TheMain(string[] args)
+        {
+            DoIt(args).Wait();
+        }
+
+        /// <summary>
+        /// Does it.
+        /// </summary>
+        /// <param name="args">The arguments.</param>
+        /// <returns></returns>
+        public static async Task DoIt(string[] args)
+        {
+
+            try
+            {
+                int customerId = 1;
+                int itemId = 1;
+
+                // Make sure connection is always closed in order to close and release
+                // server connection into the pool
+                using (AceQLConnection connection = await ConnectionBuilderAsync())
+                {
+                    MyRemoteConnection myRemoteConnection = new MyRemoteConnection(
+                        connection);
+
+                    // Delete previous instances, so that user can recall 
+
+                    AceQLConsole.WriteLine("deleting customer...");
+                    await myRemoteConnection.DeleteCustomerAsync(customerId).ConfigureAwait(false); ;
+
+                    AceQLConsole.WriteLine("deleting orderlog...");
+                    await myRemoteConnection.DeleteOrderlogAsync(customerId, itemId).ConfigureAwait(false); ;
+
+                    await myRemoteConnection.InsertCustomerAndOrderLogAsync(customerId, itemId).ConfigureAwait(false); ;
+                    await myRemoteConnection.SelectCustomerAndOrderLogAsync(customerId).ConfigureAwait(false); ;
+
+                    await connection.CloseAsync().ConfigureAwait(false); ;
+                    AceQLConsole.WriteLine("The end...");
+                }
+
+                AceQLConsole.WriteLine();
+                AceQLConsole.WriteLine("Press enter to close....");
+                Console.ReadLine();
+
+            }
+            catch (Exception exception)
+            {
+                AceQLConsole.WriteLine(exception.ToString());
+                AceQLConsole.WriteLine(exception.StackTrace);
+                AceQLConsole.WriteLine("Press enter to close...");
+                Console.ReadLine();
+            }
+        }
+
+
+        /// <summary>
+        /// RemoteConnection Quick Start client example.
+        /// Creates a Connection to a remote database and open it.
+        /// </summary>
+        /// <returns>The connection to the remote database</returns>
+        /// <exception cref="AceQLException">If any Exception occurs.</exception>
+        public static async Task<AceQLConnection> ConnectionBuilderAsync()
+        {
+            // Port number is the port number used to start the Web Server:
+            string server = "http://localhost:9090/aceql";
+            string database = "sampledb";
+
+            string connectionString = $"Server={server}; Database={database}";
+
+            // (username, password) for authentication on server side.
+            // No authentication will be done for our Quick Start:
+            string username = "MyUsername";
+            char[] password = { 'M', 'y', 'S', 'e', 'c', 'r', 'e', 't' };
+
+            AceQLConnection connection = new AceQLConnection(connectionString)
+            {
+                Credential = new AceQLCredential(username, password)
+            };
+
+            // Opens the connection with the remote database.
+            // On the server side, a JDBC connection is extracted from the connection 
+            // pool created by the server at startup. The connection will remain ours 
+            // during the session.
+            await connection.OpenAsync();
+
+            return connection;
+        }
+
+        
+        /// RemoteConnection Quick Start client example.
+        /// Creates a Connection to a remote database using a proxy.
+        /// </summary>
+        /// <returns>The connection to the remote database</returns>
+        /// <exception cref="AceQLException">If any Exception occurs.</exception>
+        public static AceQLConnection RemoteConnectionBuilderUsingProxyAsync()
+        {
+            // Port number is the port number used to start the Web Server:
+            string server = "http://www.aceql.com:9090/aceql";
+            string database = "sampledb";
+
+            // (username, password) for authentication on server side.
+            // No authentication will be done for our Quick Start:
+            string username = "MyUsername";
+            string password = "MySecret";
+
+            // WebProxy will be detected, pass the auth info for proxy that require authentication:
+            string proxyUri = "http://localhost:8080";
+            string proxyUsername = "ndepomereu2";
+            string proxyPassword = null;
+
+            String path = AceQLConnection.GetAceQLLocalFolder() + "\\password.txt";
+            FileInfo fileInfo = new FileInfo(path);
+
+            if (fileInfo.Exists)
+            {
+                proxyPassword = File.ReadAllText(path);
+            }
+            
+            string connectionString = $"Server={server}; Database={database}; "
+                + $"Username={username}; Password={password};"
+                + $"ProxyUri={proxyUri};"
+                + $"ProxyUsername={proxyUsername}; ProxyPassword={proxyPassword}";
+
+            AceQLConnection connection = new AceQLConnection(connectionString);
+
+            return connection;
+        }
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="connection">The AceQL connection to remote database.</param>
+        public MyRemoteConnection(AceQLConnection connection)
+        {
+            this.connection = connection;
+        }
+
+        /// <summary>
+        /// Example of 2 INSERT in the same transaction.
+        /// </summary>
+        /// <param name="customerId">The customer ID.</param>
+        /// <param name="itemId">the item ID.</param>
+        /// <exception cref="AceQLException">If any Exception occurs.</exception>
+        public async Task InsertCustomerAndOrderLogAsync(int customerId, int itemId)
+        {
+            // Create a transaction
+            AceQLTransaction transaction = await connection.BeginTransactionAsync();
+
+            string sql = "insert into customer values " + "" +
+                "(@parm1, @parm2, @parm3, @parm4, @parm5, @parm6, @parm7, @parm8)";
+
+            AceQLCommand command = new AceQLCommand(sql, connection);
+            try
+            {
+                command.Parameters.AddWithValue("@parm1", customerId);
+                command.Parameters.AddWithValue("@parm2", "Sir");
+                command.Parameters.AddWithValue("@parm3", "Doe");
+                command.Parameters.AddWithValue("@parm4", "John");
+                // Alternate syntax
+                command.Parameters.Add(new AceQLParameter("@parm5", "1 Madison Ave"));
+                command.Parameters.AddWithValue("@parm6", "New York");
+                command.Parameters.AddWithValue("@parm7", "NY 10010");
+
+                command.Parameters.Add(new AceQLParameter("@parm8", new AceQLNullValue(AceQLNullType.VARCHAR)));
+
+                await command.ExecuteNonQueryAsync();
+
+                sql = "insert into orderlog values " +
+                            "(@customer_id, @item_id, @description, " +
+                                "@item_cost, @date_placed, @date_shipped, " +
+                                "@jpeg_image, @is_delivered, @quantity)";
+
+                command = new AceQLCommand(sql, connection);
+
+                command.Parameters.AddWithValue("@customer_id", customerId);
+                command.Parameters.AddWithValue("@item_id", itemId);
+                command.Parameters.AddWithValue("@description", "Item Description");
+                command.Parameters.AddWithValue("@item_cost", 99D);
+                command.Parameters.AddWithValue("@date_placed", DateTime.Now);
+                command.Parameters.AddWithValue("@date_shipped", DateTime.Now);
+
+                // No BLOB in our Quick start
+                command.Parameters.Add(new AceQLParameter("@jpeg_image", new AceQLNullValue(AceQLNullType.BLOB)));
+                command.Parameters.AddWithValue("@is_delivered", 1);
+                command.Parameters.AddWithValue("@quantity", 1);
+
+                await command.ExecuteNonQueryAsync();
+                await transaction.CommitAsync();
+            }
+            catch (Exception)
+            {
+                await transaction.RollbackAsync();
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Example of 2 SELECT.
+        /// </summary>
+        /// <param name="customerId">The cutomer ID.</param>
+        private async Task SelectCustomerAndOrderLogAsync(int customerId)
+        {
+            // Display the created Customer:
+            string sql = "select customer_id, fname, lname from customer "
+                + " where customer_id = @customer_id";
+
+            AceQLCommand command = new AceQLCommand(sql, connection);
+            command.Parameters.AddWithValue("@customer_id", customerId);
+
+            using (AceQLDataReader dataReader = await command.ExecuteReaderAsync())
+            {
+                while (dataReader.Read())
+                {
+                    int i = 0;
+                    int customerId2 = dataReader.GetInt32(i++);
+                    string fname = dataReader.GetString(i++);
+                    string lname = dataReader.GetString(i++);
+
+                    AceQLConsole.WriteLine();
+                    AceQLConsole.WriteLine("customer_id : " + customerId2);
+                    AceQLConsole.WriteLine("fname       : " + fname);
+                    AceQLConsole.WriteLine("lname       : " + lname);
+                }
+            }
+
+            sql = "select * from orderlog where customer_id = @customer_id and item_id = @item_id ";
+
+            command = new AceQLCommand(sql, connection);
+            command.Parameters.AddWithValue("@customer_id", customerId);
+            command.Parameters.AddWithValue("@item_id", customerId);
+
+            using (AceQLDataReader dataReader = await command.ExecuteReaderAsync())
+            {
+                while (dataReader.Read())
+                {
+                    int i = 0;
+                    int customerId2 = dataReader.GetInt32(i++);
+                    int itemId2 = dataReader.GetInt32(i++);
+
+                    string description = dataReader.GetString(i++);
+                    Decimal costPrice = dataReader.GetDecimal(i++);
+
+                    DateTime datePlaced = dataReader.GetDateTime(i++).Date;
+                    DateTime dateShipped = dataReader.GetDateTime(i++);
+
+                    Stream stream = await dataReader.GetStreamAsync(i++); // null stream
+
+                    bool is_delivered = dataReader.GetInt32(i++) == 1 ? true : false;
+                    int quantity = dataReader.GetInt32(i++);
+
+                    AceQLConsole.WriteLine("customer_id : " + customerId2);
+                    AceQLConsole.WriteLine("item_id     : " + itemId2);
+                    AceQLConsole.WriteLine("description : " + description);
+                    AceQLConsole.WriteLine("cost_price  : " + costPrice);
+                    AceQLConsole.WriteLine("date_placed : " + datePlaced.Date);
+                    AceQLConsole.WriteLine("date_shipped: " + dateShipped);
+                    AceQLConsole.WriteLine("is_delivered: " + is_delivered);
+                    AceQLConsole.WriteLine("quantity    : " + quantity);
+                }
+            }
+
+
+        }
+
+        /// <summary>
+        /// Deletes an existing customer row.
+        /// </summary>
+        /// <param name="customerId">The customer ID.</param>
+        public async Task DeleteCustomerAsync(int customerId)
+        {
+            string sql = "delete from customer where customer_id = @customer_id";
+
+            using (AceQLCommand command = new AceQLCommand(sql, connection))
+            {
+                command.Parameters.AddWithValue("@customer_id", customerId);
+                await command.ExecuteNonQueryAsync();
+            }
+        }
+
+        /// <summary>
+        /// Deletes an existing orderlog row.
+        /// </summary>
+        /// <param name="customerId">The customer ID.</param>
+        /// <param name="itemId">the item ID.</param>
+        public async Task DeleteOrderlogAsync(int customerId, int idemId)
+        {
+            string sql = "delete from orderlog where customer_id = @customer_id and item_id = @item_id";
+
+            using (AceQLCommand command = new AceQLCommand(sql, connection))
+            {
+                command.Parameters.AddWithValue("@customer_id", customerId);
+                command.Parameters.AddWithValue("@item_id", idemId);
+                await command.ExecuteNonQueryAsync();
+            }
+        }
+
+    }
+}
