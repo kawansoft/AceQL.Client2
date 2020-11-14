@@ -3,10 +3,36 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <PackageId>AceQL.Client</PackageId>
+    <Version>6.0.0</Version>
+    <Authors>KawanSoft</Authors>
+    <Company>KawanSoft</Company>
+    <Product>AceQL.Client</Product>
+    <Description>AceQL allows C# and Xamarin developers to access remote SQL databases and/or SQL databases in the cloud by simply including standard SQL calls in their code. AceQL operates with AceQL HTTP on server side. See www.aceql.com for more info.</Description>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageTags>SQL over http remote jdbc cloud database Xamarin</PackageTags>
+    <Copyright>Copyrigh KawanSoft t © 2020</Copyright>
+    <PackageIcon>favicon.png</PackageIcon>
+    <RepositoryType>GitHub</RepositoryType>
+    <PackageReleaseNotes>AceQL.Client  is now a .Net Standard 2.0 library.</PackageReleaseNotes>
+    <PackageProjectUrl>https://github.com/kawansoft/AceQL.Client2</PackageProjectUrl>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\AceQLClient\AceQL.Client.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\AceQLClient\favicon.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+    <None Include="..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
