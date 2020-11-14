@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AceQLClient2\AceQL.Client.csproj" />
+    <ProjectReference Include="..\AceQLClient\AceQL.Client.csproj" />
   </ItemGroup>
 
 </Project>

@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30709.132
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AceQL.Client", "AceQLClient2\AceQL.Client.csproj", "{E63BC6F4-A812-4ED0-93D9-EA936BF15A5C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AceQL.Client", "AceQLClient\AceQL.Client.csproj", "{E63BC6F4-A812-4ED0-93D9-EA936BF15A5C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AceQL.Client.Tests", "AceQL.Client2.Tests\AceQL.Client.Tests.csproj", "{B12C11D7-D650-44E8-A922-ECED54FFD5A6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AceQL.Client.Tests", "AceQL.Client.Tests\AceQL.Client.Tests.csproj", "{B12C11D7-D650-44E8-A922-ECED54FFD5A6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
