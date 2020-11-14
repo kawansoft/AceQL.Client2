@@ -24,7 +24,7 @@ using System.IO;
 using System.Threading.Tasks;
 
 
-namespace AceQL.Client2.samples
+namespace AceQL.Client.samples
 
 {
     /// <summary>

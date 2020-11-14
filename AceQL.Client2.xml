@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <doc>
     <assembly>
-        <name>AceQL.Client2</name>
+        <name>AceQL.Client</name>
     </assembly>
     <members>
         <member name="T:AceQL.Client.Api.Http.AceQLHttpApi">
