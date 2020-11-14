@@ -151,14 +151,11 @@ Here is the correspondence table for the common classes:
 | IsolationLevel                                 | IsolationLevel                                           |
 | ParameterDirection                             | ParameterDirection                                       |
 
-N.B: Because the AceQL SDK is a Portable Class Library, the `System.Data` namespace is not available. Thus, the AceQL SDK does not implement the `System.Data.Db*` classes available on Windows Desktop.
-
 The AceQL SDK exposes 2 specific public classes and 1 enumeration:
 
 | Name                            | Role                                                         |
 | ------------------------------- | ------------------------------------------------------------ |
 | AceQLException                  | Generic Exception implementation  for error reporting.  <br />See [Handling Exceptions](#handling-exceptions). |
-|                                 |                                                              |
 | AceQLNullType<br>AceQLNullValue | Enum and class that allows you to define the type of NULL  values for database updates.  See [Inserting NULL values](#inserting-null-values). |
 | AceQLProgressIndicator          | Allows you to  retrieve Blob upload progress as a percentage. See [Managing BLOB upload progress](#managing-blob-upload-progress). |
 
