@@ -679,7 +679,7 @@ You then can read `ProgressIndicator.Percent` property in your watching thread.
 
 Some working environments (Intranet, etc.) require that the client user authenticates himself without a password. Thus, it is not possible for this users to authenticate though the AceQL client SDK.
 
-In this case, you may use directly the native HTTP [login](https://github.com/kawansoft/aceql-http/blob/master/aceql-http-6.1-user-guide-api.md#login) API to authenticate the users and retrieve the `session_id` returned by the API.
+In this case, you may use directly the native HTTP [login](https://github.com/kawansoft/aceql-http/blob/master/aceql-http-6.2-user-guide-api.md#login) API to authenticate the users and retrieve the `session_id` returned by the API.
 
 The `session_id` value will be set directly into the `connectionString`  or passed to an `AceQLCredential`:
 
