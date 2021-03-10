@@ -5,7 +5,7 @@
 
 # AceQL HTTP 
 
-## C# Client SDK v6.1 - March 2021, 10
+## C# Client SDK v6.1.1 - March 2021, 10
 
 <img src="https://www.aceql.com/favicon.png" alt="AceQ HTTP Icon"/>
 
@@ -92,7 +92,7 @@ This version requires AceQL HTTP v5.0.2+ server version.
 
 Install the [NuGet Package](https://www.nuget.org/packages/AceQL.Client): 
 
-- Choose version 6.1.0  version for the [.Net Standard 2.0](https://docs.microsoft.com/en-us/dotnet/standard/net-standard)  implementation.
+- Choose version 6.1.1  version for the [.Net Standard 2.0](https://docs.microsoft.com/en-us/dotnet/standard/net-standard)  implementation.
 - Choose version 5.5.0 for the  [Portable Class Library](https://docs.microsoft.com/en-us/dotnet/framework/cross-platform/portable-class-library?redirectedfrom=MSDN) implementation. *Please note that PCL versions are deprecated and will not be any more supported starting 2021 January, 1.*
 
 ## Data transport

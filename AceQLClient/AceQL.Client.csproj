@@ -11,9 +11,9 @@
     <PackageLicenseExpression></PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/kawansoft/AceQL.Client2</PackageProjectUrl>
     <PackageIcon>favicon.png</PackageIcon>
-    <AssemblyVersion>6.1.0.0</AssemblyVersion>
-    <FileVersion>6.1.0.0</FileVersion>
-    <Version>6.1.0</Version>
+    <AssemblyVersion>6.1.1.0</AssemblyVersion>
+    <FileVersion>6.1.1.0</FileVersion>
+    <Version>6.1.1</Version>
     <Authors>KawanSoft</Authors>
     <PackageReleaseNotes>Server calls could hang on HTTP POST calls. This has been fixed.</PackageReleaseNotes>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
