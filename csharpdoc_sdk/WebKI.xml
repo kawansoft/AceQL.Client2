@@ -1,0 +1,1022 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<HelpKI>
+  <HelpKINode Title="AceQL.Client.Api namespace" Url="html/N-AceQL.Client.Api.htm" />
+  <HelpKINode Title="AceQL.Client.Api.AceQLCommand class">
+    <HelpKINode Title="AceQLCommand Class" Url="html/T-AceQL.Client.Api.AceQLCommand.htm" />
+    <HelpKINode Title="AceQLCommand Members" Url="html/AllMembers.T-AceQL.Client.Api.AceQLCommand.htm" />
+  </HelpKINode>
+  <HelpKINode Title="AceQL.Client.Api.AceQLConnection class">
+    <HelpKINode Title="AceQLConnection Class" Url="html/T-AceQL.Client.Api.AceQLConnection.htm" />
+    <HelpKINode Title="AceQLConnection Members" Url="html/AllMembers.T-AceQL.Client.Api.AceQLConnection.htm" />
+  </HelpKINode>
+  <HelpKINode Title="AceQL.Client.Api.AceQLCredential class">
+    <HelpKINode Title="AceQLCredential Class" Url="html/T-AceQL.Client.Api.AceQLCredential.htm" />
+    <HelpKINode Title="AceQLCredential Members" Url="html/AllMembers.T-AceQL.Client.Api.AceQLCredential.htm" />
+  </HelpKINode>
+  <HelpKINode Title="AceQL.Client.Api.AceQLDataReader class">
+    <HelpKINode Title="AceQLDataReader Class" Url="html/T-AceQL.Client.Api.AceQLDataReader.htm" />
+    <HelpKINode Title="AceQLDataReader Members" Url="html/AllMembers.T-AceQL.Client.Api.AceQLDataReader.htm" />
+  </HelpKINode>
+  <HelpKINode Title="AceQL.Client.Api.AceQLException class">
+    <HelpKINode Title="AceQLException Class" Url="html/T-AceQL.Client.Api.AceQLException.htm" />
+    <HelpKINode Title="AceQLException Members" Url="html/AllMembers.T-AceQL.Client.Api.AceQLException.htm" />
+  </HelpKINode>
+  <HelpKINode Title="AceQL.Client.Api.AceQLNullType enumeration" Url="html/T-AceQL.Client.Api.AceQLNullType.htm" />
+  <HelpKINode Title="AceQL.Client.Api.AceQLNullValue class">
+    <HelpKINode Title="AceQLNullValue Class" Url="html/T-AceQL.Client.Api.AceQLNullValue.htm" />
+    <HelpKINode Title="AceQLNullValue Members" Url="html/AllMembers.T-AceQL.Client.Api.AceQLNullValue.htm" />
+  </HelpKINode>
+  <HelpKINode Title="AceQL.Client.Api.AceQLParameter class">
+    <HelpKINode Title="AceQLParameter Class" Url="html/T-AceQL.Client.Api.AceQLParameter.htm" />
+    <HelpKINode Title="AceQLParameter Members" Url="html/AllMembers.T-AceQL.Client.Api.AceQLParameter.htm" />
+  </HelpKINode>
+  <HelpKINode Title="AceQL.Client.Api.AceQLParameterCollection class">
+    <HelpKINode Title="AceQLParameterCollection Class" Url="html/T-AceQL.Client.Api.AceQLParameterCollection.htm" />
+    <HelpKINode Title="AceQLParameterCollection Members" Url="html/AllMembers.T-AceQL.Client.Api.AceQLParameterCollection.htm" />
+  </HelpKINode>
+  <HelpKINode Title="AceQL.Client.Api.AceQLProgressIndicator class">
+    <HelpKINode Title="AceQLProgressIndicator Class" Url="html/T-AceQL.Client.Api.AceQLProgressIndicator.htm" />
+    <HelpKINode Title="AceQLProgressIndicator Members" Url="html/AllMembers.T-AceQL.Client.Api.AceQLProgressIndicator.htm" />
+  </HelpKINode>
+  <HelpKINode Title="AceQL.Client.Api.AceQLTransaction class">
+    <HelpKINode Title="AceQLTransaction Class" Url="html/T-AceQL.Client.Api.AceQLTransaction.htm" />
+    <HelpKINode Title="AceQLTransaction Members" Url="html/AllMembers.T-AceQL.Client.Api.AceQLTransaction.htm" />
+  </HelpKINode>
+  <HelpKINode Title="AceQL.Client.Api.CommandType enumeration" Url="html/T-AceQL.Client.Api.CommandType.htm" />
+  <HelpKINode Title="AceQL.Client.Api.IsolationLevel enumeration" Url="html/T-AceQL.Client.Api.IsolationLevel.htm" />
+  <HelpKINode Title="AceQL.Client.Api.Metadata namespace" Url="html/N-AceQL.Client.Api.Metadata.htm" />
+  <HelpKINode Title="AceQL.Client.Api.Metadata.CatalogAndSchema class">
+    <HelpKINode Title="CatalogAndSchema Class" Url="html/T-AceQL.Client.Api.Metadata.CatalogAndSchema.htm" />
+    <HelpKINode Title="CatalogAndSchema Members" Url="html/AllMembers.T-AceQL.Client.Api.Metadata.CatalogAndSchema.htm" />
+  </HelpKINode>
+  <HelpKINode Title="AceQL.Client.Api.Metadata.Column class">
+    <HelpKINode Title="Column Class" Url="html/T-AceQL.Client.Api.Metadata.Column.htm" />
+    <HelpKINode Title="Column Members" Url="html/AllMembers.T-AceQL.Client.Api.Metadata.Column.htm" />
+  </HelpKINode>
+  <HelpKINode Title="AceQL.Client.Api.Metadata.ExportedKey class">
+    <HelpKINode Title="ExportedKey Class" Url="html/T-AceQL.Client.Api.Metadata.ExportedKey.htm" />
+    <HelpKINode Title="ExportedKey Members" Url="html/AllMembers.T-AceQL.Client.Api.Metadata.ExportedKey.htm" />
+  </HelpKINode>
+  <HelpKINode Title="AceQL.Client.Api.Metadata.ForeignKey class">
+    <HelpKINode Title="ForeignKey Class" Url="html/T-AceQL.Client.Api.Metadata.ForeignKey.htm" />
+    <HelpKINode Title="ForeignKey Members" Url="html/AllMembers.T-AceQL.Client.Api.Metadata.ForeignKey.htm" />
+  </HelpKINode>
+  <HelpKINode Title="AceQL.Client.Api.Metadata.ImportedKey class">
+    <HelpKINode Title="ImportedKey Class" Url="html/T-AceQL.Client.Api.Metadata.ImportedKey.htm" />
+    <HelpKINode Title="ImportedKey Members" Url="html/AllMembers.T-AceQL.Client.Api.Metadata.ImportedKey.htm" />
+  </HelpKINode>
+  <HelpKINode Title="AceQL.Client.Api.Metadata.Index class">
+    <HelpKINode Title="Index Class" Url="html/T-AceQL.Client.Api.Metadata.Index.htm" />
+    <HelpKINode Title="Index Members" Url="html/AllMembers.T-AceQL.Client.Api.Metadata.Index.htm" />
+  </HelpKINode>
+  <HelpKINode Title="AceQL.Client.Api.Metadata.JdbcDatabaseMetaData class">
+    <HelpKINode Title="JdbcDatabaseMetaData Class" Url="html/T-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.htm" />
+    <HelpKINode Title="JdbcDatabaseMetaData Members" Url="html/AllMembers.T-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.htm" />
+  </HelpKINode>
+  <HelpKINode Title="AceQL.Client.Api.Metadata.PrimaryKey class">
+    <HelpKINode Title="PrimaryKey Class" Url="html/T-AceQL.Client.Api.Metadata.PrimaryKey.htm" />
+    <HelpKINode Title="PrimaryKey Members" Url="html/AllMembers.T-AceQL.Client.Api.Metadata.PrimaryKey.htm" />
+  </HelpKINode>
+  <HelpKINode Title="AceQL.Client.Api.Metadata.RemoteDatabaseMetaData class">
+    <HelpKINode Title="RemoteDatabaseMetaData Class" Url="html/T-AceQL.Client.Api.Metadata.RemoteDatabaseMetaData.htm" />
+    <HelpKINode Title="RemoteDatabaseMetaData Members" Url="html/AllMembers.T-AceQL.Client.Api.Metadata.RemoteDatabaseMetaData.htm" />
+  </HelpKINode>
+  <HelpKINode Title="AceQL.Client.Api.Metadata.Table class">
+    <HelpKINode Title="Table Class" Url="html/T-AceQL.Client.Api.Metadata.Table.htm" />
+    <HelpKINode Title="Table Members" Url="html/AllMembers.T-AceQL.Client.Api.Metadata.Table.htm" />
+  </HelpKINode>
+  <HelpKINode Title="AceQL.Client.Api.ParameterDirection enumeration" Url="html/T-AceQL.Client.Api.ParameterDirection.htm" />
+  <HelpKINode Title="AceQLCommand class">
+    <HelpKINode Title="AceQLCommand Class" Url="html/T-AceQL.Client.Api.AceQLCommand.htm" />
+    <HelpKINode Title="AceQLCommand Members" Url="html/AllMembers.T-AceQL.Client.Api.AceQLCommand.htm" />
+    <HelpKINode Title="about AceQLCommand class" Url="html/T-AceQL.Client.Api.AceQLCommand.htm" />
+    <HelpKINode Title="all members" Url="html/AllMembers.T-AceQL.Client.Api.AceQLCommand.htm" />
+    <HelpKINode Title="constructor" Url="html/Overload-AceQL.Client.Api.AceQLCommand.-ctor.htm" />
+    <HelpKINode Title="methods" Url="html/Methods.T-AceQL.Client.Api.AceQLCommand.htm" />
+    <HelpKINode Title="properties" Url="html/Properties.T-AceQL.Client.Api.AceQLCommand.htm" />
+  </HelpKINode>
+  <HelpKINode Title="AceQLCommand.AceQLCommand constructor" Url="html/Overload-AceQL.Client.Api.AceQLCommand.-ctor.htm" />
+  <HelpKINode Title="AceQLCommand.CommandText property" Url="html/P-AceQL.Client.Api.AceQLCommand.CommandText.htm" />
+  <HelpKINode Title="AceQLCommand.CommandType property" Url="html/P-AceQL.Client.Api.AceQLCommand.CommandType.htm" />
+  <HelpKINode Title="AceQLCommand.Connection property" Url="html/P-AceQL.Client.Api.AceQLCommand.Connection.htm" />
+  <HelpKINode Title="AceQLCommand.CopyHttpStreamToFile method" Url="html/M-AceQL.Client.Api.AceQLCommand.CopyHttpStreamToFile.htm" />
+  <HelpKINode Title="AceQLCommand.ExecuteNonQueryAsync method" Url="html/Overload-AceQL.Client.Api.AceQLCommand.ExecuteNonQueryAsync.htm" />
+  <HelpKINode Title="AceQLCommand.ExecuteReaderAsync method" Url="html/Overload-AceQL.Client.Api.AceQLCommand.ExecuteReaderAsync.htm" />
+  <HelpKINode Title="AceQLCommand.Parameters property" Url="html/P-AceQL.Client.Api.AceQLCommand.Parameters.htm" />
+  <HelpKINode Title="AceQLCommand.Prepare method" Url="html/M-AceQL.Client.Api.AceQLCommand.Prepare.htm" />
+  <HelpKINode Title="AceQLCommand.Transaction property" Url="html/P-AceQL.Client.Api.AceQLCommand.Transaction.htm" />
+  <HelpKINode Title="AceQLConnection class">
+    <HelpKINode Title="AceQLConnection Class" Url="html/T-AceQL.Client.Api.AceQLConnection.htm" />
+    <HelpKINode Title="AceQLConnection Members" Url="html/AllMembers.T-AceQL.Client.Api.AceQLConnection.htm" />
+    <HelpKINode Title="about AceQLConnection class" Url="html/T-AceQL.Client.Api.AceQLConnection.htm" />
+    <HelpKINode Title="all members" Url="html/AllMembers.T-AceQL.Client.Api.AceQLConnection.htm" />
+    <HelpKINode Title="constructor" Url="html/Overload-AceQL.Client.Api.AceQLConnection.-ctor.htm" />
+    <HelpKINode Title="methods" Url="html/Methods.T-AceQL.Client.Api.AceQLConnection.htm" />
+    <HelpKINode Title="properties" Url="html/Properties.T-AceQL.Client.Api.AceQLConnection.htm" />
+  </HelpKINode>
+  <HelpKINode Title="AceQLConnection property" Url="html/P-AceQL.Client.Api.AceQLTransaction.AceQLConnection.htm" />
+  <HelpKINode Title="AceQLConnection.AceQLConnection constructor" Url="html/Overload-AceQL.Client.Api.AceQLConnection.-ctor.htm" />
+  <HelpKINode Title="AceQLConnection.AddRequestHeader method" Url="html/M-AceQL.Client.Api.AceQLConnection.AddRequestHeader.htm" />
+  <HelpKINode Title="AceQLConnection.BeginTransactionAsync method" Url="html/Overload-AceQL.Client.Api.AceQLConnection.BeginTransactionAsync.htm" />
+  <HelpKINode Title="AceQLConnection.CloseAsync method" Url="html/M-AceQL.Client.Api.AceQLConnection.CloseAsync.htm" />
+  <HelpKINode Title="AceQLConnection.ConnectionString property" Url="html/P-AceQL.Client.Api.AceQLConnection.ConnectionString.htm" />
+  <HelpKINode Title="AceQLConnection.ConnectionTimeout property" Url="html/P-AceQL.Client.Api.AceQLConnection.ConnectionTimeout.htm" />
+  <HelpKINode Title="AceQLConnection.Credential property" Url="html/P-AceQL.Client.Api.AceQLConnection.Credential.htm" />
+  <HelpKINode Title="AceQLConnection.Database property" Url="html/P-AceQL.Client.Api.AceQLConnection.Database.htm" />
+  <HelpKINode Title="AceQLConnection.GetAceQLLocalFolder method" Url="html/M-AceQL.Client.Api.AceQLConnection.GetAceQLLocalFolder.htm" />
+  <HelpKINode Title="AceQLConnection.GetClientVersion method" Url="html/M-AceQL.Client.Api.AceQLConnection.GetClientVersion.htm" />
+  <HelpKINode Title="AceQLConnection.GetDefaultWebProxy method" Url="html/M-AceQL.Client.Api.AceQLConnection.GetDefaultWebProxy.htm" />
+  <HelpKINode Title="AceQLConnection.GetProgressIndicator method" Url="html/M-AceQL.Client.Api.AceQLConnection.GetProgressIndicator.htm" />
+  <HelpKINode Title="AceQLConnection.GetRemoteDatabaseMetaData method" Url="html/M-AceQL.Client.Api.AceQLConnection.GetRemoteDatabaseMetaData.htm" />
+  <HelpKINode Title="AceQLConnection.GetServerVersionAsync method" Url="html/Overload-AceQL.Client.Api.AceQLConnection.GetServerVersionAsync.htm" />
+  <HelpKINode Title="AceQLConnection.GzipResult property" Url="html/P-AceQL.Client.Api.AceQLConnection.GzipResult.htm" />
+  <HelpKINode Title="AceQLConnection.LogoutAsync method" Url="html/M-AceQL.Client.Api.AceQLConnection.LogoutAsync.htm" />
+  <HelpKINode Title="AceQLConnection.OpenAsync method" Url="html/Overload-AceQL.Client.Api.AceQLConnection.OpenAsync.htm" />
+  <HelpKINode Title="AceQLConnection.RequestRetry property" Url="html/P-AceQL.Client.Api.AceQLConnection.RequestRetry.htm" />
+  <HelpKINode Title="AceQLConnection.ResetRequestHeaders method" Url="html/M-AceQL.Client.Api.AceQLConnection.ResetRequestHeaders.htm" />
+  <HelpKINode Title="AceQLConnection.SetDefaultWebProxy method" Url="html/M-AceQL.Client.Api.AceQLConnection.SetDefaultWebProxy.htm" />
+  <HelpKINode Title="AceQLConnection.SetProgressIndicator method" Url="html/M-AceQL.Client.Api.AceQLConnection.SetProgressIndicator.htm" />
+  <HelpKINode Title="AceQLCredential class">
+    <HelpKINode Title="AceQLCredential Class" Url="html/T-AceQL.Client.Api.AceQLCredential.htm" />
+    <HelpKINode Title="AceQLCredential Members" Url="html/AllMembers.T-AceQL.Client.Api.AceQLCredential.htm" />
+    <HelpKINode Title="about AceQLCredential class" Url="html/T-AceQL.Client.Api.AceQLCredential.htm" />
+    <HelpKINode Title="all members" Url="html/AllMembers.T-AceQL.Client.Api.AceQLCredential.htm" />
+    <HelpKINode Title="constructor" Url="html/Overload-AceQL.Client.Api.AceQLCredential.-ctor.htm" />
+    <HelpKINode Title="methods" Url="html/Methods.T-AceQL.Client.Api.AceQLCredential.htm" />
+    <HelpKINode Title="properties" Url="html/Properties.T-AceQL.Client.Api.AceQLCredential.htm" />
+  </HelpKINode>
+  <HelpKINode Title="AceQLCredential.AceQLCredential constructor" Url="html/Overload-AceQL.Client.Api.AceQLCredential.-ctor.htm" />
+  <HelpKINode Title="AceQLCredential.Password property" Url="html/P-AceQL.Client.Api.AceQLCredential.Password.htm" />
+  <HelpKINode Title="AceQLCredential.SessionId property" Url="html/P-AceQL.Client.Api.AceQLCredential.SessionId.htm" />
+  <HelpKINode Title="AceQLCredential.Username property" Url="html/P-AceQL.Client.Api.AceQLCredential.Username.htm" />
+  <HelpKINode Title="AceQLDataReader class">
+    <HelpKINode Title="AceQLDataReader Class" Url="html/T-AceQL.Client.Api.AceQLDataReader.htm" />
+    <HelpKINode Title="AceQLDataReader Members" Url="html/AllMembers.T-AceQL.Client.Api.AceQLDataReader.htm" />
+    <HelpKINode Title="about AceQLDataReader class" Url="html/T-AceQL.Client.Api.AceQLDataReader.htm" />
+    <HelpKINode Title="all members" Url="html/AllMembers.T-AceQL.Client.Api.AceQLDataReader.htm" />
+    <HelpKINode Title="methods" Url="html/Methods.T-AceQL.Client.Api.AceQLDataReader.htm" />
+    <HelpKINode Title="properties" Url="html/Properties.T-AceQL.Client.Api.AceQLDataReader.htm" />
+  </HelpKINode>
+  <HelpKINode Title="AceQLDataReader.Close method" Url="html/M-AceQL.Client.Api.AceQLDataReader.Close.htm" />
+  <HelpKINode Title="AceQLDataReader.FieldCount property" Url="html/P-AceQL.Client.Api.AceQLDataReader.FieldCount.htm" />
+  <HelpKINode Title="AceQLDataReader.GetBoolean method" Url="html/M-AceQL.Client.Api.AceQLDataReader.GetBoolean.htm" />
+  <HelpKINode Title="AceQLDataReader.GetByte method" Url="html/M-AceQL.Client.Api.AceQLDataReader.GetByte.htm" />
+  <HelpKINode Title="AceQLDataReader.GetBytes method" Url="html/M-AceQL.Client.Api.AceQLDataReader.GetBytes.htm" />
+  <HelpKINode Title="AceQLDataReader.GetChar method" Url="html/M-AceQL.Client.Api.AceQLDataReader.GetChar.htm" />
+  <HelpKINode Title="AceQLDataReader.GetChars method" Url="html/M-AceQL.Client.Api.AceQLDataReader.GetChars.htm" />
+  <HelpKINode Title="AceQLDataReader.GetDataTypeName method" Url="html/M-AceQL.Client.Api.AceQLDataReader.GetDataTypeName.htm" />
+  <HelpKINode Title="AceQLDataReader.GetDateTime method" Url="html/M-AceQL.Client.Api.AceQLDataReader.GetDateTime.htm" />
+  <HelpKINode Title="AceQLDataReader.GetDecimal method" Url="html/M-AceQL.Client.Api.AceQLDataReader.GetDecimal.htm" />
+  <HelpKINode Title="AceQLDataReader.GetDouble method" Url="html/M-AceQL.Client.Api.AceQLDataReader.GetDouble.htm" />
+  <HelpKINode Title="AceQLDataReader.GetFloat method" Url="html/M-AceQL.Client.Api.AceQLDataReader.GetFloat.htm" />
+  <HelpKINode Title="AceQLDataReader.GetInt16 method" Url="html/M-AceQL.Client.Api.AceQLDataReader.GetInt16.htm" />
+  <HelpKINode Title="AceQLDataReader.GetInt32 method" Url="html/M-AceQL.Client.Api.AceQLDataReader.GetInt32.htm" />
+  <HelpKINode Title="AceQLDataReader.GetInt64 method" Url="html/M-AceQL.Client.Api.AceQLDataReader.GetInt64.htm" />
+  <HelpKINode Title="AceQLDataReader.GetName method" Url="html/M-AceQL.Client.Api.AceQLDataReader.GetName.htm" />
+  <HelpKINode Title="AceQLDataReader.GetOrdinal method" Url="html/M-AceQL.Client.Api.AceQLDataReader.GetOrdinal.htm" />
+  <HelpKINode Title="AceQLDataReader.GetStreamAsync method" Url="html/Overload-AceQL.Client.Api.AceQLDataReader.GetStreamAsync.htm" />
+  <HelpKINode Title="AceQLDataReader.GetString method" Url="html/M-AceQL.Client.Api.AceQLDataReader.GetString.htm" />
+  <HelpKINode Title="AceQLDataReader.GetValue method" Url="html/M-AceQL.Client.Api.AceQLDataReader.GetValue.htm" />
+  <HelpKINode Title="AceQLDataReader.HasRows property" Url="html/P-AceQL.Client.Api.AceQLDataReader.HasRows.htm" />
+  <HelpKINode Title="AceQLDataReader.IsClosed property" Url="html/P-AceQL.Client.Api.AceQLDataReader.IsClosed.htm" />
+  <HelpKINode Title="AceQLDataReader.IsDBNull method" Url="html/M-AceQL.Client.Api.AceQLDataReader.IsDBNull.htm" />
+  <HelpKINode Title="AceQLDataReader.Item property">
+    <HelpKINode Title="Item Property " Url="html/P-AceQL.Client.Api.AceQLDataReader.Item-System.String-.htm" />
+    <HelpKINode Title="Item Property " Url="html/P-AceQL.Client.Api.AceQLDataReader.Item-System.Int32-.htm" />
+  </HelpKINode>
+  <HelpKINode Title="AceQLDataReader.Read method" Url="html/M-AceQL.Client.Api.AceQLDataReader.Read.htm" />
+  <HelpKINode Title="AceQLDataReader.ReadAsync method" Url="html/M-AceQL.Client.Api.AceQLDataReader.ReadAsync.htm" />
+  <HelpKINode Title="AceQLException class">
+    <HelpKINode Title="AceQLException Class" Url="html/T-AceQL.Client.Api.AceQLException.htm" />
+    <HelpKINode Title="AceQLException Members" Url="html/AllMembers.T-AceQL.Client.Api.AceQLException.htm" />
+    <HelpKINode Title="about AceQLException class" Url="html/T-AceQL.Client.Api.AceQLException.htm" />
+    <HelpKINode Title="all members" Url="html/AllMembers.T-AceQL.Client.Api.AceQLException.htm" />
+    <HelpKINode Title="constructor" Url="html/Overload-AceQL.Client.Api.AceQLException.-ctor.htm" />
+    <HelpKINode Title="events" Url="html/Events.T-AceQL.Client.Api.AceQLException.htm" />
+    <HelpKINode Title="methods" Url="html/Methods.T-AceQL.Client.Api.AceQLException.htm" />
+    <HelpKINode Title="properties" Url="html/Properties.T-AceQL.Client.Api.AceQLException.htm" />
+  </HelpKINode>
+  <HelpKINode Title="AceQLException.AceQLException constructor" Url="html/Overload-AceQL.Client.Api.AceQLException.-ctor.htm" />
+  <HelpKINode Title="AceQLException.ErrorType property" Url="html/P-AceQL.Client.Api.AceQLException.ErrorType.htm" />
+  <HelpKINode Title="AceQLException.ExceptionCause property" Url="html/P-AceQL.Client.Api.AceQLException.ExceptionCause.htm" />
+  <HelpKINode Title="AceQLException.HttpStatusCode property" Url="html/P-AceQL.Client.Api.AceQLException.HttpStatusCode.htm" />
+  <HelpKINode Title="AceQLException.Reason property" Url="html/P-AceQL.Client.Api.AceQLException.Reason.htm" />
+  <HelpKINode Title="AceQLException.RemoteStackTrace property" Url="html/P-AceQL.Client.Api.AceQLException.RemoteStackTrace.htm" />
+  <HelpKINode Title="AceQLException.ToString method" Url="html/M-AceQL.Client.Api.AceQLException.ToString.htm" />
+  <HelpKINode Title="AceQLNullType enumeration" Url="html/T-AceQL.Client.Api.AceQLNullType.htm" />
+  <HelpKINode Title="AceQLNullType.BIGINT field" Url="html/F-AceQL.Client.Api.AceQLNullType.BIGINT.htm" />
+  <HelpKINode Title="AceQLNullType.BIT field" Url="html/F-AceQL.Client.Api.AceQLNullType.BIT.htm" />
+  <HelpKINode Title="AceQLNullType.BLOB field" Url="html/F-AceQL.Client.Api.AceQLNullType.BLOB.htm" />
+  <HelpKINode Title="AceQLNullType.BOOLEAN field" Url="html/F-AceQL.Client.Api.AceQLNullType.BOOLEAN.htm" />
+  <HelpKINode Title="AceQLNullType.CHAR field" Url="html/F-AceQL.Client.Api.AceQLNullType.CHAR.htm" />
+  <HelpKINode Title="AceQLNullType.CLOB field" Url="html/F-AceQL.Client.Api.AceQLNullType.CLOB.htm" />
+  <HelpKINode Title="AceQLNullType.DATE field" Url="html/F-AceQL.Client.Api.AceQLNullType.DATE.htm" />
+  <HelpKINode Title="AceQLNullType.DECIMAL field" Url="html/F-AceQL.Client.Api.AceQLNullType.DECIMAL.htm" />
+  <HelpKINode Title="AceQLNullType.DOUBLE field" Url="html/F-AceQL.Client.Api.AceQLNullType.DOUBLE.htm" />
+  <HelpKINode Title="AceQLNullType.FLOAT field" Url="html/F-AceQL.Client.Api.AceQLNullType.FLOAT.htm" />
+  <HelpKINode Title="AceQLNullType.INTEGER field" Url="html/F-AceQL.Client.Api.AceQLNullType.INTEGER.htm" />
+  <HelpKINode Title="AceQLNullType.NUMERIC field" Url="html/F-AceQL.Client.Api.AceQLNullType.NUMERIC.htm" />
+  <HelpKINode Title="AceQLNullType.REAL field" Url="html/F-AceQL.Client.Api.AceQLNullType.REAL.htm" />
+  <HelpKINode Title="AceQLNullType.SMALLINT field" Url="html/F-AceQL.Client.Api.AceQLNullType.SMALLINT.htm" />
+  <HelpKINode Title="AceQLNullType.TIME field" Url="html/F-AceQL.Client.Api.AceQLNullType.TIME.htm" />
+  <HelpKINode Title="AceQLNullType.TIMESTAMP field" Url="html/F-AceQL.Client.Api.AceQLNullType.TIMESTAMP.htm" />
+  <HelpKINode Title="AceQLNullType.TINYINT field" Url="html/F-AceQL.Client.Api.AceQLNullType.TINYINT.htm" />
+  <HelpKINode Title="AceQLNullType.VARCHAR field" Url="html/F-AceQL.Client.Api.AceQLNullType.VARCHAR.htm" />
+  <HelpKINode Title="AceQLNullValue class">
+    <HelpKINode Title="AceQLNullValue Class" Url="html/T-AceQL.Client.Api.AceQLNullValue.htm" />
+    <HelpKINode Title="AceQLNullValue Members" Url="html/AllMembers.T-AceQL.Client.Api.AceQLNullValue.htm" />
+    <HelpKINode Title="about AceQLNullValue class" Url="html/T-AceQL.Client.Api.AceQLNullValue.htm" />
+    <HelpKINode Title="all members" Url="html/AllMembers.T-AceQL.Client.Api.AceQLNullValue.htm" />
+    <HelpKINode Title="constructor" Url="html/M-AceQL.Client.Api.AceQLNullValue.-ctor.htm" />
+    <HelpKINode Title="methods" Url="html/Methods.T-AceQL.Client.Api.AceQLNullValue.htm" />
+  </HelpKINode>
+  <HelpKINode Title="AceQLNullValue.AceQLNullValue constructor" Url="html/M-AceQL.Client.Api.AceQLNullValue.-ctor.htm" />
+  <HelpKINode Title="AceQLNullValue.GetAceQLNullType method" Url="html/M-AceQL.Client.Api.AceQLNullValue.GetAceQLNullType.htm" />
+  <HelpKINode Title="AceQLParameter class">
+    <HelpKINode Title="AceQLParameter Class" Url="html/T-AceQL.Client.Api.AceQLParameter.htm" />
+    <HelpKINode Title="AceQLParameter Members" Url="html/AllMembers.T-AceQL.Client.Api.AceQLParameter.htm" />
+    <HelpKINode Title="about AceQLParameter class" Url="html/T-AceQL.Client.Api.AceQLParameter.htm" />
+    <HelpKINode Title="all members" Url="html/AllMembers.T-AceQL.Client.Api.AceQLParameter.htm" />
+    <HelpKINode Title="constructor" Url="html/Overload-AceQL.Client.Api.AceQLParameter.-ctor.htm" />
+    <HelpKINode Title="methods" Url="html/Methods.T-AceQL.Client.Api.AceQLParameter.htm" />
+    <HelpKINode Title="properties" Url="html/Properties.T-AceQL.Client.Api.AceQLParameter.htm" />
+  </HelpKINode>
+  <HelpKINode Title="AceQLParameter.AceQLParameter constructor" Url="html/Overload-AceQL.Client.Api.AceQLParameter.-ctor.htm" />
+  <HelpKINode Title="AceQLParameter.Direction property" Url="html/P-AceQL.Client.Api.AceQLParameter.Direction.htm" />
+  <HelpKINode Title="AceQLParameter.ParameterName property" Url="html/P-AceQL.Client.Api.AceQLParameter.ParameterName.htm" />
+  <HelpKINode Title="AceQLParameter.ToString method" Url="html/M-AceQL.Client.Api.AceQLParameter.ToString.htm" />
+  <HelpKINode Title="AceQLParameter.Value property" Url="html/P-AceQL.Client.Api.AceQLParameter.Value.htm" />
+  <HelpKINode Title="AceQLParameterCollection class">
+    <HelpKINode Title="AceQLParameterCollection Class" Url="html/T-AceQL.Client.Api.AceQLParameterCollection.htm" />
+    <HelpKINode Title="AceQLParameterCollection Members" Url="html/AllMembers.T-AceQL.Client.Api.AceQLParameterCollection.htm" />
+    <HelpKINode Title="about AceQLParameterCollection class" Url="html/T-AceQL.Client.Api.AceQLParameterCollection.htm" />
+    <HelpKINode Title="all members" Url="html/AllMembers.T-AceQL.Client.Api.AceQLParameterCollection.htm" />
+    <HelpKINode Title="methods" Url="html/Methods.T-AceQL.Client.Api.AceQLParameterCollection.htm" />
+    <HelpKINode Title="properties" Url="html/Properties.T-AceQL.Client.Api.AceQLParameterCollection.htm" />
+  </HelpKINode>
+  <HelpKINode Title="AceQLParameterCollection.Add method" Url="html/Overload-AceQL.Client.Api.AceQLParameterCollection.Add.htm" />
+  <HelpKINode Title="AceQLParameterCollection.AddWithValue method" Url="html/Overload-AceQL.Client.Api.AceQLParameterCollection.AddWithValue.htm" />
+  <HelpKINode Title="AceQLParameterCollection.Clear method" Url="html/M-AceQL.Client.Api.AceQLParameterCollection.Clear.htm" />
+  <HelpKINode Title="AceQLParameterCollection.CmdText property" Url="html/P-AceQL.Client.Api.AceQLParameterCollection.CmdText.htm" />
+  <HelpKINode Title="AceQLParameterCollection.Contains method" Url="html/Overload-AceQL.Client.Api.AceQLParameterCollection.Contains.htm" />
+  <HelpKINode Title="AceQLParameterCollection.CopyTo method" Url="html/M-AceQL.Client.Api.AceQLParameterCollection.CopyTo.htm" />
+  <HelpKINode Title="AceQLParameterCollection.Count property" Url="html/P-AceQL.Client.Api.AceQLParameterCollection.Count.htm" />
+  <HelpKINode Title="AceQLParameterCollection.GetAceQLParameter method" Url="html/M-AceQL.Client.Api.AceQLParameterCollection.GetAceQLParameter.htm" />
+  <HelpKINode Title="AceQLParameterCollection.GetEnumerator method" Url="html/M-AceQL.Client.Api.AceQLParameterCollection.GetEnumerator.htm" />
+  <HelpKINode Title="AceQLParameterCollection.IndexOf method" Url="html/Overload-AceQL.Client.Api.AceQLParameterCollection.IndexOf.htm" />
+  <HelpKINode Title="AceQLParameterCollection.Insert method" Url="html/M-AceQL.Client.Api.AceQLParameterCollection.Insert.htm" />
+  <HelpKINode Title="AceQLParameterCollection.IsFixedSize property" Url="html/P-AceQL.Client.Api.AceQLParameterCollection.IsFixedSize.htm" />
+  <HelpKINode Title="AceQLParameterCollection.IsReadOnly property" Url="html/P-AceQL.Client.Api.AceQLParameterCollection.IsReadOnly.htm" />
+  <HelpKINode Title="AceQLParameterCollection.IsSynchronized property" Url="html/P-AceQL.Client.Api.AceQLParameterCollection.IsSynchronized.htm" />
+  <HelpKINode Title="AceQLParameterCollection.Item property" Url="html/P-AceQL.Client.Api.AceQLParameterCollection.Item-System.Int32-.htm" />
+  <HelpKINode Title="AceQLParameterCollection.Remove method" Url="html/M-AceQL.Client.Api.AceQLParameterCollection.Remove.htm" />
+  <HelpKINode Title="AceQLParameterCollection.RemoveAt method" Url="html/Overload-AceQL.Client.Api.AceQLParameterCollection.RemoveAt.htm" />
+  <HelpKINode Title="AceQLParameterCollection.SyncRoot property" Url="html/P-AceQL.Client.Api.AceQLParameterCollection.SyncRoot.htm" />
+  <HelpKINode Title="AceQLProgressIndicator class">
+    <HelpKINode Title="AceQLProgressIndicator Class" Url="html/T-AceQL.Client.Api.AceQLProgressIndicator.htm" />
+    <HelpKINode Title="AceQLProgressIndicator Members" Url="html/AllMembers.T-AceQL.Client.Api.AceQLProgressIndicator.htm" />
+    <HelpKINode Title="about AceQLProgressIndicator class" Url="html/T-AceQL.Client.Api.AceQLProgressIndicator.htm" />
+    <HelpKINode Title="all members" Url="html/AllMembers.T-AceQL.Client.Api.AceQLProgressIndicator.htm" />
+    <HelpKINode Title="methods" Url="html/Methods.T-AceQL.Client.Api.AceQLProgressIndicator.htm" />
+    <HelpKINode Title="properties" Url="html/Properties.T-AceQL.Client.Api.AceQLProgressIndicator.htm" />
+  </HelpKINode>
+  <HelpKINode Title="AceQLProgressIndicator.Percent property" Url="html/P-AceQL.Client.Api.AceQLProgressIndicator.Percent.htm" />
+  <HelpKINode Title="AceQLProgressIndicator.ToString method" Url="html/M-AceQL.Client.Api.AceQLProgressIndicator.ToString.htm" />
+  <HelpKINode Title="AceQLTransaction class">
+    <HelpKINode Title="AceQLTransaction Class" Url="html/T-AceQL.Client.Api.AceQLTransaction.htm" />
+    <HelpKINode Title="AceQLTransaction Members" Url="html/AllMembers.T-AceQL.Client.Api.AceQLTransaction.htm" />
+    <HelpKINode Title="about AceQLTransaction class" Url="html/T-AceQL.Client.Api.AceQLTransaction.htm" />
+    <HelpKINode Title="all members" Url="html/AllMembers.T-AceQL.Client.Api.AceQLTransaction.htm" />
+    <HelpKINode Title="methods" Url="html/Methods.T-AceQL.Client.Api.AceQLTransaction.htm" />
+    <HelpKINode Title="properties" Url="html/Properties.T-AceQL.Client.Api.AceQLTransaction.htm" />
+  </HelpKINode>
+  <HelpKINode Title="AceQLTransaction.AceQLConnection property" Url="html/P-AceQL.Client.Api.AceQLTransaction.AceQLConnection.htm" />
+  <HelpKINode Title="AceQLTransaction.CommitAsync method" Url="html/M-AceQL.Client.Api.AceQLTransaction.CommitAsync.htm" />
+  <HelpKINode Title="AceQLTransaction.IsolationLevel property" Url="html/P-AceQL.Client.Api.AceQLTransaction.IsolationLevel.htm" />
+  <HelpKINode Title="AceQLTransaction.RollbackAsync method" Url="html/M-AceQL.Client.Api.AceQLTransaction.RollbackAsync.htm" />
+  <HelpKINode Title="Add method" Url="html/Overload-AceQL.Client.Api.AceQLParameterCollection.Add.htm" />
+  <HelpKINode Title="AddRequestHeader method" Url="html/M-AceQL.Client.Api.AceQLConnection.AddRequestHeader.htm" />
+  <HelpKINode Title="AddWithValue method" Url="html/Overload-AceQL.Client.Api.AceQLParameterCollection.AddWithValue.htm" />
+  <HelpKINode Title="AllProceduresAreCallable property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.AllProceduresAreCallable.htm" />
+  <HelpKINode Title="AllTablesAreSelectable property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.AllTablesAreSelectable.htm" />
+  <HelpKINode Title="AscendingOrDescending property" Url="html/P-AceQL.Client.Api.Metadata.Index.AscendingOrDescending.htm" />
+  <HelpKINode Title="AutoCommitFailureClosesAllResultSets property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.AutoCommitFailureClosesAllResultSets.htm" />
+  <HelpKINode Title="BeginTransactionAsync method" Url="html/Overload-AceQL.Client.Api.AceQLConnection.BeginTransactionAsync.htm" />
+  <HelpKINode Title="BIGINT enumeration member" Url="html/T-AceQL.Client.Api.AceQLNullType.htm" />
+  <HelpKINode Title="BIGINT field" Url="html/F-AceQL.Client.Api.AceQLNullType.BIGINT.htm" />
+  <HelpKINode Title="BIT enumeration member" Url="html/T-AceQL.Client.Api.AceQLNullType.htm" />
+  <HelpKINode Title="BIT field" Url="html/F-AceQL.Client.Api.AceQLNullType.BIT.htm" />
+  <HelpKINode Title="BLOB enumeration member" Url="html/T-AceQL.Client.Api.AceQLNullType.htm" />
+  <HelpKINode Title="BLOB field" Url="html/F-AceQL.Client.Api.AceQLNullType.BLOB.htm" />
+  <HelpKINode Title="BOOLEAN enumeration member" Url="html/T-AceQL.Client.Api.AceQLNullType.htm" />
+  <HelpKINode Title="BOOLEAN field" Url="html/F-AceQL.Client.Api.AceQLNullType.BOOLEAN.htm" />
+  <HelpKINode Title="Cardinality property" Url="html/P-AceQL.Client.Api.Metadata.Index.Cardinality.htm" />
+  <HelpKINode Title="Catalog property">
+    <HelpKINode Title="Catalog Property " Url="html/P-AceQL.Client.Api.Metadata.Table.Catalog.htm" />
+    <HelpKINode Title="Catalog Property " Url="html/P-AceQL.Client.Api.Metadata.CatalogAndSchema.Catalog.htm" />
+  </HelpKINode>
+  <HelpKINode Title="CatalogAndSchema class">
+    <HelpKINode Title="CatalogAndSchema Class" Url="html/T-AceQL.Client.Api.Metadata.CatalogAndSchema.htm" />
+    <HelpKINode Title="CatalogAndSchema Members" Url="html/AllMembers.T-AceQL.Client.Api.Metadata.CatalogAndSchema.htm" />
+    <HelpKINode Title="about CatalogAndSchema class" Url="html/T-AceQL.Client.Api.Metadata.CatalogAndSchema.htm" />
+    <HelpKINode Title="all members" Url="html/AllMembers.T-AceQL.Client.Api.Metadata.CatalogAndSchema.htm" />
+    <HelpKINode Title="methods" Url="html/Methods.T-AceQL.Client.Api.Metadata.CatalogAndSchema.htm" />
+    <HelpKINode Title="properties" Url="html/Properties.T-AceQL.Client.Api.Metadata.CatalogAndSchema.htm" />
+  </HelpKINode>
+  <HelpKINode Title="CatalogAndSchema.Catalog property" Url="html/P-AceQL.Client.Api.Metadata.CatalogAndSchema.Catalog.htm" />
+  <HelpKINode Title="CatalogAndSchema.Schema property" Url="html/P-AceQL.Client.Api.Metadata.CatalogAndSchema.Schema.htm" />
+  <HelpKINode Title="CHAR enumeration member" Url="html/T-AceQL.Client.Api.AceQLNullType.htm" />
+  <HelpKINode Title="CHAR field" Url="html/F-AceQL.Client.Api.AceQLNullType.CHAR.htm" />
+  <HelpKINode Title="CharOctetLength property" Url="html/P-AceQL.Client.Api.Metadata.Column.CharOctetLength.htm" />
+  <HelpKINode Title="Clear method" Url="html/M-AceQL.Client.Api.AceQLParameterCollection.Clear.htm" />
+  <HelpKINode Title="CLOB enumeration member" Url="html/T-AceQL.Client.Api.AceQLNullType.htm" />
+  <HelpKINode Title="CLOB field" Url="html/F-AceQL.Client.Api.AceQLNullType.CLOB.htm" />
+  <HelpKINode Title="Close method" Url="html/M-AceQL.Client.Api.AceQLDataReader.Close.htm" />
+  <HelpKINode Title="CloseAsync method" Url="html/M-AceQL.Client.Api.AceQLConnection.CloseAsync.htm" />
+  <HelpKINode Title="CmdText property" Url="html/P-AceQL.Client.Api.AceQLParameterCollection.CmdText.htm" />
+  <HelpKINode Title="Column class">
+    <HelpKINode Title="Column Class" Url="html/T-AceQL.Client.Api.Metadata.Column.htm" />
+    <HelpKINode Title="Column Members" Url="html/AllMembers.T-AceQL.Client.Api.Metadata.Column.htm" />
+    <HelpKINode Title="about Column class" Url="html/T-AceQL.Client.Api.Metadata.Column.htm" />
+    <HelpKINode Title="all members" Url="html/AllMembers.T-AceQL.Client.Api.Metadata.Column.htm" />
+    <HelpKINode Title="fields" Url="html/Fields.T-AceQL.Client.Api.Metadata.Column.htm" />
+    <HelpKINode Title="methods" Url="html/Methods.T-AceQL.Client.Api.Metadata.Column.htm" />
+    <HelpKINode Title="properties" Url="html/Properties.T-AceQL.Client.Api.Metadata.Column.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Column.CharOctetLength property" Url="html/P-AceQL.Client.Api.Metadata.Column.CharOctetLength.htm" />
+  <HelpKINode Title="Column.ColumnName property" Url="html/P-AceQL.Client.Api.Metadata.Column.ColumnName.htm" />
+  <HelpKINode Title="Column.columnNoNulls field" Url="html/F-AceQL.Client.Api.Metadata.Column.columnNoNulls.htm" />
+  <HelpKINode Title="Column.columnNullable field" Url="html/F-AceQL.Client.Api.Metadata.Column.columnNullable.htm" />
+  <HelpKINode Title="Column.columnNullableUnknown field" Url="html/F-AceQL.Client.Api.Metadata.Column.columnNullableUnknown.htm" />
+  <HelpKINode Title="Column.DecimalDigits property" Url="html/P-AceQL.Client.Api.Metadata.Column.DecimalDigits.htm" />
+  <HelpKINode Title="Column.DefaultValue property" Url="html/P-AceQL.Client.Api.Metadata.Column.DefaultValue.htm" />
+  <HelpKINode Title="Column.Equals method" Url="html/M-AceQL.Client.Api.Metadata.Column.Equals.htm" />
+  <HelpKINode Title="Column.GetHashCode method" Url="html/M-AceQL.Client.Api.Metadata.Column.GetHashCode.htm" />
+  <HelpKINode Title="Column.IsAutoincrement property" Url="html/P-AceQL.Client.Api.Metadata.Column.IsAutoincrement.htm" />
+  <HelpKINode Title="Column.IsNullable property" Url="html/P-AceQL.Client.Api.Metadata.Column.IsNullable.htm" />
+  <HelpKINode Title="Column.Nullable property" Url="html/P-AceQL.Client.Api.Metadata.Column.Nullable.htm" />
+  <HelpKINode Title="Column.OrdinalPosition property" Url="html/P-AceQL.Client.Api.Metadata.Column.OrdinalPosition.htm" />
+  <HelpKINode Title="Column.Radix property" Url="html/P-AceQL.Client.Api.Metadata.Column.Radix.htm" />
+  <HelpKINode Title="Column.Remarks property" Url="html/P-AceQL.Client.Api.Metadata.Column.Remarks.htm" />
+  <HelpKINode Title="Column.ScopeCatalog property" Url="html/P-AceQL.Client.Api.Metadata.Column.ScopeCatalog.htm" />
+  <HelpKINode Title="Column.ScopeSchema property" Url="html/P-AceQL.Client.Api.Metadata.Column.ScopeSchema.htm" />
+  <HelpKINode Title="Column.ScopeTable property" Url="html/P-AceQL.Client.Api.Metadata.Column.ScopeTable.htm" />
+  <HelpKINode Title="Column.Size property" Url="html/P-AceQL.Client.Api.Metadata.Column.Size.htm" />
+  <HelpKINode Title="Column.SourceDataType property" Url="html/P-AceQL.Client.Api.Metadata.Column.SourceDataType.htm" />
+  <HelpKINode Title="Column.TableName property" Url="html/P-AceQL.Client.Api.Metadata.Column.TableName.htm" />
+  <HelpKINode Title="Column.ToString method" Url="html/M-AceQL.Client.Api.Metadata.Column.ToString.htm" />
+  <HelpKINode Title="Column.TypeName property" Url="html/P-AceQL.Client.Api.Metadata.Column.TypeName.htm" />
+  <HelpKINode Title="ColumnName property">
+    <HelpKINode Title="ColumnName Property " Url="html/P-AceQL.Client.Api.Metadata.Column.ColumnName.htm" />
+    <HelpKINode Title="ColumnName Property " Url="html/P-AceQL.Client.Api.Metadata.Index.ColumnName.htm" />
+    <HelpKINode Title="ColumnName Property " Url="html/P-AceQL.Client.Api.Metadata.PrimaryKey.ColumnName.htm" />
+  </HelpKINode>
+  <HelpKINode Title="columnNoNulls field" Url="html/F-AceQL.Client.Api.Metadata.Column.columnNoNulls.htm" />
+  <HelpKINode Title="columnNullable field" Url="html/F-AceQL.Client.Api.Metadata.Column.columnNullable.htm" />
+  <HelpKINode Title="columnNullableUnknown field" Url="html/F-AceQL.Client.Api.Metadata.Column.columnNullableUnknown.htm" />
+  <HelpKINode Title="Columns property" Url="html/P-AceQL.Client.Api.Metadata.Table.Columns.htm" />
+  <HelpKINode Title="CommandText property" Url="html/P-AceQL.Client.Api.AceQLCommand.CommandText.htm" />
+  <HelpKINode Title="CommandType enumeration" Url="html/T-AceQL.Client.Api.CommandType.htm" />
+  <HelpKINode Title="CommandType property" Url="html/P-AceQL.Client.Api.AceQLCommand.CommandType.htm" />
+  <HelpKINode Title="CommandType.StoredProcedure field" Url="html/F-AceQL.Client.Api.CommandType.StoredProcedure.htm" />
+  <HelpKINode Title="CommandType.TableDirect field" Url="html/F-AceQL.Client.Api.CommandType.TableDirect.htm" />
+  <HelpKINode Title="CommandType.Text field" Url="html/F-AceQL.Client.Api.CommandType.Text.htm" />
+  <HelpKINode Title="CommitAsync method" Url="html/M-AceQL.Client.Api.AceQLTransaction.CommitAsync.htm" />
+  <HelpKINode Title="Connection property" Url="html/P-AceQL.Client.Api.AceQLCommand.Connection.htm" />
+  <HelpKINode Title="ConnectionString property" Url="html/P-AceQL.Client.Api.AceQLConnection.ConnectionString.htm" />
+  <HelpKINode Title="ConnectionTimeout property" Url="html/P-AceQL.Client.Api.AceQLConnection.ConnectionTimeout.htm" />
+  <HelpKINode Title="Contains method" Url="html/Overload-AceQL.Client.Api.AceQLParameterCollection.Contains.htm" />
+  <HelpKINode Title="CopyHttpStreamToFile method" Url="html/M-AceQL.Client.Api.AceQLCommand.CopyHttpStreamToFile.htm" />
+  <HelpKINode Title="CopyTo method" Url="html/M-AceQL.Client.Api.AceQLParameterCollection.CopyTo.htm" />
+  <HelpKINode Title="Count property" Url="html/P-AceQL.Client.Api.AceQLParameterCollection.Count.htm" />
+  <HelpKINode Title="Credential property" Url="html/P-AceQL.Client.Api.AceQLConnection.Credential.htm" />
+  <HelpKINode Title="Database property" Url="html/P-AceQL.Client.Api.AceQLConnection.Database.htm" />
+  <HelpKINode Title="DataDefinitionCausesTransactionCommit property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.DataDefinitionCausesTransactionCommit.htm" />
+  <HelpKINode Title="DataDefinitionIgnoredInTransactions property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.DataDefinitionIgnoredInTransactions.htm" />
+  <HelpKINode Title="DATE enumeration member" Url="html/T-AceQL.Client.Api.AceQLNullType.htm" />
+  <HelpKINode Title="DATE field" Url="html/F-AceQL.Client.Api.AceQLNullType.DATE.htm" />
+  <HelpKINode Title="DbSchemaDownloadAsync method" Url="html/Overload-AceQL.Client.Api.Metadata.RemoteDatabaseMetaData.DbSchemaDownloadAsync.htm" />
+  <HelpKINode Title="DECIMAL enumeration member" Url="html/T-AceQL.Client.Api.AceQLNullType.htm" />
+  <HelpKINode Title="DECIMAL field" Url="html/F-AceQL.Client.Api.AceQLNullType.DECIMAL.htm" />
+  <HelpKINode Title="DecimalDigits property" Url="html/P-AceQL.Client.Api.Metadata.Column.DecimalDigits.htm" />
+  <HelpKINode Title="DefaultValue property" Url="html/P-AceQL.Client.Api.Metadata.Column.DefaultValue.htm" />
+  <HelpKINode Title="Deferrability property" Url="html/P-AceQL.Client.Api.Metadata.ForeignKey.Deferrability.htm" />
+  <HelpKINode Title="DeleteRule property" Url="html/P-AceQL.Client.Api.Metadata.ForeignKey.DeleteRule.htm" />
+  <HelpKINode Title="Direction property" Url="html/P-AceQL.Client.Api.AceQLParameter.Direction.htm" />
+  <HelpKINode Title="DoesMaxRowSizeIncludeBlobs property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.DoesMaxRowSizeIncludeBlobs.htm" />
+  <HelpKINode Title="DOUBLE enumeration member" Url="html/T-AceQL.Client.Api.AceQLNullType.htm" />
+  <HelpKINode Title="DOUBLE field" Url="html/F-AceQL.Client.Api.AceQLNullType.DOUBLE.htm" />
+  <HelpKINode Title="Equals method">
+    <HelpKINode Title="Equals Method " Url="html/M-AceQL.Client.Api.Metadata.ForeignKey.Equals.htm" />
+    <HelpKINode Title="Equals Method " Url="html/M-AceQL.Client.Api.Metadata.PrimaryKey.Equals.htm" />
+    <HelpKINode Title="Equals Method " Url="html/M-AceQL.Client.Api.Metadata.Column.Equals.htm" />
+    <HelpKINode Title="Equals Method " Url="html/M-AceQL.Client.Api.Metadata.Index.Equals.htm" />
+    <HelpKINode Title="Equals Method " Url="html/M-AceQL.Client.Api.Metadata.Table.Equals.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ErrorType property" Url="html/P-AceQL.Client.Api.AceQLException.ErrorType.htm" />
+  <HelpKINode Title="ExceptionCause property" Url="html/P-AceQL.Client.Api.AceQLException.ExceptionCause.htm" />
+  <HelpKINode Title="ExecuteNonQueryAsync method" Url="html/Overload-AceQL.Client.Api.AceQLCommand.ExecuteNonQueryAsync.htm" />
+  <HelpKINode Title="ExecuteReaderAsync method" Url="html/Overload-AceQL.Client.Api.AceQLCommand.ExecuteReaderAsync.htm" />
+  <HelpKINode Title="ExportedforeignKeys property" Url="html/P-AceQL.Client.Api.Metadata.Table.ExportedforeignKeys.htm" />
+  <HelpKINode Title="ExportedKey class">
+    <HelpKINode Title="ExportedKey Class" Url="html/T-AceQL.Client.Api.Metadata.ExportedKey.htm" />
+    <HelpKINode Title="ExportedKey Members" Url="html/AllMembers.T-AceQL.Client.Api.Metadata.ExportedKey.htm" />
+    <HelpKINode Title="about ExportedKey class" Url="html/T-AceQL.Client.Api.Metadata.ExportedKey.htm" />
+    <HelpKINode Title="all members" Url="html/AllMembers.T-AceQL.Client.Api.Metadata.ExportedKey.htm" />
+    <HelpKINode Title="methods" Url="html/Methods.T-AceQL.Client.Api.Metadata.ExportedKey.htm" />
+    <HelpKINode Title="properties" Url="html/Properties.T-AceQL.Client.Api.Metadata.ExportedKey.htm" />
+  </HelpKINode>
+  <HelpKINode Title="FieldCount property" Url="html/P-AceQL.Client.Api.AceQLDataReader.FieldCount.htm" />
+  <HelpKINode Title="FilterCondition property" Url="html/P-AceQL.Client.Api.Metadata.Index.FilterCondition.htm" />
+  <HelpKINode Title="FLOAT enumeration member" Url="html/T-AceQL.Client.Api.AceQLNullType.htm" />
+  <HelpKINode Title="FLOAT field" Url="html/F-AceQL.Client.Api.AceQLNullType.FLOAT.htm" />
+  <HelpKINode Title="ForeignKey class">
+    <HelpKINode Title="ForeignKey Class" Url="html/T-AceQL.Client.Api.Metadata.ForeignKey.htm" />
+    <HelpKINode Title="ForeignKey Members" Url="html/AllMembers.T-AceQL.Client.Api.Metadata.ForeignKey.htm" />
+    <HelpKINode Title="about ForeignKey class" Url="html/T-AceQL.Client.Api.Metadata.ForeignKey.htm" />
+    <HelpKINode Title="all members" Url="html/AllMembers.T-AceQL.Client.Api.Metadata.ForeignKey.htm" />
+    <HelpKINode Title="fields" Url="html/Fields.T-AceQL.Client.Api.Metadata.ForeignKey.htm" />
+    <HelpKINode Title="methods" Url="html/Methods.T-AceQL.Client.Api.Metadata.ForeignKey.htm" />
+    <HelpKINode Title="properties" Url="html/Properties.T-AceQL.Client.Api.Metadata.ForeignKey.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ForeignKey.Deferrability property" Url="html/P-AceQL.Client.Api.Metadata.ForeignKey.Deferrability.htm" />
+  <HelpKINode Title="ForeignKey.DeleteRule property" Url="html/P-AceQL.Client.Api.Metadata.ForeignKey.DeleteRule.htm" />
+  <HelpKINode Title="ForeignKey.Equals method" Url="html/M-AceQL.Client.Api.Metadata.ForeignKey.Equals.htm" />
+  <HelpKINode Title="ForeignKey.ForeignKeyCatalog property" Url="html/P-AceQL.Client.Api.Metadata.ForeignKey.ForeignKeyCatalog.htm" />
+  <HelpKINode Title="ForeignKey.ForeignKeyColumn property" Url="html/P-AceQL.Client.Api.Metadata.ForeignKey.ForeignKeyColumn.htm" />
+  <HelpKINode Title="ForeignKey.ForeignKeyName property" Url="html/P-AceQL.Client.Api.Metadata.ForeignKey.ForeignKeyName.htm" />
+  <HelpKINode Title="ForeignKey.ForeignKeySchema property" Url="html/P-AceQL.Client.Api.Metadata.ForeignKey.ForeignKeySchema.htm" />
+  <HelpKINode Title="ForeignKey.ForeignKeyTable property" Url="html/P-AceQL.Client.Api.Metadata.ForeignKey.ForeignKeyTable.htm" />
+  <HelpKINode Title="ForeignKey.GetHashCode method" Url="html/M-AceQL.Client.Api.Metadata.ForeignKey.GetHashCode.htm" />
+  <HelpKINode Title="ForeignKey.importedKeyCascade field" Url="html/F-AceQL.Client.Api.Metadata.ForeignKey.importedKeyCascade.htm" />
+  <HelpKINode Title="ForeignKey.importedKeyInitiallyDeferred field" Url="html/F-AceQL.Client.Api.Metadata.ForeignKey.importedKeyInitiallyDeferred.htm" />
+  <HelpKINode Title="ForeignKey.importedKeyInitiallyImmediate field" Url="html/F-AceQL.Client.Api.Metadata.ForeignKey.importedKeyInitiallyImmediate.htm" />
+  <HelpKINode Title="ForeignKey.importedKeyNoAction field" Url="html/F-AceQL.Client.Api.Metadata.ForeignKey.importedKeyNoAction.htm" />
+  <HelpKINode Title="ForeignKey.importedKeyNotDeferrable field" Url="html/F-AceQL.Client.Api.Metadata.ForeignKey.importedKeyNotDeferrable.htm" />
+  <HelpKINode Title="ForeignKey.importedKeyRestrict field" Url="html/F-AceQL.Client.Api.Metadata.ForeignKey.importedKeyRestrict.htm" />
+  <HelpKINode Title="ForeignKey.importedKeySetDefault field" Url="html/F-AceQL.Client.Api.Metadata.ForeignKey.importedKeySetDefault.htm" />
+  <HelpKINode Title="ForeignKey.importedKeySetNull field" Url="html/F-AceQL.Client.Api.Metadata.ForeignKey.importedKeySetNull.htm" />
+  <HelpKINode Title="ForeignKey.KeySequence property" Url="html/P-AceQL.Client.Api.Metadata.ForeignKey.KeySequence.htm" />
+  <HelpKINode Title="ForeignKey.PrimaryKeyColumn property" Url="html/P-AceQL.Client.Api.Metadata.ForeignKey.PrimaryKeyColumn.htm" />
+  <HelpKINode Title="ForeignKey.PrimaryKeyName property" Url="html/P-AceQL.Client.Api.Metadata.ForeignKey.PrimaryKeyName.htm" />
+  <HelpKINode Title="ForeignKey.PrimaryKeyTable property" Url="html/P-AceQL.Client.Api.Metadata.ForeignKey.PrimaryKeyTable.htm" />
+  <HelpKINode Title="ForeignKey.ToString method" Url="html/M-AceQL.Client.Api.Metadata.ForeignKey.ToString.htm" />
+  <HelpKINode Title="ForeignKey.UpdateRule property" Url="html/P-AceQL.Client.Api.Metadata.ForeignKey.UpdateRule.htm" />
+  <HelpKINode Title="ForeignKeyCatalog property" Url="html/P-AceQL.Client.Api.Metadata.ForeignKey.ForeignKeyCatalog.htm" />
+  <HelpKINode Title="ForeignKeyColumn property" Url="html/P-AceQL.Client.Api.Metadata.ForeignKey.ForeignKeyColumn.htm" />
+  <HelpKINode Title="ForeignKeyName property" Url="html/P-AceQL.Client.Api.Metadata.ForeignKey.ForeignKeyName.htm" />
+  <HelpKINode Title="ForeignKeySchema property" Url="html/P-AceQL.Client.Api.Metadata.ForeignKey.ForeignKeySchema.htm" />
+  <HelpKINode Title="ForeignKeyTable property" Url="html/P-AceQL.Client.Api.Metadata.ForeignKey.ForeignKeyTable.htm" />
+  <HelpKINode Title="GetAceQLLocalFolder method" Url="html/M-AceQL.Client.Api.AceQLConnection.GetAceQLLocalFolder.htm" />
+  <HelpKINode Title="GetAceQLNullType method" Url="html/M-AceQL.Client.Api.AceQLNullValue.GetAceQLNullType.htm" />
+  <HelpKINode Title="GetAceQLParameter method" Url="html/M-AceQL.Client.Api.AceQLParameterCollection.GetAceQLParameter.htm" />
+  <HelpKINode Title="GetBoolean method" Url="html/M-AceQL.Client.Api.AceQLDataReader.GetBoolean.htm" />
+  <HelpKINode Title="GetByte method" Url="html/M-AceQL.Client.Api.AceQLDataReader.GetByte.htm" />
+  <HelpKINode Title="GetBytes method" Url="html/M-AceQL.Client.Api.AceQLDataReader.GetBytes.htm" />
+  <HelpKINode Title="GetCatalogSeparator property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.GetCatalogSeparator.htm" />
+  <HelpKINode Title="GetCatalogTerm property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.GetCatalogTerm.htm" />
+  <HelpKINode Title="GetChar method" Url="html/M-AceQL.Client.Api.AceQLDataReader.GetChar.htm" />
+  <HelpKINode Title="GetChars method" Url="html/M-AceQL.Client.Api.AceQLDataReader.GetChars.htm" />
+  <HelpKINode Title="GetClientVersion method" Url="html/M-AceQL.Client.Api.AceQLConnection.GetClientVersion.htm" />
+  <HelpKINode Title="GetDatabaseMajorVersion property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.GetDatabaseMajorVersion.htm" />
+  <HelpKINode Title="GetDatabaseMinorVersion property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.GetDatabaseMinorVersion.htm" />
+  <HelpKINode Title="GetDatabaseProductName property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.GetDatabaseProductName.htm" />
+  <HelpKINode Title="GetDatabaseProductVersion property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.GetDatabaseProductVersion.htm" />
+  <HelpKINode Title="GetDataTypeName method" Url="html/M-AceQL.Client.Api.AceQLDataReader.GetDataTypeName.htm" />
+  <HelpKINode Title="GetDateTime method" Url="html/M-AceQL.Client.Api.AceQLDataReader.GetDateTime.htm" />
+  <HelpKINode Title="GetDecimal method" Url="html/M-AceQL.Client.Api.AceQLDataReader.GetDecimal.htm" />
+  <HelpKINode Title="GetDefaultTransactionIsolation property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.GetDefaultTransactionIsolation.htm" />
+  <HelpKINode Title="GetDefaultWebProxy method" Url="html/M-AceQL.Client.Api.AceQLConnection.GetDefaultWebProxy.htm" />
+  <HelpKINode Title="GetDouble method" Url="html/M-AceQL.Client.Api.AceQLDataReader.GetDouble.htm" />
+  <HelpKINode Title="GetDriverMajorVersion property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.GetDriverMajorVersion.htm" />
+  <HelpKINode Title="GetDriverMinorVersion property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.GetDriverMinorVersion.htm" />
+  <HelpKINode Title="GetDriverName property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.GetDriverName.htm" />
+  <HelpKINode Title="GetDriverVersion property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.GetDriverVersion.htm" />
+  <HelpKINode Title="GetEnumerator method" Url="html/M-AceQL.Client.Api.AceQLParameterCollection.GetEnumerator.htm" />
+  <HelpKINode Title="GetExtraNameCharacters property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.GetExtraNameCharacters.htm" />
+  <HelpKINode Title="GetFloat method" Url="html/M-AceQL.Client.Api.AceQLDataReader.GetFloat.htm" />
+  <HelpKINode Title="GetHashCode method">
+    <HelpKINode Title="GetHashCode Method " Url="html/M-AceQL.Client.Api.Metadata.ForeignKey.GetHashCode.htm" />
+    <HelpKINode Title="GetHashCode Method " Url="html/M-AceQL.Client.Api.Metadata.Index.GetHashCode.htm" />
+    <HelpKINode Title="GetHashCode Method " Url="html/M-AceQL.Client.Api.Metadata.PrimaryKey.GetHashCode.htm" />
+    <HelpKINode Title="GetHashCode Method " Url="html/M-AceQL.Client.Api.Metadata.Table.GetHashCode.htm" />
+    <HelpKINode Title="GetHashCode Method " Url="html/M-AceQL.Client.Api.Metadata.Column.GetHashCode.htm" />
+  </HelpKINode>
+  <HelpKINode Title="GetIdentifierQuoteString property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.GetIdentifierQuoteString.htm" />
+  <HelpKINode Title="GetInt16 method" Url="html/M-AceQL.Client.Api.AceQLDataReader.GetInt16.htm" />
+  <HelpKINode Title="GetInt32 method" Url="html/M-AceQL.Client.Api.AceQLDataReader.GetInt32.htm" />
+  <HelpKINode Title="GetInt64 method" Url="html/M-AceQL.Client.Api.AceQLDataReader.GetInt64.htm" />
+  <HelpKINode Title="GetJdbcDatabaseMetaDataAsync method" Url="html/M-AceQL.Client.Api.Metadata.RemoteDatabaseMetaData.GetJdbcDatabaseMetaDataAsync.htm" />
+  <HelpKINode Title="GetJDBCMajorVersion property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.GetJDBCMajorVersion.htm" />
+  <HelpKINode Title="GetJDBCMinorVersion property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.GetJDBCMinorVersion.htm" />
+  <HelpKINode Title="GetMaxBinaryLiteralLength property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.GetMaxBinaryLiteralLength.htm" />
+  <HelpKINode Title="GetMaxCatalogNameLength property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.GetMaxCatalogNameLength.htm" />
+  <HelpKINode Title="GetMaxCharLiteralLength property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.GetMaxCharLiteralLength.htm" />
+  <HelpKINode Title="GetMaxColumnNameLength property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.GetMaxColumnNameLength.htm" />
+  <HelpKINode Title="GetMaxColumnsInGroupBy property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.GetMaxColumnsInGroupBy.htm" />
+  <HelpKINode Title="GetMaxColumnsInIndex property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.GetMaxColumnsInIndex.htm" />
+  <HelpKINode Title="GetMaxColumnsInOrderBy property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.GetMaxColumnsInOrderBy.htm" />
+  <HelpKINode Title="GetMaxColumnsInSelect property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.GetMaxColumnsInSelect.htm" />
+  <HelpKINode Title="GetMaxColumnsInTable property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.GetMaxColumnsInTable.htm" />
+  <HelpKINode Title="GetMaxConnections property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.GetMaxConnections.htm" />
+  <HelpKINode Title="GetMaxCursorNameLength property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.GetMaxCursorNameLength.htm" />
+  <HelpKINode Title="GetMaxIndexLength property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.GetMaxIndexLength.htm" />
+  <HelpKINode Title="GetMaxProcedureNameLength property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.GetMaxProcedureNameLength.htm" />
+  <HelpKINode Title="GetMaxRowSize property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.GetMaxRowSize.htm" />
+  <HelpKINode Title="GetMaxSchemaNameLength property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.GetMaxSchemaNameLength.htm" />
+  <HelpKINode Title="GetMaxStatementLength property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.GetMaxStatementLength.htm" />
+  <HelpKINode Title="GetMaxStatements property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.GetMaxStatements.htm" />
+  <HelpKINode Title="GetMaxTableNameLength property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.GetMaxTableNameLength.htm" />
+  <HelpKINode Title="GetMaxTablesInSelect property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.GetMaxTablesInSelect.htm" />
+  <HelpKINode Title="GetMaxUserNameLength property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.GetMaxUserNameLength.htm" />
+  <HelpKINode Title="GetName method" Url="html/M-AceQL.Client.Api.AceQLDataReader.GetName.htm" />
+  <HelpKINode Title="GetNumericFunctions property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.GetNumericFunctions.htm" />
+  <HelpKINode Title="GetOrdinal method" Url="html/M-AceQL.Client.Api.AceQLDataReader.GetOrdinal.htm" />
+  <HelpKINode Title="GetProcedureTerm property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.GetProcedureTerm.htm" />
+  <HelpKINode Title="GetProgressIndicator method" Url="html/M-AceQL.Client.Api.AceQLConnection.GetProgressIndicator.htm" />
+  <HelpKINode Title="GetRemoteDatabaseMetaData method" Url="html/M-AceQL.Client.Api.AceQLConnection.GetRemoteDatabaseMetaData.htm" />
+  <HelpKINode Title="GetResultSetHoldability property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.GetResultSetHoldability.htm" />
+  <HelpKINode Title="GetSchemaTerm property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.GetSchemaTerm.htm" />
+  <HelpKINode Title="GetSearchStringEscape property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.GetSearchStringEscape.htm" />
+  <HelpKINode Title="GetServerVersionAsync method" Url="html/Overload-AceQL.Client.Api.AceQLConnection.GetServerVersionAsync.htm" />
+  <HelpKINode Title="GetSQLKeywords property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.GetSQLKeywords.htm" />
+  <HelpKINode Title="GetSQLStateType property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.GetSQLStateType.htm" />
+  <HelpKINode Title="GetStreamAsync method" Url="html/Overload-AceQL.Client.Api.AceQLDataReader.GetStreamAsync.htm" />
+  <HelpKINode Title="GetString method" Url="html/M-AceQL.Client.Api.AceQLDataReader.GetString.htm" />
+  <HelpKINode Title="GetStringFunctions property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.GetStringFunctions.htm" />
+  <HelpKINode Title="GetSystemFunctions property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.GetSystemFunctions.htm" />
+  <HelpKINode Title="GetTableAsync method" Url="html/M-AceQL.Client.Api.Metadata.RemoteDatabaseMetaData.GetTableAsync.htm" />
+  <HelpKINode Title="GetTableNamesAsync method" Url="html/Overload-AceQL.Client.Api.Metadata.RemoteDatabaseMetaData.GetTableNamesAsync.htm" />
+  <HelpKINode Title="GetTimeDateFunctions property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.GetTimeDateFunctions.htm" />
+  <HelpKINode Title="GetURL property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.GetURL.htm" />
+  <HelpKINode Title="GetUserName property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.GetUserName.htm" />
+  <HelpKINode Title="GetValue method" Url="html/M-AceQL.Client.Api.AceQLDataReader.GetValue.htm" />
+  <HelpKINode Title="GzipResult property" Url="html/P-AceQL.Client.Api.AceQLConnection.GzipResult.htm" />
+  <HelpKINode Title="HasRows property" Url="html/P-AceQL.Client.Api.AceQLDataReader.HasRows.htm" />
+  <HelpKINode Title="HttpStatusCode property" Url="html/P-AceQL.Client.Api.AceQLException.HttpStatusCode.htm" />
+  <HelpKINode Title="ImportedforeignKeys property" Url="html/P-AceQL.Client.Api.Metadata.Table.ImportedforeignKeys.htm" />
+  <HelpKINode Title="ImportedKey class">
+    <HelpKINode Title="ImportedKey Class" Url="html/T-AceQL.Client.Api.Metadata.ImportedKey.htm" />
+    <HelpKINode Title="ImportedKey Members" Url="html/AllMembers.T-AceQL.Client.Api.Metadata.ImportedKey.htm" />
+    <HelpKINode Title="about ImportedKey class" Url="html/T-AceQL.Client.Api.Metadata.ImportedKey.htm" />
+    <HelpKINode Title="all members" Url="html/AllMembers.T-AceQL.Client.Api.Metadata.ImportedKey.htm" />
+    <HelpKINode Title="methods" Url="html/Methods.T-AceQL.Client.Api.Metadata.ImportedKey.htm" />
+    <HelpKINode Title="properties" Url="html/Properties.T-AceQL.Client.Api.Metadata.ImportedKey.htm" />
+  </HelpKINode>
+  <HelpKINode Title="importedKeyCascade field" Url="html/F-AceQL.Client.Api.Metadata.ForeignKey.importedKeyCascade.htm" />
+  <HelpKINode Title="importedKeyInitiallyDeferred field" Url="html/F-AceQL.Client.Api.Metadata.ForeignKey.importedKeyInitiallyDeferred.htm" />
+  <HelpKINode Title="importedKeyInitiallyImmediate field" Url="html/F-AceQL.Client.Api.Metadata.ForeignKey.importedKeyInitiallyImmediate.htm" />
+  <HelpKINode Title="importedKeyNoAction field" Url="html/F-AceQL.Client.Api.Metadata.ForeignKey.importedKeyNoAction.htm" />
+  <HelpKINode Title="importedKeyNotDeferrable field" Url="html/F-AceQL.Client.Api.Metadata.ForeignKey.importedKeyNotDeferrable.htm" />
+  <HelpKINode Title="importedKeyRestrict field" Url="html/F-AceQL.Client.Api.Metadata.ForeignKey.importedKeyRestrict.htm" />
+  <HelpKINode Title="importedKeySetDefault field" Url="html/F-AceQL.Client.Api.Metadata.ForeignKey.importedKeySetDefault.htm" />
+  <HelpKINode Title="importedKeySetNull field" Url="html/F-AceQL.Client.Api.Metadata.ForeignKey.importedKeySetNull.htm" />
+  <HelpKINode Title="Index class">
+    <HelpKINode Title="Index Class" Url="html/T-AceQL.Client.Api.Metadata.Index.htm" />
+    <HelpKINode Title="Index Members" Url="html/AllMembers.T-AceQL.Client.Api.Metadata.Index.htm" />
+    <HelpKINode Title="about Index class" Url="html/T-AceQL.Client.Api.Metadata.Index.htm" />
+    <HelpKINode Title="all members" Url="html/AllMembers.T-AceQL.Client.Api.Metadata.Index.htm" />
+    <HelpKINode Title="fields" Url="html/Fields.T-AceQL.Client.Api.Metadata.Index.htm" />
+    <HelpKINode Title="methods" Url="html/Methods.T-AceQL.Client.Api.Metadata.Index.htm" />
+    <HelpKINode Title="properties" Url="html/Properties.T-AceQL.Client.Api.Metadata.Index.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Index.AscendingOrDescending property" Url="html/P-AceQL.Client.Api.Metadata.Index.AscendingOrDescending.htm" />
+  <HelpKINode Title="Index.Cardinality property" Url="html/P-AceQL.Client.Api.Metadata.Index.Cardinality.htm" />
+  <HelpKINode Title="Index.ColumnName property" Url="html/P-AceQL.Client.Api.Metadata.Index.ColumnName.htm" />
+  <HelpKINode Title="Index.Equals method" Url="html/M-AceQL.Client.Api.Metadata.Index.Equals.htm" />
+  <HelpKINode Title="Index.FilterCondition property" Url="html/P-AceQL.Client.Api.Metadata.Index.FilterCondition.htm" />
+  <HelpKINode Title="Index.GetHashCode method" Url="html/M-AceQL.Client.Api.Metadata.Index.GetHashCode.htm" />
+  <HelpKINode Title="Index.IndexName property" Url="html/P-AceQL.Client.Api.Metadata.Index.IndexName.htm" />
+  <HelpKINode Title="Index.IndexQualifier property" Url="html/P-AceQL.Client.Api.Metadata.Index.IndexQualifier.htm" />
+  <HelpKINode Title="Index.NonUnique property" Url="html/P-AceQL.Client.Api.Metadata.Index.NonUnique.htm" />
+  <HelpKINode Title="Index.OrdinalPosition property" Url="html/P-AceQL.Client.Api.Metadata.Index.OrdinalPosition.htm" />
+  <HelpKINode Title="Index.Pages property" Url="html/P-AceQL.Client.Api.Metadata.Index.Pages.htm" />
+  <HelpKINode Title="Index.tableIndexClustered field" Url="html/F-AceQL.Client.Api.Metadata.Index.tableIndexClustered.htm" />
+  <HelpKINode Title="Index.tableIndexHashed field" Url="html/F-AceQL.Client.Api.Metadata.Index.tableIndexHashed.htm" />
+  <HelpKINode Title="Index.tableIndexOther field" Url="html/F-AceQL.Client.Api.Metadata.Index.tableIndexOther.htm" />
+  <HelpKINode Title="Index.tableIndexStatistic field" Url="html/F-AceQL.Client.Api.Metadata.Index.tableIndexStatistic.htm" />
+  <HelpKINode Title="Index.TableName property" Url="html/P-AceQL.Client.Api.Metadata.Index.TableName.htm" />
+  <HelpKINode Title="Index.ToString method" Url="html/M-AceQL.Client.Api.Metadata.Index.ToString.htm" />
+  <HelpKINode Title="Index.Type property" Url="html/P-AceQL.Client.Api.Metadata.Index.Type.htm" />
+  <HelpKINode Title="Indexes property" Url="html/P-AceQL.Client.Api.Metadata.Table.Indexes.htm" />
+  <HelpKINode Title="IndexName property" Url="html/P-AceQL.Client.Api.Metadata.Index.IndexName.htm" />
+  <HelpKINode Title="IndexOf method" Url="html/Overload-AceQL.Client.Api.AceQLParameterCollection.IndexOf.htm" />
+  <HelpKINode Title="IndexQualifier property" Url="html/P-AceQL.Client.Api.Metadata.Index.IndexQualifier.htm" />
+  <HelpKINode Title="Input enumeration member" Url="html/T-AceQL.Client.Api.ParameterDirection.htm" />
+  <HelpKINode Title="Input field" Url="html/F-AceQL.Client.Api.ParameterDirection.Input.htm" />
+  <HelpKINode Title="InputOutput enumeration member" Url="html/T-AceQL.Client.Api.ParameterDirection.htm" />
+  <HelpKINode Title="InputOutput field" Url="html/F-AceQL.Client.Api.ParameterDirection.InputOutput.htm" />
+  <HelpKINode Title="Insert method" Url="html/M-AceQL.Client.Api.AceQLParameterCollection.Insert.htm" />
+  <HelpKINode Title="INTEGER enumeration member" Url="html/T-AceQL.Client.Api.AceQLNullType.htm" />
+  <HelpKINode Title="INTEGER field" Url="html/F-AceQL.Client.Api.AceQLNullType.INTEGER.htm" />
+  <HelpKINode Title="IsAutoincrement property" Url="html/P-AceQL.Client.Api.Metadata.Column.IsAutoincrement.htm" />
+  <HelpKINode Title="IsCatalogAtStart property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.IsCatalogAtStart.htm" />
+  <HelpKINode Title="IsClosed property" Url="html/P-AceQL.Client.Api.AceQLDataReader.IsClosed.htm" />
+  <HelpKINode Title="IsDBNull method" Url="html/M-AceQL.Client.Api.AceQLDataReader.IsDBNull.htm" />
+  <HelpKINode Title="IsFixedSize property" Url="html/P-AceQL.Client.Api.AceQLParameterCollection.IsFixedSize.htm" />
+  <HelpKINode Title="IsNullable property" Url="html/P-AceQL.Client.Api.Metadata.Column.IsNullable.htm" />
+  <HelpKINode Title="IsolationLevel enumeration" Url="html/T-AceQL.Client.Api.IsolationLevel.htm" />
+  <HelpKINode Title="IsolationLevel property" Url="html/P-AceQL.Client.Api.AceQLTransaction.IsolationLevel.htm" />
+  <HelpKINode Title="IsolationLevel.ReadCommitted field" Url="html/F-AceQL.Client.Api.IsolationLevel.ReadCommitted.htm" />
+  <HelpKINode Title="IsolationLevel.ReadUncommitted field" Url="html/F-AceQL.Client.Api.IsolationLevel.ReadUncommitted.htm" />
+  <HelpKINode Title="IsolationLevel.RepeatableRead field" Url="html/F-AceQL.Client.Api.IsolationLevel.RepeatableRead.htm" />
+  <HelpKINode Title="IsolationLevel.Serializable field" Url="html/F-AceQL.Client.Api.IsolationLevel.Serializable.htm" />
+  <HelpKINode Title="IsolationLevel.Unspecified field" Url="html/F-AceQL.Client.Api.IsolationLevel.Unspecified.htm" />
+  <HelpKINode Title="IsReadOnly property">
+    <HelpKINode Title="IsReadOnly Property " Url="html/P-AceQL.Client.Api.AceQLParameterCollection.IsReadOnly.htm" />
+    <HelpKINode Title="IsReadOnly Property " Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.IsReadOnly.htm" />
+  </HelpKINode>
+  <HelpKINode Title="IsSynchronized property" Url="html/P-AceQL.Client.Api.AceQLParameterCollection.IsSynchronized.htm" />
+  <HelpKINode Title="Item property">
+    <HelpKINode Title="Item Property " Url="html/P-AceQL.Client.Api.AceQLDataReader.Item-System.String-.htm" />
+    <HelpKINode Title="Item Property " Url="html/P-AceQL.Client.Api.AceQLDataReader.Item-System.Int32-.htm" />
+    <HelpKINode Title="Item Property " Url="html/P-AceQL.Client.Api.AceQLParameterCollection.Item-System.Int32-.htm" />
+  </HelpKINode>
+  <HelpKINode Title="JdbcDatabaseMetaData class">
+    <HelpKINode Title="JdbcDatabaseMetaData Class" Url="html/T-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.htm" />
+    <HelpKINode Title="JdbcDatabaseMetaData Members" Url="html/AllMembers.T-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.htm" />
+    <HelpKINode Title="about JdbcDatabaseMetaData class" Url="html/T-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.htm" />
+    <HelpKINode Title="all members" Url="html/AllMembers.T-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.htm" />
+    <HelpKINode Title="methods" Url="html/Methods.T-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.htm" />
+    <HelpKINode Title="properties" Url="html/Properties.T-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.htm" />
+  </HelpKINode>
+  <HelpKINode Title="JdbcDatabaseMetaData.AllProceduresAreCallable property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.AllProceduresAreCallable.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.AllTablesAreSelectable property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.AllTablesAreSelectable.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.AutoCommitFailureClosesAllResultSets property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.AutoCommitFailureClosesAllResultSets.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.DataDefinitionCausesTransactionCommit property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.DataDefinitionCausesTransactionCommit.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.DataDefinitionIgnoredInTransactions property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.DataDefinitionIgnoredInTransactions.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.DoesMaxRowSizeIncludeBlobs property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.DoesMaxRowSizeIncludeBlobs.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.GetCatalogSeparator property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.GetCatalogSeparator.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.GetCatalogTerm property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.GetCatalogTerm.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.GetDatabaseMajorVersion property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.GetDatabaseMajorVersion.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.GetDatabaseMinorVersion property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.GetDatabaseMinorVersion.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.GetDatabaseProductName property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.GetDatabaseProductName.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.GetDatabaseProductVersion property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.GetDatabaseProductVersion.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.GetDefaultTransactionIsolation property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.GetDefaultTransactionIsolation.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.GetDriverMajorVersion property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.GetDriverMajorVersion.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.GetDriverMinorVersion property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.GetDriverMinorVersion.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.GetDriverName property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.GetDriverName.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.GetDriverVersion property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.GetDriverVersion.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.GetExtraNameCharacters property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.GetExtraNameCharacters.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.GetIdentifierQuoteString property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.GetIdentifierQuoteString.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.GetJDBCMajorVersion property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.GetJDBCMajorVersion.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.GetJDBCMinorVersion property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.GetJDBCMinorVersion.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.GetMaxBinaryLiteralLength property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.GetMaxBinaryLiteralLength.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.GetMaxCatalogNameLength property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.GetMaxCatalogNameLength.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.GetMaxCharLiteralLength property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.GetMaxCharLiteralLength.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.GetMaxColumnNameLength property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.GetMaxColumnNameLength.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.GetMaxColumnsInGroupBy property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.GetMaxColumnsInGroupBy.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.GetMaxColumnsInIndex property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.GetMaxColumnsInIndex.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.GetMaxColumnsInOrderBy property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.GetMaxColumnsInOrderBy.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.GetMaxColumnsInSelect property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.GetMaxColumnsInSelect.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.GetMaxColumnsInTable property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.GetMaxColumnsInTable.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.GetMaxConnections property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.GetMaxConnections.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.GetMaxCursorNameLength property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.GetMaxCursorNameLength.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.GetMaxIndexLength property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.GetMaxIndexLength.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.GetMaxProcedureNameLength property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.GetMaxProcedureNameLength.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.GetMaxRowSize property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.GetMaxRowSize.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.GetMaxSchemaNameLength property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.GetMaxSchemaNameLength.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.GetMaxStatementLength property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.GetMaxStatementLength.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.GetMaxStatements property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.GetMaxStatements.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.GetMaxTableNameLength property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.GetMaxTableNameLength.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.GetMaxTablesInSelect property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.GetMaxTablesInSelect.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.GetMaxUserNameLength property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.GetMaxUserNameLength.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.GetNumericFunctions property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.GetNumericFunctions.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.GetProcedureTerm property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.GetProcedureTerm.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.GetResultSetHoldability property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.GetResultSetHoldability.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.GetSchemaTerm property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.GetSchemaTerm.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.GetSearchStringEscape property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.GetSearchStringEscape.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.GetSQLKeywords property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.GetSQLKeywords.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.GetSQLStateType property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.GetSQLStateType.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.GetStringFunctions property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.GetStringFunctions.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.GetSystemFunctions property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.GetSystemFunctions.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.GetTimeDateFunctions property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.GetTimeDateFunctions.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.GetURL property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.GetURL.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.GetUserName property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.GetUserName.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.IsCatalogAtStart property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.IsCatalogAtStart.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.IsReadOnly property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.IsReadOnly.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.LocatorsUpdateCopy property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.LocatorsUpdateCopy.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.NullPlusNonNullIsNull property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.NullPlusNonNullIsNull.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.NullsAreSortedAtEnd property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.NullsAreSortedAtEnd.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.NullsAreSortedAtStart property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.NullsAreSortedAtStart.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.NullsAreSortedHigh property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.NullsAreSortedHigh.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.NullsAreSortedLow property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.NullsAreSortedLow.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.StoresLowerCaseIdentifiers property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.StoresLowerCaseIdentifiers.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.StoresLowerCaseQuotedIdentifiers property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.StoresLowerCaseQuotedIdentifiers.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.StoresMixedCaseIdentifiers property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.StoresMixedCaseIdentifiers.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.StoresMixedCaseQuotedIdentifiers property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.StoresMixedCaseQuotedIdentifiers.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.StoresUpperCaseIdentifiers property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.StoresUpperCaseIdentifiers.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.StoresUpperCaseQuotedIdentifiers property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.StoresUpperCaseQuotedIdentifiers.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.SupportsAlterTableWithAddColumn property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsAlterTableWithAddColumn.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.SupportsAlterTableWithDropColumn property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsAlterTableWithDropColumn.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.SupportsANSI92EntryLevelSQL property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsANSI92EntryLevelSQL.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.SupportsANSI92FullSQL property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsANSI92FullSQL.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.SupportsANSI92IntermediateSQL property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsANSI92IntermediateSQL.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.SupportsBatchUpdates property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsBatchUpdates.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.SupportsCatalogsInDataManipulation property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsCatalogsInDataManipulation.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.SupportsCatalogsInIndexDefinitions property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsCatalogsInIndexDefinitions.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.SupportsCatalogsInPrivilegeDefinitions property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsCatalogsInPrivilegeDefinitions.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.SupportsCatalogsInProcedureCalls property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsCatalogsInProcedureCalls.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.SupportsCatalogsInTableDefinitions property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsCatalogsInTableDefinitions.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.SupportsColumnAliasing property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsColumnAliasing.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.SupportsConvert property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsConvert.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.SupportsCoreSQLGrammar property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsCoreSQLGrammar.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.SupportsCorrelatedSubqueries property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsCorrelatedSubqueries.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.SupportsDataDefinitionAndDataManipulationTransactions property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsDataDefinitionAndDataManipulationTransactions.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.SupportsDataManipulationTransactionsOnly property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsDataManipulationTransactionsOnly.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.SupportsDifferentTableCorrelationNames property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsDifferentTableCorrelationNames.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.SupportsExpressionsInOrderBy property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsExpressionsInOrderBy.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.SupportsExtendedSQLGrammar property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsExtendedSQLGrammar.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.SupportsFullOuterJoins property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsFullOuterJoins.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.SupportsGetGeneratedKeys property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsGetGeneratedKeys.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.SupportsGroupBy property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsGroupBy.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.SupportsGroupByBeyondSelect property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsGroupByBeyondSelect.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.SupportsGroupByUnrelated property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsGroupByUnrelated.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.SupportsIntegrityEnhancementFacility property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsIntegrityEnhancementFacility.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.SupportsLikeEscapeClause property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsLikeEscapeClause.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.SupportsLimitedOuterJoins property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsLimitedOuterJoins.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.SupportsMinimumSQLGrammar property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsMinimumSQLGrammar.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.SupportsMixedCaseIdentifiers property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsMixedCaseIdentifiers.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.SupportsMixedCaseQuotedIdentifiers property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsMixedCaseQuotedIdentifiers.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.SupportsMultipleOpenResults property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsMultipleOpenResults.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.SupportsMultipleResultSets property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsMultipleResultSets.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.SupportsMultipleTransactions property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsMultipleTransactions.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.SupportsNamedParameters property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsNamedParameters.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.SupportsNonNullableColumns property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsNonNullableColumns.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.SupportsOpenCursorsAcrossCommit property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsOpenCursorsAcrossCommit.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.SupportsOpenCursorsAcrossRollback property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsOpenCursorsAcrossRollback.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.SupportsOpenStatementsAcrossCommit property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsOpenStatementsAcrossCommit.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.SupportsOpenStatementsAcrossRollback property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsOpenStatementsAcrossRollback.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.SupportsOrderByUnrelated property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsOrderByUnrelated.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.SupportsOuterJoins property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsOuterJoins.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.SupportsPositionedDelete property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsPositionedDelete.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.SupportsPositionedUpdate property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsPositionedUpdate.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.SupportsSavepoints property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsSavepoints.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.SupportsSchemasInDataManipulation property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsSchemasInDataManipulation.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.SupportsSchemasInIndexDefinitions property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsSchemasInIndexDefinitions.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.SupportsSchemasInPrivilegeDefinitions property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsSchemasInPrivilegeDefinitions.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.SupportsSchemasInProcedureCalls property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsSchemasInProcedureCalls.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.SupportsSchemasInTableDefinitions property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsSchemasInTableDefinitions.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.SupportsSelectForUpdate property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsSelectForUpdate.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.SupportsStatementPooling property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsStatementPooling.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.SupportsStoredFunctionsUsingCallSyntax property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsStoredFunctionsUsingCallSyntax.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.SupportsStoredProcedures property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsStoredProcedures.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.SupportsSubqueriesInComparisons property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsSubqueriesInComparisons.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.SupportsSubqueriesInExists property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsSubqueriesInExists.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.SupportsSubqueriesInIns property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsSubqueriesInIns.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.SupportsSubqueriesInQuantifieds property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsSubqueriesInQuantifieds.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.SupportsTableCorrelationNames property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsTableCorrelationNames.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.SupportsTransactions property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsTransactions.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.SupportsUnion property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsUnion.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.SupportsUnionAll property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsUnionAll.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.ToString method" Url="html/M-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.ToString.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.UsesLocalFilePerTable property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.UsesLocalFilePerTable.htm" />
+  <HelpKINode Title="JdbcDatabaseMetaData.UsesLocalFiles property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.UsesLocalFiles.htm" />
+  <HelpKINode Title="KeySequence property">
+    <HelpKINode Title="KeySequence Property " Url="html/P-AceQL.Client.Api.Metadata.PrimaryKey.KeySequence.htm" />
+    <HelpKINode Title="KeySequence Property " Url="html/P-AceQL.Client.Api.Metadata.ForeignKey.KeySequence.htm" />
+  </HelpKINode>
+  <HelpKINode Title="LocatorsUpdateCopy property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.LocatorsUpdateCopy.htm" />
+  <HelpKINode Title="LogoutAsync method" Url="html/M-AceQL.Client.Api.AceQLConnection.LogoutAsync.htm" />
+  <HelpKINode Title="NonUnique property" Url="html/P-AceQL.Client.Api.Metadata.Index.NonUnique.htm" />
+  <HelpKINode Title="Nullable property" Url="html/P-AceQL.Client.Api.Metadata.Column.Nullable.htm" />
+  <HelpKINode Title="NullPlusNonNullIsNull property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.NullPlusNonNullIsNull.htm" />
+  <HelpKINode Title="NullsAreSortedAtEnd property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.NullsAreSortedAtEnd.htm" />
+  <HelpKINode Title="NullsAreSortedAtStart property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.NullsAreSortedAtStart.htm" />
+  <HelpKINode Title="NullsAreSortedHigh property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.NullsAreSortedHigh.htm" />
+  <HelpKINode Title="NullsAreSortedLow property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.NullsAreSortedLow.htm" />
+  <HelpKINode Title="NUMERIC enumeration member" Url="html/T-AceQL.Client.Api.AceQLNullType.htm" />
+  <HelpKINode Title="NUMERIC field" Url="html/F-AceQL.Client.Api.AceQLNullType.NUMERIC.htm" />
+  <HelpKINode Title="OpenAsync method" Url="html/Overload-AceQL.Client.Api.AceQLConnection.OpenAsync.htm" />
+  <HelpKINode Title="OrdinalPosition property">
+    <HelpKINode Title="OrdinalPosition Property " Url="html/P-AceQL.Client.Api.Metadata.Column.OrdinalPosition.htm" />
+    <HelpKINode Title="OrdinalPosition Property " Url="html/P-AceQL.Client.Api.Metadata.Index.OrdinalPosition.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Output enumeration member" Url="html/T-AceQL.Client.Api.ParameterDirection.htm" />
+  <HelpKINode Title="Output field" Url="html/F-AceQL.Client.Api.ParameterDirection.Output.htm" />
+  <HelpKINode Title="Pages property" Url="html/P-AceQL.Client.Api.Metadata.Index.Pages.htm" />
+  <HelpKINode Title="ParameterDirection enumeration" Url="html/T-AceQL.Client.Api.ParameterDirection.htm" />
+  <HelpKINode Title="ParameterDirection.Input field" Url="html/F-AceQL.Client.Api.ParameterDirection.Input.htm" />
+  <HelpKINode Title="ParameterDirection.InputOutput field" Url="html/F-AceQL.Client.Api.ParameterDirection.InputOutput.htm" />
+  <HelpKINode Title="ParameterDirection.Output field" Url="html/F-AceQL.Client.Api.ParameterDirection.Output.htm" />
+  <HelpKINode Title="ParameterDirection.ReturnValue field" Url="html/F-AceQL.Client.Api.ParameterDirection.ReturnValue.htm" />
+  <HelpKINode Title="ParameterName property" Url="html/P-AceQL.Client.Api.AceQLParameter.ParameterName.htm" />
+  <HelpKINode Title="Parameters property" Url="html/P-AceQL.Client.Api.AceQLCommand.Parameters.htm" />
+  <HelpKINode Title="Password property" Url="html/P-AceQL.Client.Api.AceQLCredential.Password.htm" />
+  <HelpKINode Title="Percent property" Url="html/P-AceQL.Client.Api.AceQLProgressIndicator.Percent.htm" />
+  <HelpKINode Title="Prepare method" Url="html/M-AceQL.Client.Api.AceQLCommand.Prepare.htm" />
+  <HelpKINode Title="PrimaryKey class">
+    <HelpKINode Title="PrimaryKey Class" Url="html/T-AceQL.Client.Api.Metadata.PrimaryKey.htm" />
+    <HelpKINode Title="PrimaryKey Members" Url="html/AllMembers.T-AceQL.Client.Api.Metadata.PrimaryKey.htm" />
+    <HelpKINode Title="about PrimaryKey class" Url="html/T-AceQL.Client.Api.Metadata.PrimaryKey.htm" />
+    <HelpKINode Title="all members" Url="html/AllMembers.T-AceQL.Client.Api.Metadata.PrimaryKey.htm" />
+    <HelpKINode Title="methods" Url="html/Methods.T-AceQL.Client.Api.Metadata.PrimaryKey.htm" />
+    <HelpKINode Title="properties" Url="html/Properties.T-AceQL.Client.Api.Metadata.PrimaryKey.htm" />
+  </HelpKINode>
+  <HelpKINode Title="PrimaryKey.ColumnName property" Url="html/P-AceQL.Client.Api.Metadata.PrimaryKey.ColumnName.htm" />
+  <HelpKINode Title="PrimaryKey.Equals method" Url="html/M-AceQL.Client.Api.Metadata.PrimaryKey.Equals.htm" />
+  <HelpKINode Title="PrimaryKey.GetHashCode method" Url="html/M-AceQL.Client.Api.Metadata.PrimaryKey.GetHashCode.htm" />
+  <HelpKINode Title="PrimaryKey.KeySequence property" Url="html/P-AceQL.Client.Api.Metadata.PrimaryKey.KeySequence.htm" />
+  <HelpKINode Title="PrimaryKey.PrimaryKeyName property" Url="html/P-AceQL.Client.Api.Metadata.PrimaryKey.PrimaryKeyName.htm" />
+  <HelpKINode Title="PrimaryKey.TableName property" Url="html/P-AceQL.Client.Api.Metadata.PrimaryKey.TableName.htm" />
+  <HelpKINode Title="PrimaryKey.ToString method" Url="html/M-AceQL.Client.Api.Metadata.PrimaryKey.ToString.htm" />
+  <HelpKINode Title="PrimaryKeyColumn property" Url="html/P-AceQL.Client.Api.Metadata.ForeignKey.PrimaryKeyColumn.htm" />
+  <HelpKINode Title="PrimaryKeyName property">
+    <HelpKINode Title="PrimaryKeyName Property " Url="html/P-AceQL.Client.Api.Metadata.ForeignKey.PrimaryKeyName.htm" />
+    <HelpKINode Title="PrimaryKeyName Property " Url="html/P-AceQL.Client.Api.Metadata.PrimaryKey.PrimaryKeyName.htm" />
+  </HelpKINode>
+  <HelpKINode Title="PrimaryKeys property" Url="html/P-AceQL.Client.Api.Metadata.Table.PrimaryKeys.htm" />
+  <HelpKINode Title="PrimaryKeyTable property" Url="html/P-AceQL.Client.Api.Metadata.ForeignKey.PrimaryKeyTable.htm" />
+  <HelpKINode Title="Radix property" Url="html/P-AceQL.Client.Api.Metadata.Column.Radix.htm" />
+  <HelpKINode Title="Read method" Url="html/M-AceQL.Client.Api.AceQLDataReader.Read.htm" />
+  <HelpKINode Title="ReadAsync method" Url="html/M-AceQL.Client.Api.AceQLDataReader.ReadAsync.htm" />
+  <HelpKINode Title="ReadCommitted enumeration member" Url="html/T-AceQL.Client.Api.IsolationLevel.htm" />
+  <HelpKINode Title="ReadCommitted field" Url="html/F-AceQL.Client.Api.IsolationLevel.ReadCommitted.htm" />
+  <HelpKINode Title="ReadUncommitted enumeration member" Url="html/T-AceQL.Client.Api.IsolationLevel.htm" />
+  <HelpKINode Title="ReadUncommitted field" Url="html/F-AceQL.Client.Api.IsolationLevel.ReadUncommitted.htm" />
+  <HelpKINode Title="REAL enumeration member" Url="html/T-AceQL.Client.Api.AceQLNullType.htm" />
+  <HelpKINode Title="REAL field" Url="html/F-AceQL.Client.Api.AceQLNullType.REAL.htm" />
+  <HelpKINode Title="Reason property" Url="html/P-AceQL.Client.Api.AceQLException.Reason.htm" />
+  <HelpKINode Title="Remarks property">
+    <HelpKINode Title="Remarks Property " Url="html/P-AceQL.Client.Api.Metadata.Table.Remarks.htm" />
+    <HelpKINode Title="Remarks Property " Url="html/P-AceQL.Client.Api.Metadata.Column.Remarks.htm" />
+  </HelpKINode>
+  <HelpKINode Title="RemoteDatabaseMetaData class">
+    <HelpKINode Title="RemoteDatabaseMetaData Class" Url="html/T-AceQL.Client.Api.Metadata.RemoteDatabaseMetaData.htm" />
+    <HelpKINode Title="RemoteDatabaseMetaData Members" Url="html/AllMembers.T-AceQL.Client.Api.Metadata.RemoteDatabaseMetaData.htm" />
+    <HelpKINode Title="about RemoteDatabaseMetaData class" Url="html/T-AceQL.Client.Api.Metadata.RemoteDatabaseMetaData.htm" />
+    <HelpKINode Title="all members" Url="html/AllMembers.T-AceQL.Client.Api.Metadata.RemoteDatabaseMetaData.htm" />
+    <HelpKINode Title="methods" Url="html/Methods.T-AceQL.Client.Api.Metadata.RemoteDatabaseMetaData.htm" />
+  </HelpKINode>
+  <HelpKINode Title="RemoteDatabaseMetaData.DbSchemaDownloadAsync method" Url="html/Overload-AceQL.Client.Api.Metadata.RemoteDatabaseMetaData.DbSchemaDownloadAsync.htm" />
+  <HelpKINode Title="RemoteDatabaseMetaData.GetJdbcDatabaseMetaDataAsync method" Url="html/M-AceQL.Client.Api.Metadata.RemoteDatabaseMetaData.GetJdbcDatabaseMetaDataAsync.htm" />
+  <HelpKINode Title="RemoteDatabaseMetaData.GetTableAsync method" Url="html/M-AceQL.Client.Api.Metadata.RemoteDatabaseMetaData.GetTableAsync.htm" />
+  <HelpKINode Title="RemoteDatabaseMetaData.GetTableNamesAsync method" Url="html/Overload-AceQL.Client.Api.Metadata.RemoteDatabaseMetaData.GetTableNamesAsync.htm" />
+  <HelpKINode Title="RemoteStackTrace property" Url="html/P-AceQL.Client.Api.AceQLException.RemoteStackTrace.htm" />
+  <HelpKINode Title="Remove method" Url="html/M-AceQL.Client.Api.AceQLParameterCollection.Remove.htm" />
+  <HelpKINode Title="RemoveAt method" Url="html/Overload-AceQL.Client.Api.AceQLParameterCollection.RemoveAt.htm" />
+  <HelpKINode Title="RepeatableRead enumeration member" Url="html/T-AceQL.Client.Api.IsolationLevel.htm" />
+  <HelpKINode Title="RepeatableRead field" Url="html/F-AceQL.Client.Api.IsolationLevel.RepeatableRead.htm" />
+  <HelpKINode Title="RequestRetry property" Url="html/P-AceQL.Client.Api.AceQLConnection.RequestRetry.htm" />
+  <HelpKINode Title="ResetRequestHeaders method" Url="html/M-AceQL.Client.Api.AceQLConnection.ResetRequestHeaders.htm" />
+  <HelpKINode Title="ReturnValue enumeration member" Url="html/T-AceQL.Client.Api.ParameterDirection.htm" />
+  <HelpKINode Title="ReturnValue field" Url="html/F-AceQL.Client.Api.ParameterDirection.ReturnValue.htm" />
+  <HelpKINode Title="RollbackAsync method" Url="html/M-AceQL.Client.Api.AceQLTransaction.RollbackAsync.htm" />
+  <HelpKINode Title="Schema property">
+    <HelpKINode Title="Schema Property " Url="html/P-AceQL.Client.Api.Metadata.Table.Schema.htm" />
+    <HelpKINode Title="Schema Property " Url="html/P-AceQL.Client.Api.Metadata.CatalogAndSchema.Schema.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ScopeCatalog property" Url="html/P-AceQL.Client.Api.Metadata.Column.ScopeCatalog.htm" />
+  <HelpKINode Title="ScopeSchema property" Url="html/P-AceQL.Client.Api.Metadata.Column.ScopeSchema.htm" />
+  <HelpKINode Title="ScopeTable property" Url="html/P-AceQL.Client.Api.Metadata.Column.ScopeTable.htm" />
+  <HelpKINode Title="Serializable enumeration member" Url="html/T-AceQL.Client.Api.IsolationLevel.htm" />
+  <HelpKINode Title="Serializable field" Url="html/F-AceQL.Client.Api.IsolationLevel.Serializable.htm" />
+  <HelpKINode Title="SessionId property" Url="html/P-AceQL.Client.Api.AceQLCredential.SessionId.htm" />
+  <HelpKINode Title="SetDefaultWebProxy method" Url="html/M-AceQL.Client.Api.AceQLConnection.SetDefaultWebProxy.htm" />
+  <HelpKINode Title="SetProgressIndicator method" Url="html/M-AceQL.Client.Api.AceQLConnection.SetProgressIndicator.htm" />
+  <HelpKINode Title="Size property" Url="html/P-AceQL.Client.Api.Metadata.Column.Size.htm" />
+  <HelpKINode Title="SMALLINT enumeration member" Url="html/T-AceQL.Client.Api.AceQLNullType.htm" />
+  <HelpKINode Title="SMALLINT field" Url="html/F-AceQL.Client.Api.AceQLNullType.SMALLINT.htm" />
+  <HelpKINode Title="SourceDataType property" Url="html/P-AceQL.Client.Api.Metadata.Column.SourceDataType.htm" />
+  <HelpKINode Title="StoredProcedure enumeration member" Url="html/T-AceQL.Client.Api.CommandType.htm" />
+  <HelpKINode Title="StoredProcedure field" Url="html/F-AceQL.Client.Api.CommandType.StoredProcedure.htm" />
+  <HelpKINode Title="StoresLowerCaseIdentifiers property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.StoresLowerCaseIdentifiers.htm" />
+  <HelpKINode Title="StoresLowerCaseQuotedIdentifiers property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.StoresLowerCaseQuotedIdentifiers.htm" />
+  <HelpKINode Title="StoresMixedCaseIdentifiers property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.StoresMixedCaseIdentifiers.htm" />
+  <HelpKINode Title="StoresMixedCaseQuotedIdentifiers property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.StoresMixedCaseQuotedIdentifiers.htm" />
+  <HelpKINode Title="StoresUpperCaseIdentifiers property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.StoresUpperCaseIdentifiers.htm" />
+  <HelpKINode Title="StoresUpperCaseQuotedIdentifiers property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.StoresUpperCaseQuotedIdentifiers.htm" />
+  <HelpKINode Title="SupportsAlterTableWithAddColumn property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsAlterTableWithAddColumn.htm" />
+  <HelpKINode Title="SupportsAlterTableWithDropColumn property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsAlterTableWithDropColumn.htm" />
+  <HelpKINode Title="SupportsANSI92EntryLevelSQL property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsANSI92EntryLevelSQL.htm" />
+  <HelpKINode Title="SupportsANSI92FullSQL property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsANSI92FullSQL.htm" />
+  <HelpKINode Title="SupportsANSI92IntermediateSQL property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsANSI92IntermediateSQL.htm" />
+  <HelpKINode Title="SupportsBatchUpdates property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsBatchUpdates.htm" />
+  <HelpKINode Title="SupportsCatalogsInDataManipulation property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsCatalogsInDataManipulation.htm" />
+  <HelpKINode Title="SupportsCatalogsInIndexDefinitions property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsCatalogsInIndexDefinitions.htm" />
+  <HelpKINode Title="SupportsCatalogsInPrivilegeDefinitions property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsCatalogsInPrivilegeDefinitions.htm" />
+  <HelpKINode Title="SupportsCatalogsInProcedureCalls property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsCatalogsInProcedureCalls.htm" />
+  <HelpKINode Title="SupportsCatalogsInTableDefinitions property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsCatalogsInTableDefinitions.htm" />
+  <HelpKINode Title="SupportsColumnAliasing property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsColumnAliasing.htm" />
+  <HelpKINode Title="SupportsConvert property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsConvert.htm" />
+  <HelpKINode Title="SupportsCoreSQLGrammar property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsCoreSQLGrammar.htm" />
+  <HelpKINode Title="SupportsCorrelatedSubqueries property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsCorrelatedSubqueries.htm" />
+  <HelpKINode Title="SupportsDataDefinitionAndDataManipulationTransactions property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsDataDefinitionAndDataManipulationTransactions.htm" />
+  <HelpKINode Title="SupportsDataManipulationTransactionsOnly property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsDataManipulationTransactionsOnly.htm" />
+  <HelpKINode Title="SupportsDifferentTableCorrelationNames property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsDifferentTableCorrelationNames.htm" />
+  <HelpKINode Title="SupportsExpressionsInOrderBy property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsExpressionsInOrderBy.htm" />
+  <HelpKINode Title="SupportsExtendedSQLGrammar property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsExtendedSQLGrammar.htm" />
+  <HelpKINode Title="SupportsFullOuterJoins property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsFullOuterJoins.htm" />
+  <HelpKINode Title="SupportsGetGeneratedKeys property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsGetGeneratedKeys.htm" />
+  <HelpKINode Title="SupportsGroupBy property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsGroupBy.htm" />
+  <HelpKINode Title="SupportsGroupByBeyondSelect property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsGroupByBeyondSelect.htm" />
+  <HelpKINode Title="SupportsGroupByUnrelated property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsGroupByUnrelated.htm" />
+  <HelpKINode Title="SupportsIntegrityEnhancementFacility property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsIntegrityEnhancementFacility.htm" />
+  <HelpKINode Title="SupportsLikeEscapeClause property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsLikeEscapeClause.htm" />
+  <HelpKINode Title="SupportsLimitedOuterJoins property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsLimitedOuterJoins.htm" />
+  <HelpKINode Title="SupportsMinimumSQLGrammar property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsMinimumSQLGrammar.htm" />
+  <HelpKINode Title="SupportsMixedCaseIdentifiers property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsMixedCaseIdentifiers.htm" />
+  <HelpKINode Title="SupportsMixedCaseQuotedIdentifiers property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsMixedCaseQuotedIdentifiers.htm" />
+  <HelpKINode Title="SupportsMultipleOpenResults property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsMultipleOpenResults.htm" />
+  <HelpKINode Title="SupportsMultipleResultSets property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsMultipleResultSets.htm" />
+  <HelpKINode Title="SupportsMultipleTransactions property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsMultipleTransactions.htm" />
+  <HelpKINode Title="SupportsNamedParameters property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsNamedParameters.htm" />
+  <HelpKINode Title="SupportsNonNullableColumns property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsNonNullableColumns.htm" />
+  <HelpKINode Title="SupportsOpenCursorsAcrossCommit property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsOpenCursorsAcrossCommit.htm" />
+  <HelpKINode Title="SupportsOpenCursorsAcrossRollback property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsOpenCursorsAcrossRollback.htm" />
+  <HelpKINode Title="SupportsOpenStatementsAcrossCommit property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsOpenStatementsAcrossCommit.htm" />
+  <HelpKINode Title="SupportsOpenStatementsAcrossRollback property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsOpenStatementsAcrossRollback.htm" />
+  <HelpKINode Title="SupportsOrderByUnrelated property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsOrderByUnrelated.htm" />
+  <HelpKINode Title="SupportsOuterJoins property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsOuterJoins.htm" />
+  <HelpKINode Title="SupportsPositionedDelete property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsPositionedDelete.htm" />
+  <HelpKINode Title="SupportsPositionedUpdate property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsPositionedUpdate.htm" />
+  <HelpKINode Title="SupportsSavepoints property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsSavepoints.htm" />
+  <HelpKINode Title="SupportsSchemasInDataManipulation property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsSchemasInDataManipulation.htm" />
+  <HelpKINode Title="SupportsSchemasInIndexDefinitions property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsSchemasInIndexDefinitions.htm" />
+  <HelpKINode Title="SupportsSchemasInPrivilegeDefinitions property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsSchemasInPrivilegeDefinitions.htm" />
+  <HelpKINode Title="SupportsSchemasInProcedureCalls property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsSchemasInProcedureCalls.htm" />
+  <HelpKINode Title="SupportsSchemasInTableDefinitions property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsSchemasInTableDefinitions.htm" />
+  <HelpKINode Title="SupportsSelectForUpdate property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsSelectForUpdate.htm" />
+  <HelpKINode Title="SupportsStatementPooling property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsStatementPooling.htm" />
+  <HelpKINode Title="SupportsStoredFunctionsUsingCallSyntax property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsStoredFunctionsUsingCallSyntax.htm" />
+  <HelpKINode Title="SupportsStoredProcedures property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsStoredProcedures.htm" />
+  <HelpKINode Title="SupportsSubqueriesInComparisons property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsSubqueriesInComparisons.htm" />
+  <HelpKINode Title="SupportsSubqueriesInExists property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsSubqueriesInExists.htm" />
+  <HelpKINode Title="SupportsSubqueriesInIns property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsSubqueriesInIns.htm" />
+  <HelpKINode Title="SupportsSubqueriesInQuantifieds property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsSubqueriesInQuantifieds.htm" />
+  <HelpKINode Title="SupportsTableCorrelationNames property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsTableCorrelationNames.htm" />
+  <HelpKINode Title="SupportsTransactions property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsTransactions.htm" />
+  <HelpKINode Title="SupportsUnion property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsUnion.htm" />
+  <HelpKINode Title="SupportsUnionAll property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.SupportsUnionAll.htm" />
+  <HelpKINode Title="SyncRoot property" Url="html/P-AceQL.Client.Api.AceQLParameterCollection.SyncRoot.htm" />
+  <HelpKINode Title="Table class">
+    <HelpKINode Title="Table Class" Url="html/T-AceQL.Client.Api.Metadata.Table.htm" />
+    <HelpKINode Title="Table Members" Url="html/AllMembers.T-AceQL.Client.Api.Metadata.Table.htm" />
+    <HelpKINode Title="about Table class" Url="html/T-AceQL.Client.Api.Metadata.Table.htm" />
+    <HelpKINode Title="all members" Url="html/AllMembers.T-AceQL.Client.Api.Metadata.Table.htm" />
+    <HelpKINode Title="fields" Url="html/Fields.T-AceQL.Client.Api.Metadata.Table.htm" />
+    <HelpKINode Title="methods" Url="html/Methods.T-AceQL.Client.Api.Metadata.Table.htm" />
+    <HelpKINode Title="properties" Url="html/Properties.T-AceQL.Client.Api.Metadata.Table.htm" />
+  </HelpKINode>
+  <HelpKINode Title="TABLE field" Url="html/F-AceQL.Client.Api.Metadata.Table.TABLE.htm" />
+  <HelpKINode Title="Table.Catalog property" Url="html/P-AceQL.Client.Api.Metadata.Table.Catalog.htm" />
+  <HelpKINode Title="Table.Columns property" Url="html/P-AceQL.Client.Api.Metadata.Table.Columns.htm" />
+  <HelpKINode Title="Table.Equals method" Url="html/M-AceQL.Client.Api.Metadata.Table.Equals.htm" />
+  <HelpKINode Title="Table.ExportedforeignKeys property" Url="html/P-AceQL.Client.Api.Metadata.Table.ExportedforeignKeys.htm" />
+  <HelpKINode Title="Table.GetHashCode method" Url="html/M-AceQL.Client.Api.Metadata.Table.GetHashCode.htm" />
+  <HelpKINode Title="Table.ImportedforeignKeys property" Url="html/P-AceQL.Client.Api.Metadata.Table.ImportedforeignKeys.htm" />
+  <HelpKINode Title="Table.Indexes property" Url="html/P-AceQL.Client.Api.Metadata.Table.Indexes.htm" />
+  <HelpKINode Title="Table.PrimaryKeys property" Url="html/P-AceQL.Client.Api.Metadata.Table.PrimaryKeys.htm" />
+  <HelpKINode Title="Table.Remarks property" Url="html/P-AceQL.Client.Api.Metadata.Table.Remarks.htm" />
+  <HelpKINode Title="Table.Schema property" Url="html/P-AceQL.Client.Api.Metadata.Table.Schema.htm" />
+  <HelpKINode Title="Table.TABLE field" Url="html/F-AceQL.Client.Api.Metadata.Table.TABLE.htm" />
+  <HelpKINode Title="Table.TableName property" Url="html/P-AceQL.Client.Api.Metadata.Table.TableName.htm" />
+  <HelpKINode Title="Table.TableType property" Url="html/P-AceQL.Client.Api.Metadata.Table.TableType.htm" />
+  <HelpKINode Title="Table.ToString method" Url="html/M-AceQL.Client.Api.Metadata.Table.ToString.htm" />
+  <HelpKINode Title="Table.VIEW field" Url="html/F-AceQL.Client.Api.Metadata.Table.VIEW.htm" />
+  <HelpKINode Title="TableDirect enumeration member" Url="html/T-AceQL.Client.Api.CommandType.htm" />
+  <HelpKINode Title="TableDirect field" Url="html/F-AceQL.Client.Api.CommandType.TableDirect.htm" />
+  <HelpKINode Title="tableIndexClustered field" Url="html/F-AceQL.Client.Api.Metadata.Index.tableIndexClustered.htm" />
+  <HelpKINode Title="tableIndexHashed field" Url="html/F-AceQL.Client.Api.Metadata.Index.tableIndexHashed.htm" />
+  <HelpKINode Title="tableIndexOther field" Url="html/F-AceQL.Client.Api.Metadata.Index.tableIndexOther.htm" />
+  <HelpKINode Title="tableIndexStatistic field" Url="html/F-AceQL.Client.Api.Metadata.Index.tableIndexStatistic.htm" />
+  <HelpKINode Title="TableName property">
+    <HelpKINode Title="TableName Property " Url="html/P-AceQL.Client.Api.Metadata.Index.TableName.htm" />
+    <HelpKINode Title="TableName Property " Url="html/P-AceQL.Client.Api.Metadata.PrimaryKey.TableName.htm" />
+    <HelpKINode Title="TableName Property " Url="html/P-AceQL.Client.Api.Metadata.Table.TableName.htm" />
+    <HelpKINode Title="TableName Property " Url="html/P-AceQL.Client.Api.Metadata.Column.TableName.htm" />
+  </HelpKINode>
+  <HelpKINode Title="TableType property" Url="html/P-AceQL.Client.Api.Metadata.Table.TableType.htm" />
+  <HelpKINode Title="Text enumeration member" Url="html/T-AceQL.Client.Api.CommandType.htm" />
+  <HelpKINode Title="Text field" Url="html/F-AceQL.Client.Api.CommandType.Text.htm" />
+  <HelpKINode Title="TIME enumeration member" Url="html/T-AceQL.Client.Api.AceQLNullType.htm" />
+  <HelpKINode Title="TIME field" Url="html/F-AceQL.Client.Api.AceQLNullType.TIME.htm" />
+  <HelpKINode Title="TIMESTAMP enumeration member" Url="html/T-AceQL.Client.Api.AceQLNullType.htm" />
+  <HelpKINode Title="TIMESTAMP field" Url="html/F-AceQL.Client.Api.AceQLNullType.TIMESTAMP.htm" />
+  <HelpKINode Title="TINYINT enumeration member" Url="html/T-AceQL.Client.Api.AceQLNullType.htm" />
+  <HelpKINode Title="TINYINT field" Url="html/F-AceQL.Client.Api.AceQLNullType.TINYINT.htm" />
+  <HelpKINode Title="ToString method">
+    <HelpKINode Title="ToString Method " Url="html/M-AceQL.Client.Api.Metadata.Table.ToString.htm" />
+    <HelpKINode Title="ToString Method " Url="html/M-AceQL.Client.Api.AceQLProgressIndicator.ToString.htm" />
+    <HelpKINode Title="ToString Method " Url="html/M-AceQL.Client.Api.Metadata.ForeignKey.ToString.htm" />
+    <HelpKINode Title="ToString Method " Url="html/M-AceQL.Client.Api.AceQLParameter.ToString.htm" />
+    <HelpKINode Title="ToString Method " Url="html/M-AceQL.Client.Api.Metadata.Column.ToString.htm" />
+    <HelpKINode Title="ToString Method " Url="html/M-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.ToString.htm" />
+    <HelpKINode Title="ToString Method " Url="html/M-AceQL.Client.Api.Metadata.Index.ToString.htm" />
+    <HelpKINode Title="ToString Method " Url="html/M-AceQL.Client.Api.Metadata.PrimaryKey.ToString.htm" />
+    <HelpKINode Title="ToString Method " Url="html/M-AceQL.Client.Api.AceQLException.ToString.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Transaction property" Url="html/P-AceQL.Client.Api.AceQLCommand.Transaction.htm" />
+  <HelpKINode Title="Type property" Url="html/P-AceQL.Client.Api.Metadata.Index.Type.htm" />
+  <HelpKINode Title="TypeName property" Url="html/P-AceQL.Client.Api.Metadata.Column.TypeName.htm" />
+  <HelpKINode Title="Unspecified enumeration member" Url="html/T-AceQL.Client.Api.IsolationLevel.htm" />
+  <HelpKINode Title="Unspecified field" Url="html/F-AceQL.Client.Api.IsolationLevel.Unspecified.htm" />
+  <HelpKINode Title="UpdateRule property" Url="html/P-AceQL.Client.Api.Metadata.ForeignKey.UpdateRule.htm" />
+  <HelpKINode Title="Username property" Url="html/P-AceQL.Client.Api.AceQLCredential.Username.htm" />
+  <HelpKINode Title="UsesLocalFilePerTable property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.UsesLocalFilePerTable.htm" />
+  <HelpKINode Title="UsesLocalFiles property" Url="html/P-AceQL.Client.Api.Metadata.JdbcDatabaseMetaData.UsesLocalFiles.htm" />
+  <HelpKINode Title="Value property" Url="html/P-AceQL.Client.Api.AceQLParameter.Value.htm" />
+  <HelpKINode Title="VARCHAR enumeration member" Url="html/T-AceQL.Client.Api.AceQLNullType.htm" />
+  <HelpKINode Title="VARCHAR field" Url="html/F-AceQL.Client.Api.AceQLNullType.VARCHAR.htm" />
+  <HelpKINode Title="VIEW field" Url="html/F-AceQL.Client.Api.Metadata.Table.VIEW.htm" />
+</HelpKI>

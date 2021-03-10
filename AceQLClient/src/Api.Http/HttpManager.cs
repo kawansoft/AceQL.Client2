@@ -1,4 +1,23 @@
-﻿using AceQL.Client.Src.Api.Util;
+﻿/*
+ * This filePath is part of AceQL C# Client SDK.
+ * AceQL C# Client SDK: Remote SQL access over HTTP with AceQL HTTP.                                 
+ * Copyright (C) 2020,  KawanSoft SAS
+ * (http://www.kawansoft.com). All rights reserved.                                
+ *                                                                               
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this filePath except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License. 
+ */
+
+using AceQL.Client.Src.Api.Util;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -219,20 +238,26 @@ namespace AceQL.Client.Src.Api.Http
 
             HttpResponseMessage response = null;
 
+            simpleTracer.Trace("Before await httpClient.PostAsync(theUrl, content).ConfigureAwait(false) call");
+
             if (!UseCancellationToken)
             {
-                response = await httpClient.PostAsync(theUrl, content);
+                response = await httpClient.PostAsync(theUrl, content).ConfigureAwait(false);
             }
             else
             {
-                response = await httpClient.PostAsync(theUrl, content, cancellationToken);
+                response = await httpClient.PostAsync(theUrl, content, cancellationToken).ConfigureAwait(false);
             }
+
+            simpleTracer.Trace("After await httpClient.PostAsync(theUrl, content).ConfigureAwait(false) call");
 
             this.httpStatusCode = response.StatusCode;
 
             // Allows a retry for 407, because can happen time to time with Web proxies 
             if (this.httpStatusCode.Equals(HttpStatusCode.ProxyAuthenticationRequired))
             {
+                simpleTracer.Trace("Before while (proxyAuthenticationCallCount < HttpRetryManager.ProxyAuthenticationCallLimit)");
+
                 while (proxyAuthenticationCallCount < HttpRetryManager.ProxyAuthenticationCallLimit)
                 {
                     proxyAuthenticationCallCount++;
@@ -243,6 +268,7 @@ namespace AceQL.Client.Src.Api.Http
                         proxyAuthenticationCallCount = 0;
                         return input;
                     }
+                    simpleTracer.Trace("this.httpStatusCode: " + this.httpStatusCode);
                 }
             }
 
@@ -272,12 +298,12 @@ namespace AceQL.Client.Src.Api.Http
 
                 var responseString = new StreamReader(stream).ReadToEnd();
 
-                 simpleTracer.Trace();
-                 simpleTracer.Trace("----------------------------------------");
-                 simpleTracer.Trace(url);
-                 simpleTracer.Trace(responseString);
+                simpleTracer.Trace();
                 simpleTracer.Trace("----------------------------------------");
-                
+                simpleTracer.Trace(url);
+                simpleTracer.Trace(responseString);
+                simpleTracer.Trace("----------------------------------------");
+
                 return responseString;
             }
         }

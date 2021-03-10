@@ -320,7 +320,7 @@
             </summary>
             <param name="host">
               <see cref="T:System.Uri" /> of the host whose proxy usage is to be verified.</param>
-            <returns><c>true</c> if the proxy server should not be used for <paramref name="host" /> ; else <c>false</c>.</returns>
+            <returns><c>true</c> if the proxy server should not be used for <paramref name="host" />�; else <c>false</c>.</returns>
         </member>
         <member name="T:AceQL.Client.Api.Metadata.Dto.JdbcDatabaseMetaDataDto">
             <summary>

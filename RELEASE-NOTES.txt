@@ -17,6 +17,24 @@ they would do for an SQL Server database.
 The AceQL C# Client SDK is licensed under the Apache 2.0 License.
 
 
+AceQL C# Client SDK - Version 6.1 - 10-Mar-2021
+------------------------------------------------
+
+It is highly recommended to upgrade all Client SDK installations 
+to this 6.1 version because of the important HTTP bug described 
+below.
+
+What's New:
+- More traces have been added for internal debugging.
+
+Bugs fixed:
+- There was a missing ConfigureAwait(false) call on the 2 
+  await httpClient.PostAsync(theUrl, content) calls 
+  in the AceQL HttpManager.CallWithPostAsync() method.
+  The missing calls could cause HTTP deadlocks with no error 
+  message when calling server side with SQL query or update calls.
+  
+
 AceQL C# Client SDK - Version 6.0 - 14-Nov-2020
 ------------------------------------------------
 
