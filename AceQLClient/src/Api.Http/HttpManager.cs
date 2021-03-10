@@ -238,20 +238,26 @@ namespace AceQL.Client.Src.Api.Http
 
             HttpResponseMessage response = null;
 
+            simpleTracer.Trace("Before await httpClient.PostAsync(theUrl, content).ConfigureAwait(false) call");
+
             if (!UseCancellationToken)
             {
-                response = await httpClient.PostAsync(theUrl, content);
+                response = await httpClient.PostAsync(theUrl, content).ConfigureAwait(false);
             }
             else
             {
-                response = await httpClient.PostAsync(theUrl, content, cancellationToken);
+                response = await httpClient.PostAsync(theUrl, content, cancellationToken).ConfigureAwait(false);
             }
+
+            simpleTracer.Trace("After await httpClient.PostAsync(theUrl, content).ConfigureAwait(false) call");
 
             this.httpStatusCode = response.StatusCode;
 
             // Allows a retry for 407, because can happen time to time with Web proxies 
             if (this.httpStatusCode.Equals(HttpStatusCode.ProxyAuthenticationRequired))
             {
+                simpleTracer.Trace("Before while (proxyAuthenticationCallCount < HttpRetryManager.ProxyAuthenticationCallLimit)");
+
                 while (proxyAuthenticationCallCount < HttpRetryManager.ProxyAuthenticationCallLimit)
                 {
                     proxyAuthenticationCallCount++;
@@ -262,6 +268,7 @@ namespace AceQL.Client.Src.Api.Http
                         proxyAuthenticationCallCount = 0;
                         return input;
                     }
+                    simpleTracer.Trace("this.httpStatusCode: " + this.httpStatusCode);
                 }
             }
 
@@ -291,12 +298,12 @@ namespace AceQL.Client.Src.Api.Http
 
                 var responseString = new StreamReader(stream).ReadToEnd();
 
-                 simpleTracer.Trace();
-                 simpleTracer.Trace("----------------------------------------");
-                 simpleTracer.Trace(url);
-                 simpleTracer.Trace(responseString);
+                simpleTracer.Trace();
                 simpleTracer.Trace("----------------------------------------");
-                
+                simpleTracer.Trace(url);
+                simpleTracer.Trace(responseString);
+                simpleTracer.Trace("----------------------------------------");
+
                 return responseString;
             }
         }

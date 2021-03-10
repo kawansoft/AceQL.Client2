@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30709.132
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AceQL.Client", "AceQLClient\AceQL.Client.csproj", "{934FBDFA-CA2B-468F-B703-4496AE81A0DD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AceQL.Client.Tests", "AceQL.Client.Tests\AceQL.Client.Tests.csproj", "{C54ED878-A2E0-4D0F-BCF9-9E1F2C1A2657}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AceQL.Client.Tests2", "AceQL.Client.Tests2\AceQL.Client.Tests2.csproj", "{F5D12D9C-B6F5-4560-8610-B7DE189C8849}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{934FBDFA-CA2B-468F-B703-4496AE81A0DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{934FBDFA-CA2B-468F-B703-4496AE81A0DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{934FBDFA-CA2B-468F-B703-4496AE81A0DD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C54ED878-A2E0-4D0F-BCF9-9E1F2C1A2657}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C54ED878-A2E0-4D0F-BCF9-9E1F2C1A2657}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C54ED878-A2E0-4D0F-BCF9-9E1F2C1A2657}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C54ED878-A2E0-4D0F-BCF9-9E1F2C1A2657}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5D12D9C-B6F5-4560-8610-B7DE189C8849}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5D12D9C-B6F5-4560-8610-B7DE189C8849}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5D12D9C-B6F5-4560-8610-B7DE189C8849}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5D12D9C-B6F5-4560-8610-B7DE189C8849}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
