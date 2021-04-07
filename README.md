@@ -5,7 +5,9 @@
 
 # AceQL HTTP 
 
-## C# Client SDK v6.1.1 - March 2021, 10
+## C# Client SDK v6.1.1 - User Guide 
+
+## March 2021, 10
 
 <img src="https://www.aceql.com/favicon.png" alt="AceQ HTTP Icon"/>
 
