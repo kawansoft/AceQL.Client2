@@ -23,7 +23,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AceQL.Client.Src.Api.Http
+namespace AceQL.Client.Api.Http
 {
     /// <summary>
     /// Class HttpRetryManager. Allows to define retry options. Fist implementation is for 407 retry. 

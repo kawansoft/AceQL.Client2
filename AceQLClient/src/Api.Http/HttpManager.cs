@@ -26,7 +26,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace AceQL.Client.Src.Api.Http
+namespace AceQL.Client.Api.Http
 {
     /// <summary>
     /// Class HttpManager. A wrapped HttpClient tool that van do everything

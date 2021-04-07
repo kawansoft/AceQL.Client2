@@ -25,7 +25,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AceQL.Client.Src.Api.Http
+namespace AceQL.Client.Api.Http
 {
     /// <summary>
     /// Class ConnectionStringDecoder. Allows to decode the elemeents of the connection string.

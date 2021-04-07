@@ -266,6 +266,32 @@
             Closes the connection to the remote database and closes the http session.
             </summary>
         </member>
+        <member name="T:AceQL.Client.Api.Http.ConnectionStringDecoder">
+            <summary>
+            Class ConnectionStringDecoder. Allows to decode the elemeents of the connection string.
+            </summary>
+        </member>
+        <member name="M:AceQL.Client.Api.Http.ConnectionStringDecoder.Decode(System.String)">
+            <summary>
+            Decodes the specified connection string.
+            </summary>
+            <param name="connectionString">The connection string.</param>
+            <exception cref="T:System.ArgumentException">connectionString does not contain a ; separator: " + connectionString</exception>
+            <exception cref="T:System.ArgumentException">connectionString element token does not contain a = separator: " + line</exception>
+            <exception cref="T:System.ArgumentException">Can not find left of = in connectionString element token. Please correct connection string: " + line</exception>
+            <exception cref="T:System.ArgumentException">Can not find right of = in connectionString element token. Please correct connection string: " + line</exception>
+        </member>
+        <member name="T:AceQL.Client.Api.Http.DefaultWebProxyCreator">
+            <summary>
+            Class DefaultWebProxyCreator. Allows to get the <see cref="P:System.Net.WebRequest.DefaultWebProxy"/> or <c>System.Net.WebRequest.GetSystemProxy()</c> proxy value to use. 
+            </summary>
+        </member>
+        <member name="M:AceQL.Client.Api.Http.DefaultWebProxyCreator.GetWebProxy">
+            <summary>
+            Gets the  the Default Or System proxy in use. Will return null if no Default/System proxy is in use.
+            </summary>
+            <returns>System.Net.IWebProxy.</returns>
+        </member>
         <member name="T:AceQL.Client.Api.Http.FormUploadStream">
             <summary>
             Allows filePath upload (Blobs) using streaming and supporting progress indicators
@@ -288,6 +314,187 @@
             <param name="useCancellationToken"></param>
             <param name="requestHeaders">The request headers to add to all requests.</param>
             <returns></returns>
+        </member>
+        <member name="T:AceQL.Client.Api.Http.HttpClientHandlerBuilderNew">
+            <summary>
+            Class HttpClientHandlerBuilder. Allows to build an HttpClientHandler.
+            </summary>
+        </member>
+        <member name="M:AceQL.Client.Api.Http.HttpClientHandlerBuilderNew.Build(System.String,System.Net.ICredentials,System.Boolean)">
+            <summary>
+            Builds an HttpClientHandler instance with proxy settings, if necessary. IWebProxy used is System.Net.WebRequest.DefaultWebProxy
+            </summary>
+            <param name="proxyUri">The URI of the web proxy to use.</param>
+            <param name="credentials">The credentials to use for an authenticated proxy. null if none.</param>
+            <param name="enableDefaultSystemAuthentication">if True ==> call HttpClientHandler.UseDefaultCredentials = true</param>
+            <returns>The HtpClientHandler.</returns>
+        </member>
+        <member name="T:AceQL.Client.Api.Http.HttpClientHandlerCreator">
+            <summary>
+            Class HttpClientHandlerCreator. HttpClientHandler creation to be used with HttpClient.
+            </summary>
+        </member>
+        <member name="M:AceQL.Client.Api.Http.HttpClientHandlerCreator.#ctor(System.Net.IWebProxy,System.Net.ICredentials,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:AceQL.Client.Api.Http.HttpClientHandlerCreator"/> class.
+            </summary>
+            <param name="webProxy">The proxy to use. If null, there is no proxy to use.</param>
+            <param name="credentials">The credentials. Can be null.</param>
+            <param name="enableDefaultSystemAuthentication">if set to <c>true</c> [enable default system authentication].</param>
+        </member>
+        <member name="M:AceQL.Client.Api.Http.HttpClientHandlerCreator.GetHttpClientHandler">
+            <summary>
+            Creates the HttpClientHandler instance with or without a web proxy.
+            </summary>
+            <returns>HttpClientHandler.</returns>
+        </member>
+        <member name="T:AceQL.Client.Api.Http.HttpManager">
+            <summary>
+            Class HttpManager. A wrapped HttpClient tool that van do everything
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Http.HttpManager.timeout">
+            <summary>
+            The timeout in milliseconds
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Http.HttpManager.httpStatusCode">
+            <summary>
+            The HTTP status code
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Http.HttpManager.httpClient">
+            <summary>
+            The HTTP client
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Http.HttpManager.proxy">
+            <summary>
+            The proxy. Is null if no Defaut/System proxy and no used defined proxy.
+            </summary>
+        </member>
+        <member name="M:AceQL.Client.Api.Http.HttpManager.#ctor(System.String,System.Net.ICredentials,System.Int32,System.Boolean,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            Initializes a new instance of the <see cref="T:AceQL.Client.Api.Http.HttpManager"/> class.
+            </summary>
+            <param name="proxyUri">The proxy URI.</param>
+            <param name="proxyCredentials">The proxy credentials.</param>
+            <param name="timeout">The timeout.</param>
+            <param name="enableDefaultSystemAuthentication">if set to <c>true</c> [enable default system authentication].</param>
+            <param name="requestHeaders">The request headers to add to all requests.</param>
+        </member>
+        <member name="M:AceQL.Client.Api.Http.HttpManager.BuildHttpClient(System.String,System.Net.ICredentials,System.Boolean,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            Builds the HTTP client.
+            </summary>
+            <param name="proxyUri">The proxy URI.</param>
+            <param name="proxyCredentials">The proxy credentials.</param>
+            <param name="enableDefaultSystemAuthentication">if set to <c>true</c> [enable default system authentication].</param>
+            <param name="requestHeaders">The request headers to add to all requests.</param>
+        </member>
+        <member name="M:AceQL.Client.Api.Http.HttpManager.AddRequestHeaders(System.Net.Http.HttpClient,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            Add request headers to the HttpClient instance.
+            </summary>
+            <param name="httpClient"></param>
+            <param name="requestHeaders"></param>
+        </member>
+        <member name="P:AceQL.Client.Api.Http.HttpManager.UseCancellationToken">
+            <summary>
+            Says it use has passed a CancellationToken
+            </summary>
+        </member>
+        <member name="P:AceQL.Client.Api.Http.HttpManager.HttpStatusCode">
+            <summary>
+            Gets the HTTP status code of the last HTTP call.
+            </summary>
+            <value>The HTTP status code.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.Http.HttpManager.Proxy">
+            <summary>
+            Gets or sets the proxy.
+            </summary>
+            <value>The proxy.</value>
+        </member>
+        <member name="M:AceQL.Client.Api.Http.HttpManager.ResetCancellationToken">
+            <summary>
+            To be call at end of each of each public aysnc(CancellationToken) calls to reset to false the usage of a CancellationToken with http calls
+            and some reader calls.
+            </summary>
+        </member>
+        <member name="M:AceQL.Client.Api.Http.HttpManager.SetCancellationToken(System.Threading.CancellationToken)">
+            <summary>
+            Sets the CancellationToken asked by user to pass for the current public xxxAsync() call api.
+            </summary>
+            <param name="cancellationToken">CancellationToken asked by user to pass for the current public xxxAsync() call api.</param>
+        </member>
+        <member name="M:AceQL.Client.Api.Http.HttpManager.CallWithGetReturnStreamAsync(System.String)">
+            <summary>
+            Calls the with get return stream.
+            </summary>
+            <param name="url">The URL.</param>
+            <returns>Stream.</returns>
+        </member>
+        <member name="M:AceQL.Client.Api.Http.HttpManager.CallWithPostAsync(System.Uri,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            Executes a POST with parameters and returns a Stream
+            </summary>
+            <param name="theUrl">The Url.</param>
+            <param name="parameters">The request parameters.</param>
+            <returns>Stream.</returns>
+            <exception cref="T:System.ArgumentNullException">
+            action is null!
+            or
+            postParameters is null!
+            </exception>
+        </member>
+        <member name="M:AceQL.Client.Api.Http.HttpManager.CallWithGetAsync(System.String)">
+            <summary>
+            Calls the with get.
+            </summary>
+            <param name="url">The URL.</param>
+            <returns>String.</returns>
+            <exception cref="T:System.ArgumentNullException">url is null!</exception>
+        </member>
+        <member name="M:AceQL.Client.Api.Http.HttpManager.SetSimpleTracer(AceQL.Client.Src.Api.Util.SimpleTracer)">
+            <summary>
+            Allowso the parent AceQLHttpApi to set the simple tracer.
+            </summary>
+            <param name="simpleTracer">The simple tracer.</param>
+        </member>
+        <member name="M:AceQL.Client.Api.Http.HttpManager.CallWithPostAsyncReturnString(System.Uri,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            Executes a POST with parameters and returns a Srring
+            </summary>
+            <param name="theUrl">The Url.</param>
+            <param name="parametersMap">The request parameters.</param>
+            <returns>Stream.</returns>
+            <exception cref="T:System.ArgumentNullException">
+            action is null!
+            or
+            postParameters is null!
+            </exception>
+        </member>
+        <member name="M:AceQL.Client.Api.Http.HttpManager.Dispose">
+            <summary>
+            Disposes the HttpClient 
+            </summary>
+        </member>
+        <member name="T:AceQL.Client.Api.Http.HttpRetryManager">
+            <summary>
+            Class HttpRetryManager. Allows to define retry options. Fist implementation is for 407 retry. 
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Http.HttpRetryManager.proxyAuthenticationCallLimit">
+            <summary>
+            The proxy authentication call limit. Defaults to one retry.
+            </summary>
+        </member>
+        <member name="P:AceQL.Client.Api.Http.HttpRetryManager.ProxyAuthenticationCallLimit">
+            <summary>
+            Gets or sets the proxy authentication call limit. This is the limit of retry when an HTTP call return 407
+            </summary>
+            <value>The proxy authentication call limit.</value>
         </member>
         <member name="T:AceQL.Client.Api.Http.UriWebProxy">
             <summary>
@@ -3170,6 +3377,76 @@
             The name of a table.
             </summary>
         </member>
+        <!-- Badly formed XML comment ignored for member "T:AceQL.Client.Api.ConnectionInfo" -->
+        <member name="M:AceQL.Client.Api.ConnectionInfo.#ctor(System.String,System.String,AceQL.Client.Api.PasswordAuthentication,System.Boolean,System.String,AceQL.Client.Api.PasswordAuthentication,System.Int32,System.Boolean,System.Collections.Generic.IDictionary{System.String,System.String})">
+            <summary>
+            Package protected constructor, Driver users can not instantiate the class. </summary>
+            <param name="url"> </param>
+            <param name="database"> </param>
+            <param name="authentication"> </param>
+            <param name="passwordIsSessionId"> </param>
+            <param name="proxyUri"> </param>
+            <param name="proxyAuthentication"> </param>
+            <param name="timeout"> </param>
+            <param name="gzipResult"> </param>
+            <param name="requestProperties"> </param>
+        </member>
+        <member name="P:AceQL.Client.Api.ConnectionInfo.Url">
+            <summary>
+            Gets the URL of the remote database
+            </summary>
+            <returns> the URL of the remote database </returns>
+        </member>
+        <member name="P:AceQL.Client.Api.ConnectionInfo.Database">
+            <summary>
+            Gets the remote database name
+            </summary>
+            <returns> the remote database name </returns>
+        </member>
+        <member name="P:AceQL.Client.Api.ConnectionInfo.Authentication">
+            <summary>
+            Gets the main authentication info against the AceQL server
+            </summary>
+            <returns> the main authentication info  </returns>
+        </member>
+        <member name="P:AceQL.Client.Api.ConnectionInfo.PasswordSessionId">
+            <summary>
+            Says if the password is an AceQL Session ID. Applies only to Professional Edition. </summary>
+            <returns> {@code true} if the password is an AceQL Session ID, else {@code false} </returns>
+        </member>
+        <member name="P:AceQL.Client.Api.ConnectionInfo.ProxyUri">
+            <summary>
+            Gets the Proxyuri in use. Returns null if no {@code Proxy} is in use.
+            </summary>
+            <returns> the Proxy in use. </returns>
+        </member>
+        <member name="P:AceQL.Client.Api.ConnectionInfo.ProxyAuthentication">
+            <summary>
+            Gets the Proxy username and password. Returns null if no Proxy is in use.
+            </summary>
+            <returns> the username and password. </returns>
+        </member>
+        <member name="P:AceQL.Client.Api.ConnectionInfo.GzipResult">
+            <summary>
+            Gets a boolean that say if the ResultSet is gzipped before download.
+            </summary>
+            <returns> true if the ResultSet is gzipped before download,
+                    else false</returns>
+        </member>
+        <member name="P:AceQL.Client.Api.ConnectionInfo.RequestProperties">
+            <summary>
+            Gets all the request properties that are set to the underlying
+            @code HttpURLConnection for each http call.
+            </summary>
+            <returns> the request properties that are set to the underlying
+            httpURLConnection for each http call. </returns>
+        </member>
+        <member name="P:AceQL.Client.Api.ConnectionInfo.Timeout">
+            <summary>
+            Gets the timeout.
+            </summary>
+            <value>The timeout.</value>
+        </member>
         <member name="T:AceQL.Client.Api.IsolationLevel">
             <summary>
             Specifies the transaction locking behavior for the remote connection.
@@ -3226,212 +3503,92 @@
             built-in function, or user-defined function.
             </summary>
         </member>
-        <member name="T:AceQL.Client.Src.Api.Http.ConnectionStringDecoder">
+        <member name="T:AceQL.Client.Api.PasswordAuthentication">
             <summary>
-            Class ConnectionStringDecoder. Allows to decode the elemeents of the connection string.
+            The class PasswordAuthentication is a data holder that is used by
+            Authenticator.  It is simply a repository for a user name and a password.
             </summary>
         </member>
-        <member name="M:AceQL.Client.Src.Api.Http.ConnectionStringDecoder.Decode(System.String)">
+        <member name="M:AceQL.Client.Api.PasswordAuthentication.#ctor(System.String,System.Char[])">
             <summary>
-            Decodes the specified connection string.
+            Creates a new {@code PasswordAuthentication} object from the given
+            user name and password.
+            
+            <para> Note that the given user password is cloned before it is stored in
+            the new PasswordAuthentication object.
+            
+            </para>
             </summary>
-            <param name="connectionString">The connection string.</param>
-            <exception cref="T:System.ArgumentException">connectionString does not contain a ; separator: " + connectionString</exception>
-            <exception cref="T:System.ArgumentException">connectionString element token does not contain a = separator: " + line</exception>
-            <exception cref="T:System.ArgumentException">Can not find left of = in connectionString element token. Please correct connection string: " + line</exception>
-            <exception cref="T:System.ArgumentException">Can not find right of = in connectionString element token. Please correct connection string: " + line</exception>
+            <param name="userName"> the user name </param>
+            <param name="password"> the user's password </param>
         </member>
-        <member name="T:AceQL.Client.Src.Api.Http.DefaultWebProxyCreator">
+        <member name="P:AceQL.Client.Api.PasswordAuthentication.UserName">
             <summary>
-            Class DefaultWebProxyCreator. Allows to get the <see cref="P:System.Net.WebRequest.DefaultWebProxy"/> or <c>System.Net.WebRequest.GetSystemProxy()</c> proxy value to use. 
+            Returns the user name.
             </summary>
+            <returns> the user name </returns>
         </member>
-        <member name="M:AceQL.Client.Src.Api.Http.DefaultWebProxyCreator.GetWebProxy">
+        <member name="P:AceQL.Client.Api.PasswordAuthentication.Password">
             <summary>
-            Gets the  the Default Or System proxy in use. Will return null if no Default/System proxy is in use.
+            Returns the user password.
+            
+            <para> Note that this method returns a reference to the password. It is
+            the caller's responsibility to zero out the password information after
+            it is no longer needed.
+            
+            </para>
             </summary>
-            <returns>System.Net.IWebProxy.</returns>
+            <returns> the password </returns>
         </member>
-        <member name="T:AceQL.Client.Src.Api.Http.HttpClientHandlerBuilderNew">
+        <member name="T:AceQL.Client.Tests.Test.ParametersOutIndex">
             <summary>
-            Class HttpClientHandlerBuilder. Allows to build an HttpClientHandler.
-            </summary>
-        </member>
-        <member name="M:AceQL.Client.Src.Api.Http.HttpClientHandlerBuilderNew.Build(System.String,System.Net.ICredentials,System.Boolean)">
-            <summary>
-            Builds an HttpClientHandler instance with proxy settings, if necessary. IWebProxy used is System.Net.WebRequest.DefaultWebProxy
-            </summary>
-            <param name="proxyUri">The URI of the web proxy to use.</param>
-            <param name="credentials">The credentials to use for an authenticated proxy. null if none.</param>
-            <param name="enableDefaultSystemAuthentication">if True ==> call HttpClientHandler.UseDefaultCredentials = true</param>
-            <returns>The HtpClientHandler.</returns>
-        </member>
-        <member name="T:AceQL.Client.Src.Api.Http.HttpClientHandlerCreator">
-            <summary>
-            Class HttpClientHandlerCreator. HttpClientHandler creation to be used with HttpClient.
+            Class for getting with JSON the out parameter indexes and values.
             </summary>
         </member>
-        <member name="M:AceQL.Client.Src.Api.Http.HttpClientHandlerCreator.#ctor(System.Net.IWebProxy,System.Net.ICredentials,System.Boolean)">
+        <member name="F:AceQL.Client.Tests.Test.ParametersOutIndex.parameterIndex">
             <summary>
-            Initializes a new instance of the <see cref="T:AceQL.Client.Src.Api.Http.HttpClientHandlerCreator"/> class.
-            </summary>
-            <param name="webProxy">The proxy to use. If null, there is no proxy to use.</param>
-            <param name="credentials">The credentials. Can be null.</param>
-            <param name="enableDefaultSystemAuthentication">if set to <c>true</c> [enable default system authentication].</param>
-        </member>
-        <member name="M:AceQL.Client.Src.Api.Http.HttpClientHandlerCreator.GetHttpClientHandler">
-            <summary>
-            Creates the HttpClientHandler instance with or without a web proxy.
-            </summary>
-            <returns>HttpClientHandler.</returns>
-        </member>
-        <member name="T:AceQL.Client.Src.Api.Http.HttpManager">
-            <summary>
-            Class HttpManager. A wrapped HttpClient tool that van do everything
+            The parameter name
             </summary>
         </member>
-        <member name="F:AceQL.Client.Src.Api.Http.HttpManager.timeout">
+        <member name="F:AceQL.Client.Tests.Test.ParametersOutIndex.theValue">
             <summary>
-            The timeout in milliseconds
+            The value
             </summary>
         </member>
-        <member name="F:AceQL.Client.Src.Api.Http.HttpManager.httpStatusCode">
+        <member name="P:AceQL.Client.Tests.Test.ParametersOutIndex.ParameterIndex">
             <summary>
-            The HTTP status code
+            Specifies the out parameter index.
             </summary>
         </member>
-        <member name="F:AceQL.Client.Src.Api.Http.HttpManager.httpClient">
+        <member name="P:AceQL.Client.Tests.Test.ParametersOutIndex.Value">
             <summary>
-            The HTTP client
+            Specifies the out parameter value.
             </summary>
         </member>
-        <member name="F:AceQL.Client.Src.Api.Http.HttpManager.proxy">
+        <member name="T:AceQL.Client.Tests.Test.ParametersOutName">
             <summary>
-            The proxy. Is null if no Defaut/System proxy and no used defined proxy.
+            Class for getting with JSON the out parameter names and values.
             </summary>
         </member>
-        <member name="M:AceQL.Client.Src.Api.Http.HttpManager.#ctor(System.String,System.Net.ICredentials,System.Int32,System.Boolean,System.Collections.Generic.Dictionary{System.String,System.String})">
+        <member name="F:AceQL.Client.Tests.Test.ParametersOutName.parameterName">
             <summary>
-            Initializes a new instance of the <see cref="T:AceQL.Client.Src.Api.Http.HttpManager"/> class.
-            </summary>
-            <param name="proxyUri">The proxy URI.</param>
-            <param name="proxyCredentials">The proxy credentials.</param>
-            <param name="timeout">The timeout.</param>
-            <param name="enableDefaultSystemAuthentication">if set to <c>true</c> [enable default system authentication].</param>
-            <param name="requestHeaders">The request headers to add to all requests.</param>
-        </member>
-        <member name="M:AceQL.Client.Src.Api.Http.HttpManager.BuildHttpClient(System.String,System.Net.ICredentials,System.Boolean,System.Collections.Generic.Dictionary{System.String,System.String})">
-            <summary>
-            Builds the HTTP client.
-            </summary>
-            <param name="proxyUri">The proxy URI.</param>
-            <param name="proxyCredentials">The proxy credentials.</param>
-            <param name="enableDefaultSystemAuthentication">if set to <c>true</c> [enable default system authentication].</param>
-            <param name="requestHeaders">The request headers to add to all requests.</param>
-        </member>
-        <member name="M:AceQL.Client.Src.Api.Http.HttpManager.AddRequestHeaders(System.Net.Http.HttpClient,System.Collections.Generic.Dictionary{System.String,System.String})">
-            <summary>
-            Add request headers to the HttpClient instance.
-            </summary>
-            <param name="httpClient"></param>
-            <param name="requestHeaders"></param>
-        </member>
-        <member name="P:AceQL.Client.Src.Api.Http.HttpManager.UseCancellationToken">
-            <summary>
-            Says it use has passed a CancellationToken
+            The parameter name
             </summary>
         </member>
-        <member name="P:AceQL.Client.Src.Api.Http.HttpManager.HttpStatusCode">
+        <member name="F:AceQL.Client.Tests.Test.ParametersOutName.theValue">
             <summary>
-            Gets the HTTP status code of the last HTTP call.
-            </summary>
-            <value>The HTTP status code.</value>
-        </member>
-        <member name="P:AceQL.Client.Src.Api.Http.HttpManager.Proxy">
-            <summary>
-            Gets or sets the proxy.
-            </summary>
-            <value>The proxy.</value>
-        </member>
-        <member name="M:AceQL.Client.Src.Api.Http.HttpManager.ResetCancellationToken">
-            <summary>
-            To be call at end of each of each public aysnc(CancellationToken) calls to reset to false the usage of a CancellationToken with http calls
-            and some reader calls.
+            The value
             </summary>
         </member>
-        <member name="M:AceQL.Client.Src.Api.Http.HttpManager.SetCancellationToken(System.Threading.CancellationToken)">
+        <member name="P:AceQL.Client.Tests.Test.ParametersOutName.ParameterName">
             <summary>
-            Sets the CancellationToken asked by user to pass for the current public xxxAsync() call api.
-            </summary>
-            <param name="cancellationToken">CancellationToken asked by user to pass for the current public xxxAsync() call api.</param>
-        </member>
-        <member name="M:AceQL.Client.Src.Api.Http.HttpManager.CallWithGetReturnStreamAsync(System.String)">
-            <summary>
-            Calls the with get return stream.
-            </summary>
-            <param name="url">The URL.</param>
-            <returns>Stream.</returns>
-        </member>
-        <member name="M:AceQL.Client.Src.Api.Http.HttpManager.CallWithPostAsync(System.Uri,System.Collections.Generic.Dictionary{System.String,System.String})">
-            <summary>
-            Executes a POST with parameters and returns a Stream
-            </summary>
-            <param name="theUrl">The Url.</param>
-            <param name="parameters">The request parameters.</param>
-            <returns>Stream.</returns>
-            <exception cref="T:System.ArgumentNullException">
-            action is null!
-            or
-            postParameters is null!
-            </exception>
-        </member>
-        <member name="M:AceQL.Client.Src.Api.Http.HttpManager.CallWithGetAsync(System.String)">
-            <summary>
-            Calls the with get.
-            </summary>
-            <param name="url">The URL.</param>
-            <returns>String.</returns>
-            <exception cref="T:System.ArgumentNullException">url is null!</exception>
-        </member>
-        <member name="M:AceQL.Client.Src.Api.Http.HttpManager.SetSimpleTracer(AceQL.Client.Src.Api.Util.SimpleTracer)">
-            <summary>
-            Allowso the parent AceQLHttpApi to set the simple tracer.
-            </summary>
-            <param name="simpleTracer">The simple tracer.</param>
-        </member>
-        <member name="M:AceQL.Client.Src.Api.Http.HttpManager.CallWithPostAsyncReturnString(System.Uri,System.Collections.Generic.Dictionary{System.String,System.String})">
-            <summary>
-            Executes a POST with parameters and returns a Srring
-            </summary>
-            <param name="theUrl">The Url.</param>
-            <param name="parametersMap">The request parameters.</param>
-            <returns>Stream.</returns>
-            <exception cref="T:System.ArgumentNullException">
-            action is null!
-            or
-            postParameters is null!
-            </exception>
-        </member>
-        <member name="M:AceQL.Client.Src.Api.Http.HttpManager.Dispose">
-            <summary>
-            Disposes the HttpClient 
+            Specifies the out parameter name.
             </summary>
         </member>
-        <member name="T:AceQL.Client.Src.Api.Http.HttpRetryManager">
+        <member name="P:AceQL.Client.Tests.Test.ParametersOutName.Value">
             <summary>
-            Class HttpRetryManager. Allows to define retry options. Fist implementation is for 407 retry. 
+            Specifies the out parameter value.
             </summary>
-        </member>
-        <member name="F:AceQL.Client.Src.Api.Http.HttpRetryManager.proxyAuthenticationCallLimit">
-            <summary>
-            The proxy authentication call limit. Defaults to one retry.
-            </summary>
-        </member>
-        <member name="P:AceQL.Client.Src.Api.Http.HttpRetryManager.ProxyAuthenticationCallLimit">
-            <summary>
-            Gets or sets the proxy authentication call limit. This is the limit of retry when an HTTP call return 407
-            </summary>
-            <value>The proxy authentication call limit.</value>
         </member>
         <member name="T:AceQL.Client.Src.Api.Util.SimpleTracer">
             <summary>
@@ -3541,56 +3698,6 @@
             Builds the key.
             </summary>
             <returns>The built key</returns>
-        </member>
-        <member name="T:AceQL.Client.Tests.Test.ParametersOutIndex">
-            <summary>
-            Class for getting with JSON the out parameter indexes and values.
-            </summary>
-        </member>
-        <member name="F:AceQL.Client.Tests.Test.ParametersOutIndex.parameterIndex">
-            <summary>
-            The parameter name
-            </summary>
-        </member>
-        <member name="F:AceQL.Client.Tests.Test.ParametersOutIndex.theValue">
-            <summary>
-            The value
-            </summary>
-        </member>
-        <member name="P:AceQL.Client.Tests.Test.ParametersOutIndex.ParameterIndex">
-            <summary>
-            Specifies the out parameter index.
-            </summary>
-        </member>
-        <member name="P:AceQL.Client.Tests.Test.ParametersOutIndex.Value">
-            <summary>
-            Specifies the out parameter value.
-            </summary>
-        </member>
-        <member name="T:AceQL.Client.Tests.Test.ParametersOutName">
-            <summary>
-            Class for getting with JSON the out parameter names and values.
-            </summary>
-        </member>
-        <member name="F:AceQL.Client.Tests.Test.ParametersOutName.parameterName">
-            <summary>
-            The parameter name
-            </summary>
-        </member>
-        <member name="F:AceQL.Client.Tests.Test.ParametersOutName.theValue">
-            <summary>
-            The value
-            </summary>
-        </member>
-        <member name="P:AceQL.Client.Tests.Test.ParametersOutName.ParameterName">
-            <summary>
-            Specifies the out parameter name.
-            </summary>
-        </member>
-        <member name="P:AceQL.Client.Tests.Test.ParametersOutName.Value">
-            <summary>
-            Specifies the out parameter value.
-            </summary>
         </member>
     </members>
 </doc>
