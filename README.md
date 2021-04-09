@@ -113,7 +113,7 @@ All requests are streamed:
 - Output requests (from the client side)   are streamed directly from the socket to the server to avoid buffering any content body
 - Input responses (for the client side)  are streamed directly from the socket to the server to efficiently read  the response body.
 
-Large content (query results, Blobs/Clobs, etc.) is transferred using files. It is never loaded in memory. Streaming techniques are always used to read and write this content.
+Large content (query results, BLOBs/CLOBs, etc.) is transferred using files. It is never loaded in memory. Streaming techniques are always used to read and write this content.
 
 ## Best practices for fast response time
 
