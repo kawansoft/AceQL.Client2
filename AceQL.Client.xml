@@ -3412,11 +3412,11 @@
         <member name="P:AceQL.Client.Api.ConnectionInfo.PasswordSessionId">
             <summary>
             Says if the password is an AceQL Session ID. Applies only to Professional Edition. </summary>
-            <returns> {@code true} if the password is an AceQL Session ID, else {@code false} </returns>
+            <returns> true if the password is an AceQL Session ID, else false </returns>
         </member>
         <member name="P:AceQL.Client.Api.ConnectionInfo.ProxyUri">
             <summary>
-            Gets the Proxyuri in use. Returns null if no {@code Proxy} is in use.
+            Gets the Proxyuri in use. Returns null if no Proxy is in use.
             </summary>
             <returns> the Proxy in use. </returns>
         </member>
@@ -3435,17 +3435,21 @@
         </member>
         <member name="P:AceQL.Client.Api.ConnectionInfo.RequestProperties">
             <summary>
-            Gets all the request properties that are set to the underlying
-            @code HttpURLConnection for each http call.
+            Gets all the request properties that are set
             </summary>
-            <returns> the request properties that are set to the underlying
-            httpURLConnection for each http call. </returns>
+            <returns> the request properties that are set </returns>
         </member>
         <member name="P:AceQL.Client.Api.ConnectionInfo.Timeout">
             <summary>
             Gets the timeout.
             </summary>
             <value>The timeout.</value>
+        </member>
+        <member name="M:AceQL.Client.Api.ConnectionInfo.ToString">
+            <summary>
+            Returns all Connection Info.
+            </summary>
+            <returns>All Connection Info.</returns>
         </member>
         <member name="T:AceQL.Client.Api.IsolationLevel">
             <summary>
@@ -3506,7 +3510,7 @@
         <member name="T:AceQL.Client.Api.PasswordAuthentication">
             <summary>
             The class PasswordAuthentication is a data holder that is used by
-            Authenticator.  It is simply a repository for a user name and a password.
+            Authenticator. It is simply a repository for a user name and a password.
             </summary>
         </member>
         <member name="M:AceQL.Client.Api.PasswordAuthentication.#ctor(System.String,System.Char[])">
