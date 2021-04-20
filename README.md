@@ -7,7 +7,7 @@
 
 ## C# Client SDK v6.1.1 - User Guide 
 
-## March 2021, 10
+## March 10, 2021
 
 <img src="https://www.aceql.com/img/AceQL-Schema-min.jpg" alt="AceQL Draw"/>
 
