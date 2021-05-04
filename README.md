@@ -430,8 +430,6 @@ Use from now on the `AceQLNullValue` class together with the `AceQLNullType` `en
 command.Parameters.Add(new AceQLParameter("@phone", new AceQLNullValue(AceQLNullType.VARCHAR)));
 ```
 
-No
-
 ## AceQLDataReader: getting queries result
 
 Let’s do a query on a remote database:
