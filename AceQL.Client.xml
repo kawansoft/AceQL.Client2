@@ -3170,6 +3170,99 @@
             The name of a table.
             </summary>
         </member>
+        <member name="T:AceQL.Client.Api.ConnectionInfo">
+            <summary>
+            Class ConnectionInfo. Contains all info about Connections 
+            </summary>
+        </member>
+        <member name="M:AceQL.Client.Api.ConnectionInfo.#ctor(System.String,System.String,System.String,System.Char[],System.String,System.String,System.Net.ICredentials,System.Boolean,System.Int32,System.Boolean,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:AceQL.Client.Api.ConnectionInfo"/> class.
+            </summary>
+            <param name="server">The server.</param>
+            <param name="database">The database.</param>
+            <param name="username">The username.</param>
+            <param name="password">The password.</param>
+            <param name="sessionId">The session identifier.</param>
+            <param name="proxyUri">The proxy URI.</param>
+            <param name="proxyCredentials">The proxy credentials.</param>
+            <param name="useCredentialCache">if set to <c>true</c> [use credential cache].</param>
+            <param name="timeout">The timeout.</param>
+            <param name="enableDefaultSystemAuthentication">if set to <c>true</c> [enable default system authentication].</param>
+            <param name="enableTrace">if set to <c>true</c> [enable trace].</param>
+        </member>
+        <member name="P:AceQL.Client.Api.ConnectionInfo.Server">
+            <summary>
+            Gets the server.
+            </summary>
+            <value>The server.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.ConnectionInfo.Database">
+            <summary>
+            Gets the database.
+            </summary>
+            <value>The database.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.ConnectionInfo.Username">
+            <summary>
+            Gets the username.
+            </summary>
+            <value>The username.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.ConnectionInfo.Password">
+            <summary>
+            Gets the password.
+            </summary>
+            <value>The password.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.ConnectionInfo.SessionId">
+            <summary>
+            Gets the session identifier.
+            </summary>
+            <value>The session identifier.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.ConnectionInfo.ProxyUri">
+            <summary>
+            Gets the proxy URI.
+            </summary>
+            <value>The proxy URI.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.ConnectionInfo.ProxyCredentials">
+            <summary>
+            Gets the proxy credentials.
+            </summary>
+            <value>The proxy credentials.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.ConnectionInfo.UseCredentialCache">
+            <summary>
+            Gets a value indicating whether [use credential cache].
+            </summary>
+            <value><c>true</c> if [use credential cache]; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.ConnectionInfo.Timeout">
+            <summary>
+            Gets the timeout.
+            </summary>
+            <value>The timeout.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.ConnectionInfo.EnableDefaultSystemAuthentication">
+            <summary>
+            Gets a value indicating whether [enable default system authentication].
+            </summary>
+            <value><c>true</c> if [enable default system authentication]; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.ConnectionInfo.EnableTrace">
+            <summary>
+            Gets a value indicating whether [enable trace].
+            </summary>
+            <value><c>true</c> if [enable trace]; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="M:AceQL.Client.Api.ConnectionInfo.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents this instance.
+            </summary>
+            <returns>A <see cref="T:System.String" /> that represents this instance.</returns>
+        </member>
         <member name="T:AceQL.Client.Api.IsolationLevel">
             <summary>
             Specifies the transaction locking behavior for the remote connection.
