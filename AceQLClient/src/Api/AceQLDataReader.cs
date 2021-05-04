@@ -37,7 +37,7 @@ namespace AceQL.Client.Api
     /// </summary>
     public class AceQLDataReader : IDisposable
     {
-        private static bool DEBUG;
+        private static bool DEBUG = false;
 
         /// <summary>
         /// The instance that does all http stuff
