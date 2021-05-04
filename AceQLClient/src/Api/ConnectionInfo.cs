@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-/*
+﻿/*
  * This file is part of AceQL JDBC Driver.
  * AceQL JDBC Driver: Remote JDBC access over HTTP with AceQL HTTP.
  * Copyright (C) 2021,  KawanSoft SAS
@@ -19,78 +17,75 @@
  * limitations under the License.
  */
 
+using System.Net;
+
 namespace AceQL.Client.Api
 {
-
     /// <summary>
-    /// Allows to get all the info set and passed when creating an SQL
-    /// Connection to the remote AceQL Server.
-    /// <br>
-    /// A {@code ConnectionInfo} instance is retrieved with the
-    /// <seealso cref="AceQLConnection.getConnectionInfo()"/> call: <br/>
-    /// 
-    /// // Casts the current Connection to get an AceQLConnection object
-    /// AceQLConnection aceqlConnection = (AceQLConnection) connection;
-    /// 
-    /// ConnectionInfo connectionInfo = aceqlConnection.getConnectionInfo();
-    /// Console.WriteLine("timeout : " + connectionInfo.getConnectTimeout());
-    /// Console.WriteLine("All Info: " + connectionInfo);
-    /// // Etc.
+    /// Class ConnectionInfo. Contains all info about Connections 
     /// </summary>
     public class ConnectionInfo
     {
 
-        private string url;
+        private string server;
         private string database;
-        private PasswordAuthentication authentication;
-        private bool passwordIsSessionId;
+        private string username;
+        private char[] password;
+        private string sessionId;
         private string proxyUri;
-        private PasswordAuthentication proxyAuthentication;
-
-        private int timeout = 0;
-        private bool gzipResult;
-        private IDictionary<string, string> requestProperties = new Dictionary<string, string>();
+        private ICredentials proxyCredentials;
+        private bool useCredentialCache;
+        private int timeout;
+        private bool enableDefaultSystemAuthentication;
+        private bool enableTrace;
 
         /// <summary>
-        /// Package protected constructor, Driver users can not instantiate the class. </summary>
-        /// <param name="url"> </param>
-        /// <param name="database"> </param>
-        /// <param name="authentication"> </param>
-        /// <param name="passwordIsSessionId"> </param>
-        /// <param name="proxyUri"> </param>
-        /// <param name="proxyAuthentication"> </param>
-        /// <param name="timeout"> </param>
-        /// <param name="gzipResult"> </param>
-        /// <param name="requestProperties"> </param>
-        internal ConnectionInfo(string url, string database, PasswordAuthentication authentication, bool passwordIsSessionId, string proxyUri, PasswordAuthentication proxyAuthentication, int timeout, bool gzipResult, IDictionary<string, string> requestProperties)
+        /// Initializes a new instance of the <see cref="ConnectionInfo"/> class.
+        /// </summary>
+        /// <param name="server">The server.</param>
+        /// <param name="database">The database.</param>
+        /// <param name="username">The username.</param>
+        /// <param name="password">The password.</param>
+        /// <param name="sessionId">The session identifier.</param>
+        /// <param name="proxyUri">The proxy URI.</param>
+        /// <param name="proxyCredentials">The proxy credentials.</param>
+        /// <param name="useCredentialCache">if set to <c>true</c> [use credential cache].</param>
+        /// <param name="timeout">The timeout.</param>
+        /// <param name="enableDefaultSystemAuthentication">if set to <c>true</c> [enable default system authentication].</param>
+        /// <param name="enableTrace">if set to <c>true</c> [enable trace].</param>
+        public ConnectionInfo(string server, string database, string username, char[] password, 
+            string sessionId, string proxyUri, ICredentials proxyCredentials, bool useCredentialCache, 
+            int timeout, bool enableDefaultSystemAuthentication, bool enableTrace) 
         {
-            this.url = url;
+            this.server = server;
             this.database = database;
-            this.authentication = authentication;
-            this.passwordIsSessionId = passwordIsSessionId;
+            this.username = username;
+            this.password = password;
+            this.sessionId = sessionId;
             this.proxyUri = proxyUri;
-            this.proxyAuthentication = proxyAuthentication;
+            this.proxyCredentials = proxyCredentials;
+            this.useCredentialCache = useCredentialCache;
             this.timeout = timeout;
-            this.gzipResult = gzipResult;
-            this.requestProperties = requestProperties;
+            this.enableDefaultSystemAuthentication = enableDefaultSystemAuthentication;
+            this.enableTrace = enableTrace;
         }
 
         /// <summary>
-        /// Gets the URL of the remote database
+        /// Gets the server.
         /// </summary>
-        /// <returns> the URL of the remote database </returns>
-        public virtual string Url
+        /// <value>The server.</value>
+        public virtual string Server
         {
             get
             {
-                return url;
+                return server;
             }
         }
 
         /// <summary>
-        /// Gets the remote database name
+        /// Gets the database.
         /// </summary>
-        /// <returns> the remote database name </returns>
+        /// <value>The database.</value>
         public virtual string Database
         {
             get
@@ -100,33 +95,45 @@ namespace AceQL.Client.Api
         }
 
         /// <summary>
-        /// Gets the main authentication info against the AceQL server
+        /// Gets the username.
         /// </summary>
-        /// <returns> the main authentication info  </returns>
-        public virtual PasswordAuthentication Authentication
+        /// <value>The username.</value>
+        public virtual string Username
         {
             get
             {
-                return authentication;
-            }
-        }
-
-
-        /// <summary>
-        /// Says if the password is an AceQL Session ID. Applies only to Professional Edition. </summary>
-        /// <returns> true if the password is an AceQL Session ID, else false </returns>
-        public virtual bool PasswordSessionId
-        {
-            get
-            {
-                return passwordIsSessionId;
+                return username;
             }
         }
 
         /// <summary>
-        /// Gets the Proxyuri in use. Returns null if no Proxy is in use.
+        /// Gets the password.
         /// </summary>
-        /// <returns> the Proxy in use. </returns>
+        /// <value>The password.</value>
+        public virtual char[] Password
+        {
+            get
+            {
+                return password;
+            }
+        }
+
+        /// <summary>
+        /// Gets the session identifier.
+        /// </summary>
+        /// <value>The session identifier.</value>
+        public virtual string SessionId
+        {
+            get
+            {
+                return sessionId;
+            }
+        }
+
+        /// <summary>
+        /// Gets the proxy URI.
+        /// </summary>
+        /// <value>The proxy URI.</value>
         public virtual string ProxyUri
         {
             get
@@ -136,44 +143,27 @@ namespace AceQL.Client.Api
         }
 
 
-
         /// <summary>
-        /// Gets the Proxy username and password. Returns null if no Proxy is in use.
+        /// Gets the proxy credentials.
         /// </summary>
-        /// <returns> the username and password. </returns>
-        public virtual PasswordAuthentication ProxyAuthentication
+        /// <value>The proxy credentials.</value>
+        public virtual ICredentials ProxyCredentials
         {
             get
             {
-                return proxyAuthentication;
+                return proxyCredentials;
             }
         }
 
-
-
         /// <summary>
-        /// Gets a boolean that say if the ResultSet is gzipped before download.
+        /// Gets a value indicating whether [use credential cache].
         /// </summary>
-        /// <returns> true if the ResultSet is gzipped before download,
-        ///         else false</returns>
-        public virtual bool GzipResult
+        /// <value><c>true</c> if [use credential cache]; otherwise, <c>false</c>.</value>
+        public virtual bool UseCredentialCache
         {
             get
             {
-                return gzipResult;
-            }
-        }
-
-
-        /// <summary>
-        /// Gets all the request properties that are set
-        /// </summary>
-        /// <returns> the request properties that are set </returns>
-        public virtual IDictionary<string, string> RequestProperties
-        {
-            get
-            {
-                return requestProperties;
+                return useCredentialCache;
             }
         }
 
@@ -181,18 +171,45 @@ namespace AceQL.Client.Api
         /// Gets the timeout.
         /// </summary>
         /// <value>The timeout.</value>
-        public int Timeout { get => timeout; }
-
-        /// <summary>
-        /// Returns all Connection Info.
-        /// </summary>
-        /// <returns>All Connection Info.</returns>
-        public override string ToString()
+        public virtual int Timeout
         {
-            return "ConnectionInfo [url=" + url + ", database=" + database + ", authentication=" + authentication + ", passwordIsSessionId=" + passwordIsSessionId + ", proxyUri=" + proxyUri + ", proxyAuthentication=" + proxyAuthentication + ", timeout=" + Timeout + ", gzipResult=" + gzipResult + ", requestProperties=" + requestProperties + "]";
+            get
+            {
+                return timeout;
+            }
+        }
+        /// <summary>
+        /// Gets a value indicating whether [enable default system authentication].
+        /// </summary>
+        /// <value><c>true</c> if [enable default system authentication]; otherwise, <c>false</c>.</value>
+        public virtual bool EnableDefaultSystemAuthentication
+        {
+            get
+            {
+                return enableDefaultSystemAuthentication;
+            }
+        }
+        /// <summary>
+        /// Gets a value indicating whether [enable trace].
+        /// </summary>
+        /// <value><c>true</c> if [enable trace]; otherwise, <c>false</c>.</value>
+        public virtual bool EnableTrace
+        {
+            get
+            {
+                return enableTrace;
+            }
         }
 
+        /// <summary>
+        /// Returns a <see cref="System.String" /> that represents this instance.
+        /// </summary>
+        /// <returns>A <see cref="System.String" /> that represents this instance.</returns>
+        public override string ToString()
+        {
+            return "ConnectionInfo [server=" + server + ", database=" + database + ", username=" + username + ", password=" + new string(password) + ", sessionId=" + sessionId + ", proxyUri=" + proxyUri + ", proxyCredentials=" + proxyCredentials + ", useCredentialCache=" + useCredentialCache + ", timeout=" + timeout + ", enableDefaultSystemAuthentication=" + enableDefaultSystemAuthentication + ", enableTrace=" + enableTrace + "]";
+        }
 
     }
-}
 
+}

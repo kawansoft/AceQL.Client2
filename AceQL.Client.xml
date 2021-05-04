@@ -3377,67 +3377,74 @@
             The name of a table.
             </summary>
         </member>
-        <!-- Badly formed XML comment ignored for member "T:AceQL.Client.Api.ConnectionInfo" -->
-        <member name="M:AceQL.Client.Api.ConnectionInfo.#ctor(System.String,System.String,AceQL.Client.Api.PasswordAuthentication,System.Boolean,System.String,AceQL.Client.Api.PasswordAuthentication,System.Int32,System.Boolean,System.Collections.Generic.IDictionary{System.String,System.String})">
+        <member name="T:AceQL.Client.Api.ConnectionInfo">
             <summary>
-            Package protected constructor, Driver users can not instantiate the class. </summary>
-            <param name="url"> </param>
-            <param name="database"> </param>
-            <param name="authentication"> </param>
-            <param name="passwordIsSessionId"> </param>
-            <param name="proxyUri"> </param>
-            <param name="proxyAuthentication"> </param>
-            <param name="timeout"> </param>
-            <param name="gzipResult"> </param>
-            <param name="requestProperties"> </param>
-        </member>
-        <member name="P:AceQL.Client.Api.ConnectionInfo.Url">
-            <summary>
-            Gets the URL of the remote database
+            Class ConnectionInfo. Contains all info about Connections 
             </summary>
-            <returns> the URL of the remote database </returns>
+        </member>
+        <member name="M:AceQL.Client.Api.ConnectionInfo.#ctor(System.String,System.String,System.String,System.Char[],System.String,System.String,System.Net.ICredentials,System.Boolean,System.Int32,System.Boolean,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:AceQL.Client.Api.ConnectionInfo"/> class.
+            </summary>
+            <param name="server">The server.</param>
+            <param name="database">The database.</param>
+            <param name="username">The username.</param>
+            <param name="password">The password.</param>
+            <param name="sessionId">The session identifier.</param>
+            <param name="proxyUri">The proxy URI.</param>
+            <param name="proxyCredentials">The proxy credentials.</param>
+            <param name="useCredentialCache">if set to <c>true</c> [use credential cache].</param>
+            <param name="timeout">The timeout.</param>
+            <param name="enableDefaultSystemAuthentication">if set to <c>true</c> [enable default system authentication].</param>
+            <param name="enableTrace">if set to <c>true</c> [enable trace].</param>
+        </member>
+        <member name="P:AceQL.Client.Api.ConnectionInfo.Server">
+            <summary>
+            Gets the server.
+            </summary>
+            <value>The server.</value>
         </member>
         <member name="P:AceQL.Client.Api.ConnectionInfo.Database">
             <summary>
-            Gets the remote database name
+            Gets the database.
             </summary>
-            <returns> the remote database name </returns>
+            <value>The database.</value>
         </member>
-        <member name="P:AceQL.Client.Api.ConnectionInfo.Authentication">
+        <member name="P:AceQL.Client.Api.ConnectionInfo.Username">
             <summary>
-            Gets the main authentication info against the AceQL server
+            Gets the username.
             </summary>
-            <returns> the main authentication info  </returns>
+            <value>The username.</value>
         </member>
-        <member name="P:AceQL.Client.Api.ConnectionInfo.PasswordSessionId">
+        <member name="P:AceQL.Client.Api.ConnectionInfo.Password">
             <summary>
-            Says if the password is an AceQL Session ID. Applies only to Professional Edition. </summary>
-            <returns> true if the password is an AceQL Session ID, else false </returns>
+            Gets the password.
+            </summary>
+            <value>The password.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.ConnectionInfo.SessionId">
+            <summary>
+            Gets the session identifier.
+            </summary>
+            <value>The session identifier.</value>
         </member>
         <member name="P:AceQL.Client.Api.ConnectionInfo.ProxyUri">
             <summary>
-            Gets the Proxyuri in use. Returns null if no Proxy is in use.
+            Gets the proxy URI.
             </summary>
-            <returns> the Proxy in use. </returns>
+            <value>The proxy URI.</value>
         </member>
-        <member name="P:AceQL.Client.Api.ConnectionInfo.ProxyAuthentication">
+        <member name="P:AceQL.Client.Api.ConnectionInfo.ProxyCredentials">
             <summary>
-            Gets the Proxy username and password. Returns null if no Proxy is in use.
+            Gets the proxy credentials.
             </summary>
-            <returns> the username and password. </returns>
+            <value>The proxy credentials.</value>
         </member>
-        <member name="P:AceQL.Client.Api.ConnectionInfo.GzipResult">
+        <member name="P:AceQL.Client.Api.ConnectionInfo.UseCredentialCache">
             <summary>
-            Gets a boolean that say if the ResultSet is gzipped before download.
+            Gets a value indicating whether [use credential cache].
             </summary>
-            <returns> true if the ResultSet is gzipped before download,
-                    else false</returns>
-        </member>
-        <member name="P:AceQL.Client.Api.ConnectionInfo.RequestProperties">
-            <summary>
-            Gets all the request properties that are set
-            </summary>
-            <returns> the request properties that are set </returns>
+            <value><c>true</c> if [use credential cache]; otherwise, <c>false</c>.</value>
         </member>
         <member name="P:AceQL.Client.Api.ConnectionInfo.Timeout">
             <summary>
@@ -3445,11 +3452,23 @@
             </summary>
             <value>The timeout.</value>
         </member>
+        <member name="P:AceQL.Client.Api.ConnectionInfo.EnableDefaultSystemAuthentication">
+            <summary>
+            Gets a value indicating whether [enable default system authentication].
+            </summary>
+            <value><c>true</c> if [enable default system authentication]; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.ConnectionInfo.EnableTrace">
+            <summary>
+            Gets a value indicating whether [enable trace].
+            </summary>
+            <value><c>true</c> if [enable trace]; otherwise, <c>false</c>.</value>
+        </member>
         <member name="M:AceQL.Client.Api.ConnectionInfo.ToString">
             <summary>
-            Returns all Connection Info.
+            Returns a <see cref="T:System.String" /> that represents this instance.
             </summary>
-            <returns>All Connection Info.</returns>
+            <returns>A <see cref="T:System.String" /> that represents this instance.</returns>
         </member>
         <member name="T:AceQL.Client.Api.IsolationLevel">
             <summary>
