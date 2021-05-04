@@ -258,8 +258,6 @@ namespace AceQL.Client.Api.Http
                     }
 
                     String connectionId = resultAnalyzer.GetValue("connection_id");
-
-                    //await simpleTracer.Trace("Ok. New Connection created: " + connectionId).ConfigureAwait(false);
                     simpleTracer.Trace("result: " + result);
 
                     this.url = server + "/session/" + sessionId + "/connection/"
@@ -282,7 +280,6 @@ namespace AceQL.Client.Api.Http
                     String result = await httpManager.CallWithPostAsyncReturnString(new Uri(theUrl), parametersMap).ConfigureAwait(false);
 
                     ConsoleEmul.WriteLine("result: " + result);
-                    //await simpleTracer.Trace("result: " + result).ConfigureAwait(false);
                     simpleTracer.Trace("result: " + result);
 
                     ResultAnalyzer resultAnalyzer = new ResultAnalyzer(result, HttpStatusCode);
@@ -299,13 +296,11 @@ namespace AceQL.Client.Api.Http
 
                     this.url = server + "/session/" + theSessionId + "/connection/" + theConnectionId + "/";
                     userLoginStore.SetSessionId(theSessionId);
-                    //await simpleTracer.Trace("OpenAsync url: " + this.url).ConfigureAwait(false);
                     simpleTracer.Trace("OpenAsync url: " + this.url);
                 }
             }
             catch (Exception exception)
             {
-                //await simpleTracer.Trace(exception.ToString()).ConfigureAwait(false);
                 simpleTracer.Trace(exception.ToString());
 
                 if (exception.GetType() == typeof(AceQLException))
@@ -442,7 +437,6 @@ namespace AceQL.Client.Api.Http
             }
             catch (Exception exception)
             {
-                //await simpleTracer.Trace(exception.ToString()).ConfigureAwait(false);
                 simpleTracer.Trace(exception.ToString());
 
                 if (exception.GetType() == typeof(AceQLException))
@@ -493,7 +487,6 @@ namespace AceQL.Client.Api.Http
             }
             catch (Exception exception)
             {
-                //await simpleTracer.Trace(exception.ToString()).ConfigureAwait(false);
                 simpleTracer.Trace(exception.ToString());
 
                 if (exception.GetType() == typeof(AceQLException))
@@ -582,7 +575,6 @@ namespace AceQL.Client.Api.Http
 
             Uri urlWithaction = new Uri(url + action);
 
-            //await simpleTracer.Trace("url: " + url + action);
             simpleTracer.Trace("url: " + url + action);
 
             foreach (KeyValuePair<String, String> p in parametersMap)
@@ -762,7 +754,6 @@ namespace AceQL.Client.Api.Http
             }
             catch (Exception exception)
             {
-                //await simpleTracer.Trace(exception.ToString()).ConfigureAwait(false);
                 simpleTracer.Trace(exception.ToString());
 
                 if (exception.GetType() == typeof(AceQLException))
@@ -807,7 +798,6 @@ namespace AceQL.Client.Api.Http
             }
             catch (Exception exception)
             {
-                //await simpleTracer.Trace(exception.ToString()).ConfigureAwait(false);
                 simpleTracer.Trace(exception.ToString());
 
                 if (exception.GetType() == typeof(AceQLException))
@@ -849,7 +839,6 @@ namespace AceQL.Client.Api.Http
             }
             catch (Exception exception)
             {
-                //await simpleTracer.Trace(exception.ToString()).ConfigureAwait(false);
                 simpleTracer.Trace(exception.ToString());
 
                 if (exception.GetType() == typeof(AceQLException))
@@ -908,7 +897,6 @@ namespace AceQL.Client.Api.Http
             }
             catch (Exception exception)
             {
-                //await simpleTracer.Trace(exception.ToString()).ConfigureAwait(false);
                 simpleTracer.Trace(exception.ToString());
 
                 if (exception.GetType() == typeof(AceQLException))
@@ -964,7 +952,6 @@ namespace AceQL.Client.Api.Http
             }
             catch (Exception exception)
             {
-                //await simpleTracer.Trace(exception.ToString()).ConfigureAwait(false);
                 simpleTracer.Trace(exception.ToString());
 
                 if (exception.GetType() == typeof(AceQLException))

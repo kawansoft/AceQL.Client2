@@ -52,8 +52,8 @@ namespace AceQL.Client.Api
 	public sealed class PasswordAuthentication
 	{
 
-		private string userName;
-		private char[] password;
+		private readonly string userName;
+		private readonly char[] password;
 
 		/// <summary>
 		/// Creates a new {@code PasswordAuthentication} object from the given

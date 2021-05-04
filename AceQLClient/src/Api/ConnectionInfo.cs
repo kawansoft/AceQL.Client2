@@ -27,17 +27,17 @@ namespace AceQL.Client.Api
     public class ConnectionInfo
     {
 
-        private string server;
-        private string database;
-        private string username;
-        private char[] password;
-        private string sessionId;
-        private string proxyUri;
-        private ICredentials proxyCredentials;
-        private bool useCredentialCache;
-        private int timeout;
-        private bool enableDefaultSystemAuthentication;
-        private bool enableTrace;
+        private readonly string server;
+        private readonly string database;
+        private readonly string username;
+        private readonly char[] password;
+        private readonly string sessionId;
+        private readonly string proxyUri;
+        private readonly ICredentials proxyCredentials;
+        private readonly bool useCredentialCache;
+        private readonly int timeout;
+        private readonly bool enableDefaultSystemAuthentication;
+        private readonly bool enableTrace;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ConnectionInfo"/> class.
