@@ -47,12 +47,12 @@ namespace AceQL.Client.Api.Http
         {
             get
             {
-                return credentials;       
+                return credentials;
             }
 
             set
             {
-                this.credentials = value; 
+                this.credentials = value;
             }
         }
 
@@ -71,7 +71,7 @@ namespace AceQL.Client.Api.Http
         /// </summary>
         /// <param name="host">
         ///   <see cref="T:System.Uri" /> of the host whose proxy usage is to be verified.</param>
-        /// <returns><c>true</c> if the proxy server should not be used for <paramref name="host" /> ; else <c>false</c>.</returns>
+        /// <returns><c>true</c> if the proxy server should not be used for <paramref name="host" />ï¿½; else <c>false</c>.</returns>
         public bool IsBypassed(Uri host)
         {
             return false;

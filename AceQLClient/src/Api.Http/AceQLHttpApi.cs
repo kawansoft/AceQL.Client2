@@ -46,25 +46,25 @@ namespace AceQL.Client.Api.Http
         /// <summary>
         /// The server URL
         /// </summary>
-        private String server ;
+        private String server;
 
         private string username;
 
         /// <summary>
         /// The database
         /// </summary>
-        private String database ;
-        private char[] password ;
+        private String database;
+        private char[] password;
 
         /// <summary>
         /// The Web Proxy Uri
         /// </summary>
-        private string proxyUri ;
+        private string proxyUri;
 
         /// <summary>
         /// The credentials
         /// </summary>
-        private ICredentials proxyCredentials ;
+        private ICredentials proxyCredentials;
         private bool useCredentialCache;
 
         /// <summary>
@@ -76,7 +76,7 @@ namespace AceQL.Client.Api.Http
         /// <summary>
         /// The request headers added by the user
         /// </summary>
-        private Dictionary<string, string> requestHeaders =  new Dictionary<string, string>();
+        private Dictionary<string, string> requestHeaders = new Dictionary<string, string>();
 
         /// <summary>
         /// The pretty printing
@@ -96,7 +96,7 @@ namespace AceQL.Client.Api.Http
         private string connectionString;
 
         private AceQLProgressIndicator progressIndicator;
-        private AceQLCredential credential ;
+        private AceQLCredential credential;
         private CancellationToken cancellationToken;
         private bool useCancellationToken;
 
@@ -110,7 +110,7 @@ namespace AceQL.Client.Api.Http
         /// </summary>
         internal AceQLHttpApi()
         {
-           
+
         }
 
         /// <summary>
@@ -190,7 +190,7 @@ namespace AceQL.Client.Api.Http
 
                 simpleTracer.Trace("connectionString: " + connectionString);
                 simpleTracer.Trace("DecodeConnectionString() done!");
-                
+
                 if (credential != null)
                 {
                     username = credential.Username;
@@ -681,7 +681,7 @@ namespace AceQL.Client.Api.Http
             FormUploadStream formUploadStream = new FormUploadStream();
             HttpResponseMessage response = null;
 
-            response = await formUploadStream.UploadAsync(theUrl, proxyUri, proxyCredentials, timeout, enableDefaultSystemAuthentication,  blobId, stream,
+            response = await formUploadStream.UploadAsync(theUrl, proxyUri, proxyCredentials, timeout, enableDefaultSystemAuthentication, blobId, stream,
                 totalLength, progressIndicator, cancellationToken, useCancellationToken, requestHeaders).ConfigureAwait(false);
 
             httpManager.HttpStatusCode = response.StatusCode;
@@ -844,7 +844,7 @@ namespace AceQL.Client.Api.Http
                         HttpStatusCode);
                 }
 
-                JdbcDatabaseMetaDataDto jdbcDatabaseMetaDataDto = JsonConvert.DeserializeObject<JdbcDatabaseMetaDataDto>(result); 
+                JdbcDatabaseMetaDataDto jdbcDatabaseMetaDataDto = JsonConvert.DeserializeObject<JdbcDatabaseMetaDataDto>(result);
                 return jdbcDatabaseMetaDataDto;
             }
             catch (Exception exception)
