@@ -117,6 +117,12 @@
             </summary>
             <value>The HTTP status code.</value>
         </member>
+        <member name="P:AceQL.Client.Api.Http.AceQLHttpApi.ConnectionInfo">
+            <summary>
+            Gets the connection information.
+            </summary>
+            <value>The connection information.</value>
+        </member>
         <member name="M:AceQL.Client.Api.Http.AceQLHttpApi.CallApiNoResultAsync(System.String,System.String)">
             <summary>
             Calls the API no result.
@@ -2436,6 +2442,12 @@
             Gets or sets a value indicating whether a failed request will be retried. The retry will be done once, without compression. Defaults to false.
             </summary>
             <value><c>true</c> if a failed request will be retried without compression.; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.AceQLConnection.ConnectionInfo">
+            <summary>
+            Gets the connection information.
+            </summary>
+            <value>The connection information.</value>
         </member>
         <member name="T:AceQL.Client.Api.AceQLCredential">
             <summary>

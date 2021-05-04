@@ -105,6 +105,8 @@ namespace AceQL.Client.Api.Http
         // The HttpManager that contains the HtttClient to use
         internal HttpManager httpManager;
 
+        private ConnectionInfo connectionInfo;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="AceQLHttpApi"/> class.
         /// </summary>
@@ -182,8 +184,12 @@ namespace AceQL.Client.Api.Http
                 this.useCredentialCache = connectionStringDecoder.UseCredentialCache;
                 this.timeout = connectionStringDecoder.Timeout;
                 this.enableDefaultSystemAuthentication = connectionStringDecoder.EnableDefaultSystemAuthentication;
+                bool enableTrace = connectionStringDecoder.EnableTrace;
 
-                if (connectionStringDecoder.EnableTrace)
+                ConnectionInfo connectionInfo = new ConnectionInfo(server, database, username, password, sessionId, proxyUri, proxyCredentials,
+                    useCredentialCache, timeout, enableDefaultSystemAuthentication, enableTrace);
+
+                if (enableTrace)
                 {
                     simpleTracer.SetTraceOn(true);
                 }
@@ -385,6 +391,12 @@ namespace AceQL.Client.Api.Http
         /// </summary>
         /// <value>The HTTP status code.</value>
         public HttpStatusCode HttpStatusCode { get => httpManager.HttpStatusCode; }
+
+        /// <summary>
+        /// Gets the connection information.
+        /// </summary>
+        /// <value>The connection information.</value>
+        public ConnectionInfo ConnectionInfo { get => connectionInfo; }
 
         internal string GetDatabase()
         {

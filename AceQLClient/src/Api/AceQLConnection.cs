@@ -37,6 +37,7 @@ namespace AceQL.Client.Api
     {
 
         internal AceQLHttpApi aceQLHttpApi;
+
         private bool connectionOpened;
 
         /// <summary>
@@ -500,6 +501,12 @@ namespace AceQL.Client.Api
         /// </summary>
         /// <value><c>true</c> if a failed request will be retried without compression.; otherwise, <c>false</c>.</value>
         public bool RequestRetry { get => requestRetry; set => requestRetry = value; }
+
+        /// <summary>
+        /// Gets the connection information.
+        /// </summary>
+        /// <value>The connection information.</value>
+        public ConnectionInfo ConnectionInfo { get => aceQLHttpApi.ConnectionInfo; }
     }
 
 }
