@@ -142,24 +142,24 @@ Here is the correspondence table for the common classes:
 
 | AceQL Client  <br />AceQL.Client.Api namespace | SQL Server Client  <br />System.Data.SqlClient namespace |
 | ---------------------------------------------- | :------------------------------------------------------- |
-| AceQLCommand                                   | SqlCommand                                               |
-| AceQLConnection                                | SqlConnection                                            |
-| AceQLCredential                                | SqlCredential                                            |
-| AceQLDataReader                                | SqlDataReader                                            |
-| AceQLParameter                                 | SqlParameter                                             |
-| AceQLParameterCollection                       | SqlParameterCollection                                   |
-| AceQLTransaction                               | SqlTransaction                                           |
-| CommandType                                    | CommandType                                              |
-| IsolationLevel                                 | IsolationLevel                                           |
-| ParameterDirection                             | ParameterDirection                                       |
+| `AceQLCommand`                                 | `SqlCommand`                                             |
+| `AceQLConnection`                              | `SqlConnection`                                          |
+| `AceQLCredential`                              | `SqlCredential`                                          |
+| `AceQLDataReader`                              | `SqlDataReader`                                          |
+| `AceQLParameter`                               | `SqlParameter`                                           |
+| `AceQLParameterCollection`                     | `SqlParameterCollection`                                 |
+| `AceQLTransaction`                             | `SqlTransaction`                                         |
+| `CommandType`                                  | `CommandType`                                            |
+| `IsolationLevel`                               | `IsolationLevel`                                         |
+| `ParameterDirection`                           | `ParameterDirection`                                     |
 
 The AceQL SDK exposes 2 specific public classes and 1 enumeration:
 
-| Name                            | Role                                                         |
-| ------------------------------- | ------------------------------------------------------------ |
-| AceQLException                  | Generic Exception implementation  for error reporting.  <br />See [Handling Exceptions](#handling-exceptions). |
-| AceQLNullType<br>AceQLNullValue | Enum and class that allows you to define the type of NULL  values for database updates.  See [Inserting NULL values](#inserting-null-values). |
-| AceQLProgressIndicator          | Allows you to  retrieve Blob upload progress as a percentage. See [Managing BLOB upload progress](#managing-blob-upload-progress). |
+| Name                                | Role                                                         |
+| ----------------------------------- | ------------------------------------------------------------ |
+| `AceQLException`                    | Generic Exception implementation  for error reporting.  <br />See [Handling Exceptions](#handling-exceptions). |
+| `AceQLNullType`<br>`AceQLNullValue` | Enum and class that allows you to define the type of NULL  values for database updates.  See [Inserting NULL values](#inserting-null-values). |
+| `AceQLProgressIndicator`            | Allows you to  retrieve Blob upload progress as a percentage. See [Managing BLOB upload progress](#managing-blob-upload-progress). |
 
 
 
