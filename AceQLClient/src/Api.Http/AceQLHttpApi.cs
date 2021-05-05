@@ -186,7 +186,7 @@ namespace AceQL.Client.Api.Http
                 this.enableDefaultSystemAuthentication = connectionStringDecoder.EnableDefaultSystemAuthentication;
                 bool enableTrace = connectionStringDecoder.EnableTrace;
 
-                ConnectionInfo connectionInfo = new ConnectionInfo(server, database, username, password, sessionId, proxyUri, proxyCredentials,
+                connectionInfo = new ConnectionInfo(connectionString, server, database, username, password, sessionId, proxyUri, proxyCredentials,
                     useCredentialCache, timeout, enableDefaultSystemAuthentication, enableTrace);
 
                 if (enableTrace)
@@ -379,7 +379,11 @@ namespace AceQL.Client.Api.Http
             }
         }
 
-        public string ConnectionString { get => connectionString; set => connectionString = value; }
+        /// <summary>
+        /// Gets the connection string.
+        /// </summary>
+        /// <value>The connection string.</value>
+        internal string ConnectionString { get => connectionString;}
 
         /// <summary>
         /// Says it use has passed a CancellationToken

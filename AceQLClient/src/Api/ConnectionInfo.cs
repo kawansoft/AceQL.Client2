@@ -22,11 +22,12 @@ using System.Net;
 namespace AceQL.Client.Api
 {
     /// <summary>
-    /// Class ConnectionInfo. Contains all info about Connections 
+    /// Class ConnectionInfo. Contains all info about Connections. Password cannot be retrieved for th esake of security.
     /// </summary>
     public class ConnectionInfo
     {
 
+        private readonly string connectionString;
         private readonly string server;
         private readonly string database;
         private readonly string username;
@@ -42,7 +43,8 @@ namespace AceQL.Client.Api
         /// <summary>
         /// Initializes a new instance of the <see cref="ConnectionInfo"/> class.
         /// </summary>
-        /// <param name="server">The server.</param>
+        /// <param name="connectionString">The connection string.</param>
+        /// <param name="server">The remote server.</param>
         /// <param name="database">The database.</param>
         /// <param name="username">The username.</param>
         /// <param name="password">The password.</param>
@@ -53,10 +55,11 @@ namespace AceQL.Client.Api
         /// <param name="timeout">The timeout.</param>
         /// <param name="enableDefaultSystemAuthentication">if set to <c>true</c> [enable default system authentication].</param>
         /// <param name="enableTrace">if set to <c>true</c> [enable trace].</param>
-        public ConnectionInfo(string server, string database, string username, char[] password, 
+        public ConnectionInfo(string connectionString, string server, string database, string username, char[] password, 
             string sessionId, string proxyUri, ICredentials proxyCredentials, bool useCredentialCache, 
             int timeout, bool enableDefaultSystemAuthentication, bool enableTrace) 
         {
+            this.connectionString = connectionString;
             this.server = server;
             this.database = database;
             this.username = username;
@@ -71,10 +74,16 @@ namespace AceQL.Client.Api
         }
 
         /// <summary>
-        /// Gets the server.
+        /// Gets the connection string.
         /// </summary>
-        /// <value>The server.</value>
-        public virtual string Server
+        /// <value>The connection string.</value>
+        public string ConnectionString => connectionString;
+
+        /// <summary>
+        /// Gets the remote server.
+        /// </summary>
+        /// <value>The remote server.</value>
+        public string Server
         {
             get
             {
@@ -86,7 +95,7 @@ namespace AceQL.Client.Api
         /// Gets the database.
         /// </summary>
         /// <value>The database.</value>
-        public virtual string Database
+        public string Database
         {
             get
             {
@@ -98,7 +107,7 @@ namespace AceQL.Client.Api
         /// Gets the username.
         /// </summary>
         /// <value>The username.</value>
-        public virtual string Username
+        public string Username
         {
             get
             {
@@ -106,23 +115,12 @@ namespace AceQL.Client.Api
             }
         }
 
-        /// <summary>
-        /// Gets the password.
-        /// </summary>
-        /// <value>The password.</value>
-        public virtual char[] Password
-        {
-            get
-            {
-                return password;
-            }
-        }
 
         /// <summary>
         /// Gets the session identifier.
         /// </summary>
         /// <value>The session identifier.</value>
-        public virtual string SessionId
+        public string SessionId
         {
             get
             {
@@ -134,7 +132,7 @@ namespace AceQL.Client.Api
         /// Gets the proxy URI.
         /// </summary>
         /// <value>The proxy URI.</value>
-        public virtual string ProxyUri
+        public string ProxyUri
         {
             get
             {
@@ -147,7 +145,7 @@ namespace AceQL.Client.Api
         /// Gets the proxy credentials.
         /// </summary>
         /// <value>The proxy credentials.</value>
-        public virtual ICredentials ProxyCredentials
+        public ICredentials ProxyCredentials
         {
             get
             {
@@ -159,7 +157,7 @@ namespace AceQL.Client.Api
         /// Gets a value indicating whether [use credential cache].
         /// </summary>
         /// <value><c>true</c> if [use credential cache]; otherwise, <c>false</c>.</value>
-        public virtual bool UseCredentialCache
+        public bool UseCredentialCache
         {
             get
             {
@@ -171,7 +169,7 @@ namespace AceQL.Client.Api
         /// Gets the timeout.
         /// </summary>
         /// <value>The timeout.</value>
-        public virtual int Timeout
+        public int Timeout
         {
             get
             {
@@ -182,7 +180,7 @@ namespace AceQL.Client.Api
         /// Gets a value indicating whether [enable default system authentication].
         /// </summary>
         /// <value><c>true</c> if [enable default system authentication]; otherwise, <c>false</c>.</value>
-        public virtual bool EnableDefaultSystemAuthentication
+        public bool EnableDefaultSystemAuthentication
         {
             get
             {
@@ -193,7 +191,7 @@ namespace AceQL.Client.Api
         /// Gets a value indicating whether [enable trace].
         /// </summary>
         /// <value><c>true</c> if [enable trace]; otherwise, <c>false</c>.</value>
-        public virtual bool EnableTrace
+        public bool EnableTrace
         {
             get
             {
@@ -201,13 +199,15 @@ namespace AceQL.Client.Api
             }
         }
 
+  
+
         /// <summary>
-        /// Returns a <see cref="System.String" /> that represents this instance.
+        /// Returns a <see cref="System.String" /> that represents this instance. ConnectionString is not returned and password is zeroed with *.
         /// </summary>
         /// <returns>A <see cref="System.String" /> that represents this instance.</returns>
         public override string ToString()
         {
-            return "ConnectionInfo [server=" + server + ", database=" + database + ", username=" + username + ", password=" + new string(password) + ", sessionId=" + sessionId + ", proxyUri=" + proxyUri + ", proxyCredentials=" + proxyCredentials + ", useCredentialCache=" + useCredentialCache + ", timeout=" + timeout + ", enableDefaultSystemAuthentication=" + enableDefaultSystemAuthentication + ", enableTrace=" + enableTrace + "]";
+            return "ConnectionInfo [server=" + server + ", database=" + database + ", username=" + username + ", password=********" + ", sessionId=" + sessionId + ", proxyUri=" + proxyUri + ", proxyCredentials=" + proxyCredentials + ", useCredentialCache=" + useCredentialCache + ", timeout=" + timeout + ", enableDefaultSystemAuthentication=" + enableDefaultSystemAuthentication + ", enableTrace=" + enableTrace + "]";
         }
 
     }

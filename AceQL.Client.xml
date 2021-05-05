@@ -106,6 +106,12 @@
             The timeout in milliseconds
             </summary>
         </member>
+        <member name="P:AceQL.Client.Api.Http.AceQLHttpApi.ConnectionString">
+            <summary>
+            Gets the connection string.
+            </summary>
+            <value>The connection string.</value>
+        </member>
         <member name="P:AceQL.Client.Api.Http.AceQLHttpApi.UseCancellationToken">
             <summary>
             Says it use has passed a CancellationToken
@@ -2232,7 +2238,7 @@
         </member>
         <member name="F:AceQL.Client.Api.AceQLConnection.requestRetry">
             <summary>
-            The request retry/
+            The request retry. Defaults to True.
             </summary>
         </member>
         <member name="M:AceQL.Client.Api.AceQLConnection.#ctor">
@@ -2405,32 +2411,6 @@
             </summary>
             <param name="webProxy">The default web proxy that will be used.</param>
         </member>
-        <member name="P:AceQL.Client.Api.AceQLConnection.ConnectionString">
-            <summary>
-            Gets or sets the connection string used to connect to the remote database.
-            </summary>
-            <value>The connection string used to connect to the remote database.</value>
-        </member>
-        <member name="P:AceQL.Client.Api.AceQLConnection.Database">
-            <summary>
-            Gets the current database in use.
-            </summary>
-            <value>The current database in use.</value>
-        </member>
-        <member name="P:AceQL.Client.Api.AceQLConnection.GzipResult">
-            <summary>
-            Gets or sets a value indicating whether SQL result sets are returned compressed with the GZIP filePath format
-            before download. Defaults to true.
-            </summary>
-            <value>True if SQL result sets are returned compressed with the GZIP filePath format
-            before download.</value>
-        </member>
-        <member name="P:AceQL.Client.Api.AceQLConnection.ConnectionTimeout">
-            <summary>
-            Gets the time to wait in milliseconds while trying to establish a connection before terminating the attempt and generating an error.
-            If value is 0, <see cref="T:System.Net.Http.HttpClient"/> default will value be used.
-            </summary>
-        </member>
         <member name="P:AceQL.Client.Api.AceQLConnection.Credential">
             <summary>
             Gets or sets the <see cref="T:AceQL.Client.Api.AceQLCredential"/> object for this connection. 
@@ -2439,7 +2419,7 @@
         </member>
         <member name="P:AceQL.Client.Api.AceQLConnection.RequestRetry">
             <summary>
-            Gets or sets a value indicating whether a failed request will be retried. The retry will be done once, without compression. Defaults to false.
+            Gets or sets a value indicating whether a failed request will be retried. The retry will be done once, without compression. Defaults to true.
             </summary>
             <value><c>true</c> if a failed request will be retried without compression.; otherwise, <c>false</c>.</value>
         </member>
@@ -3391,14 +3371,15 @@
         </member>
         <member name="T:AceQL.Client.Api.ConnectionInfo">
             <summary>
-            Class ConnectionInfo. Contains all info about Connections 
+            Class ConnectionInfo. Contains all info about Connections. Password cannot be retrieved for th esake of security.
             </summary>
         </member>
-        <member name="M:AceQL.Client.Api.ConnectionInfo.#ctor(System.String,System.String,System.String,System.Char[],System.String,System.String,System.Net.ICredentials,System.Boolean,System.Int32,System.Boolean,System.Boolean)">
+        <member name="M:AceQL.Client.Api.ConnectionInfo.#ctor(System.String,System.String,System.String,System.String,System.Char[],System.String,System.String,System.Net.ICredentials,System.Boolean,System.Int32,System.Boolean,System.Boolean)">
             <summary>
             Initializes a new instance of the <see cref="T:AceQL.Client.Api.ConnectionInfo"/> class.
             </summary>
-            <param name="server">The server.</param>
+            <param name="connectionString">The connection string.</param>
+            <param name="server">The remote server.</param>
             <param name="database">The database.</param>
             <param name="username">The username.</param>
             <param name="password">The password.</param>
@@ -3410,11 +3391,17 @@
             <param name="enableDefaultSystemAuthentication">if set to <c>true</c> [enable default system authentication].</param>
             <param name="enableTrace">if set to <c>true</c> [enable trace].</param>
         </member>
+        <member name="P:AceQL.Client.Api.ConnectionInfo.ConnectionString">
+            <summary>
+            Gets the connection string.
+            </summary>
+            <value>The connection string.</value>
+        </member>
         <member name="P:AceQL.Client.Api.ConnectionInfo.Server">
             <summary>
-            Gets the server.
+            Gets the remote server.
             </summary>
-            <value>The server.</value>
+            <value>The remote server.</value>
         </member>
         <member name="P:AceQL.Client.Api.ConnectionInfo.Database">
             <summary>
@@ -3427,12 +3414,6 @@
             Gets the username.
             </summary>
             <value>The username.</value>
-        </member>
-        <member name="P:AceQL.Client.Api.ConnectionInfo.Password">
-            <summary>
-            Gets the password.
-            </summary>
-            <value>The password.</value>
         </member>
         <member name="P:AceQL.Client.Api.ConnectionInfo.SessionId">
             <summary>
@@ -3478,7 +3459,7 @@
         </member>
         <member name="M:AceQL.Client.Api.ConnectionInfo.ToString">
             <summary>
-            Returns a <see cref="T:System.String" /> that represents this instance.
+            Returns a <see cref="T:System.String" /> that represents this instance. ConnectionString is not returned and password is zeroed with *.
             </summary>
             <returns>A <see cref="T:System.String" /> that represents this instance.</returns>
         </member>

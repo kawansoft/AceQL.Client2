@@ -157,7 +157,7 @@ namespace AceQL.Client.Samples
 
             await connection.OpenAsync();
 
-            AceQLConsole.WriteLine("ConnectionString: " + connection.ConnectionString);
+            AceQLConsole.WriteLine("ConnectionString: " + connection.ConnectionInfo.ConnectionString);
             AceQLConsole.WriteLine();
             AceQLConsole.WriteLine("AceQLConnection.GetClientVersion(): " + AceQLConnection.GetClientVersion());
             AceQLConsole.WriteLine("AceQLConnection.GetServerVersion(): " + await connection.GetServerVersionAsync());
