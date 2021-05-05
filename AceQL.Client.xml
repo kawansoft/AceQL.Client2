@@ -3387,7 +3387,7 @@
             <param name="proxyUri">The proxy URI.</param>
             <param name="proxyCredentials">The proxy credentials.</param>
             <param name="useCredentialCache">if set to <c>true</c> use credential cache.</param>
-            <param name="timeout">The timeout.</param>
+            <param name="timeout">The seconds to wait before the request times out.</param>
             <param name="enableDefaultSystemAuthentication">if set to <c>true</c> enable default system authentication.</param>
             <param name="gzipResult">if set to <c>true</c> Result Sets will be gzipped on server side.</param>
             <param name="enableTrace">if set to <c>true</c> trace will be enabled.</param>

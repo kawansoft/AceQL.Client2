@@ -104,6 +104,7 @@ namespace AceQL.Client.Tests
             AceQLConsole.WriteLine("aceQLConnection.GetServerVersion(): " + await connection.GetServerVersionAsync());
             AceQLConsole.WriteLine("AceQL local folder: ");
             AceQLConsole.WriteLine(AceQLConnection.GetAceQLLocalFolder());
+            AceQLConsole.WriteLine("ConnectionInfo: " + connection.ConnectionInfo);
 
             //AceQLTransaction transaction = await connection.BeginTransactionAsync();
             //await transaction.CommitAsync();
