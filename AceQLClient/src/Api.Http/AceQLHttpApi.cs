@@ -94,7 +94,7 @@ namespace AceQL.Client.Api.Http
         /// </summary>
         private string url;
 
-        private string connectionString;
+        private readonly string connectionString;
 
         private AceQLProgressIndicator progressIndicator;
         private AceQLCredential credential ;
