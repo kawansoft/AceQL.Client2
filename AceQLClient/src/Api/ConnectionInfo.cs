@@ -22,7 +22,7 @@ using System.Net;
 namespace AceQL.Client.Api
 {
     /// <summary>
-    /// Class ConnectionInfo. Contains all info about Connections. Password cannot be retrieved for th esake of security.
+    /// Class ConnectionInfo. Contains all info about Connections. Password cannot be retrieved for the sake of security.
     /// </summary>
     public class ConnectionInfo
     {

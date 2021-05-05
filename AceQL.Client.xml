@@ -3371,7 +3371,7 @@
         </member>
         <member name="T:AceQL.Client.Api.ConnectionInfo">
             <summary>
-            Class ConnectionInfo. Contains all info about Connections. Password cannot be retrieved for th esake of security.
+            Class ConnectionInfo. Contains all info about Connections. Password cannot be retrieved for the sake of security.
             </summary>
         </member>
         <member name="M:AceQL.Client.Api.ConnectionInfo.#ctor(System.String,System.String,System.String,System.String,System.Boolean,System.String,System.String,System.Net.ICredentials,System.Boolean,System.Int32,System.Boolean,System.Boolean,System.Boolean)">
