@@ -15,7 +15,8 @@
     <FileVersion>6.2.0.0</FileVersion>
     <Version>6.2</Version>
     <Authors>KawanSoft</Authors>
-    <PackageReleaseNotes>The new class ConnectionInfo contains all connection properties.</PackageReleaseNotes>
+    <PackageReleaseNotes>The new class ConnectionInfo holds most connection properties in order to lighten the main AceQLConnection class.
+</PackageReleaseNotes>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageTags>SQL over http remote jdbc cloud database Xamarin</PackageTags>
     <Product>AceQL.Client</Product>
