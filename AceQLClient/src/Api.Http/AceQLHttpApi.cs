@@ -55,6 +55,7 @@ namespace AceQL.Client.Api.Http
         /// </summary>
         private String database ;
         private char[] password ;
+        private bool isNTLM;
 
         /// <summary>
         /// The Web Proxy Uri
@@ -178,6 +179,7 @@ namespace AceQL.Client.Api.Http
                 this.database = connectionStringDecoder.Database;
                 this.username = connectionStringDecoder.Username;
                 this.password = connectionStringDecoder.Password;
+                this.isNTLM = connectionStringDecoder.IsNTLM;
                 sessionId = connectionStringDecoder.SessionId;
                 this.proxyUri = connectionStringDecoder.ProxyUri;
                 this.proxyCredentials = connectionStringDecoder.ProxyCredentials;
@@ -185,9 +187,10 @@ namespace AceQL.Client.Api.Http
                 this.timeout = connectionStringDecoder.Timeout;
                 this.enableDefaultSystemAuthentication = connectionStringDecoder.EnableDefaultSystemAuthentication;
                 bool enableTrace = connectionStringDecoder.EnableTrace;
+                this.gzipResult = connectionStringDecoder.GzipResult;
 
-                connectionInfo = new ConnectionInfo(connectionString, server, database, username, password, sessionId, proxyUri, proxyCredentials,
-                    useCredentialCache, timeout, enableDefaultSystemAuthentication, enableTrace);
+                connectionInfo = new ConnectionInfo(connectionString, server, database, username, isNTLM, sessionId, proxyUri, proxyCredentials,
+                    useCredentialCache, timeout, enableDefaultSystemAuthentication, gzipResult, enableTrace);
 
                 if (enableTrace)
                 {

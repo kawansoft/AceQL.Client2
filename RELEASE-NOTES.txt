@@ -25,7 +25,8 @@ What's New:
   ConnectionInfo class: ConnectionString, Database, GzipResult, 
   ConnectionTimeout. Values are now accessible via the new property
   AceQLConnection.ConnectionInfo. 
-- AceQLConnection.requestRetry defaults now to true.
+- AceQLConnection.requestRetry defaults now to true:
+  Requests are automatically retried once in case of HTTP problem.
 
 
 AceQL C# Client SDK - Version 6.1.1 - 10-Mar-2021

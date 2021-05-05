@@ -15,7 +15,7 @@
     <FileVersion>6.2.0.0</FileVersion>
     <Version>6.2</Version>
     <Authors>KawanSoft</Authors>
-    <PackageReleaseNotes>Server calls could hang on HTTP POST calls. This has been fixed.</PackageReleaseNotes>
+    <PackageReleaseNotes>The new class ConnectionInfo contains all connection properties.</PackageReleaseNotes>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageTags>SQL over http remote jdbc cloud database Xamarin</PackageTags>
     <Product>AceQL.Client</Product>

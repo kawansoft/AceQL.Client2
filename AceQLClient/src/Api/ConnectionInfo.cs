@@ -31,7 +31,7 @@ namespace AceQL.Client.Api
         private readonly string server;
         private readonly string database;
         private readonly string username;
-        private readonly char[] password;
+        private readonly bool isNTLM;
         private readonly string sessionId;
         private readonly string proxyUri;
         private readonly ICredentials proxyCredentials;
@@ -39,44 +39,48 @@ namespace AceQL.Client.Api
         private readonly int timeout;
         private readonly bool enableDefaultSystemAuthentication;
         private readonly bool enableTrace;
+        private readonly bool gzipResult;
+
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ConnectionInfo"/> class.
         /// </summary>
         /// <param name="connectionString">The connection string.</param>
-        /// <param name="server">The remote server.</param>
-        /// <param name="database">The database.</param>
+        /// <param name="server">The remote server to connect on.</param>
+        /// <param name="database">The current remote database in use.</param>
         /// <param name="username">The username.</param>
-        /// <param name="password">The password.</param>
-        /// <param name="sessionId">The session identifier.</param>
+        /// <param name="isNTLM">if set to <c>true</c> [is NTLM].</param>
+        /// <param name="sessionId">The AceQL Server Session ID (will replace the password).</param>
         /// <param name="proxyUri">The proxy URI.</param>
         /// <param name="proxyCredentials">The proxy credentials.</param>
-        /// <param name="useCredentialCache">if set to <c>true</c> [use credential cache].</param>
+        /// <param name="useCredentialCache">if set to <c>true</c> use credential cache.</param>
         /// <param name="timeout">The timeout.</param>
-        /// <param name="enableDefaultSystemAuthentication">if set to <c>true</c> [enable default system authentication].</param>
-        /// <param name="enableTrace">if set to <c>true</c> [enable trace].</param>
-        public ConnectionInfo(string connectionString, string server, string database, string username, char[] password, 
-            string sessionId, string proxyUri, ICredentials proxyCredentials, bool useCredentialCache, 
-            int timeout, bool enableDefaultSystemAuthentication, bool enableTrace) 
+        /// <param name="enableDefaultSystemAuthentication">if set to <c>true</c> enable default system authentication.</param>
+        /// <param name="gzipResult">if set to <c>true</c> Result Sets will be gzipped on server side.</param>
+        /// <param name="enableTrace">if set to <c>true</c> trace will be enabled.</param>
+        internal ConnectionInfo(string connectionString, string server, string database, string username, bool isNTLM,
+            string sessionId, string proxyUri, ICredentials proxyCredentials, bool useCredentialCache,
+            int timeout, bool enableDefaultSystemAuthentication, bool gzipResult, bool enableTrace)
         {
             this.connectionString = connectionString;
             this.server = server;
             this.database = database;
             this.username = username;
-            this.password = password;
+            this.isNTLM = isNTLM;
             this.sessionId = sessionId;
             this.proxyUri = proxyUri;
             this.proxyCredentials = proxyCredentials;
             this.useCredentialCache = useCredentialCache;
             this.timeout = timeout;
             this.enableDefaultSystemAuthentication = enableDefaultSystemAuthentication;
+            this.gzipResult = gzipResult;
             this.enableTrace = enableTrace;
         }
 
         /// <summary>
-        /// Gets the connection string.
+        /// Gets or the connection string used to connect to the remote database.
         /// </summary>
-        /// <value>The connection string.</value>
+        /// <value>The connection string used to connect to the remote database.</value>
         public string ConnectionString => connectionString;
 
         /// <summary>
@@ -92,9 +96,9 @@ namespace AceQL.Client.Api
         }
 
         /// <summary>
-        /// Gets the database.
+        /// Gets the current remote database in use.
         /// </summary>
-        /// <value>The database.</value>
+        /// <value>The current remote database in use.</value>
         public string Database
         {
             get
@@ -115,11 +119,16 @@ namespace AceQL.Client.Api
             }
         }
 
+        /// <summary>
+        /// Says if NTLM is in use.
+        /// </summary>
+        /// <value><c>true</c> if NTLM is n use; otherwise, <c>false</c>.</value>
+        public bool IsNTLM => isNTLM;
 
         /// <summary>
-        /// Gets the session identifier.
+        /// Gets the AceQL Server Session ID.
         /// </summary>
-        /// <value>The session identifier.</value>
+        /// <value>The AceQL Server Session ID.</value>
         public string SessionId
         {
             get
@@ -154,9 +163,9 @@ namespace AceQL.Client.Api
         }
 
         /// <summary>
-        /// Gets a value indicating whether [use credential cache].
+        /// Gets a value indicating whether the credential cache is used.
         /// </summary>
-        /// <value><c>true</c> if [use credential cache]; otherwise, <c>false</c>.</value>
+        /// <value><c>true</c> if the credential cache is used; otherwise, <c>false</c>.</value>
         public bool UseCredentialCache
         {
             get
@@ -166,9 +175,9 @@ namespace AceQL.Client.Api
         }
 
         /// <summary>
-        /// Gets the timeout.
+        /// Gets the time to wait in milliseconds while trying to establish a connection before terminating the attempt and generating an error.
+        /// If value is 0, <see cref="System.Net.Http.HttpClient"/> default will value be used.
         /// </summary>
-        /// <value>The timeout.</value>
         public int Timeout
         {
             get
@@ -177,9 +186,9 @@ namespace AceQL.Client.Api
             }
         }
         /// <summary>
-        /// Gets a value indicating whether [enable default system authentication].
+        /// Gets a value indicating whether default system authentication is enabled.
         /// </summary>
-        /// <value><c>true</c> if [enable default system authentication]; otherwise, <c>false</c>.</value>
+        /// <value><c>true</c> if default system authentication is enabled; otherwise, <c>false</c>.</value>
         public bool EnableDefaultSystemAuthentication
         {
             get
@@ -187,10 +196,19 @@ namespace AceQL.Client.Api
                 return enableDefaultSystemAuthentication;
             }
         }
+
         /// <summary>
-        /// Gets a value indicating whether [enable trace].
+        /// Gets the value indicating whether SQL result sets are returned compressed with the GZIP filePath format
+        /// before download. Defaults to true.
         /// </summary>
-        /// <value><c>true</c> if [enable trace]; otherwise, <c>false</c>.</value>
+        /// <value>True if SQL result sets are returned compressed with the GZIP filePath format
+        /// before download.</value>
+        public bool GzipResult => gzipResult;
+
+        /// <summary>
+        /// Gets a value indicating whether trace is enabled
+        /// </summary>
+        /// <value><c>true</c> if trace is enabled; otherwise, <c>false</c>.</value>
         public bool EnableTrace
         {
             get
@@ -199,7 +217,6 @@ namespace AceQL.Client.Api
             }
         }
 
-  
 
         /// <summary>
         /// Returns a <see cref="System.String" /> that represents this instance. ConnectionString is not returned and password is zeroed with *.
@@ -207,7 +224,7 @@ namespace AceQL.Client.Api
         /// <returns>A <see cref="System.String" /> that represents this instance.</returns>
         public override string ToString()
         {
-            return "ConnectionInfo [server=" + server + ", database=" + database + ", username=" + username + ", password=********" + ", sessionId=" + sessionId + ", proxyUri=" + proxyUri + ", proxyCredentials=" + proxyCredentials + ", useCredentialCache=" + useCredentialCache + ", timeout=" + timeout + ", enableDefaultSystemAuthentication=" + enableDefaultSystemAuthentication + ", enableTrace=" + enableTrace + "]";
+            return "ConnectionInfo [server=" + server + ", database=" + database + ", username=" + username + ", isNTLM= " + isNTLM + ", sessionId=" + sessionId + ", proxyUri=" + proxyUri + ", proxyCredentials=" + proxyCredentials + ", useCredentialCache=" + useCredentialCache + ", timeout=" + timeout + ", enableDefaultSystemAuthentication=" + enableDefaultSystemAuthentication + ", gzipResult=" + gzipResult + ", enableTrace=" + enableTrace + "]";
         }
 
     }
