@@ -55,6 +55,7 @@ namespace AceQL.Client.Api.Http
         /// </summary>
         private String database ;
         private char[] password ;
+        private bool isNTLM;
 
         /// <summary>
         /// The Web Proxy Uri
