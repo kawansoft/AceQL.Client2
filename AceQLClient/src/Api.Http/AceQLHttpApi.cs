@@ -21,7 +21,7 @@
 using AceQL.Client.Api.Metadata;
 using AceQL.Client.Api.Metadata.Dto;
 using AceQL.Client.Api.Util;
-using AceQL.Client.Src.Api.Http;
+using AceQL.Client.Api.Http;
 using AceQL.Client.Src.Api.Util;
 using Newtonsoft.Json;
 using System;
@@ -53,8 +53,8 @@ namespace AceQL.Client.Api.Http
         /// <summary>
         /// The database
         /// </summary>
-        private String database;
-        private char[] password;
+        private String database ;
+        private char[] password ;
 
         /// <summary>
         /// The Web Proxy Uri
@@ -93,7 +93,7 @@ namespace AceQL.Client.Api.Http
         /// </summary>
         private string url;
 
-        private string connectionString;
+        private readonly string connectionString;
 
         private AceQLProgressIndicator progressIndicator;
         private AceQLCredential credential;
@@ -104,6 +104,8 @@ namespace AceQL.Client.Api.Http
 
         // The HttpManager that contains the HtttClient to use
         internal HttpManager httpManager;
+
+        private ConnectionInfo connectionInfo;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AceQLHttpApi"/> class.
@@ -176,14 +178,20 @@ namespace AceQL.Client.Api.Http
                 this.database = connectionStringDecoder.Database;
                 this.username = connectionStringDecoder.Username;
                 this.password = connectionStringDecoder.Password;
+                this.isNTLM = connectionStringDecoder.IsNTLM;
                 sessionId = connectionStringDecoder.SessionId;
                 this.proxyUri = connectionStringDecoder.ProxyUri;
                 this.proxyCredentials = connectionStringDecoder.ProxyCredentials;
                 this.useCredentialCache = connectionStringDecoder.UseCredentialCache;
                 this.timeout = connectionStringDecoder.Timeout;
                 this.enableDefaultSystemAuthentication = connectionStringDecoder.EnableDefaultSystemAuthentication;
+                bool enableTrace = connectionStringDecoder.EnableTrace;
+                this.gzipResult = connectionStringDecoder.GzipResult;
 
-                if (connectionStringDecoder.EnableTrace)
+                connectionInfo = new ConnectionInfo(connectionString, server, database, username, isNTLM, sessionId, proxyUri, proxyCredentials,
+                    useCredentialCache, timeout, enableDefaultSystemAuthentication, gzipResult, enableTrace);
+
+                if (enableTrace)
                 {
                     simpleTracer.SetTraceOn(true);
                 }
@@ -258,8 +266,6 @@ namespace AceQL.Client.Api.Http
                     }
 
                     String connectionId = resultAnalyzer.GetValue("connection_id");
-
-                    //await simpleTracer.Trace("Ok. New Connection created: " + connectionId).ConfigureAwait(false);
                     simpleTracer.Trace("result: " + result);
 
                     this.url = server + "/session/" + sessionId + "/connection/"
@@ -282,7 +288,6 @@ namespace AceQL.Client.Api.Http
                     String result = await httpManager.CallWithPostAsyncReturnString(new Uri(theUrl), parametersMap).ConfigureAwait(false);
 
                     ConsoleEmul.WriteLine("result: " + result);
-                    //await simpleTracer.Trace("result: " + result).ConfigureAwait(false);
                     simpleTracer.Trace("result: " + result);
 
                     ResultAnalyzer resultAnalyzer = new ResultAnalyzer(result, HttpStatusCode);
@@ -299,13 +304,11 @@ namespace AceQL.Client.Api.Http
 
                     this.url = server + "/session/" + theSessionId + "/connection/" + theConnectionId + "/";
                     userLoginStore.SetSessionId(theSessionId);
-                    //await simpleTracer.Trace("OpenAsync url: " + this.url).ConfigureAwait(false);
                     simpleTracer.Trace("OpenAsync url: " + this.url);
                 }
             }
             catch (Exception exception)
             {
-                //await simpleTracer.Trace(exception.ToString()).ConfigureAwait(false);
                 simpleTracer.Trace(exception.ToString());
 
                 if (exception.GetType() == typeof(AceQLException))
@@ -378,7 +381,11 @@ namespace AceQL.Client.Api.Http
             }
         }
 
-        public string ConnectionString { get => connectionString; set => connectionString = value; }
+        /// <summary>
+        /// Gets the connection string.
+        /// </summary>
+        /// <value>The connection string.</value>
+        internal string ConnectionString { get => connectionString;}
 
         /// <summary>
         /// Says it use has passed a CancellationToken
@@ -390,6 +397,12 @@ namespace AceQL.Client.Api.Http
         /// </summary>
         /// <value>The HTTP status code.</value>
         public HttpStatusCode HttpStatusCode { get => httpManager.HttpStatusCode; }
+
+        /// <summary>
+        /// Gets the connection information.
+        /// </summary>
+        /// <value>The connection information.</value>
+        public ConnectionInfo ConnectionInfo { get => connectionInfo; }
 
         internal string GetDatabase()
         {
@@ -442,7 +455,6 @@ namespace AceQL.Client.Api.Http
             }
             catch (Exception exception)
             {
-                //await simpleTracer.Trace(exception.ToString()).ConfigureAwait(false);
                 simpleTracer.Trace(exception.ToString());
 
                 if (exception.GetType() == typeof(AceQLException))
@@ -493,7 +505,6 @@ namespace AceQL.Client.Api.Http
             }
             catch (Exception exception)
             {
-                //await simpleTracer.Trace(exception.ToString()).ConfigureAwait(false);
                 simpleTracer.Trace(exception.ToString());
 
                 if (exception.GetType() == typeof(AceQLException))
@@ -582,7 +593,6 @@ namespace AceQL.Client.Api.Http
 
             Uri urlWithaction = new Uri(url + action);
 
-            //await simpleTracer.Trace("url: " + url + action);
             simpleTracer.Trace("url: " + url + action);
 
             foreach (KeyValuePair<String, String> p in parametersMap)
@@ -762,7 +772,6 @@ namespace AceQL.Client.Api.Http
             }
             catch (Exception exception)
             {
-                //await simpleTracer.Trace(exception.ToString()).ConfigureAwait(false);
                 simpleTracer.Trace(exception.ToString());
 
                 if (exception.GetType() == typeof(AceQLException))
@@ -807,7 +816,6 @@ namespace AceQL.Client.Api.Http
             }
             catch (Exception exception)
             {
-                //await simpleTracer.Trace(exception.ToString()).ConfigureAwait(false);
                 simpleTracer.Trace(exception.ToString());
 
                 if (exception.GetType() == typeof(AceQLException))
@@ -849,7 +857,6 @@ namespace AceQL.Client.Api.Http
             }
             catch (Exception exception)
             {
-                //await simpleTracer.Trace(exception.ToString()).ConfigureAwait(false);
                 simpleTracer.Trace(exception.ToString());
 
                 if (exception.GetType() == typeof(AceQLException))
@@ -908,7 +915,6 @@ namespace AceQL.Client.Api.Http
             }
             catch (Exception exception)
             {
-                //await simpleTracer.Trace(exception.ToString()).ConfigureAwait(false);
                 simpleTracer.Trace(exception.ToString());
 
                 if (exception.GetType() == typeof(AceQLException))
@@ -964,7 +970,6 @@ namespace AceQL.Client.Api.Http
             }
             catch (Exception exception)
             {
-                //await simpleTracer.Trace(exception.ToString()).ConfigureAwait(false);
                 simpleTracer.Trace(exception.ToString());
 
                 if (exception.GetType() == typeof(AceQLException))

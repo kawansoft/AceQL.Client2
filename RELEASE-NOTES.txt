@@ -17,6 +17,18 @@ they would do for an SQL Server database.
 The AceQL C# Client SDK is licensed under the Apache 2.0 License.
 
 
+AceQL C# Client SDK - Version 6.2.1 - 05-May-2021
+-------------------------------------------------
+
+What's New:
+- The following AceQLConnection connection properties have been moved to the 
+  ConnectionInfo class: ConnectionString, Database, GzipResult, 
+  ConnectionTimeout. Values are now accessible via the new property
+  AceQLConnection.ConnectionInfo. 
+- AceQLConnection.requestRetry defaults now to true:
+  Requests are automatically retried once in case of HTTP problem.
+
+
 AceQL C# Client SDK - Version 6.1.1 - 10-Mar-2021
 -------------------------------------------------
 

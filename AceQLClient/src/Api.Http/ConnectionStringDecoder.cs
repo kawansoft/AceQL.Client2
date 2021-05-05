@@ -17,6 +17,7 @@
  * limitations under the License. 
  */
 
+using AceQL.Client.Api.Http;
 using AceQL.Client.Api.Util;
 using System;
 using System.Collections.Generic;
@@ -25,7 +26,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AceQL.Client.Src.Api.Http
+namespace AceQL.Client.Api.Http
 {
     /// <summary>
     /// Class ConnectionStringDecoder. Allows to decode the elemeents of the connection string.
@@ -41,6 +42,7 @@ namespace AceQL.Client.Src.Api.Http
         private string database;
         private string username;
         private char[] password;
+        private bool isNTLM;
         private string sessionId;
         private string proxyUri;
         private ICredentials proxyCredentials;
@@ -48,6 +50,7 @@ namespace AceQL.Client.Src.Api.Http
         private bool enableDefaultSystemAuthentication;
         private bool enableTrace;
         private bool useCredentialCache;
+        private bool gzipResult;
 
         /// <summary>
         /// Decodes the specified connection string.
@@ -67,7 +70,6 @@ namespace AceQL.Client.Src.Api.Http
             // Replace escaped "\;"
             connectionString = connectionString.Replace(ESCAPED_SEMICOLON, ESCAPED_SEMICOLON_WORD);
 
-            bool isNTLM = false;
             String proxyUsername = null;
             String proxyPassword = null;
 
@@ -189,6 +191,10 @@ namespace AceQL.Client.Src.Api.Http
                 {
                     enableTrace = Boolean.Parse(value);
                 }
+                else if (property.ToLowerInvariant().Equals("gzipresult"))
+                {
+                    gzipResult = Boolean.Parse(value);
+                }
                 else if (property.ToLowerInvariant().Equals("maxretryforhttpstatus407"))
                 {
                     int maxRetryForHttpStatus407 = Int32.Parse(value);
@@ -205,7 +211,7 @@ namespace AceQL.Client.Src.Api.Http
             Debug("connectionString   : " + connectionString);
             Debug("theProxyUri        : " + proxyUri);
             Debug("theProxyCredentials: " + proxyUsername + " / " + proxyPassword);
-            Debug("isNTLM             : " + isNTLM + "");
+            Debug("isNTLM             : " + IsNTLM + "");
             Debug("useCredentialCache : " + useCredentialCache + "");
 
             if (isNTLM)
@@ -258,6 +264,8 @@ namespace AceQL.Client.Src.Api.Http
 
         public bool EnableTrace { get => enableTrace; }
         public bool UseCredentialCache { get => useCredentialCache; }
+        public bool GzipResult { get => gzipResult; }
+        public bool IsNTLM { get => isNTLM; }
 
         internal static void Debug(string s)
         {

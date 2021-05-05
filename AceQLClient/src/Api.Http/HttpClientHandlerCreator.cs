@@ -22,7 +22,7 @@ using System;
 using System.Net;
 using System.Net.Http;
 
-namespace AceQL.Client.Src.Api.Http
+namespace AceQL.Client.Api.Http
 {
     /// <summary>
     /// Class HttpClientHandlerCreator. HttpClientHandler creation to be used with HttpClient.

@@ -74,7 +74,7 @@ namespace AceQL.Client.Tests
         {
             await connection.OpenAsync();
 
-            AceQLConsole.WriteLine("host: " + connection.ConnectionString);
+            AceQLConsole.WriteLine("host: " + connection.ConnectionInfo.ConnectionString);
             AceQLConsole.WriteLine("aceQLConnection.GetClientVersion(): " + AceQLConnection.GetClientVersion());
             AceQLConsole.WriteLine("aceQLConnection.GetServerVersion(): " + await connection.GetServerVersionAsync());
             AceQLConsole.WriteLine("AceQL local folder                : " + AceQLConnection.GetAceQLLocalFolder());

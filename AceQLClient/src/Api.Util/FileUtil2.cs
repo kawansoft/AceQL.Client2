@@ -26,7 +26,7 @@ namespace AceQL.Client.Api.Util
     /// <summary>
     /// Class FileUtil2.
     /// </summary>
-    class FileUtil2
+    static class FileUtil2
     {
       
         /// <summary>

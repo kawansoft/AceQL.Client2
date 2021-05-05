@@ -264,15 +264,6 @@ namespace AceQL.Client.Api.Util
             return blobId;
         }
 
-        ///// <summary>
-        ///// Gets the user folder filePath.
-        ///// </summary>
-        ///// <returns>String.</returns>
-        //public static String GetUserFolderPath()
-        //{
-        //    return Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-        //}
-
         /// <summary>
         /// Returns the filePath corresponding to the trace filePath. Value is: AceQLPclFolder/trace.txt.
         /// </summary>

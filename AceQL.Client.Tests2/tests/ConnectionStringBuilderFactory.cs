@@ -46,8 +46,8 @@ namespace AceQL.Client.Tests.Test
 
         public static readonly string serverUrlLocalhost = "http://localhost:9090/aceql";
         public static readonly string serverUrlLocalhostTomcat = "http://localhost:8080/aceql-test/aceql";
-        public static readonly string serverUrlLinuxNoSSL = "http://www.runsafester.net:8081/aceql";
-        public static readonly string serverUrlLinux = "https://www.aceql.com:9443/aceql";
+        //public static readonly string serverUrlLinuxNoSSL = "http://www.run-aceql.com:8081/aceql";
+        public static readonly string serverUrlLinux = "http://www.run-aceql.com:8444/aceql";
 
         public static readonly string usernameLdap = "cn=read-only-admin,dc=example,dc=com";
         public static readonly string passwordLdap = "password";
@@ -88,7 +88,7 @@ namespace AceQL.Client.Tests.Test
             string database = "sampledb";
             string username = "user1";
             string password = "password1";
-            return Create(serverUrlLinuxNoSSL, database, username, password, typeAuthenticatedProxy);
+            return Create(serverUrlLinux, database, username, password, typeAuthenticatedProxy);
         }
 
         /// <summary>
@@ -101,7 +101,7 @@ namespace AceQL.Client.Tests.Test
             string database = "sampledb";
             string username = usernameLdap;
             string password = passwordLdap;
-            return Create(serverUrlLinuxNoSSL, database, username, password, typeAuthenticatedProxy);
+            return Create(serverUrlLinux, database, username, password, typeAuthenticatedProxy);
         }
 
         /// <summary>

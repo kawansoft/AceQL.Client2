@@ -27,7 +27,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AceQL.Client.Src.Api.Http
+namespace AceQL.Client.Api.Http
 {
     /// <summary>
     /// Class HttpClientHandlerBuilder. Allows to build an HttpClientHandler.

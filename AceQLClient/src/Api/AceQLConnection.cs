@@ -37,6 +37,7 @@ namespace AceQL.Client.Api
     {
 
         internal AceQLHttpApi aceQLHttpApi;
+
         private bool connectionOpened;
 
         /// <summary>
@@ -55,9 +56,9 @@ namespace AceQL.Client.Api
         private static IWebProxy defaultWebProxy;
 
         /// <summary>
-        /// The request retry/
+        /// The request retry. Defaults to True.
         /// </summary>
-        private bool requestRetry;
+        private bool requestRetry = true;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AceQLConnection"/> class.
@@ -416,67 +417,7 @@ namespace AceQL.Client.Api
             defaultWebProxy = webProxy;
         }
 
-        /// <summary>
-        /// Gets or sets the connection string used to connect to the remote database.
-        /// </summary>
-        /// <value>The connection string used to connect to the remote database.</value>
-        public string ConnectionString
-        {
-            get
-            {
-                return aceQLHttpApi.ConnectionString;
-            }
 
-            set
-            {
-                aceQLHttpApi.ConnectionString = value;
-            }
-        }
-
-        /// <summary>
-        /// Gets the current database in use.
-        /// </summary>
-        /// <value>The current database in use.</value>
-        public string Database
-        {
-            get
-            {
-                return aceQLHttpApi.Database;
-            }
-        }
-
-
-        /// <summary>
-        /// Gets or sets a value indicating whether SQL result sets are returned compressed with the GZIP filePath format
-        /// before download. Defaults to true.
-        /// </summary>
-        /// <value>True if SQL result sets are returned compressed with the GZIP filePath format
-        /// before download.</value>
-        public bool GzipResult
-        {
-            get
-            {
-                return aceQLHttpApi.GzipResult;
-            }
-
-            set
-            {
-                aceQLHttpApi.GzipResult = value;
-            }
-
-        }
-
-        /// <summary>
-        /// Gets the time to wait in milliseconds while trying to establish a connection before terminating the attempt and generating an error.
-        /// If value is 0, <see cref="System.Net.Http.HttpClient"/> default will value be used.
-        /// </summary>
-        public int ConnectionTimeout
-        {
-            get
-            {
-                return aceQLHttpApi.Timeout;
-            }
-        }
 
         /// <summary>
         /// Gets or sets the <see cref="AceQLCredential"/> object for this connection. 
@@ -496,10 +437,16 @@ namespace AceQL.Client.Api
         }
 
         /// <summary>
-        /// Gets or sets a value indicating whether a failed request will be retried. The retry will be done once, without compression. Defaults to false.
+        /// Gets or sets a value indicating whether a failed request will be retried. The retry will be done once, without compression. Defaults to true.
         /// </summary>
         /// <value><c>true</c> if a failed request will be retried without compression.; otherwise, <c>false</c>.</value>
         public bool RequestRetry { get => requestRetry; set => requestRetry = value; }
+
+        /// <summary>
+        /// Gets the connection information.
+        /// </summary>
+        /// <value>The connection information.</value>
+        public ConnectionInfo ConnectionInfo { get => aceQLHttpApi.ConnectionInfo; }
     }
 
 }

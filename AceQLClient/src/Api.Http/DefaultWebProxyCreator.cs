@@ -23,7 +23,7 @@ using System.Collections.Generic;
 using System.Net;
 
 
-namespace AceQL.Client.Src.Api.Http
+namespace AceQL.Client.Api.Http
 {
 
     /// <summary>
