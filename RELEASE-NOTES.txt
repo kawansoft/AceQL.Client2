@@ -356,3 +356,4 @@ AceQL C# Client SDK - Version 1.0.0 - 29-apr-2017
 
 What's New:
 - First release. 
+
