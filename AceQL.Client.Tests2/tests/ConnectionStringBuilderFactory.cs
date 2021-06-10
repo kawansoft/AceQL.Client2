@@ -47,7 +47,7 @@ namespace AceQL.Client.Tests.Test
         public static readonly string serverUrlLocalhost = "http://localhost:9090/aceql";
         public static readonly string serverUrlLocalhostTomcat = "http://localhost:8080/aceql-test/aceql";
         //public static readonly string serverUrlLinuxNoSSL = "http://www.run-aceql.com:8081/aceql";
-        public static readonly string serverUrlLinux = "http://www.run-aceql.com:8444/aceql";
+        public static readonly string serverUrlLinux = "https://www.run-aceql.com:8444/aceql";
 
         public static readonly string usernameLdap = "cn=read-only-admin,dc=example,dc=com";
         public static readonly string passwordLdap = "password";

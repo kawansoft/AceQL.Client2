@@ -129,6 +129,46 @@ namespace AceQL.Client.Api
             this.transaction = transaction ?? throw new ArgumentNullException("transaction is null!");
         }
 
+
+        /// <summary>
+        ///  Executes the query, and returns the first column of the first row in the result set returned by the query. 
+        ///  Additional columns or rows are ignored.
+        /// </summary>
+        /// <param name="cancellationToken">The cancellation instruction.</param>
+        /// <returns> The first column of the first row in the result set, or a null reference if the result set is empty. </returns>
+        /// <exception cref="AceQL.Client.Api.AceQLException">If any Exception occurs.</exception>
+        public async Task<object> ExecuteScalar(CancellationToken cancellationToken)
+        {
+            try
+            {
+                // Global var avoids to propagate cancellationToken as parameter to all methods... 
+                aceQLHttpApi.SetCancellationToken(cancellationToken);
+                return await ExecuteScalar().ConfigureAwait(false);
+            }
+            finally
+            {
+                aceQLHttpApi.ResetCancellationToken();
+            }
+        }
+
+        /// <summary>
+        ///  Executes the query, and returns the first column of the first row in the result set returned by the query. 
+        ///  Additional columns or rows are ignored.
+        /// </summary>
+        /// <returns> The first column of the first row in the result set, or a null reference if the result set is empty. </returns>
+        /// <exception cref="AceQL.Client.Api.AceQLException">If any Exception occurs.</exception>
+        public async Task<object> ExecuteScalar()
+        {
+            AceQLDataReader dataReader = await ExecuteReaderAsync();
+            if (dataReader == null)
+            {
+                return null;
+            }
+
+            return dataReader.Read() ? dataReader.GetValue(0) : null;
+
+        }
+
         /// <summary>
         /// Sends the <see cref="AceQLCommand"/>.CommandText to the <see cref="AceQLConnection"/> and builds an <see cref="AceQLDataReader"/>.
         /// <para/>The cancellation token can be used to can be used to request that the operation be abandoned before the http request timeout.
@@ -138,6 +178,7 @@ namespace AceQL.Client.Api
         /// <exception cref="AceQL.Client.Api.AceQLException">If any Exception occurs.</exception>
         public async Task<AceQLDataReader> ExecuteReaderAsync(CancellationToken cancellationToken)
         {
+
             try
             {
                 // Global var avoids to propagate cancellationToken as parameter to all methods... 
@@ -149,6 +190,8 @@ namespace AceQL.Client.Api
                 aceQLHttpApi.ResetCancellationToken();
             }
         }
+
+
 
         /// <summary>
         ///  Sends the <see cref="AceQLCommand"/>.CommandText to the <see cref="AceQLConnection"/> and builds an <see cref="AceQLDataReader"/>.

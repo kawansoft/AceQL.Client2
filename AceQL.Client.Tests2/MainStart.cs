@@ -73,6 +73,10 @@ namespace AceQL.Client.Tests
             {
                 AceQLTestClose.TheMain(args);
             }
+            else if (mainToLaunch == 9)
+            {
+                SqlServerStoredProcedureTestUtf8.TheMain(args);
+            }
 
         }
 

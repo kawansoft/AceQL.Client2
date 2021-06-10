@@ -175,6 +175,12 @@ namespace AceQL.Client.Tests
                 }
             }
 
+            sql = "select max(customer_id) from customer";
+            command = new AceQLCommand(sql, connection);
+            int maxCustomerId = (Int32)await command.ExecuteScalar();
+            AceQLConsole.WriteLine("maxCustomerId: " + maxCustomerId);
+            Console.ReadLine();
+
             AceQLConsole.WriteLine("Before delete from orderlog");
 
             // Do next delete in a transaction because of BLOB

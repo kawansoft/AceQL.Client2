@@ -2097,6 +2097,23 @@
             If cmdText is null or connection or transaction is null.
             </exception>
         </member>
+        <member name="M:AceQL.Client.Api.AceQLCommand.ExecuteScalar(System.Threading.CancellationToken)">
+            <summary>
+             Executes the query, and returns the first column of the first row in the result set returned by the query. 
+             Additional columns or rows are ignored.
+            </summary>
+            <param name="cancellationToken">The cancellation instruction.</param>
+            <returns> The first column of the first row in the result set, or a null reference if the result set is empty. </returns>
+            <exception cref="T:AceQL.Client.Api.AceQLException">If any Exception occurs.</exception>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLCommand.ExecuteScalar">
+            <summary>
+             Executes the query, and returns the first column of the first row in the result set returned by the query. 
+             Additional columns or rows are ignored.
+            </summary>
+            <returns> The first column of the first row in the result set, or a null reference if the result set is empty. </returns>
+            <exception cref="T:AceQL.Client.Api.AceQLException">If any Exception occurs.</exception>
+        </member>
         <member name="M:AceQL.Client.Api.AceQLCommand.ExecuteReaderAsync(System.Threading.CancellationToken)">
             <summary>
             Sends the <see cref="T:AceQL.Client.Api.AceQLCommand"/>.CommandText to the <see cref="T:AceQL.Client.Api.AceQLConnection"/> and builds an <see cref="T:AceQL.Client.Api.AceQLDataReader"/>.
