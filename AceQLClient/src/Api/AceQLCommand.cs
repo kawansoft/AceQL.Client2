@@ -159,7 +159,7 @@ namespace AceQL.Client.Api
         /// <exception cref="AceQL.Client.Api.AceQLException">If any Exception occurs.</exception>
         public async Task<object> ExecuteScalar()
         {
-            AceQLDataReader dataReader = await ExecuteReaderAsync();
+            AceQLDataReader dataReader = await ExecuteReaderAsync().ConfigureAwait(false);
             if (dataReader == null)
             {
                 return null;
