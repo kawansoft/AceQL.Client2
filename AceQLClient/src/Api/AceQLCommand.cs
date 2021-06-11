@@ -133,6 +133,7 @@ namespace AceQL.Client.Api
         /// <summary>
         ///  Executes the query, and returns the first column of the first row in the result set returned by the query. 
         ///  Additional columns or rows are ignored.
+        /// <para/>The cancellation token can be used to can be used to request that the operation be abandoned before the http request timeout
         /// </summary>
         /// <param name="cancellationToken">The cancellation instruction.</param>
         /// <returns> The first column of the first row in the result set, or a null reference if the result set is empty. </returns>
