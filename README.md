@@ -5,9 +5,9 @@
 
 # AceQL HTTP 
 
-## C# Client SDK v6.2 - User Guide
+## C# Client SDK v6.3 - User Guide
 
-## May 5, 2021
+## June 11, 2021
 
 <img src="https://www.aceql.com/favicon.png" alt="AceQ HTTP Icon"/>
 
@@ -59,7 +59,7 @@
 
 This document describes how to use the AceQL C# Client SDK and gives some details about how it operates with the AceQL Server side.
 
-The SDK allows you to wrap the [AceQL HTTP APIs](https://github.com/kawansoft/aceql-http/blob/master/aceql-http-6.4-user-guide-api.md) and eliminate the tedious work of handling communication errors and parsing JSON results.
+The SDK allows you to wrap the [AceQL HTTP APIs](https://github.com/kawansoft/aceql-http/blob/master/aceql-http-user-guide-api.md) and eliminate the tedious work of handling communication errors and parsing JSON results.
 
 C# application developers can access remote SQL databases and/or SQL databases in the cloud by simply including standard C# SQL calls in their code, just like they would do for an SQL Server database. There is zero learning curve and usage is straight forward.
 
@@ -94,10 +94,7 @@ This version requires AceQL HTTP v5.0.2+ server version.
 
 ## AceQL C# Client SDK installation
 
-Install the [NuGet Package](https://www.nuget.org/packages/AceQL.Client): 
-
-- Choose version 6.1.1  version for the [.Net Standard 2.0](https://docs.microsoft.com/en-us/dotnet/standard/net-standard)  implementation.
-- Choose version 5.5.0 for the  [Portable Class Library](https://docs.microsoft.com/en-us/dotnet/framework/cross-platform/portable-class-library?redirectedfrom=MSDN) implementation. *Please note that PCL versions are deprecated and will not be any more supported starting 2021 January, 1.*
+Install the [NuGet Package](https://www.nuget.org/packages/AceQL.Client).
 
 ## Data transport
 
@@ -681,7 +678,7 @@ You then can read `ProgressIndicator.Percent` property in your watching thread.
 
 Some working environments (Intranet, etc.) require that the client user authenticates himself without a password. Thus, it is not possible for this users to authenticate though the AceQL client SDK.
 
-In this case, you may use directly the native HTTP [login](https://github.com/kawansoft/aceql-http/blob/master/aceql-http-6.1-user-guide-api.md#login) API to authenticate the users and retrieve the `session_id` returned by the API.
+In this case, you may use directly the native HTTP [login](https://github.com/kawansoft/aceql-http/blob/master/aceql-http-user-guide-api.md#login) API to authenticate the users and retrieve the `session_id` returned by the API.
 
 The `session_id` value will be set directly into the `connectionString`  or passed to an `AceQLCredential`:
 
@@ -738,7 +735,7 @@ RemoteDatabaseMetaData remoteDatabaseMetaData = connection.GetRemoteDatabaseMeta
 
 ### Downloading database schema into a file
 
-Downloading a schema into a  `File` is done through the method. See the `RemoteDatabaseMetaData` [Documentation](https://www.aceql.com/rest/soft_csharp/6.1/csharpdoc_sdk):
+Downloading a schema into a  `File` is done through the method. See the `RemoteDatabaseMetaData` [Documentation](https://www.aceql.com/rest/soft_csharp/6.3/csharpdoc_sdk):
 
 ```C#
 string userPath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
@@ -754,7 +751,7 @@ using (Stream stream = await remoteDatabaseMetaData.DbSchemaDownloadAsync())
 }
 ```
 
-See an example of the built HTML schema:  [db_schema.out.html](https://www.aceql.com/rest/soft_csharp/6.1/src/db_schema.out.html)
+See an example of the built HTML schema:  [db_schema.out.html](https://www.aceql.com/rest/soft_csharp/6.3/src/db_schema.out.html)
 
 ### Accessing remote database main properties
 
@@ -769,7 +766,7 @@ Console.WriteLine("IsReadOnly   : " + jdbcDatabaseMetaData.IsReadOnly);
 
 ### Getting Details of Tables and Columns
 
-See the `RemoteDatabaseMetaData` [Documentation](https://www.aceql.com/rest/soft_csharp/6.1/csharpdoc_sdk):
+See the `RemoteDatabaseMetaData` [Documentation](https://www.aceql.com/rest/soft_csharp/6.3/csharpdoc_sdk):
 
 ```C#
 Console.WriteLine("Get the table names:");
@@ -791,5 +788,4 @@ foreach (String tableName in tableNames)
 
 
 ------
-
 

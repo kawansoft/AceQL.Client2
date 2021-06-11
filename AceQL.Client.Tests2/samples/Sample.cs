@@ -5,12 +5,11 @@ using System.Text;
 
 namespace AceQL.Client.Tests2.samples
 {
-    class Test
+    class Sample
     {
-        public Test()
+        public Sample()
         {
             SqlCommand command = null;
-
             String s = (string) command.ExecuteScalar();
         }
     }
