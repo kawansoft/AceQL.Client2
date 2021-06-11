@@ -15,7 +15,7 @@
     <FileVersion>6.3.0.0</FileVersion>
     <Version>6.3</Version>
     <Authors>KawanSoft</Authors>
-    <PackageReleaseNotes></PackageReleaseNotes>
+    <PackageReleaseNotes>AceQLCommand provides now the ExecuteScalar method.</PackageReleaseNotes>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageTags>SQL over http remote jdbc cloud database Xamarin</PackageTags>
     <Product>AceQL.Client</Product>
