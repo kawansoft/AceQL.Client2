@@ -60,11 +60,13 @@ namespace AceQL.Client.Tests
 
             string connectionString = ConnectionStringCurrent.Build();
 
+            
             using (AceQLConnection connection = new AceQLConnection(connectionString))
             {
                 await ExecuteExample(connection).ConfigureAwait(false);
                 //NOT Neccessary: await connection.CloseAsync(); 
             }
+            
         }
 
         /// <summary>
@@ -73,8 +75,9 @@ namespace AceQL.Client.Tests
         /// <param name="connection"></param>
         public static async Task ExecuteExample(AceQLConnection connection)
         {
-
+            AceQLConsole.WriteLine("Before connection.OpenAsync()");
             await connection.OpenAsync();
+            AceQLConsole.WriteLine("After connection.OpenAsync()");
 
             AceQLConsole.WriteLine("Host: " + connection.ConnectionInfo.ConnectionString);
             AceQLConsole.WriteLine("aceQLConnection.GetClientVersion(): " + AceQLConnection.GetClientVersion());
