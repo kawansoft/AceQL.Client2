@@ -17,6 +17,7 @@
  * limitations under the License. 
  */
 
+using System;
 using System.Collections.Generic;
 
 namespace AceQL.Client.Api.Metadata.Dto
@@ -77,7 +78,7 @@ namespace AceQL.Client.Api.Metadata.Dto
         /// <returns>A <see cref="System.String" /> that represents this instance.</returns>
         public override string ToString()
         {
-            return "TableNamesDto [status=" + status + ", tableNames=" + tableNames + "]";
+            return "TableNamesDto [status=" + status + ", tableNames=" + String.Join(", ", tableNames) + "]";
         }
 
     }
