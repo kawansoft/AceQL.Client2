@@ -37,7 +37,7 @@ namespace AceQL.Client.Tests
 
         public static void Main(string[] args)
         {
-            int mainToLaunch = 10;
+            int mainToLaunch = 11;
 
             if (mainToLaunch == 1)
             {
@@ -82,7 +82,10 @@ namespace AceQL.Client.Tests
             {
                 JsonDtoTest.TheMain(args);
             }
-
+            else if (mainToLaunch == 11)
+            {
+                SqlBatchTest.TheMain(args);
+            }
         }
 
     }

@@ -4,6 +4,78 @@
         <name>AceQL.Client</name>
     </assembly>
     <members>
+        <member name="T:AceQL.Client.Api.Batch.PreparedStatementsBatchDto">
+            <summary>
+            Class PreparedStatementsBatchDto.
+            </summary>
+        </member>
+        <member name="M:AceQL.Client.Api.Batch.PreparedStatementsBatchDto.#ctor(System.Collections.Generic.List{AceQL.Client.Api.Batch.PrepStatementParamsHolder})">
+            <summary>
+            Initializes a new instance of the <see cref="T:AceQL.Client.Api.Batch.PreparedStatementsBatchDto"/> class.
+            </summary>
+            <param name="prepStatementParamsHolderList">The prep statement parameters holder list.</param>
+        </member>
+        <member name="P:AceQL.Client.Api.Batch.PreparedStatementsBatchDto.prepStatementParamsHolderList">
+            <summary>
+            Gets or sets the prep statement parameters holder list. THE PROPERTY MUST BE IN LOWERCASE FIRST CHAR FOR HOST TO DESERIALIZE.
+            </summary>
+            <value>The prep statement parameters holder list.</value>
+        </member>
+        <member name="M:AceQL.Client.Api.Batch.PreparedStatementsBatchDto.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents this instance.
+            </summary>
+            <returns>A <see cref="T:System.String" /> that represents this instance.</returns>
+        </member>
+        <member name="T:AceQL.Client.Api.Batch.PrepStatementParamsHolder">
+            <summary>
+            Class PrepStatementParamsHolder. Allows to store all parameters of a Prepared Statement
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Batch.PrepStatementParamsHolder.statementParameters1">
+            All the PreparedStatement parameters and their values 
+        </member>
+        <member name="M:AceQL.Client.Api.Batch.PrepStatementParamsHolder.#ctor(System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            Initializes a new instance of the <see cref="T:AceQL.Client.Api.Batch.PrepStatementParamsHolder"/> class.
+            </summary>
+            <param name="statementParameters">The statement parameters.</param>
+        </member>
+        <member name="P:AceQL.Client.Api.Batch.PrepStatementParamsHolder.statementParameters">
+            <summary>
+            Gets the statement parameters. THE PROPERTY MUST BE IN LOWERCASE FIRST CHAR FOR HOST TO DESERIALIZE.
+            </summary>
+            <value>The statement parameters.</value>
+        </member>
+        <member name="M:AceQL.Client.Api.Batch.PrepStatementParamsHolder.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents this instance.
+            </summary>
+            <returns>A <see cref="T:System.String" /> that represents this instance.</returns>
+        </member>
+        <member name="T:AceQL.Client.Api.Batch.UpdateCountsArrayDto">
+            <summary>
+            Class UpdateCountsArrayDto.
+            </summary>
+        </member>
+        <member name="M:AceQL.Client.Api.Batch.UpdateCountsArrayDto.#ctor(System.Int32[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:AceQL.Client.Api.Batch.UpdateCountsArrayDto"/> class.
+            </summary>
+            <param name="updateCountsArray">The update counts array.</param>
+        </member>
+        <member name="M:AceQL.Client.Api.Batch.UpdateCountsArrayDto.GetUpdateCountsArray">
+            <summary>
+            Gets the update counts array.
+            </summary>
+            <returns>System.Int32[].</returns>
+        </member>
+        <member name="M:AceQL.Client.Api.Batch.UpdateCountsArrayDto.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents this instance.
+            </summary>
+            <returns>A <see cref="T:System.String" /> that represents this instance.</returns>
+        </member>
         <member name="T:AceQL.Client.Api.Http.AceQLHttpApi">
             <summary>
             Class <see cref="T:AceQL.Client.Api.Http.AceQLHttpApi"/>. Allows to create a Connection to the remote server
@@ -164,6 +236,15 @@
             <param name="action">The action.</param>
             <param name="actionParameter">The action parameter.</param>
             <returns>String.</returns>
+        </member>
+        <member name="M:AceQL.Client.Api.Http.AceQLHttpApi.ExecutePreparedStatementBatch(System.String,System.Collections.Generic.List{AceQL.Client.Api.Batch.PrepStatementParamsHolder})">
+            <summary>
+            Executes the prepared statement batch.
+            </summary>
+            <param name="sql">The SQL.</param>
+            <param name="prepStatementParamsHolderList">The prep statement parameters holder list.</param>
+            <returns>Task&lt;System.Int32[]&gt;.</returns>
+            <exception cref="T:AceQL.Client.Api.AceQLException"></exception>
         </member>
         <member name="M:AceQL.Client.Api.Http.AceQLHttpApi.UpdateOutParametersValues(System.String,AceQL.Client.Api.AceQLParameterCollection)">
             <summary>
@@ -2059,6 +2140,11 @@
             The parameters
             </summary>
         </member>
+        <member name="F:AceQL.Client.Api.AceQLCommand.prepStatementParamsHolderList">
+            <summary>
+            For batchs 
+            </summary>
+        </member>
         <member name="M:AceQL.Client.Api.AceQLCommand.#ctor">
             <summary>
             Initializes a new instance of the <see cref="T:AceQL.Client.Api.AceQLCommand"/> class.
@@ -2182,6 +2268,36 @@
             <returns>System.Int32.</returns>
             <exception cref="T:AceQL.Client.Api.AceQLException">
             </exception>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLCommand.ClearBatch">
+            <summary>
+            Empties this Statement object's current list of SQL commands.
+            </summary>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLCommand.AddBatch">
+            <summary>
+            Adds a set of parameters to this PreparedStatement object's batch of commands.
+            </summary>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLCommand.ExecuteBatch(System.Threading.CancellationToken)">
+            <summary>
+            Submits a batch of commands to the database for execution and if all commands execute successfully, 
+            returns an array of update counts.
+            The int elements of the array that is returned are ordered to correspond to the commands in the batch, 
+            which are ordered according to the order in which they were added to the batch.
+            <para/>The cancellation token can be used to can be used to request that the operation 
+            be abandoned before the http request timeout.
+            </summary>
+            <param name="cancellationToken">The cancellation instruction.</param>
+            <returns>an array of update counts containing one element for each command in the batch. 
+            The elements of the array are ordered according to the order in which commands were added to the batch.</returns>
+            <exception cref="T:AceQL.Client.Api.AceQLException">If any Exception occurs.</exception>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLCommand.ExecuteBatch">
+            <summary>
+            Executes the Batch
+            </summary>
+            <returns></returns>
         </member>
         <member name="M:AceQL.Client.Api.AceQLCommand.ExecuteUpdateAsStatementAsync">
             <summary>
@@ -3064,6 +3180,13 @@
             The BLOB length to upload
             </summary>
         </member>
+        <member name="P:AceQL.Client.Api.AceQLParameter.ParamContainBlob">
+            <summary>
+            Gets or sets a value indicating whether parameters list contains a CLOB/BLOB.
+            (Used to deny to call executeBatch() on this kind of table.
+            </summary>
+            <value><c>true</c> if  parameters list contains a CLOB/BLOB; otherwise, <c>false</c>.</value>
+        </member>
         <member name="M:AceQL.Client.Api.AceQLParameter.ToString">
             <summary>
             Gets a string that contains <see cref="T:AceQL.Client.Api.AceQLParameter"/>.ParameterName
@@ -3231,6 +3354,12 @@
              at the specified parameter name.
             </summary>
             <param name="parameterName">The name of the <see cref="T:AceQL.Client.Api.AceQLParameter"/> to Remove.</param>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLParameterCollection.ContainsBlob">
+            <summary>
+            Determines whether this instance contains BLOB/CLOB.
+            </summary>
+            <returns><c>true</c> if this instance contains BLOB/CLOB; otherwise, <c>false</c>.</returns>
         </member>
         <member name="M:AceQL.Client.Api.AceQLParameterCollection.RemoveAt(System.Int32)">
             <summary>

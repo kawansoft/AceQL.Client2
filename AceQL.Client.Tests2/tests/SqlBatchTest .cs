@@ -23,6 +23,7 @@ using AceQL.Client.Src.Api;
 using AceQL.Client.Tests.Test;
 using System;
 using System.IO;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace AceQL.Client.Tests
@@ -32,7 +33,7 @@ namespace AceQL.Client.Tests
     /// 1) Inserts a Customer and an Order on a remote database. 
     /// 2) Displays the inserted raws on the console with two SELECT executed on the remote database.
     /// </summary>
-    public class SqlServerStoredProcedureTest
+    public class SqlBatchTest
     {
         /// <summary>
         /// The connection to the remote database
@@ -54,16 +55,16 @@ namespace AceQL.Client.Tests
 
             try
             {
-
                 // Make sure connection is always closed in order to close and release
                 // server connection into the pool
                 using (AceQLConnection theConnection = await ConnectionBuilderAsync().ConfigureAwait(false))
                 {
-                    SqlServerStoredProcedureTest sqlServerStoredProcedureTest = new SqlServerStoredProcedureTest(
+                    SqlBatchTest sqlBatchTest = new SqlBatchTest(
                         theConnection);
                     AceQLConsole.WriteLine("Connection created....");
 
-                    await sqlServerStoredProcedureTest.CallStoredProcedure().ConfigureAwait(false);
+                    await sqlBatchTest.DeleteCustomerAll();
+                    await sqlBatchTest.InsertUsingBatch().ConfigureAwait(false);
                     await theConnection.CloseAsync();
                 }
 
@@ -107,7 +108,7 @@ namespace AceQL.Client.Tests
         /// Constructor.
         /// </summary>
         /// <param name="connection">The AceQL connection to remote database.</param>
-        public SqlServerStoredProcedureTest(AceQLConnection connection)
+        public SqlBatchTest(AceQLConnection connection)
         {
             this.connection = connection;
         }
@@ -116,50 +117,47 @@ namespace AceQL.Client.Tests
         /// Example of MS SQL Server Stored Procedure.
         /// </summary>
         /// <exception cref="AceQLException">If any Exception occurs.</exception>
-        public async Task CallStoredProcedure()
+        public async Task InsertUsingBatch()
         {
-            string sql = "{call ProcedureName(@parm1, @parm2, @parm3)}";
-
+            string sql ="insert into customer values (@parm1, @parm2, @parm3, @parm4, @parm5, @parm6, @parm7, @parm8)";
             AceQLCommand command = new AceQLCommand(sql, connection);
-            command.CommandType = CommandType.StoredProcedure;
 
-            AceQLParameter aceQLParameter2 = new AceQLParameter("@parm2", 2)
+            for (int i = 1; i < 3; i++)
             {
-                Direction = ParameterDirection.InputOutput
-            };
+                int customer_id = i;
 
-            AceQLParameter aceQLParameter1 = new AceQLParameter("@parm1", 0);
+                command.Parameters.AddWithValue("@parm1", customer_id);
+                command.Parameters.AddWithValue("@parm2", "Sir" + i ); // HACK NDP
+                command.Parameters.AddWithValue("@parm3", "André_" + customer_id);
+                command.Parameters.Add(new AceQLParameter("@parm4", "Name_" + customer_id));
+                command.Parameters.AddWithValue("@parm5", customer_id + ", road Sixty-Six");
+                command.Parameters.AddWithValue("@parm6", "Town_" + customer_id);
+                command.Parameters.AddWithValue("@parm7", customer_id + "0000");
+                command.Parameters.Add(new AceQLParameter("@parm8", new AceQLNullValue(AceQLNullType.VARCHAR))); //null value for NULL SQL insert.
 
-            AceQLParameter aceQLParameter3 = new AceQLParameter("@parm3")
-            {
-                Direction = ParameterDirection.Output
-            };
-
-            command.Parameters.Add(aceQLParameter1);
-            command.Parameters.Add(aceQLParameter2);
-            command.Parameters.Add(aceQLParameter3);
-
-            AceQLConsole.WriteLine(sql);
-            AceQLConsole.WriteLine("BEFORE execute @parm1: " + aceQLParameter1.ParameterName + " / " + aceQLParameter1.Value + " (" + aceQLParameter2.Value.GetType() + ")");
-            AceQLConsole.WriteLine("BEFORE execute @parm2: " + aceQLParameter2.ParameterName + " / " + aceQLParameter2.Value + " (" + aceQLParameter2.Value.GetType() + ")");
-            AceQLConsole.WriteLine("BEFORE execute @parm3: " + aceQLParameter3.ParameterName + " / " + aceQLParameter3.Value);
-            AceQLConsole.WriteLine();
-
-            // Our dataReader must be disposed to delete underlying downloaded files
-            using (AceQLDataReader dataReader = await command.ExecuteReaderAsync())
-            {
-                //await dataReader.ReadAsync(new CancellationTokenSource().Token)
-                while (dataReader.Read())
-                {
-                    int i = 2;
-                    AceQLConsole.WriteLine("GetValue: " + dataReader.GetValue(i));
-                }
+                command.AddBatch();
             }
-            AceQLConsole.WriteLine();
-            AceQLConsole.WriteLine("AFTER execute @parm2: " + aceQLParameter2.ParameterName + " / " + aceQLParameter2.Value + " (" + aceQLParameter2.Value.GetType() + ")");
-            AceQLConsole.WriteLine("AFTER execute @parm3: " + aceQLParameter3.ParameterName + " / " + aceQLParameter3.Value);
+
+            CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
+            int [] results = await command.ExecuteBatch(cancellationTokenSource.Token);
+
+            foreach (int theResult in results)
+            {
+                AceQLConsole.WriteLine(theResult + "");
+            }
 
         }
-     
+
+        /// <summary>
+        /// Delete all from customers
+        /// </summary>
+        /// <returns></returns>
+        public async Task DeleteCustomerAll()
+        {
+            // Delete all
+            string sql = "delete from customer where customer_id >= 0";
+            AceQLCommand command = new AceQLCommand(sql, connection);
+            await command.ExecuteNonQueryAsync();
+        }
     }
 }

@@ -59,11 +59,11 @@ namespace AceQL.Client.Tests
                 // server connection into the pool
                 using (AceQLConnection theConnection = await ConnectionBuilderAsync().ConfigureAwait(false))
                 {
-                    SqlServerStoredProcedureTestUtf8 myRemoteConnection = new SqlServerStoredProcedureTestUtf8(
+                    SqlServerStoredProcedureTestUtf8 sqlServerStoredProcedureTestUtf8 = new SqlServerStoredProcedureTestUtf8(
                         theConnection);
                     AceQLConsole.WriteLine("Connection created....");
 
-                    await myRemoteConnection.CallStoredProcedure().ConfigureAwait(false);
+                    await sqlServerStoredProcedureTestUtf8.CallStoredProcedure().ConfigureAwait(false);
                     await theConnection.CloseAsync();
                 }
 

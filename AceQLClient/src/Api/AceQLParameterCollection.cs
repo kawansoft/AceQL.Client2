@@ -348,6 +348,25 @@ namespace AceQL.Client.Api
         }
 
         /// <summary>
+        /// Determines whether this instance contains BLOB/CLOB.
+        /// </summary>
+        /// <returns><c>true</c> if this instance contains BLOB/CLOB; otherwise, <c>false</c>.</returns>
+        public bool ContainsBlob()
+        {
+            for (int i = 0; i < aceqlParameters.Count; i++)
+            {
+                AceQLParameter aceQLParameter = aceqlParameters[i];
+                if (aceQLParameter.ParamContainBlob)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+
+        /// <summary>
         ///  Removes the <see cref="AceQLParameter"/> from the <see cref="AceQLParameterCollection"/>
         ///  at the specified index.
         /// </summary>
@@ -397,5 +416,7 @@ namespace AceQL.Client.Api
         {
             throw new NotSupportedException();
         }
+
+
     }
 }

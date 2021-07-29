@@ -18,6 +18,7 @@
  */
 
 
+using AceQL.Client.Api.Batch;
 using AceQL.Client.Api.Http;
 using AceQL.Client.Api.Util;
 using AceQL.Client.Src.Api;
@@ -67,6 +68,12 @@ namespace AceQL.Client.Api
         private CommandType commandType = CommandType.Text;
 
         private int executeQueryRetryCount;
+
+        /// <summary>
+        /// For batchs 
+        /// </summary>
+        private List<PrepStatementParamsHolder> prepStatementParamsHolderList = new List<PrepStatementParamsHolder>();
+        private String cmdTextWithQuestionMarks = null;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AceQLCommand"/> class.
@@ -252,6 +259,7 @@ namespace AceQL.Client.Api
                 aceQLHttpApi.ResetCancellationToken();
             }
         }
+
         /// <summary>
         /// Executes the SQL statement against the connection and returns the number of rows affected.
         /// </summary>
@@ -348,7 +356,7 @@ namespace AceQL.Client.Api
                     }
                 }
 
-                Stream readStream =File.OpenRead(filePath);
+                Stream readStream = File.OpenRead(filePath);
 
                 AceQLDataReader aceQLDataReader = new AceQLDataReader(filePath, readStream, rowsCount, connection);
                 return aceQLDataReader;
@@ -588,6 +596,124 @@ namespace AceQL.Client.Api
             }
         }
 
+        /// <summary>
+        /// Empties this Statement object's current list of SQL commands.
+        /// </summary>
+        public void ClearBatch()
+        {
+            this.cmdTextWithQuestionMarks = null;
+            this.parameters = new AceQLParameterCollection(cmdText);
+            this.prepStatementParamsHolderList = new List<PrepStatementParamsHolder>();
+        }
+
+        /// <summary>
+        /// Adds a set of parameters to this PreparedStatement object's batch of commands.
+        /// </summary>
+        public void AddBatch()
+        {
+            if (cmdText == null)
+            {
+                throw new ArgumentNullException("cmdText is null!");
+            }
+
+            if (connection == null)
+            {
+                throw new ArgumentNullException("connection is null!");
+            }
+
+            if (this.Parameters.ContainsBlob())
+            {
+                throw new NotSupportedException("Cannot call AddBatch() for a table with BLOB parameter in this AceQL JDBC Client version.");
+            }
+
+            if (Parameters.Count == 0)
+            {
+                throw new NotSupportedException("Cannot call AddBatch() if the SQL command has not parameters.");
+            }
+
+            Debug("cmdText: " + cmdText);
+
+            AceQLCommandUtil aceQLCommandUtil = new AceQLCommandUtil(cmdText, Parameters);
+
+            // Get the parameters and build the result set
+            Dictionary<string, string> statementParameters = aceQLCommandUtil.GetPreparedStatementParameters();
+
+            // We can do only one the ? replace
+            if (this.cmdTextWithQuestionMarks == null)
+            {
+                cmdTextWithQuestionMarks = aceQLCommandUtil.ReplaceParmsWithQuestionMarks();
+            }
+
+            int cpt = 0;
+            foreach (KeyValuePair<string, string> kvp in statementParameters)
+            {
+                Debug(cpt++ + " statementParameters key, value: " + kvp.Key + ", " + kvp.Value);
+            }
+
+            PrepStatementParamsHolder paramsHolder = new PrepStatementParamsHolder(statementParameters);
+            this.prepStatementParamsHolderList.Add(paramsHolder);
+            this.parameters = new AceQLParameterCollection(cmdText);
+
+        }
+
+        /// <summary>
+        /// Submits a batch of commands to the database for execution and if all commands execute successfully, 
+        /// returns an array of update counts.
+        /// The int elements of the array that is returned are ordered to correspond to the commands in the batch, 
+        /// which are ordered according to the order in which they were added to the batch.
+        /// <para/>The cancellation token can be used to can be used to request that the operation 
+        /// be abandoned before the http request timeout.
+        /// </summary>
+        /// <param name="cancellationToken">The cancellation instruction.</param>
+        /// <returns>an array of update counts containing one element for each command in the batch. 
+        /// The elements of the array are ordered according to the order in which commands were added to the batch.</returns>
+        /// <exception cref="AceQL.Client.Api.AceQLException">If any Exception occurs.</exception>
+        public async Task<int[]> ExecuteBatch(CancellationToken cancellationToken)
+        {
+            try
+            {
+                // Global var avoids to propagate cancellationToken as parameter to all methods... 
+                aceQLHttpApi.SetCancellationToken(cancellationToken);
+                return await ExecuteBatch().ConfigureAwait(false);
+            }
+            finally
+            {
+                aceQLHttpApi.ResetCancellationToken();
+            }
+        }
+
+        /// <summary>
+        /// Executes the Batch
+        /// </summary>
+        /// <returns></returns>
+        public async Task<int[]> ExecuteBatch()
+        {
+            try
+            {
+                foreach (PrepStatementParamsHolder prepStatementParamsHolder in this.prepStatementParamsHolderList)
+                {
+                    Debug("prepStatementParamsHolder: " + prepStatementParamsHolder);
+                }
+
+                int[] updateCountsArray = await aceQLHttpApi.ExecutePreparedStatementBatch(cmdTextWithQuestionMarks, this.prepStatementParamsHolderList);
+                this.ClearBatch();
+                return updateCountsArray;
+            }
+            catch (Exception exception)
+            {
+                simpleTracer.Trace(exception.ToString());
+
+                if (exception.GetType() == typeof(AceQLException))
+                {
+                    throw;
+                }
+                else
+                {
+                    throw new AceQLException(exception.Message, 0, exception, aceQLHttpApi.HttpStatusCode);
+                }
+
+            }
+        }
 
         /// <summary>
         /// Executes the update as statement.
@@ -602,6 +728,8 @@ namespace AceQL.Client.Api
             Dictionary<string, string> statementParameters = null;
             return await aceQLHttpApi.ExecuteUpdateAsync(cmdText, Parameters, isStoredProcedure, isPreparedStatement, statementParameters).ConfigureAwait(false);
         }
+
+
 
         /// <summary>
         /// Gets ot set SQL statement to execute against a remote SQL database.

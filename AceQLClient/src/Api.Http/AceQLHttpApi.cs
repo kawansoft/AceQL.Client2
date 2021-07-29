@@ -31,6 +31,7 @@ using System.Net;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
+using AceQL.Client.Api.Batch;
 
 namespace AceQL.Client.Api.Http
 {
@@ -41,7 +42,7 @@ namespace AceQL.Client.Api.Http
     internal class AceQLHttpApi
     {
 
-        internal static readonly bool DEBUG;
+        internal static bool DEBUG;
 
         /// <summary>
         /// The server URL
@@ -623,6 +624,50 @@ namespace AceQL.Client.Api.Http
 
             return rowCount;
 
+        }
+
+        /// <summary>
+        /// Executes the prepared statement batch.
+        /// </summary>
+        /// <param name="sql">The SQL.</param>
+        /// <param name="prepStatementParamsHolderList">The prep statement parameters holder list.</param>
+        /// <returns>Task&lt;System.Int32[]&gt;.</returns>
+        /// <exception cref="AceQL.Client.Api.AceQLException"></exception>
+        internal async Task<int[]> ExecutePreparedStatementBatch(string sql, List<PrepStatementParamsHolder> prepStatementParamsHolderList)
+        {
+            String action = "prepared_statement_execute_batch";
+
+            PreparedStatementsBatchDto statementsBatchDto = new PreparedStatementsBatchDto(prepStatementParamsHolderList);
+            String jsonString = JsonConvert.SerializeObject(statementsBatchDto);
+
+            Debug("jsonString: " + jsonString);
+            Debug("sql_batch: " + sql);
+
+            Dictionary<string, string> parametersMap = new Dictionary<string, string>
+            {
+                { "sql", sql },
+                { "batch_list", jsonString},
+            };
+
+            Uri urlWithaction = new Uri(url + action);
+            simpleTracer.Trace("url: " + url + action);
+
+            string result = await httpManager.CallWithPostAsyncReturnString(urlWithaction, parametersMap).ConfigureAwait(false);
+
+            Debug("result 1: " + result);
+
+            ResultAnalyzer resultAnalyzer = new ResultAnalyzer(result, httpManager.HttpStatusCode);
+            if (!resultAnalyzer.IsStatusOk())
+            {
+                throw new AceQLException(resultAnalyzer.GetErrorMessage(),
+                    resultAnalyzer.GetErrorId(),
+                    resultAnalyzer.GetStackTrace(),
+                    httpManager.HttpStatusCode);
+            }
+
+            UpdateCountsArrayDto updateCountsArrayDto = JsonConvert.DeserializeObject<UpdateCountsArrayDto>(result);
+            int[] updateCountsArray = updateCountsArrayDto.GetUpdateCountsArray();
+	        return updateCountsArray;
         }
 
         /// <summary>

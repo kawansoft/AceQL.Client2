@@ -50,6 +50,8 @@ namespace AceQL.Client.Api
 
         private bool isNullValue;
 
+        private bool paramContainBlob;
+
         /// <summary>
         /// The length of the BLOB to upload
         /// </summary>
@@ -111,6 +113,9 @@ namespace AceQL.Client.Api
 
             IsNullValue = true;
             SqlNullType = value.GetAceQLNullType();
+
+
+
         }
 
         /// <summary>
@@ -165,6 +170,12 @@ namespace AceQL.Client.Api
                 throw new ArgumentNullException("Parameter " + parameterName + " value cannot be of type AceQLNullType! Use an AceQLNullValue instance to pass a null value parameter");
             }
 
+            // Says we have a stream value in param to forbid AddBatch() call
+            if (value is Stream)
+            {
+                this.ParamContainBlob = true;
+            }
+
             this.parameterName = parameterName;
             this.theValue = value;
         }
@@ -179,6 +190,7 @@ namespace AceQL.Client.Api
         /// <exception cref="System.ArgumentNullException">If parameterName or value is null.</exception>
         public AceQLParameter(string parameterName, Stream value, long length) : this(parameterName, value)
         {
+            this.ParamContainBlob = true;
             this.blobLength = length;
         }
 
@@ -275,6 +287,13 @@ namespace AceQL.Client.Api
             }
 
         }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether parameters list contains a CLOB/BLOB.
+        /// (Used to deny to call executeBatch() on this kind of table.
+        /// </summary>
+        /// <value><c>true</c> if  parameters list contains a CLOB/BLOB; otherwise, <c>false</c>.</value>
+        public bool ParamContainBlob { get => paramContainBlob; set => paramContainBlob = value; }
 
         /// <summary>
         /// Gets a string that contains <see cref="AceQLParameter"/>.ParameterName
