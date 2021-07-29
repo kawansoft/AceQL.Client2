@@ -19,6 +19,7 @@
 
 using AceQL.Client;
 using AceQL.Client.Api;
+using AceQL.Client.Api.Metadata;
 using AceQL.Client.Src.Api;
 using AceQL.Client.Tests.Test;
 using System;
@@ -118,6 +119,17 @@ namespace AceQL.Client.Tests
         /// <exception cref="AceQLException">If any Exception occurs.</exception>
         public async Task CallStoredProcedure()
         {
+            RemoteDatabaseMetaData remoteDatabaseMetaData = ((AceQLConnection)connection).GetRemoteDatabaseMetaData();
+            JdbcDatabaseMetaData jdbcDatabaseMetaData = await remoteDatabaseMetaData.GetJdbcDatabaseMetaDataAsync();
+            String databaseProductName = jdbcDatabaseMetaData.GetDatabaseProductName;
+            AceQLConsole.WriteLine(databaseProductName);
+
+            if (!databaseProductName.Contains("Microsoft") && !databaseProductName.Contains("SQL Server"))
+            {
+                AceQLConsole.WriteLine("SqlServerStoredProcedureTest must be called with a remote SQL Server database");
+                return;
+            }
+
             string sql = "{call ProcedureName(@parm1, @parm2, @parm3)}";
 
             AceQLCommand command = new AceQLCommand(sql, connection);

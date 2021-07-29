@@ -119,7 +119,6 @@ namespace AceQL.Client.Tests
         /// <exception cref="AceQLException">If any Exception occurs.</exception>
         public async Task CallStoredProcedure()
         {
-
             RemoteDatabaseMetaData remoteDatabaseMetaData = ((AceQLConnection)connection).GetRemoteDatabaseMetaData();
             JdbcDatabaseMetaData jdbcDatabaseMetaData = await remoteDatabaseMetaData.GetJdbcDatabaseMetaDataAsync();
             String databaseProductName = jdbcDatabaseMetaData.GetDatabaseProductName;
@@ -127,7 +126,7 @@ namespace AceQL.Client.Tests
 
             if (!databaseProductName.Contains("Microsoft") && !databaseProductName.Contains("SQL Server"))
             {
-                AceQLConsole.WriteLine("SqlServerStoredProcedureTestUtf8 mus be called with a remote SQL Server database");
+                AceQLConsole.WriteLine("SqlServerStoredProcedureTestUtf8 must be called with a remote SQL Server database");
                 return;
             }
 
