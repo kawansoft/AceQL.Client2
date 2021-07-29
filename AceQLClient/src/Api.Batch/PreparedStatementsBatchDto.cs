@@ -24,7 +24,7 @@ namespace AceQL.Client.Api.Batch
         /// Gets or sets the prep statement parameters holder list. THE PROPERTY MUST BE IN LOWERCASE FIRST CHAR FOR HOST TO DESERIALIZE.
         /// </summary>
         /// <value>The prep statement parameters holder list.</value>
-        public List<PrepStatementParamsHolder> prepStatementParamsHolderList { get => prepStatementParamsHolderList1; set => prepStatementParamsHolderList1 = value; }
+        public List<PrepStatementParamsHolder> prepStatementParamsHolderList { get => prepStatementParamsHolderList1; }
 
         /// <summary>
         /// Returns a <see cref="System.String" /> that represents this instance.
