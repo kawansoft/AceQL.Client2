@@ -10,7 +10,7 @@ namespace AceQL.Client.Api.Batch
     public class PrepStatementParamsHolder
     {
         /** All the PreparedStatement parameters and their values */
-        Dictionary<string, string> statementParameters1;
+        private readonly Dictionary<string, string> statementParameters1;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PrepStatementParamsHolder"/> class.
@@ -27,31 +27,20 @@ namespace AceQL.Client.Api.Batch
         /// <value>The statement parameters.</value>
         public Dictionary<string, string> statementParameters { get => statementParameters1; }
 
-        //public override bool Equals(object obj)
-        //{
-        //    return obj is PrepStatementParamsHolder holder &&
-        //           EqualityComparer<Dictionary<string, string>>.Default.Equals(statementParameters, holder.statementParameters);
-        //}
-
-        //public override int GetHashCode()
-        //{
-        //    return -38088490 + EqualityComparer<Dictionary<string, string>>.Default.GetHashCode(statementParameters);
-        //}
-
         /// <summary>
         /// Returns a <see cref="System.String" /> that represents this instance.
         /// </summary>
         /// <returns>A <see cref="System.String" /> that represents this instance.</returns>
         public override string ToString()
         {
-
-            String theString = "PrepStatementParamsHolder [statementParameters= ";
+            StringBuilder sb = new StringBuilder();
+            sb.Append("PrepStatementParamsHolder [statementParameters= ");
             foreach (KeyValuePair<string, string> kvp in statementParameters)
             {
-                theString += " " + kvp.Key + ", " + kvp.Value;
+                sb.Append(" " + kvp.Key + ", " + kvp.Value);
             }
-            theString += "]";
-            return theString;
+            sb.Append("]");
+            return sb.ToString();
         }
 
     }

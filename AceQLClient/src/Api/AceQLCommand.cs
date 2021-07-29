@@ -73,7 +73,7 @@ namespace AceQL.Client.Api
         /// For batchs 
         /// </summary>
         private List<PrepStatementParamsHolder> prepStatementParamsHolderList = new List<PrepStatementParamsHolder>();
-        private String cmdTextWithQuestionMarks = null;
+        private String cmdTextWithQuestionMarks;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AceQLCommand"/> class.
@@ -638,7 +638,7 @@ namespace AceQL.Client.Api
             // Get the parameters and build the result set
             Dictionary<string, string> statementParameters = aceQLCommandUtil.GetPreparedStatementParameters();
 
-            // We can do only one the ? replace
+            // We can do only one "@param" params replace with attended JDBC "?" values
             if (this.cmdTextWithQuestionMarks == null)
             {
                 cmdTextWithQuestionMarks = aceQLCommandUtil.ReplaceParmsWithQuestionMarks();

@@ -9,8 +9,8 @@ namespace AceQL.Client.Api.Batch
     /// </summary>
     public class UpdateCountsArrayDto
     {
-        private String status = "OK";
-        private int[] updateCountsArray;
+        private readonly String status = "OK";
+        private readonly int[] updateCountsArray;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="UpdateCountsArrayDto"/> class.
