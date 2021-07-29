@@ -130,6 +130,8 @@ namespace AceQL.Client.Tests
                 return;
             }
 
+            await deleteTest1(connection);
+
             string sql = "{call spAddNvarchar(@parm1)}";
 
             AceQLCommand command = new AceQLCommand(sql, connection);
@@ -151,6 +153,13 @@ namespace AceQL.Client.Tests
             AceQLConsole.WriteLine("Done!");
 
         }
-     
+
+        private async Task deleteTest1(AceQLConnection connection)
+        {
+            AceQLConsole.WriteLine("Before delete from test1");
+            string sql = "delete from test1";
+            AceQLCommand command = new AceQLCommand(sql, connection);
+            await command.ExecuteNonQueryAsync();
+        }
     }
 }
