@@ -56,7 +56,6 @@ namespace AceQL.Client.Api.Http
         /// </summary>
         private String database ;
         private char[] password ;
-        private bool isNTLM;
 
         /// <summary>
         /// The Web Proxy Uri
@@ -180,7 +179,7 @@ namespace AceQL.Client.Api.Http
                 this.database = connectionStringDecoder.Database;
                 this.username = connectionStringDecoder.Username;
                 this.password = connectionStringDecoder.Password;
-                this.isNTLM = connectionStringDecoder.IsNTLM;
+                bool isNTLM = connectionStringDecoder.IsNTLM;
                 sessionId = connectionStringDecoder.SessionId;
                 this.proxyUri = connectionStringDecoder.ProxyUri;
                 this.proxyCredentials = connectionStringDecoder.ProxyCredentials;
