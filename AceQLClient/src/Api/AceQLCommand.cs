@@ -664,11 +664,14 @@ namespace AceQL.Client.Api
                 this.batchFileParameters = FileUtil2.GetUniqueBatchFile();
             }
 
-            using (StreamWriter sw = File.AppendText(this.batchFileParameters))
-            {
-                String jsonString = JsonConvert.SerializeObject(paramsHolder);
-                sw.WriteLine(jsonString);
-            }
+            //using (StreamWriter sw = File.AppendText(this.batchFileParameters))
+            //{
+            //    String jsonString = JsonConvert.SerializeObject(paramsHolder);
+            //    sw.WriteLine(jsonString);
+            //}
+
+            String jsonString = JsonConvert.SerializeObject(paramsHolder);
+            File.AppendAllText(this.batchFileParameters, jsonString + Environment.NewLine);
 
             this.parameters = new AceQLParameterCollection(cmdText);
 
