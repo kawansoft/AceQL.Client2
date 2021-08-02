@@ -23,6 +23,7 @@ using AceQL.Client.Api.Http;
 using AceQL.Client.Api.Util;
 using AceQL.Client.Src.Api;
 using AceQL.Client.Src.Api.Util;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -35,7 +36,7 @@ namespace AceQL.Client.Api
     /// <summary>Represents a SQL statement to execute against a remote SQL database.</summary>
     public class AceQLCommand : IDisposable
     {
-        internal static readonly bool DEBUG;
+        internal static readonly bool DEBUG = true;
 
         /// <summary>
         /// The instance that does all http stuff
@@ -72,8 +73,10 @@ namespace AceQL.Client.Api
         /// <summary>
         /// For batchs 
         /// </summary>
-        private List<PrepStatementParamsHolder> prepStatementParamsHolderList = new List<PrepStatementParamsHolder>();
         private String cmdTextWithQuestionMarks;
+
+        // For batch, contain all SQL orders, one per line, in text mode: 
+        private String batchFileParameters;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AceQLCommand"/> class.
@@ -603,7 +606,11 @@ namespace AceQL.Client.Api
         {
             this.cmdTextWithQuestionMarks = null;
             this.parameters = new AceQLParameterCollection(cmdText);
-            this.prepStatementParamsHolderList = new List<PrepStatementParamsHolder>();
+            if (this.batchFileParameters != null)
+            {
+                File.Delete(batchFileParameters);
+            }
+
         }
 
         /// <summary>
@@ -651,7 +658,18 @@ namespace AceQL.Client.Api
             }
 
             PrepStatementParamsHolder paramsHolder = new PrepStatementParamsHolder(statementParameters);
-            this.prepStatementParamsHolderList.Add(paramsHolder);
+
+            if (this.batchFileParameters == null)
+            {
+                this.batchFileParameters = FileUtil2.GetUniqueBatchFile();
+            }
+
+            using (StreamWriter sw = File.AppendText(this.batchFileParameters))
+            {
+                String jsonString = JsonConvert.SerializeObject(paramsHolder);
+                sw.WriteLine(jsonString);
+            }
+
             this.parameters = new AceQLParameterCollection(cmdText);
 
         }
@@ -690,12 +708,7 @@ namespace AceQL.Client.Api
         {
             try
             {
-                foreach (PrepStatementParamsHolder prepStatementParamsHolder in this.prepStatementParamsHolderList)
-                {
-                    Debug("prepStatementParamsHolder: " + prepStatementParamsHolder);
-                }
-
-                int[] updateCountsArray = await aceQLHttpApi.ExecutePreparedStatementBatch(cmdTextWithQuestionMarks, this.prepStatementParamsHolderList);
+                int[] updateCountsArray = await aceQLHttpApi.ExecutePreparedStatementBatch(cmdTextWithQuestionMarks,  this.batchFileParameters);
                 this.ClearBatch();
                 return updateCountsArray;
             }

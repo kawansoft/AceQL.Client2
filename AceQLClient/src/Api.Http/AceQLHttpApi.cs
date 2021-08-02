@@ -42,7 +42,7 @@ namespace AceQL.Client.Api.Http
     internal class AceQLHttpApi
     {
 
-        internal static readonly bool DEBUG;
+        internal static readonly bool DEBUG = true;
 
         /// <summary>
         /// The server URL
@@ -629,23 +629,28 @@ namespace AceQL.Client.Api.Http
         /// Executes the prepared statement batch.
         /// </summary>
         /// <param name="sql">The SQL.</param>
-        /// <param name="prepStatementParamsHolderList">The prep statement parameters holder list.</param>
+        /// <param name="batchFileParameters">The path of file containing the prepared statement parameters.</param>
         /// <returns>Task&lt;System.Int32[]&gt;.</returns>
         /// <exception cref="AceQL.Client.Api.AceQLException"></exception>
-        internal async Task<int[]> ExecutePreparedStatementBatch(string sql, List<PrepStatementParamsHolder> prepStatementParamsHolderList)
+        internal async Task<int[]> ExecutePreparedStatementBatch(string sql, String batchFileParameters)
         {
             String action = "prepared_statement_execute_batch";
+            String blobId = Path.GetFileName(batchFileParameters);
 
-            PreparedStatementsBatchDto statementsBatchDto = new PreparedStatementsBatchDto(prepStatementParamsHolderList);
-            String jsonString = JsonConvert.SerializeObject(statementsBatchDto);
+            Debug("batchFileParameters : " + batchFileParameters);
+            Debug("blobId              : " + blobId);
+            
+            long length = new FileInfo(batchFileParameters).Length;
 
-            Debug("jsonString: " + jsonString);
-            Debug("sql_batch: " + sql);
+            using (Stream stream = File.OpenRead(batchFileParameters))
+            {
+                await BlobUploadAsync(blobId, stream, length).ConfigureAwait(false);
+            }
 
             Dictionary<string, string> parametersMap = new Dictionary<string, string>
             {
                 { "sql", sql },
-                { "batch_list", jsonString},
+                { "blob_id", blobId}
             };
 
             Uri urlWithaction = new Uri(url + action);

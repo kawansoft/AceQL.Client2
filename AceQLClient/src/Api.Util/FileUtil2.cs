@@ -85,5 +85,15 @@ namespace AceQL.Client.Api.Util
             String path = GetUserFolderPath() + "\\" + Guid.NewGuid().ToString() + "-result-set.txt";
             return path;
         }
+
+        /// <summary>
+        /// Generates a unique File on the system for the downloaded result set content.
+        /// </summary>
+        /// <returns>A unique File on the system.</returns>
+        public static String GetUniqueBatchFile()
+        {
+            String path = GetUserFolderPath() + "\\" + Guid.NewGuid().ToString() + "-batch-file.txt";
+            return path;
+        }
     }
 }

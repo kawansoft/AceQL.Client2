@@ -237,12 +237,12 @@
             <param name="actionParameter">The action parameter.</param>
             <returns>String.</returns>
         </member>
-        <member name="M:AceQL.Client.Api.Http.AceQLHttpApi.ExecutePreparedStatementBatch(System.String,System.Collections.Generic.List{AceQL.Client.Api.Batch.PrepStatementParamsHolder})">
+        <member name="M:AceQL.Client.Api.Http.AceQLHttpApi.ExecutePreparedStatementBatch(System.String,System.String)">
             <summary>
             Executes the prepared statement batch.
             </summary>
             <param name="sql">The SQL.</param>
-            <param name="prepStatementParamsHolderList">The prep statement parameters holder list.</param>
+            <param name="batchFileParameters">The path of file containing the prepared statement parameters.</param>
             <returns>Task&lt;System.Int32[]&gt;.</returns>
             <exception cref="T:AceQL.Client.Api.AceQLException"></exception>
         </member>
@@ -1777,6 +1777,12 @@
             </summary>
             <returns>A unique File on the system.</returns>
         </member>
+        <member name="M:AceQL.Client.Api.Util.FileUtil2.GetUniqueBatchFile">
+            <summary>
+            Generates a unique File on the system for the downloaded result set content.
+            </summary>
+            <returns>A unique File on the system.</returns>
+        </member>
         <member name="T:AceQL.Client.Api.Util.OutParamBuilder">
             <summary>
             Class OutParamBuilder.
@@ -2140,7 +2146,7 @@
             The parameters
             </summary>
         </member>
-        <member name="F:AceQL.Client.Api.AceQLCommand.prepStatementParamsHolderList">
+        <member name="F:AceQL.Client.Api.AceQLCommand.cmdTextWithQuestionMarks">
             <summary>
             For batchs 
             </summary>

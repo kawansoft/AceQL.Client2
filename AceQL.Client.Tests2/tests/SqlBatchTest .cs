@@ -122,7 +122,7 @@ namespace AceQL.Client.Tests
             string sql ="insert into customer values (@parm1, @parm2, @parm3, @parm4, @parm5, @parm6, @parm7, @parm8)";
             AceQLCommand command = new AceQLCommand(sql, connection);
 
-            for (int i = 1; i < 3; i++)
+            for (int i = 1; i < 10; i++)
             {
                 int customer_id = i;
 
