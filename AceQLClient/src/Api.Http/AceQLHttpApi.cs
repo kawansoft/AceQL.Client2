@@ -42,7 +42,7 @@ namespace AceQL.Client.Api.Http
     internal class AceQLHttpApi
     {
 
-        internal static readonly bool DEBUG = true;
+        internal static readonly bool DEBUG;
 
         /// <summary>
         /// The server URL
