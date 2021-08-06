@@ -67,7 +67,6 @@ namespace AceQL.Client.Tests.DML.Batchs
 
                     await sqlBatchTest.DeleteCustomerAll();
                     await sqlBatchTest.InsertUsingBatch().ConfigureAwait(false);
-                    await theConnection.CloseAsync();
                 }
 
                 AceQLConsole.WriteLine();
