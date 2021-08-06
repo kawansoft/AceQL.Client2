@@ -70,7 +70,7 @@ namespace AceQL.Client.Tests.StoredProcedures
                 }
 
                 AceQLConsole.WriteLine();
-                AceQLConsole.WriteLine("Press enter to close....");
+                AceQLConsole.WriteLine("Press enter to continue....");
                 Console.ReadLine();
 
             }
@@ -78,7 +78,7 @@ namespace AceQL.Client.Tests.StoredProcedures
             {
                 AceQLConsole.WriteLine(exception.ToString());
                 AceQLConsole.WriteLine(exception.StackTrace);
-                AceQLConsole.WriteLine("Press enter to close...");
+                AceQLConsole.WriteLine("Press enter to continue...");
                 Console.ReadLine();
             }
         }

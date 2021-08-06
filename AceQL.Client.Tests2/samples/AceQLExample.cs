@@ -78,14 +78,14 @@ namespace AceQL.Client.Samples
                 //DoIt(args).GetAwaiter().GetResult();
 
                 AceQLConsole.WriteLine();
-                AceQLConsole.WriteLine("Press enter to close....");
+                AceQLConsole.WriteLine("Press enter to continue...");
                 Console.ReadLine();
             }
             catch (Exception exception)
             {
                 AceQLConsole.WriteLine(exception.ToString());
                 AceQLConsole.WriteLine(exception.StackTrace);
-                AceQLConsole.WriteLine("Press enter to close...");
+                AceQLConsole.WriteLine("Press enter to continue...");
                 Console.ReadLine();
             }
 
@@ -168,7 +168,7 @@ namespace AceQL.Client.Samples
             if (!CONSOLE_INPUT_DONE)
             {
                 AceQLConsole.WriteLine();
-                AceQLConsole.WriteLine("Press enter to close....");
+                AceQLConsole.WriteLine("Press enter to continue....");
                 Console.ReadLine();
                 CONSOLE_INPUT_DONE = true;
             }

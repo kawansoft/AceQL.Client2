@@ -42,14 +42,14 @@ namespace AceQL.Client.Tests
                 DoIt().Wait();
 
                 AceQLConsole.WriteLine();
-                AceQLConsole.WriteLine("Press enter to close....");
+                AceQLConsole.WriteLine("Press enter to continue....");
                 Console.ReadLine();
             }
             catch (Exception exception)
             {
                 AceQLConsole.WriteLine(exception.ToString());
                 AceQLConsole.WriteLine(exception.StackTrace);
-                AceQLConsole.WriteLine("Press enter to close...");
+                AceQLConsole.WriteLine("Press enter to continue...");
                 Console.ReadLine();
             }
         }
@@ -60,10 +60,7 @@ namespace AceQL.Client.Tests
             var netCoreVer = System.Environment.Version; // 3.0.0
             AceQLConsole.WriteLine(netCoreVer + "");
 
-            string connectionString = ConnectionStringCurrent.Build();
-
-            
-            using (AceQLConnection connection = new AceQLConnection(connectionString))
+            using (AceQLConnection connection = await ConnectionCreator.ConnectionCreateAsync().ConfigureAwait(false))
             {
                 await ExecuteExample(connection).ConfigureAwait(false);
                 //NOT Neccessary: await connection.CloseAsync(); 

@@ -30,7 +30,7 @@ using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace AceQL.Client.Tests
+namespace AceQL.Client.Tests.Metadata
 {
     /// <summary>
     /// Tests AceQL client SDK by calling all APIs.
@@ -44,12 +44,15 @@ namespace AceQL.Client.Tests
             {
                 AceQLConsole.WriteLine("AceQLTestMetadata Begin...");
                 DoIt().Wait();
+                AceQLConsole.WriteLine();
+                AceQLConsole.WriteLine("Press enter to continue....");
+                Console.ReadLine();
             }
             catch (Exception exception)
             {
                 AceQLConsole.WriteLine(exception.ToString());
                 AceQLConsole.WriteLine(exception.StackTrace);
-                AceQLConsole.WriteLine("Press enter to close...");
+                AceQLConsole.WriteLine("Press enter to continue...");
                 Console.ReadLine();
             }
 
@@ -58,10 +61,9 @@ namespace AceQL.Client.Tests
 
         public static async Task DoIt()
         {
-            string connectionString = ConnectionStringCurrent.Build();
 
             // Make sure connection is always closed to close and release server connection into the pool
-            using (AceQLConnection connection = new AceQLConnection(connectionString))
+            using (AceQLConnection connection = await ConnectionCreator.ConnectionCreateAsync().ConfigureAwait(false))
             {
                 await ExecuteExample(connection).ConfigureAwait(false);
                 await connection.CloseAsync();
@@ -72,15 +74,8 @@ namespace AceQL.Client.Tests
         /// Executes our example using an <see cref="AceQLConnection"/> 
         /// </summary>
         /// <param name="connection"></param>
-        private static async Task ExecuteExample(AceQLConnection connection)
+        public static async Task ExecuteExample(AceQLConnection connection)
         {
-            await connection.OpenAsync();
-
-            AceQLConsole.WriteLine("host: " + connection.ConnectionInfo.ConnectionString);
-            AceQLConsole.WriteLine("aceQLConnection.GetClientVersion(): " + AceQLConnection.GetClientVersion());
-            AceQLConsole.WriteLine("aceQLConnection.GetServerVersion(): " + await connection.GetServerVersionAsync());
-            AceQLConsole.WriteLine("AceQL local folder                : " + AceQLConnection.GetAceQLLocalFolder());
-
             RemoteDatabaseMetaData remoteDatabaseMetaData = connection.GetRemoteDatabaseMetaData();
 
             string userPath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);

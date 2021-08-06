@@ -27,7 +27,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AceQL.Client.Tests
+namespace AceQL.Client.Tests.Json
 {
     static class JsonTest
     {
@@ -37,14 +37,14 @@ namespace AceQL.Client.Tests
             try
             {
                 AceQLConsole.WriteLine();
-                AceQLConsole.WriteLine("Press enter to close....");
+                AceQLConsole.WriteLine("Press enter to continue....");
                 Console.ReadLine();
             }
             catch (Exception exception)
             {
                 AceQLConsole.WriteLine(exception.ToString());
                 AceQLConsole.WriteLine(exception.StackTrace);
-                AceQLConsole.WriteLine("Press enter to close...");
+                AceQLConsole.WriteLine("Press enter to continue...");
                 Console.ReadLine();
             }
         }

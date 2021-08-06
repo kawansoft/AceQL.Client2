@@ -25,7 +25,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace AceQL.Client.Tests
+namespace AceQL.Client.Tests.Json
 {
     /// <summary>
     /// Class to test that the AceQL JSON key names "row_n" and "row_count" can safely be used as column names.
@@ -41,14 +41,14 @@ namespace AceQL.Client.Tests
                 DoIt().Wait();
 
                 AceQLConsole.WriteLine();
-                AceQLConsole.WriteLine("Press enter to close....");
+                AceQLConsole.WriteLine("Press enter to continue....");
                 Console.ReadLine();
             }
             catch (Exception exception)
             {
                 AceQLConsole.WriteLine(exception.ToString());
                 AceQLConsole.WriteLine(exception.StackTrace);
-                AceQLConsole.WriteLine("Press enter to close...");
+                AceQLConsole.WriteLine("Press enter to continue...");
                 Console.ReadLine();
             }
         }
@@ -87,7 +87,7 @@ namespace AceQL.Client.Tests
             await transaction.CommitAsync();
             transaction.Dispose();
 
-            string sql = "delete from customer_2";
+            string sql = "delete from customer";
 
             AceQLCommand command = new AceQLCommand
             {
@@ -101,7 +101,7 @@ namespace AceQL.Client.Tests
             for (int i = 0; i < 3; i++)
             {
                 sql =
-                "insert into customer_2 values (@parm1, @parm2, @parm3, @parm4, @parm5, @parm6, @parm7, @parm8, @parm9, @parm_10)";
+                "insert into customer values (@parm1, @parm2, @parm3, @parm4, @parm5, @parm6, @parm7, @parm8)";
 
                 command = new AceQLCommand(sql, connection);
 
@@ -111,12 +111,10 @@ namespace AceQL.Client.Tests
                 command.Parameters.AddWithValue("@parm2", "Sir");
                 command.Parameters.AddWithValue("@parm3", "André_" + customer_id);
                 command.Parameters.Add(new AceQLParameter("@parm4", "Name_" + customer_id));
-                command.Parameters.AddWithValue("@parm5", customer_id + ", road 66");
-                command.Parameters.AddWithValue("@parm6", "Town_" + customer_id);
+                command.Parameters.AddWithValue("@parm5", customer_id + "_row_2");
+                command.Parameters.AddWithValue("@parm6", customer_id + "_row_count");
                 command.Parameters.AddWithValue("@parm7", customer_id + "1111");
-                command.Parameters.Add(new AceQLParameter("@parm8", AceQLNullType.VARCHAR)); //null value for NULL SQL insert.
-                command.Parameters.AddWithValue("@parm9", customer_id + "_row_2");
-                command.Parameters.AddWithValue("@parm_10", customer_id + "_row_count");
+                command.Parameters.Add(new AceQLParameter("@parm8", new AceQLNullValue(AceQLNullType.VARCHAR))); //null value for NULL SQL insert.
 
                 CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
                 await command.ExecuteNonQueryAsync(cancellationTokenSource.Token);
@@ -124,7 +122,7 @@ namespace AceQL.Client.Tests
 
             command.Dispose();
 
-            sql = "select * from customer_2";
+            sql = "select * from customer";
             command = new AceQLCommand(sql, connection);
 
             // Our dataReader must be disposed to delete underlying downloaded files
@@ -135,8 +133,6 @@ namespace AceQL.Client.Tests
                     AceQLConsole.WriteLine();
                     int i = 0;
                     AceQLConsole.WriteLine("GetValue: " + dataReader.GetValue(i++) + "\n"
-                        + "GetValue: " + dataReader.GetValue(i++) + "\n"
-                        + "GetValue: " + dataReader.GetValue(i++) + "\n"
                         + "GetValue: " + dataReader.GetValue(i++) + "\n"
                         + "GetValue: " + dataReader.GetValue(i++) + "\n"
                         + "GetValue: " + dataReader.GetValue(i++) + "\n"

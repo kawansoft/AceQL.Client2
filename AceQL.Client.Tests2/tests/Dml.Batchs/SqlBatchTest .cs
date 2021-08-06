@@ -59,10 +59,10 @@ namespace AceQL.Client.Tests.DML.Batchs
             {
                 // Make sure connection is always closed in order to close and release
                 // server connection into the pool
-                using (AceQLConnection theConnection = await ConnectionCreator.ConnectionCreateAsync().ConfigureAwait(false))
+                using (AceQLConnection connection = await ConnectionCreator.ConnectionCreateAsync().ConfigureAwait(false))
                 {
                     SqlBatchTest sqlBatchTest = new SqlBatchTest(
-                        theConnection);
+                        connection);
                     AceQLConsole.WriteLine("Connection created....");
 
                     await sqlBatchTest.DeleteCustomerAll();
@@ -70,7 +70,7 @@ namespace AceQL.Client.Tests.DML.Batchs
                 }
 
                 AceQLConsole.WriteLine();
-                AceQLConsole.WriteLine("Press enter to close....");
+                AceQLConsole.WriteLine("Press enter to continue....");
                 Console.ReadLine();
 
             }
@@ -78,7 +78,7 @@ namespace AceQL.Client.Tests.DML.Batchs
             {
                 AceQLConsole.WriteLine(exception.ToString());
                 AceQLConsole.WriteLine(exception.StackTrace);
-                AceQLConsole.WriteLine("Press enter to close...");
+                AceQLConsole.WriteLine("Press enter to continue...");
                 Console.ReadLine();
             }
         }
