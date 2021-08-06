@@ -11,11 +11,11 @@
     <PackageLicenseExpression></PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/kawansoft/AceQL.Client2</PackageProjectUrl>
     <PackageIcon>favicon.png</PackageIcon>
-    <AssemblyVersion>6.3.0.0</AssemblyVersion>
-    <FileVersion>6.3.0.0</FileVersion>
-    <Version>6.3</Version>
+    <AssemblyVersion>7.0.0.0</AssemblyVersion>
+    <FileVersion>7.0.0.0</FileVersion>
+    <Version>7.0</Version>
     <Authors>KawanSoft</Authors>
-    <PackageReleaseNotes>AceQLCommand provides now the ExecuteScalar method.</PackageReleaseNotes>
+    <PackageReleaseNotes>Bulk INSERT are now possible using the AddBatch() and ExecuteBatch() mehods.</PackageReleaseNotes>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageTags>SQL over http remote jdbc cloud database Xamarin</PackageTags>
     <Product>AceQL.Client</Product>
