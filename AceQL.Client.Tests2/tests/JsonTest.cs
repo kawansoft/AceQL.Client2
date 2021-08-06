@@ -18,6 +18,7 @@
  */
 
 using AceQL.Client.Api.Util;
+using AceQL.Client.Tests.Util;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;

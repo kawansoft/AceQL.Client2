@@ -18,6 +18,7 @@
  */
 
 using AceQL.Client.Api;
+using AceQL.Client.Tests.Test.Connection.Proxy;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +26,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AceQL.Client.Tests.Test
+namespace AceQL.Client.Tests.Test.Connection
 {
 
 

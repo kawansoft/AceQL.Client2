@@ -21,6 +21,8 @@ using AceQL.Client.Api;
 using AceQL.Client.Api.Metadata;
 using AceQL.Client.Api.Metadata.Dto;
 using AceQL.Client.Tests.Test;
+using AceQL.Client.Tests.Test.Connection;
+using AceQL.Client.Tests.Util;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;

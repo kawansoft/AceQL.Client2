@@ -19,6 +19,7 @@
 
 using AceQL.Client.Api;
 using AceQL.Client.Tests;
+using AceQL.Client.Tests.Util;
 using System;
 using System.Collections.Generic;
 using System.IO;

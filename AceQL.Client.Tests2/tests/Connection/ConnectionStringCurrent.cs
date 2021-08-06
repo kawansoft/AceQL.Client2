@@ -17,13 +17,14 @@
  * limitations under the License. 
  */
 
+using AceQL.Client.Tests.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AceQL.Client.Tests.Test
+namespace AceQL.Client.Tests.Test.Connection
 {
     public static class ConnectionStringCurrent
     {

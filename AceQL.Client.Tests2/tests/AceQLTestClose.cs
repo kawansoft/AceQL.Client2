@@ -20,6 +20,8 @@
 using AceQL.Client.Api;
 using AceQL.Client.Api.Http;
 using AceQL.Client.Tests.Test;
+using AceQL.Client.Tests.Test.Connection;
+using AceQL.Client.Tests.Util;
 using System;
 using System.IO;
 using System.Net;

@@ -24,7 +24,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AceQL.Client.Tests.Test
+namespace AceQL.Client.Tests.Test.Connection
 {
     /// <summary>
     /// Class ConnectionStringBuilderFactory. Creates default connection strings.

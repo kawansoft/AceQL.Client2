@@ -20,6 +20,8 @@
 using AceQL.Client.Api;
 using AceQL.Client.Api.Metadata;
 using AceQL.Client.Api.Metadata.Dto;
+using AceQL.Client.Tests.DML.Batchs;
+using AceQL.Client.Tests.StoredProcedures;
 using AceQL.Client.Tests.Test;
 using Newtonsoft.Json;
 using System;

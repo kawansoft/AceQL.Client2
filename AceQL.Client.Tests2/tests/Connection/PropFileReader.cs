@@ -24,7 +24,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AceQL.Client.Tests.Test
+namespace AceQL.Client.Tests.Test.Connection
 {
     /// <summary>
     /// Class PropFileReader. Allows to read properties from a INI or .properties file, as we would do in Java...

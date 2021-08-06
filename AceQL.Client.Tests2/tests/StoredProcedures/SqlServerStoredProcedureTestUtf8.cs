@@ -19,21 +19,23 @@
 
 using AceQL.Client;
 using AceQL.Client.Api;
+using AceQL.Client.Api.Metadata;
 using AceQL.Client.Src.Api;
 using AceQL.Client.Tests.Test;
+using AceQL.Client.Tests.Test.Connection;
+using AceQL.Client.Tests.Util;
 using System;
 using System.IO;
-using System.Threading;
 using System.Threading.Tasks;
 
-namespace AceQL.Client.Tests
+namespace AceQL.Client.Tests.StoredProcedures
 {
     /// <summary>
     /// This example: 
     /// 1) Inserts a Customer and an Order on a remote database. 
     /// 2) Displays the inserted raws on the console with two SELECT executed on the remote database.
     /// </summary>
-    public class SqlBatchTest
+    public class SqlServerStoredProcedureTestUtf8
     {
         /// <summary>
         /// The connection to the remote database
@@ -55,16 +57,16 @@ namespace AceQL.Client.Tests
 
             try
             {
+
                 // Make sure connection is always closed in order to close and release
                 // server connection into the pool
-                using (AceQLConnection theConnection = await ConnectionBuilderAsync().ConfigureAwait(false))
+                using (AceQLConnection theConnection = await ConnectionCreator.ConnectionCreateAsync().ConfigureAwait(false))
                 {
-                    SqlBatchTest sqlBatchTest = new SqlBatchTest(
+                    SqlServerStoredProcedureTestUtf8 sqlServerStoredProcedureTestUtf8 = new SqlServerStoredProcedureTestUtf8(
                         theConnection);
                     AceQLConsole.WriteLine("Connection created....");
 
-                    await sqlBatchTest.DeleteCustomerAll();
-                    await sqlBatchTest.InsertUsingBatch().ConfigureAwait(false);
+                    await sqlServerStoredProcedureTestUtf8.CallStoredProcedure().ConfigureAwait(false);
                     await theConnection.CloseAsync();
                 }
 
@@ -84,31 +86,10 @@ namespace AceQL.Client.Tests
 
 
         /// <summary>
-        /// RemoteConnection Quick Start client example.
-        /// Creates a Connection to a remote database and open it.
-        /// </summary>
-        /// <returns>The connection to the remote database</returns>
-        /// <exception cref="AceQLException">If any Exception occurs.</exception>
-        public static async Task<AceQLConnection> ConnectionBuilderAsync()
-        {
-            string connectionString = ConnectionStringCurrent.Build();
-
-            AceQLConnection theConnection = new AceQLConnection(connectionString);
-
-            // Opens the connection with the remote database.
-            // On the server side, a JDBC connection is extracted from the connection 
-            // pool created by the server at startup. The connection will remain ours 
-            // during the session.
-            await theConnection.OpenAsync();
-
-            return theConnection;
-        }
-
-        /// <summary>
         /// Constructor.
         /// </summary>
         /// <param name="connection">The AceQL connection to remote database.</param>
-        public SqlBatchTest(AceQLConnection connection)
+        public SqlServerStoredProcedureTestUtf8(AceQLConnection connection)
         {
             this.connection = connection;
         }
@@ -117,45 +98,47 @@ namespace AceQL.Client.Tests
         /// Example of MS SQL Server Stored Procedure.
         /// </summary>
         /// <exception cref="AceQLException">If any Exception occurs.</exception>
-        public async Task InsertUsingBatch()
+        public async Task CallStoredProcedure()
         {
-            string sql ="insert into customer values (@parm1, @parm2, @parm3, @parm4, @parm5, @parm6, @parm7, @parm8)";
+            RemoteDatabaseMetaData remoteDatabaseMetaData = ((AceQLConnection)connection).GetRemoteDatabaseMetaData();
+            JdbcDatabaseMetaData jdbcDatabaseMetaData = await remoteDatabaseMetaData.GetJdbcDatabaseMetaDataAsync();
+            String databaseProductName = jdbcDatabaseMetaData.GetDatabaseProductName;
+            AceQLConsole.WriteLine(databaseProductName);
+
+            if (!databaseProductName.Contains("Microsoft") && !databaseProductName.Contains("SQL Server"))
+            {
+                AceQLConsole.WriteLine("SqlServerStoredProcedureTestUtf8 must be called with a remote SQL Server database");
+                return;
+            }
+
+            await deleteTest1(connection);
+
+            string sql = "{call spAddNvarchar(@parm1)}";
+
             AceQLCommand command = new AceQLCommand(sql, connection);
+            command.CommandType = CommandType.StoredProcedure;
 
-            for (int i = 1; i < 10; i++)
+            String parm1 = "टेस्ट";
+            AceQLParameter aceQLParameter1 = new AceQLParameter("@parm1", parm1)
             {
-                int customer_id = i;
+                Direction = ParameterDirection.Input
+            };
 
-                command.Parameters.AddWithValue("@parm1", customer_id);
-                command.Parameters.AddWithValue("@parm2", "Sir" + i ); // HACK NDP
-                command.Parameters.AddWithValue("@parm3", "André_" + customer_id);
-                command.Parameters.Add(new AceQLParameter("@parm4", "Name_" + customer_id));
-                command.Parameters.AddWithValue("@parm5", customer_id + ", road Sixty-Six");
-                command.Parameters.AddWithValue("@parm6", "Town_" + customer_id);
-                command.Parameters.AddWithValue("@parm7", customer_id + "0000");
-                command.Parameters.Add(new AceQLParameter("@parm8", new AceQLNullValue(AceQLNullType.VARCHAR))); //null value for NULL SQL insert.
+            command.Parameters.Add(aceQLParameter1);
 
-                command.AddBatch();
-            }
-
-            CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
-            int [] results = await command.ExecuteBatch(cancellationTokenSource.Token);
-
-            foreach (int theResult in results)
-            {
-                AceQLConsole.WriteLine(theResult + "");
-            }
+            AceQLConsole.WriteLine(sql);
+            AceQLConsole.WriteLine("BEFORE execute @parm1: " + aceQLParameter1.ParameterName + " / " + aceQLParameter1.Value + " (" + aceQLParameter1.Value.GetType() + ")");
+            AceQLConsole.WriteLine();
+            await command.ExecuteNonQueryAsync();
+            AceQLConsole.WriteLine();
+            AceQLConsole.WriteLine("Done!");
 
         }
 
-        /// <summary>
-        /// Delete all from customers
-        /// </summary>
-        /// <returns></returns>
-        public async Task DeleteCustomerAll()
+        private async Task deleteTest1(AceQLConnection connection)
         {
-            // Delete all
-            string sql = "delete from customer where customer_id >= 0";
+            AceQLConsole.WriteLine("Before delete from test1");
+            string sql = "delete from test1";
             AceQLCommand command = new AceQLCommand(sql, connection);
             await command.ExecuteNonQueryAsync();
         }

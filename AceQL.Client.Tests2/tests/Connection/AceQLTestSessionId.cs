@@ -18,6 +18,7 @@
  */
 
 using AceQL.Client.Api;
+using AceQL.Client.Tests.Util;
 using System;
 using System.IO;
 using System.Threading;
