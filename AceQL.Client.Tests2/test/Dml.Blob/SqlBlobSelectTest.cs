@@ -9,19 +9,21 @@ using System.Threading.Tasks;
 
 namespace AceQL.Client.test.Dml.Blob
 {
-    public class SqlSelectBlobTest
+    public class SqlBlobSelectTest
     {
         private AceQLConnection connection;
 
-        public SqlSelectBlobTest(AceQLConnection connection)
+        public SqlBlobSelectTest(AceQLConnection connection)
         {
             this.connection = connection;
         }
 
-        public async Task SelectAndStoreBlob()
+        public async Task BlobDownload(int customerId, int itemId, string blobPath)
         {
-            string sql = "select * from orderlog";
+            string sql = "select * from orderlog where customer_id = @parm1 and item_id = @parm2 ";
             AceQLCommand command = new AceQLCommand(sql, connection);
+            command.Parameters.AddWithValue("@parm1", customerId);
+            command.Parameters.AddWithValue("@parm2", itemId);
 
             using (AceQLDataReader dataReader = await command.ExecuteReaderAsync())
             {
@@ -69,9 +71,6 @@ namespace AceQL.Client.test.Dml.Blob
                     AceQLConsole.WriteLine("==> dataReader.IsDBNull(4): " + dataReader.IsDBNull(4));
 
                     // Download Blobs
-                    string blobPath = AceQLTestParms.OUT_DIRECTORY + "username_koala_" + k + ".jpg";
-                    k++;
-
                     using (Stream stream = await dataReader.GetStreamAsync(6))
                     {
                         using (var fileStream = File.Create(blobPath))

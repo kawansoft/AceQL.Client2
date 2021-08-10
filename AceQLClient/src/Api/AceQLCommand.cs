@@ -168,13 +168,15 @@ namespace AceQL.Client.Api
         /// <exception cref="AceQL.Client.Api.AceQLException">If any Exception occurs.</exception>
         public async Task<object> ExecuteScalar()
         {
-            AceQLDataReader dataReader = await ExecuteReaderAsync().ConfigureAwait(false);
-            if (dataReader == null)
+            using (AceQLDataReader dataReader = await ExecuteReaderAsync().ConfigureAwait(false))
             {
-                return null;
-            }
+                if (dataReader == null)
+                {
+                    return null;
+                }
 
-            return dataReader.Read() ? dataReader.GetValue(0) : null;
+                return dataReader.Read() ? dataReader.GetValue(0) : null;
+            }
 
         }
 
@@ -703,7 +705,7 @@ namespace AceQL.Client.Api
         {
             try
             {
-                int[] updateCountsArray = await aceQLHttpApi.ExecutePreparedStatementBatch(cmdTextWithQuestionMarks,  this.batchFileParameters);
+                int[] updateCountsArray = await aceQLHttpApi.ExecutePreparedStatementBatch(cmdTextWithQuestionMarks, this.batchFileParameters);
                 this.ClearBatch();
                 return updateCountsArray;
             }

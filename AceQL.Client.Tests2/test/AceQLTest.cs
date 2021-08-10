@@ -158,8 +158,8 @@ namespace AceQL.Client.Test
                 string blobPath = AceQLTestParms.IN_DIRECTORY + "username_koala.jpg";
                 for (int j = 1; j < 4; j++)
                 {
-                    SqlInsertBlobTest sqlInsertBlobTest  = new SqlInsertBlobTest(connection);
-                    await sqlInsertBlobTest.InsertOrderlog(j, blobPath);
+                    SqlBlobInsertTest sqlInsertBlobTest  = new SqlBlobInsertTest(connection);
+                    await sqlInsertBlobTest.BlobUpload(j, j, blobPath);
                 }
 
                 await transaction.CommitAsync();
@@ -175,8 +175,12 @@ namespace AceQL.Client.Test
             // Do next selects in a transaction because of BLOB
             transaction = await connection.BeginTransactionAsync();
 
-            SqlSelectBlobTest sqlSelectBlobTest = new SqlSelectBlobTest(connection);
-            await sqlSelectBlobTest.SelectAndStoreBlob();
+            for (int k = 1; k < 4; k++)
+            {
+                string blobPath = AceQLTestParms.OUT_DIRECTORY + "username_koala_" + k + ".jpg";
+                SqlBlobSelectTest sqlSelectBlobTest = new SqlBlobSelectTest(connection);
+                await sqlSelectBlobTest.BlobDownload(k, k, blobPath);
+            }
 
             await transaction.CommitAsync();
         }

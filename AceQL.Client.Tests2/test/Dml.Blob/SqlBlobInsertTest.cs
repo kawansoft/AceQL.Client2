@@ -8,23 +8,21 @@ using System.Threading.Tasks;
 
 namespace AceQL.Client.Test.Dml.Blob
 {
-    public class SqlInsertBlobTest
+    public class SqlBlobInsertTest
     {
         private AceQLConnection connection;
 
-        public SqlInsertBlobTest(AceQLConnection connection)
+        public SqlBlobInsertTest(AceQLConnection connection)
         {
             this.connection = connection;
         }
 
-        public async Task<int> InsertOrderlog(int customerId, string blobPath)
+        public async Task<int> BlobUpload(int customerId, int itemId, string blobPath)
         {
             string sql =
             "insert into orderlog values (@parm1, @parm2, @parm3, @parm4, @parm5, @parm6, @parm7, @parm8, @parm9)";
 
             AceQLCommand command = new AceQLCommand(sql, connection);
-
-            //string blobPath = IN_DIRECTORY + "username_koala.jpg";
             Stream stream = new FileStream(blobPath, FileMode.Open, FileAccess.Read);
 
             //customerId integer NOT NULL,
@@ -38,7 +36,7 @@ namespace AceQL.Client.Test.Dml.Blob
             //quantity integer NOT NULL,
 
             command.Parameters.AddWithValue("@parm1", customerId);
-            command.Parameters.AddWithValue("@parm2", customerId);
+            command.Parameters.AddWithValue("@parm2", itemId);
             command.Parameters.AddWithValue("@parm3", "Description_" + customerId);
             //command.Parameters.Add(new AceQLParameter("@parm4", new AceQLNullValue(AceQLNullType.DECIMAL))); //null value for NULL SQL insert.
             command.Parameters.AddWithValue("@parm4", 45.4);
