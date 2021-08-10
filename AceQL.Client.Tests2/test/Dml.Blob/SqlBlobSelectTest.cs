@@ -70,7 +70,7 @@ namespace AceQL.Client.test.Dml.Blob
                     AceQLConsole.WriteLine("==> dataReader.IsDBNull(3): " + dataReader.IsDBNull(3));
                     AceQLConsole.WriteLine("==> dataReader.IsDBNull(4): " + dataReader.IsDBNull(4));
 
-                    // Download Blobs
+                    // Download Blob
                     using (Stream stream = await dataReader.GetStreamAsync(6))
                     {
                         using (var fileStream = File.Create(blobPath))
