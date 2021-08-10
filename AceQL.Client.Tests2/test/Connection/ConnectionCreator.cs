@@ -17,46 +17,38 @@
  * limitations under the License. 
  */
 
+using AceQL.Client.Api;
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static System.Net.WebRequestMethods;
 
-namespace AceQL.Client.Api.Util
+namespace AceQL.Client.Test.Connection
 {
     /// <summary>
-    /// Class StringUtils. Utilities fro String management.
+    /// Class ConnectionCreator.
     /// </summary>
-    internal static class StringUtils
+    public class ConnectionCreator
     {
         /// <summary>
-        /// Gets the substring before the first occurrence of a separator. The separator is not returned.
+        /// RemoteConnection Quick Start client example.
+        /// Creates a Connection to a remote database and open it.
         /// </summary>
-        /// <param name="str">The string.</param>
-        /// <param name="separator">The separator.</param>
-        /// <returns>System.String.</returns>
-        internal static string SubstringBefore(string str, string separator)
+        /// <returns>The connection to the remote database</returns>
+        /// <exception cref="AceQLException">If any Exception occurs.</exception>
+        public static async Task<AceQLConnection> ConnectionCreateAsync()
         {
+            string connectionString = ConnectionStringCurrent.Build();
 
-            if (str == null || str.Length == 0)
-            {
-                return str;
-            }
+            AceQLConnection theConnection = new AceQLConnection(connectionString);
 
-            int commaIndex = str.IndexOf(separator, StringComparison.CurrentCulture);
+            // Opens the connection with the remote database.
+            // On the server side, a JDBC connection is extracted from the connection 
+            // pool created by the server at startup. The connection will remain ours 
+            // during the session.
+            await theConnection.OpenAsync();
 
-            if (commaIndex <= 0)
-            {
-                return str;
-            }
-            else
-            {
-                return str.Substring(0, commaIndex);
-            }
-
+            return theConnection;
         }
     }
 }

@@ -25,7 +25,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AceQL.Client.Src.Api.Util
+namespace AceQL.Client.Api.Util
 {
     /// <summary>
     /// Class Tracer. Allows to create a single instance for a trace action.

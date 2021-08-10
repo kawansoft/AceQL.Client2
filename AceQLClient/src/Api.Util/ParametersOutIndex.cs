@@ -23,7 +23,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AceQL.Client.Tests.Test
+namespace AceQL.Client.Api.Util
 {
     /// <summary>
     /// Class for getting with JSON the out parameter indexes and values.

@@ -19,44 +19,23 @@
 
 using System;
 using System.Collections.Generic;
-using System.IO;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static System.Net.WebRequestMethods;
 
-namespace AceQL.Client.Api.Util
+namespace AceQL.Client.Test.Util
 {
-    /// <summary>
-    /// Class StringUtils. Utilities fro String management.
-    /// </summary>
-    internal static class StringUtils
+    public static class AceQLConsole
     {
-        /// <summary>
-        /// Gets the substring before the first occurrence of a separator. The separator is not returned.
-        /// </summary>
-        /// <param name="str">The string.</param>
-        /// <param name="separator">The separator.</param>
-        /// <returns>System.String.</returns>
-        internal static string SubstringBefore(string str, string separator)
+        public static void WriteLine()
         {
+            WriteLine("");
+        }
 
-            if (str == null || str.Length == 0)
-            {
-                return str;
-            }
-
-            int commaIndex = str.IndexOf(separator, StringComparison.CurrentCulture);
-
-            if (commaIndex <= 0)
-            {
-                return str;
-            }
-            else
-            {
-                return str.Substring(0, commaIndex);
-            }
-
+        public static void WriteLine(String s)
+        {
+            Console.WriteLine(s);
         }
     }
 }

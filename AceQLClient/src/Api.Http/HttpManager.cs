@@ -17,7 +17,7 @@
  * limitations under the License. 
  */
 
-using AceQL.Client.Src.Api.Util;
+using AceQL.Client.Api.Util;
 using System;
 using System.Collections.Generic;
 using System.IO;

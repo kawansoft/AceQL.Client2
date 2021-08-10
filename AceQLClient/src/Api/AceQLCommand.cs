@@ -21,8 +21,6 @@
 using AceQL.Client.Api.Batch;
 using AceQL.Client.Api.Http;
 using AceQL.Client.Api.Util;
-using AceQL.Client.Src.Api;
-using AceQL.Client.Src.Api.Util;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;

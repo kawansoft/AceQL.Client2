@@ -21,7 +21,6 @@
 using AceQL.Client.Api.Http;
 using AceQL.Client.Api.Metadata;
 using AceQL.Client.Api.Util;
-using AceQL.Client.Src.Api.Util;
 using System;
 using System.Net;
 using System.Threading;

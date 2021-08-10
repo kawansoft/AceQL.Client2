@@ -23,40 +23,37 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static System.Net.WebRequestMethods;
 
-namespace AceQL.Client.Api.Util
+namespace AceQL.Client.Test.Connection.Proxy
 {
-    /// <summary>
-    /// Class StringUtils. Utilities fro String management.
-    /// </summary>
-    internal static class StringUtils
+    public class MyProxyInfo
     {
-        /// <summary>
-        /// Gets the substring before the first occurrence of a separator. The separator is not returned.
-        /// </summary>
-        /// <param name="str">The string.</param>
-        /// <param name="separator">The separator.</param>
-        /// <returns>System.String.</returns>
-        internal static string SubstringBefore(string str, string separator)
+
+        public static readonly String NEOTUNNEL_SAVE_TXT = "i:\\neotunnel_SAVE.txt";
+
+        private readonly string proxyUsername;
+        private readonly string proxyPassword;
+
+
+     public MyProxyInfo()
         {
-
-            if (str == null || str.Length == 0)
-            {
-                return str;
-            }
-
-            int commaIndex = str.IndexOf(separator, StringComparison.CurrentCulture);
-
-            if (commaIndex <= 0)
-            {
-                return str;
-            }
-            else
-            {
-                return str.Substring(0, commaIndex);
-            }
-
+            String[] lines = File.ReadAllLines("i:\\neotunnel.txt");
+            proxyUsername = lines[0];
+            proxyPassword = lines[1];
         }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MyProxyInfo"/> class.
+        /// </summary>
+        /// <param name="filepath">The filepath of username & password</param>
+       public MyProxyInfo(String filepath)
+        {
+            String[] lines = File.ReadAllLines(filepath);
+            proxyUsername = lines[0];
+            proxyPassword = lines[1];
+        }
+
+        public string ProxyPassword { get => proxyPassword;}
+        public string ProxyUsername { get => proxyUsername;}
     }
 }
