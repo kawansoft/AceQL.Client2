@@ -27,7 +27,6 @@ namespace AceQL.Client.test.Dml.Blob
 
             using (AceQLDataReader dataReader = await command.ExecuteReaderAsync())
             {
-                int k = 0;
                 while (dataReader.Read())
                 {
                     AceQLConsole.WriteLine();
