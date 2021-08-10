@@ -22,6 +22,7 @@ using AceQL.Client.Api.Http;
 using AceQL.Client.Tests.Test;
 using AceQL.Client.Tests.Test.Connection;
 using AceQL.Client.Tests.tests.Dml;
+using AceQL.Client.Tests.tests.Dml.BLOB;
 using AceQL.Client.Tests.Util;
 using System;
 using System.IO;
@@ -156,8 +157,8 @@ namespace AceQL.Client.Tests
                 string blobPath = AceQLTestParms.IN_DIRECTORY + "username_koala.jpg";
                 for (int j = 1; j < 4; j++)
                 {
-                    sqlInsertTest = new SqlInsertTest(connection);
-                    await sqlInsertTest.InsertOrderlog(j, blobPath);
+                    SqlInsertBlobTest sqlInsertBlobTest  = new SqlInsertBlobTest(connection);
+                    await sqlInsertBlobTest.InsertOrderlog(j, blobPath);
                 }
 
                 await transaction.CommitAsync();

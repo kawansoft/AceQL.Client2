@@ -6,7 +6,7 @@ using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AceQL.Client.Tests.tests.Dml
+namespace AceQL.Client.Tests.tests.Dml.BLOB
 {
     public class SqlSelectBlobTest
     {
