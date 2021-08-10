@@ -21,6 +21,7 @@ using AceQL.Client.Api;
 using AceQL.Client.Api.Http;
 using AceQL.Client.Tests.Test;
 using AceQL.Client.Tests.Test.Connection;
+using AceQL.Client.Tests.tests.Dml;
 using AceQL.Client.Tests.Util;
 using System;
 using System.IO;
@@ -84,37 +85,8 @@ namespace AceQL.Client.Tests
             AceQLConsole.WriteLine("AceQL local folder: ");
             AceQLConsole.WriteLine(AceQLConnection.GetAceQLLocalFolder());
 
-            int maxSelect = 1;
-            for (int j = 0; j < maxSelect; j++)
-            {
-                string sql = "select * from customer where customer_id > @parm1 and lname = @parm2";
-                AceQLCommand command = new AceQLCommand(sql, connection);
-
-                command.Parameters.AddWithValue("@parm2", "Name_5");
-                command.Parameters.AddWithValue("@parm1", 1);
-
-                // Our dataReader must be disposed to delete underlying downloaded files
-                using (AceQLDataReader dataReader = await command.ExecuteReaderAsync())
-                {
-                    //await dataReader.ReadAsync(new CancellationTokenSource().Token)
-                    while (dataReader.Read())
-                    {
-                        AceQLConsole.WriteLine();
-                        AceQLConsole.WriteLine("" + DateTime.Now);
-                        int i = 0;
-                        AceQLConsole.WriteLine("GetValue: " + dataReader.GetValue(i++) + "\n"
-                            + "GetValue: " + dataReader.GetValue(i++) + "\n"
-                            + "GetValue: " + dataReader.GetValue(i++) + "\n"
-                            + "GetValue: " + dataReader.GetValue(i++) + "\n"
-                            + "GetValue: " + dataReader.GetValue(i++) + "\n"
-                            + "GetValue: " + dataReader.GetValue(i++) + "\n"
-                            + "GetValue: " + dataReader.GetValue(i++) + "\n"
-                            + "GetValue: " + dataReader.GetValue(i));
-                    }
-                }
-            }
-
+            SqlSelectTest sqlSelectTest = new SqlSelectTest(connection);
+            await sqlSelectTest.SelectCustomerExecute();
         }
-
     }
 }

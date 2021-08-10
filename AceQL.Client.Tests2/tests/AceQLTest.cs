@@ -21,6 +21,7 @@ using AceQL.Client.Api;
 using AceQL.Client.Api.Http;
 using AceQL.Client.Tests.Test;
 using AceQL.Client.Tests.Test.Connection;
+using AceQL.Client.Tests.tests.Dml;
 using AceQL.Client.Tests.Util;
 using System;
 using System.IO;
@@ -97,9 +98,8 @@ namespace AceQL.Client.Tests
         /// <param name="connection"></param>
         public static async Task ExecuteExample(AceQLConnection connection)
         {
-            string IN_DIRECTORY = AceQLConnection.GetAceQLLocalFolder() + "\\";
-            string OUT_DIRECTORY = IN_DIRECTORY + "out\\";
-            _ = Directory.CreateDirectory(OUT_DIRECTORY);
+
+            _ = Directory.CreateDirectory(AceQLTestParms.OUT_DIRECTORY);
 
             AceQLConsole.WriteLine("host: " + connection.ConnectionInfo.ConnectionString);
             AceQLConsole.WriteLine("aceQLConnection.GetClientVersion(): " + AceQLConnection.GetClientVersion());
@@ -108,78 +108,35 @@ namespace AceQL.Client.Tests
             AceQLConsole.WriteLine(AceQLConnection.GetAceQLLocalFolder());
             AceQLConsole.WriteLine("ConnectionInfo: " + connection.ConnectionInfo);
 
+            AceQLConsole.WriteLine("Press enter to continue....");
+            Console.ReadLine();
+
             //AceQLTransaction transaction = await connection.BeginTransactionAsync();
             //await transaction.CommitAsync();
             //transaction.Dispose();
 
             AceQLTransaction transaction = null;
 
-            string sql = "delete from customer";
+            SqlDeleteTest sqlDeleteTest = new SqlDeleteTest(connection);
+            await sqlDeleteTest.DeleteCustomerAll();
 
-            AceQLCommand command = new AceQLCommand
-            {
-                CommandText = sql,
-                Connection = connection
-            };
-            command.Prepare();
-
-            await command.ExecuteNonQueryAsync();
-
+            SqlInsertTest sqlInsertTest;
             for (int i = 0; i < 100; i++)
             {
-                sql =
-                "insert into customer values (@parm1, @parm2, @parm3, @parm4, @parm5, @parm6, @parm7, @parm8)";
-
-                command = new AceQLCommand(sql, connection);
-
-                int customer_id = i;
-
-                command.Parameters.AddWithValue("@parm1", customer_id);
-                command.Parameters.AddWithValue("@parm2", ""); // HACK NDP
-                command.Parameters.AddWithValue("@parm3", "André_" + customer_id);
-                command.Parameters.Add(new AceQLParameter("@parm4", "Name_" + customer_id));
-                command.Parameters.AddWithValue("@parm5", customer_id + ", road 66");
-                command.Parameters.AddWithValue("@parm6", "Town_" + customer_id);
-                command.Parameters.AddWithValue("@parm7", customer_id + "1111");
-                command.Parameters.Add(new AceQLParameter("@parm8", new AceQLNullValue(AceQLNullType.VARCHAR))); //null value for NULL SQL insert.
-
-                CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
-                await command.ExecuteNonQueryAsync(cancellationTokenSource.Token);
+                sqlInsertTest = new SqlInsertTest(connection);
+                int rows = await sqlInsertTest.InsertCustomer(i); 
             }
 
-            command.Dispose();
-
+            SqlSelectTest sqlSelectTest;
             int maxSelect = 10;
             for (int j = 0; j < maxSelect; j++)
             {
-                sql = "select * from customer where customer_id > @parm1";
-                command = new AceQLCommand(sql, connection);
-                command.Parameters.AddWithValue("@parm1", 1);
-
-                // Our dataReader must be disposed to delete underlying downloaded files
-                using (AceQLDataReader dataReader = await command.ExecuteReaderAsync())
-                {
-                    //await dataReader.ReadAsync(new CancellationTokenSource().Token)
-                    while (dataReader.Read())
-                    {
-                        AceQLConsole.WriteLine();
-                        AceQLConsole.WriteLine("" + DateTime.Now);
-                        int i = 0;
-                        AceQLConsole.WriteLine("GetValue: " + dataReader.GetValue(i++) + "\n"
-                            + "GetValue: " + dataReader.GetValue(i++) + "\n"
-                            + "GetValue: " + dataReader.GetValue(i++) + "\n"
-                            + "GetValue: " + dataReader.GetValue(i++) + "\n"
-                            + "GetValue: " + dataReader.GetValue(i++) + "\n"
-                            + "GetValue: " + dataReader.GetValue(i++) + "\n"
-                            + "GetValue: " + dataReader.GetValue(i++) + "\n"
-                            + "GetValue: " + dataReader.GetValue(i));
-                    }
-                }
+                sqlSelectTest = new SqlSelectTest(connection);
+                await sqlSelectTest.SelectCustomerExecute();
             }
 
-            sql = "select max(customer_id) from customer";
-            command = new AceQLCommand(sql, connection);
-            int maxCustomerId = (Int32)await command.ExecuteScalar();
+            sqlSelectTest = new SqlSelectTest(connection);
+            int maxCustomerId = await sqlSelectTest.SelectMaxCustomers();
             AceQLConsole.WriteLine("maxCustomerId: " + maxCustomerId);
             AceQLConsole.WriteLine("Press enter to continue....");
             Console.ReadLine();
@@ -187,59 +144,20 @@ namespace AceQL.Client.Tests
             AceQLConsole.WriteLine("Before delete from orderlog");
 
             // Do next delete in a transaction because of BLOB
-            sql = "delete from orderlog";
-            command = new AceQLCommand(sql, connection);
-            await command.ExecuteNonQueryAsync();
+            sqlDeleteTest = new SqlDeleteTest(connection);
+            await sqlDeleteTest.DeleteOrderlogAll();
 
             transaction = await connection.BeginTransactionAsync();
 
             AceQLConsole.WriteLine("Before insert into orderlog");
+            
             try
             {
+                string blobPath = AceQLTestParms.IN_DIRECTORY + "username_koala.jpg";
                 for (int j = 1; j < 4; j++)
                 {
-                    sql =
-                    "insert into orderlog values (@parm1, @parm2, @parm3, @parm4, @parm5, @parm6, @parm7, @parm8, @parm9)";
-
-                    command = new AceQLCommand(sql, connection);
-
-                    int customer_id = j;
-
-                    string blobPath = IN_DIRECTORY + "username_koala.jpg";
-                    Stream stream = new FileStream(blobPath, FileMode.Open, FileAccess.Read);
-
-                    //customer_id integer NOT NULL,
-                    //item_id integer NOT NULL,
-                    //description character varying(64) NOT NULL,
-                    //cost_price numeric,
-                    //date_placed date NOT NULL,
-                    //date_shipped timestamp without time zone,
-                    //jpeg_image oid,
-                    //is_delivered numeric,
-                    //quantity integer NOT NULL,
-
-                    command.Parameters.AddWithValue("@parm1", customer_id);
-                    command.Parameters.AddWithValue("@parm2", customer_id);
-                    command.Parameters.AddWithValue("@parm3", "Description_" + customer_id);
-                    //command.Parameters.Add(new AceQLParameter("@parm4", new AceQLNullValue(AceQLNullType.DECIMAL))); //null value for NULL SQL insert.
-                    command.Parameters.AddWithValue("@parm4", 45.4);
-                    command.Parameters.AddWithValue("@parm5", DateTime.UtcNow);
-                    command.Parameters.AddWithValue("@parm6", DateTime.UtcNow);
-                    // Adds the Blob. (Stream will be closed by AceQLCommand)
-                    bool useBlob = true;
-                    if (useBlob)
-                    {
-                        command.Parameters.Add(new AceQLParameter("@parm7", stream));
-                    }
-                    else
-                    {
-                        command.Parameters.Add(new AceQLParameter("@parm7", new AceQLNullValue(AceQLNullType.BLOB)));
-                    }
-                    
-                    command.Parameters.AddWithValue("@parm8", 1);
-                    command.Parameters.AddWithValue("@parm9", j * 2000);
-
-                    await command.ExecuteNonQueryAsync();
+                    sqlInsertTest = new SqlInsertTest(connection);
+                    await sqlInsertTest.InsertOrderlog(j, blobPath);
                 }
 
                 await transaction.CommitAsync();
@@ -255,67 +173,8 @@ namespace AceQL.Client.Tests
             // Do next selects in a transaction because of BLOB
             transaction = await connection.BeginTransactionAsync();
 
-            sql = "select * from orderlog";
-            command = new AceQLCommand(sql, connection);
-
-            using (AceQLDataReader dataReader = await command.ExecuteReaderAsync())
-            {
-                int k = 0;
-                while (dataReader.Read())
-                {
-                    AceQLConsole.WriteLine();
-                    AceQLConsole.WriteLine("Get values using ordinal values:");
-                    int i = 0;
-                    AceQLConsole.WriteLine("GetValue: " + dataReader.GetValue(i++) + "\n"
-                        + "GetValue: " + dataReader.GetValue(i++) + "\n"
-                        + "GetValue: " + dataReader.GetValue(i++) + "\n"
-                        + "GetValue: " + dataReader.GetValue(i++) + "\n"
-                        + "GetValue: " + dataReader.GetValue(i++) + "\n"
-                        + "GetValue: " + dataReader.GetValue(i++) + "\n"
-                        + "GetValue: " + dataReader.GetValue(i++) + "\n"
-                        + "GetValue: " + dataReader.GetValue(i++) + "\n"
-                        + "GetValue: " + dataReader.GetValue(i));
-
-                    //customer_id
-                    //item_id
-                    //description
-                    //item_cost
-                    //date_placed
-                    //date_shipped
-                    //jpeg_image
-                    //is_delivered
-                    //quantity
-
-                    AceQLConsole.WriteLine();
-                    AceQLConsole.WriteLine("Get values using column name values:");
-                    AceQLConsole.WriteLine("GetValue: " + dataReader.GetValue(dataReader.GetOrdinal("customer_id"))
-                        + "\n"
-                        + "GetValue: " + dataReader.GetValue(dataReader.GetOrdinal("item_id")) + "\n"
-                        + "GetValue: " + dataReader.GetValue(dataReader.GetOrdinal("description")) + "\n"
-                        + "GetValue: " + dataReader.GetValue(dataReader.GetOrdinal("item_cost")) + "\n"
-                        + "GetValue: " + dataReader.GetValue(dataReader.GetOrdinal("date_placed")) + "\n"
-                        + "GetValue: " + dataReader.GetValue(dataReader.GetOrdinal("date_shipped")) + "\n"
-                        + "GetValue: " + dataReader.GetValue(dataReader.GetOrdinal("jpeg_image")) + "\n"
-                        + "GetValue: " + dataReader.GetValue(dataReader.GetOrdinal("is_delivered")) + "\n"
-                        + "GetValue: " + dataReader.GetValue(dataReader.GetOrdinal("quantity")));
-
-
-                    AceQLConsole.WriteLine("==> dataReader.IsDBNull(3): " + dataReader.IsDBNull(3));
-                    AceQLConsole.WriteLine("==> dataReader.IsDBNull(4): " + dataReader.IsDBNull(4));
-
-                    // Download Blobs
-                    string blobPath = OUT_DIRECTORY + "username_koala_" + k + ".jpg";
-                    k++;
-
-                    using (Stream stream = await dataReader.GetStreamAsync(6))
-                    {
-                        using (var fileStream = File.Create(blobPath))
-                        {
-                            stream.CopyTo(fileStream);
-                        }
-                    }
-                }
-            }
+            SqlSelectBlobTest sqlSelectBlobTest = new SqlSelectBlobTest(connection);
+            await sqlSelectBlobTest.SelectAndStoreBlob();
 
             await transaction.CommitAsync();
         }

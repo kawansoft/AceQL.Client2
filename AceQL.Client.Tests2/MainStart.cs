@@ -38,16 +38,23 @@ namespace AceQL.Client.Tests
     public static class MainStart
     {
 
+        public static void TestAll(string[] args)
+        {
+            AceQLTest.TheMain(args);
+            AceQLTestClose.TheMain(args);
+            SqlBatchTest.TheMain(args);
+            AceQLTestColumnAsKeyName.TheMain(args);
+            SqlServerStoredProcedureTestUtf8.TheMain(args);
+            AceQLTestMetadata.TheMain();
+        }
+
         public static void Main(string[] args)
         {
             int mainToLaunch = 1;
 
             if (mainToLaunch == 1)
             {
-                AceQLTest.TheMain(args);
-                AceQLTestClose.TheMain(args);
-                SqlBatchTest.TheMain(args);
-                SqlServerStoredProcedureTestUtf8.TheMain(args);
+                TestAll(args);
             }
             else if (mainToLaunch == 2)
             {
@@ -88,6 +95,7 @@ namespace AceQL.Client.Tests
                 SqlBatchTest.TheMain(args);
             }
         }
+
 
     }
 }

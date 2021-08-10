@@ -22,6 +22,7 @@ using AceQL.Client.Api;
 using AceQL.Client.Src.Api;
 using AceQL.Client.Tests.Test;
 using AceQL.Client.Tests.Test.Connection;
+using AceQL.Client.Tests.tests.Dml;
 using AceQL.Client.Tests.Util;
 using System;
 using System.IO;
@@ -65,7 +66,8 @@ namespace AceQL.Client.Tests.DML.Batchs
                         connection);
                     AceQLConsole.WriteLine("Connection created....");
 
-                    await sqlBatchTest.DeleteCustomerAll();
+                    SqlDeleteTest sqlDeleteTest = new SqlDeleteTest(connection);
+                    await sqlDeleteTest.DeleteCustomerAll();
                     await sqlBatchTest.InsertUsingBatch().ConfigureAwait(false);
                 }
 
@@ -125,19 +127,7 @@ namespace AceQL.Client.Tests.DML.Batchs
             {
                 AceQLConsole.WriteLine(theResult + "");
             }
-
         }
 
-        /// <summary>
-        /// Delete all from customers
-        /// </summary>
-        /// <returns></returns>
-        public async Task DeleteCustomerAll()
-        {
-            // Delete all
-            string sql = "delete from customer where customer_id >= 0";
-            AceQLCommand command = new AceQLCommand(sql, connection);
-            await command.ExecuteNonQueryAsync();
-        }
     }
 }

@@ -20,6 +20,7 @@
 using AceQL.Client.Api;
 using AceQL.Client.Tests.Test;
 using AceQL.Client.Tests.Test.Connection;
+using AceQL.Client.Tests.tests.Dml;
 using AceQL.Client.Tests.Util;
 using System;
 using System.Threading;
@@ -56,7 +57,6 @@ namespace AceQL.Client.Tests.Json
 
         static async Task DoIt()
         {
-
             string connectionString = ConnectionStringCurrent.Build();
 
             // Make sure connection is always closed to close and release server connection into the pool
@@ -87,23 +87,15 @@ namespace AceQL.Client.Tests.Json
             await transaction.CommitAsync();
             transaction.Dispose();
 
-            string sql = "delete from customer";
+            SqlDeleteTest sqlDeleteTest = new SqlDeleteTest(connection);
+            await sqlDeleteTest.DeleteCustomerAll();
 
-            AceQLCommand command = new AceQLCommand
+            for (int i = 0; i < 10; i++)
             {
-                CommandText = sql,
-                Connection = connection
-            };
-            command.Prepare();
-
-            await command.ExecuteNonQueryAsync();
-
-            for (int i = 0; i < 3; i++)
-            {
-                sql =
+                string sql =
                 "insert into customer values (@parm1, @parm2, @parm3, @parm4, @parm5, @parm6, @parm7, @parm8)";
 
-                command = new AceQLCommand(sql, connection);
+                AceQLCommand command = new AceQLCommand(sql, connection);
 
                 int customer_id = i;
 
@@ -118,30 +110,13 @@ namespace AceQL.Client.Tests.Json
 
                 CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
                 await command.ExecuteNonQueryAsync(cancellationTokenSource.Token);
+                command.Dispose();
             }
 
-            command.Dispose();
+            
 
-            sql = "select * from customer";
-            command = new AceQLCommand(sql, connection);
-
-            // Our dataReader must be disposed to delete underlying downloaded files
-            using (AceQLDataReader dataReader = await command.ExecuteReaderAsync())
-            {
-                while (dataReader.Read())
-                {
-                    AceQLConsole.WriteLine();
-                    int i = 0;
-                    AceQLConsole.WriteLine("GetValue: " + dataReader.GetValue(i++) + "\n"
-                        + "GetValue: " + dataReader.GetValue(i++) + "\n"
-                        + "GetValue: " + dataReader.GetValue(i++) + "\n"
-                        + "GetValue: " + dataReader.GetValue(i++) + "\n"
-                        + "GetValue: " + dataReader.GetValue(i++) + "\n"
-                        + "GetValue: " + dataReader.GetValue(i++) + "\n"
-                        + "GetValue: " + dataReader.GetValue(i++) + "\n"
-                        + "GetValue: " + dataReader.GetValue(i));
-                }
-            }
+            SqlSelectTest sqlSelectTest = new SqlSelectTest(connection);
+            await sqlSelectTest.SelectCustomerExecute();
 
             AceQLConsole.WriteLine("Done.");
 

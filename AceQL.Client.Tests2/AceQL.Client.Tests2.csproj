@@ -13,8 +13,4 @@
     <ProjectReference Include="..\AceQLClient\AceQL.Client.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="tests\Dml\" />
-  </ItemGroup>
-
 </Project>
