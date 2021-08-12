@@ -17,6 +17,17 @@ they would do for an SQL Server database.
 The AceQL C# Client SDK is licensed under the Apache 2.0 License.
 
 
+AceQL C# Client SDK - Version 7.0 - 12-Aug-2021
+-----------------------------------------------
+
+What's New:
+- AceQLCommand provides now bulk insert.
+
+Bugs fixed:
+- Documentation bug: ConnectionInfo said GzipResult property 
+  defaults to true instead or false. This has been fixed.
+
+
 AceQL C# Client SDK - Version 6.3 - 11-Jun-2021
 -----------------------------------------------
 

@@ -199,7 +199,7 @@ namespace AceQL.Client.Api
 
         /// <summary>
         /// Gets the value indicating whether SQL result sets are returned compressed with the GZIP filePath format
-        /// before download. Defaults to true.
+        /// before download. Defaults to <c>false</c>.
         /// </summary>
         /// <value>True if SQL result sets are returned compressed with the GZIP filePath format
         /// before download.</value>
