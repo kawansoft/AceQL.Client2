@@ -41,7 +41,6 @@ namespace AceQL.Client.Test
 
         public static void TestAll(string[] args)
         {
-
             AceQLTest.TheMain(args);
             AceQLTestClose.TheMain(args);
             SqlBatchTest.TheMain(args);
