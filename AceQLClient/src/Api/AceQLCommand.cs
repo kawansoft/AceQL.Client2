@@ -703,6 +703,17 @@ namespace AceQL.Client.Api
         /// <returns></returns>
         public async Task<int[]> ExecuteBatch()
         {
+            if (this.batchFileParameters == null || ! new FileInfo(this.batchFileParameters).Exists)
+            {
+                throw new NotSupportedException("Cannot call executeBatch: addBatch() has never been called.");
+            }
+
+            if (! await AceQLConnectionUtil.IsBatchSupported(connection))
+            {
+                throw new NotSupportedException("AceQL Server version must be >= " + AceQLConnectionUtil.BATCH_MIN_SERVER_VERSION
+                    + " in order to call PreparedStatement.executeBatch().");
+            }
+
             try
             {
                 int[] updateCountsArray = await aceQLHttpApi.ExecutePreparedStatementBatch(cmdTextWithQuestionMarks, this.batchFileParameters);
