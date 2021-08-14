@@ -20,6 +20,7 @@
 using AceQL.Client.Api;
 using AceQL.Client.Api.Metadata;
 using AceQL.Client.Api.Metadata.Dto;
+using AceQL.Client.test.Dml;
 using AceQL.Client.Test.Connection;
 using AceQL.Client.Test.Dml.Batch;
 using AceQL.Client.Test.Json;
@@ -42,6 +43,7 @@ namespace AceQL.Client.Test
         public static void TestAll(string[] args)
         {
             AceQLTest.TheMain(args);
+            DmlSequenceTest.TheMain(args);
             AceQLTestClose.TheMain(args);
             SqlBatchTest.TheMain(args);
             AceQLTestColumnAsKeyName.TheMain(args);
@@ -51,11 +53,15 @@ namespace AceQL.Client.Test
 
         public static void Main(string[] args)
         {
-            int mainToLaunch = 1;
+            int mainToLaunch = 0;
 
-            if (mainToLaunch == 1)
+            if (mainToLaunch == 0)
             {
                 TestAll(args);
+            }
+            else if (mainToLaunch == 1)
+            {
+                DmlSequenceTest.TheMain(args);
             }
             else if (mainToLaunch == 2)
             {
