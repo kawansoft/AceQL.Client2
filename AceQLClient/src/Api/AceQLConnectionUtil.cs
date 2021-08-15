@@ -33,7 +33,6 @@ namespace AceQL.Client.Api
         /// </summary>
         /// <param name="connection">The connection.</param>
         /// <returns>Task&lt;System.Boolean&gt;.</returns>
-        /// <exception cref="NotImplementedException"></exception>
         internal static async Task<bool>  IsBatchSupported(AceQLConnection connection)
         {
             if (SERVER_VERSION_NUMBER == null)
@@ -42,8 +41,6 @@ namespace AceQL.Client.Api
             }
 
             String rawServerVersion = ExtractRawServerVersion(SERVER_VERSION_NUMBER);
-
-            //int comparison = String.Compare(root, root2, comparisonType: StringComparison.OrdinalIgnoreCase);
             int comparison = String.Compare(rawServerVersion, BATCH_MIN_SERVER_VERSION, StringComparison.OrdinalIgnoreCase);
             return comparison >= 0;
         }
@@ -53,7 +50,6 @@ namespace AceQL.Client.Api
         /// </summary>
         /// <param name="serverVersionNumber">The server version number.</param>
         /// <returns>System.String.</returns>
-        /// <exception cref="NotImplementedException"></exception>
         public static string ExtractRawServerVersion(string serverVersionNumber)
         {
             String[] stringArray = serverVersionNumber.Split('v');

@@ -19,9 +19,8 @@
 
 namespace AceQL.Client.Api.Util
 {
-    internal class AceQLDebugParms
+    static internal class AceQLDebugParms
     {
-        public static bool PRINT_PROGRESS_INDICATOR = true;
-
+        public static readonly bool PRINT_PROGRESS_INDICATOR = true;
     }
 }
