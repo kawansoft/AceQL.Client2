@@ -23,7 +23,7 @@ using System.Threading.Tasks;
 
 namespace AceQL.Client.Api
 {
-    internal class AceQLConnectionUtil
+    internal static class AceQLConnectionUtil
     {
         internal static readonly string BATCH_MIN_SERVER_VERSION = "8.0";
         private static string SERVER_VERSION_NUMBER;
@@ -42,7 +42,10 @@ namespace AceQL.Client.Api
             }
 
             String rawServerVersion = ExtractRawServerVersion(SERVER_VERSION_NUMBER);
-            return rawServerVersion.CompareTo(BATCH_MIN_SERVER_VERSION) >= 0;
+
+            //int comparison = String.Compare(root, root2, comparisonType: StringComparison.OrdinalIgnoreCase);
+            int comparison = String.Compare(rawServerVersion, BATCH_MIN_SERVER_VERSION, StringComparison.OrdinalIgnoreCase);
+            return comparison >= 0;
         }
 
         /// <summary>
