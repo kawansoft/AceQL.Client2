@@ -18,6 +18,7 @@
  * limitations under the License. 
  */
 
+using AceQL.Client.Api.Util;
 using System;
 
 namespace AceQL.Client.Api
@@ -27,7 +28,7 @@ namespace AceQL.Client.Api
     /// </summary>
     public class AceQLProgressIndicator
     {
-        /// <summary>   The perccent progress value set by upload thread.</summary>
+        /// <summary>   The percent progress value set by upload thread.</summary>
         private int percent;
 
         /// <summary>
@@ -58,6 +59,12 @@ namespace AceQL.Client.Api
         internal void SetValue(int value)
         {
             percent = value;
+
+            if (AceQLDebugParms.PRINT_PROGRESS_INDICATOR)
+            {
+                ConsoleEmul.WriteLine(DateTime.Now + " " + value + "%");
+            }
+
         }
     }
 }

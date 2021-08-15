@@ -76,6 +76,9 @@ namespace AceQL.Client.Test.Dml.Blob
             command.Parameters.AddWithValue("@parm8", 1);
             command.Parameters.AddWithValue("@parm9", customerId * 2000);
 
+            AceQLProgressIndicator progressIndicator = new AceQLProgressIndicator();
+            connection.SetProgressIndicator(progressIndicator);
+
             int rows = await command.ExecuteNonQueryAsync();
             return rows;
 
