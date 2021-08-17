@@ -226,6 +226,12 @@ namespace AceQL.Client.test.Dml
                     }
 
                     String jpegImageOut = AceQLTestParms.OUT_DIRECTORY + "\\username_koala.jpg";
+
+                    if (File.Exists(jpegImageOut))
+                    {
+                        File.Delete(jpegImageOut);
+                    }
+
                     try
                     {
                         
