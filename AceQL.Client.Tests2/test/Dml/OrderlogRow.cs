@@ -9,7 +9,7 @@ namespace AceQL.Client.test.Dml
 	/// <summary>
 	/// Simple container for orderlog table values.
 	/// </summary>
-    class OrderlogRaw
+    class OrderlogRow
     {
 		private int customerId;
 		private int itemId;
@@ -21,7 +21,7 @@ namespace AceQL.Client.test.Dml
 		private bool isDelivered;
 		private int quantity;
 
-        public OrderlogRaw()
+        public OrderlogRow()
         {
 			customerId = 1;
 			itemId = 11;
@@ -125,7 +125,7 @@ namespace AceQL.Client.test.Dml
 
 		public override string ToString()
         {
-			return "OrderlogRaw [customerId=" + customerId + ", itemId=" + itemId + ", description=" + description
+			return "OrderlogRow [customerId=" + customerId + ", itemId=" + itemId + ", description=" + description
 				+ ", itemCost=" + itemCost + ", datePlaced=" + datePlaced + ", dateShipped=" + dateShipped
 				+ ", jpegImage=" + jpegImage + ", isDelivered=" + isDelivered + ", quantity=" + quantity + "]";
 		}

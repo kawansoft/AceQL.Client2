@@ -68,20 +68,20 @@ namespace AceQL.Client.test.Dml
             AceQLConsole.WriteLine("Delete witht deleteOrderlogAll() done to clear all for test.");
 
             // Instantiate all elements of an Orderlog raw
-            OrderlogRaw orderlogRaw = new OrderlogRaw();
+            OrderlogRow orderlogRaw = new OrderlogRow();
 
             AceQLTransaction transaction = await connection.BeginTransactionAsync();
 
             try
             {
                 // Insert a row
-                int rows = await InsertRaw(orderlogRaw);
+                int rows = await InsertRow(orderlogRaw);
                 AceQLConsole.WriteLine("Insert done. Rows: " + rows);
                 Assert.True(rows == 1, "inserted rows must be 1");
 
                 // Select same raw and make user all values get back are the same;
-                await SelectRaw(orderlogRaw, false);
-                await SelectRaw(orderlogRaw, true);
+                await SelectRow(orderlogRaw, false);
+                await SelectRow(orderlogRaw, true);
                 AceQLConsole.WriteLine("Select done.");
 
                 await transaction.CommitAsync();
@@ -96,11 +96,11 @@ namespace AceQL.Client.test.Dml
 
             try
             {
-                int rows = await UpdateRawQuantityAddOneThousand(orderlogRaw);
+                int rows = await UpdateRowQuantityAddOneThousand(orderlogRaw);
                 AceQLConsole.WriteLine("Update done. Rows: " + rows);
                 Assert.True(rows == 1, "updated rows must be 1");
 
-                await SelectRawDisplayQuantity(orderlogRaw);
+                await SelectRowDisplayQuantity(orderlogRaw);
                 AceQLConsole.WriteLine("Select quantity done.");
 
                 await transaction.CommitAsync();
@@ -112,7 +112,7 @@ namespace AceQL.Client.test.Dml
             }
         }
 
-        private async Task SelectRawDisplayQuantity(OrderlogRaw orderlogRaw)
+        private async Task SelectRowDisplayQuantity(OrderlogRow orderlogRaw)
         {
             string sql = "select * from orderlog where customer_id = @customer_id and item_id = @item_id ";
 
@@ -131,7 +131,7 @@ namespace AceQL.Client.test.Dml
             }
         }
 
-        private async Task<int> UpdateRawQuantityAddOneThousand(OrderlogRaw orderlogRaw)
+        private async Task<int> UpdateRowQuantityAddOneThousand(OrderlogRow orderlogRaw)
         {
             String sql = "update orderlog set quantity = @parm1";
             AceQLCommand command = new AceQLCommand(sql, connection);
@@ -141,7 +141,7 @@ namespace AceQL.Client.test.Dml
             return rows;
         }
 
-        private async Task<int> InsertRaw(OrderlogRaw orderlogRaw)
+        private async Task<int> InsertRow(OrderlogRow orderlogRaw)
         {
             string sql =
             "insert into orderlog values (@parm1, @parm2, @parm3, @parm4, @parm5, @parm6, @parm7, @parm8, @parm9)";
@@ -167,7 +167,7 @@ namespace AceQL.Client.test.Dml
 
         }
 
-        private async Task SelectRaw(OrderlogRaw orderlogRaw, bool useColumnNames)
+        private async Task SelectRow(OrderlogRow orderlogRaw, bool useColumnNames)
         {
             string sql = "select * from orderlog where customer_id = @customer_id and item_id = @item_id ";
 
