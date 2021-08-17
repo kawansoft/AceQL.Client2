@@ -65,7 +65,7 @@ namespace AceQL.Client.test.Dml
             // Purge all
             SqlDeleteTest sqlDeleteTest = new SqlDeleteTest(connection);
             await sqlDeleteTest.DeleteOrderlogAll();
-            AceQLConsole.WriteLine("Delete deleteOrderlogAll() done to clear all for test.");
+            AceQLConsole.WriteLine("Delete witht deleteOrderlogAll() done to clear all for test.");
 
             // Instantiate all elements of an Orderlog raw
             OrderlogRaw orderlogRaw = new OrderlogRaw();

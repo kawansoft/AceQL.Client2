@@ -6,6 +6,9 @@ using System.Text;
 
 namespace AceQL.Client.test.Dml
 {
+	/// <summary>
+	/// Simple container for orderlog table values.
+	/// </summary>
     class OrderlogRaw
     {
 		private int customerId;
