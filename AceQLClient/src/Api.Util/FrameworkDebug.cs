@@ -27,7 +27,7 @@ namespace AceQL.Client.Api.Util
     /// <summary>
     /// Class FrameworkDebug.
     /// </summary>
-    internal class FrameworkDebug
+    internal static class FrameworkDebug
     {
         /** The file that contain the classes to debug in user.home */
         private static String KAWANSOFT_DEBUG_INI = "kawansoft-debug.ini";
