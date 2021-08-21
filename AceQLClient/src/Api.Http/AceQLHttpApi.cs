@@ -41,7 +41,7 @@ namespace AceQL.Client.Api.Http
     internal class AceQLHttpApi
     {
 
-        internal static readonly bool DEBUG;
+        internal static bool DEBUG = FrameworkDebug.IsSet("AceQLHttpApi");
 
         /// <summary>
         /// The server URL

@@ -30,7 +30,7 @@ namespace AceQL.Client.Api.Util
     /// Stores the session Id per serverUrl/username/database triplet in order to
     /// get new AceQL Connection with /get_connection without new login action.
     /// </summary>
-    class UserLoginStore
+    internal class UserLoginStore
     {
         private static Dictionary<string, string> loggedUsers = new Dictionary<string, string>();
 

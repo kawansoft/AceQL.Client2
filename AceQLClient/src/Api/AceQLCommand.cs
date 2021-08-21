@@ -34,7 +34,7 @@ namespace AceQL.Client.Api
     /// <summary>Represents a SQL statement to execute against a remote SQL database.</summary>
     public class AceQLCommand : IDisposable
     {
-        internal static readonly bool DEBUG;
+        internal static bool DEBUG = FrameworkDebug.IsSet("AceQLCommand");
 
         /// <summary>
         /// The instance that does all http stuff

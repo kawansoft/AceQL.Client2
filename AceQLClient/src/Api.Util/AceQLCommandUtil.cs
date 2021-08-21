@@ -18,6 +18,7 @@
  */
 
 
+using AceQL.Client.Api.Http;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -33,10 +34,10 @@ namespace AceQL.Client.Api.Util
     /// Class AceQLCommandUtil.
     /// </summary>
     internal class AceQLCommandUtil
-    {
-        public static readonly string[] PARM_SEPARATORS = { "(", ")", ";", " ", "+", "-", "/", "*", "=", "\'", "\"", "?", "!", ":", "#", "&", "-", "<", ">", "{", "}", "[", "]", "|", "%", "," };
+    { 
 
-        internal static readonly bool DEBUG;
+        internal static bool DEBUG = FrameworkDebug.IsSet("AceQLCommandUtil");
+        public static readonly string[] PARM_SEPARATORS = { "(", ")", ";", " ", "+", "-", "/", "*", "=", "\'", "\"", "?", "!", ":", "#", "&", "-", "<", ">", "{", "}", "[", "]", "|", "%", "," };
 
         /// <summary>
         /// The command text

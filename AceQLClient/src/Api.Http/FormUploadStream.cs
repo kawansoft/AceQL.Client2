@@ -40,7 +40,7 @@ namespace AceQL.Client.Api.Http
     /// </summary>
     internal class FormUploadStream
     {
-        internal static readonly bool DEBUG;
+        internal static bool DEBUG = FrameworkDebug.IsSet("FormUploadStream");
 
         private long tempLen;
         private int proxyAuthenticationCallCount;
