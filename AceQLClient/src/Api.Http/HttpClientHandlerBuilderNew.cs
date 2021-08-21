@@ -34,7 +34,7 @@ namespace AceQL.Client.Api.Http
     /// </summary>
     static internal class HttpClientHandlerBuilderNew
     {
-        internal static bool DEBUG = FrameworkDebug.IsSet("HttpClientHandlerBuilderNew");
+        internal static readonly bool DEBUG = FrameworkDebug.IsSet("HttpClientHandlerBuilderNew");
 
         internal static readonly String SECRET_URL = "http://secret.aceql.com";
 

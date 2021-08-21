@@ -37,7 +37,7 @@ namespace AceQL.Client.Api
     /// </summary>
     public class AceQLDataReader : IDisposable
     {
-        internal static bool DEBUG = FrameworkDebug.IsSet("AceQLDataReader");
+        internal static readonly bool DEBUG = FrameworkDebug.IsSet("AceQLDataReader");
 
         /// <summary>
         /// The instance that does all http stuff
@@ -107,12 +107,9 @@ namespace AceQL.Client.Api
         {
             TestIsClosed();
 
-            if (DEBUG)
-            {
-                ConsoleEmul.WriteLine();
-                ConsoleEmul.WriteLine("currentRowNum: " + currentRowNum);
-                ConsoleEmul.WriteLine("rowCount     : " + rowsCount);
-            }
+            Debug("");
+            Debug("currentRowNum: " + currentRowNum);
+            Debug("rowCount     : " + rowsCount);
 
             if (currentRowNum == rowsCount)
             {
@@ -758,7 +755,7 @@ namespace AceQL.Client.Api
             }
             catch (Exception exception)
             {
-                ConsoleEmul.WriteLine(exception.ToString());
+                Debug(exception.ToString());
             }
 
         }

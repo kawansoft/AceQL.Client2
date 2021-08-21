@@ -40,7 +40,7 @@ namespace AceQL.Client.Api.Http
     /// </summary>
     internal class FormUploadStream
     {
-        internal static bool DEBUG = FrameworkDebug.IsSet("FormUploadStream");
+        internal static readonly bool DEBUG = FrameworkDebug.IsSet("FormUploadStream");
 
         private long tempLen;
         private int proxyAuthenticationCallCount;
@@ -91,17 +91,13 @@ namespace AceQL.Client.Api.Http
                     cpt++;
                     progressIndicator.SetValue(Math.Min(99, cpt));
 
-                    if (DEBUG)
-                    {
-                        ConsoleEmul.WriteLine(DateTime.Now + " progressHolder.Progress: " + progressIndicator.Percent);
-                    }
+
+                    Debug(DateTime.Now + " progressHolder.Progress: " + progressIndicator.Percent);
+
                 }
                 else
                 {
-                    if (DEBUG)
-                    {
-                        ConsoleEmul.WriteLine(DateTime.Now + " num: " + num);
-                    }
+                    Debug(DateTime.Now + " num: " + num);
                 }
             };
             
@@ -113,13 +109,10 @@ namespace AceQL.Client.Api.Http
                 multipart.Add(stringContentBlobId, '"' + "blob_id" + '"');
                 multipart.Add(new StreamContent(stream), '"' + "filePath" + '"', '"' + blobId + '"');
 
-                if (DEBUG)
-                {
-                    ConsoleEmul.WriteLine();
-                    ConsoleEmul.WriteLine("url     : " + url);
-                    ConsoleEmul.WriteLine("blob_id : " + blobId);
-                }
-
+                Debug("");
+                Debug("url     : " + url);
+                Debug("blob_id : " + blobId);
+            
                 HttpResponseMessage response = null;
 
                 if (!useCancellationToken)
@@ -167,6 +160,16 @@ namespace AceQL.Client.Api.Http
                 httpClient.Dispose();
             }
         }
+
+        private static void Debug(string s)
+        {
+            if (DEBUG)
+            {
+                ConsoleEmul.WriteLine(DateTime.Now + " " + s);
+            }
+        }
     }
+
+
 
 }

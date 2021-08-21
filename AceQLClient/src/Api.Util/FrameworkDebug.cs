@@ -66,7 +66,9 @@ namespace AceQL.Client.Api.Util
                 string line;
                 while ((line = streamReader.ReadLine()) != null)
                 {
-                    CLASSES_TO_DEBUG.Add(line.Trim());
+                    if ( !line.StartsWith("#")) {
+                        CLASSES_TO_DEBUG.Add(line.Trim());
+                    }
                 }
             }
         }

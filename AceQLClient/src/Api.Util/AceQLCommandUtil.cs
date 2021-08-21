@@ -36,7 +36,7 @@ namespace AceQL.Client.Api.Util
     internal class AceQLCommandUtil
     { 
 
-        internal static bool DEBUG = FrameworkDebug.IsSet("AceQLCommandUtil");
+        internal static readonly bool DEBUG = FrameworkDebug.IsSet("AceQLCommandUtil");
         public static readonly string[] PARM_SEPARATORS = { "(", ")", ";", " ", "+", "-", "/", "*", "=", "\'", "\"", "?", "!", ":", "#", "&", "-", "<", ">", "{", "}", "[", "]", "|", "%", "," };
 
         /// <summary>

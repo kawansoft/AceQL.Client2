@@ -41,7 +41,7 @@ namespace AceQL.Client.Api.Http
     internal class AceQLHttpApi
     {
 
-        internal static bool DEBUG = FrameworkDebug.IsSet("AceQLHttpApi");
+        internal static readonly bool DEBUG = FrameworkDebug.IsSet("AceQLHttpApi");
 
         /// <summary>
         /// The server URL
@@ -276,7 +276,7 @@ namespace AceQL.Client.Api.Http
                     await DummyGetCallForProxyAuthentication().ConfigureAwait(false);
 
                     String theUrl = server + "/database/" + database + "/username/" + username + "/login";
-                    ConsoleEmul.WriteLine("theUrl: " + theUrl);
+                    Debug("theUrl: " + theUrl);
 
                     Dictionary<string, string> parametersMap = new Dictionary<string, string>
                     {
@@ -287,7 +287,7 @@ namespace AceQL.Client.Api.Http
                     simpleTracer.Trace("Before CallWithPostAsyncReturnString: " + theUrl);
                     String result = await httpManager.CallWithPostAsyncReturnString(new Uri(theUrl), parametersMap).ConfigureAwait(false);
 
-                    ConsoleEmul.WriteLine("result: " + result);
+                    Debug("result: " + result);
                     simpleTracer.Trace("result: " + result);
 
                     ResultAnalyzer resultAnalyzer = new ResultAnalyzer(result, HttpStatusCode);
@@ -333,7 +333,7 @@ namespace AceQL.Client.Api.Http
             if ((this.httpManager.Proxy != null && proxyCredentials != null) || useCredentialCache)
             {
                 String getResult = await httpManager.CallWithGetAsync(server).ConfigureAwait(false);
-                ConsoleEmul.WriteLine(server + " - getResult: " + getResult);
+                Debug(server + " - getResult: " + getResult);
             }
         }
 

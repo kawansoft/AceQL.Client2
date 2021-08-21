@@ -29,11 +29,11 @@ using System.Threading.Tasks;
 namespace AceQL.Client.Api.Http
 {
     /// <summary>
-    /// Class ConnectionStringDecoder. Allows to decode the elemeents of the connection string.
+    /// Class ConnectionStringDecoder. Allows to decode the elements of the connection string.
     /// </summary>
     internal class ConnectionStringDecoder
     {
-        internal static bool DEBUG = FrameworkDebug.IsSet("ConnectionStringDecoder");
+        internal static readonly bool DEBUG = FrameworkDebug.IsSet("ConnectionStringDecoder");
 
         private const string ESCAPED_SEMICOLON_WORD = "\\semicolon";
         private const string ESCAPED_SEMICOLON = "\\;";
@@ -109,7 +109,7 @@ namespace AceQL.Client.Api.Http
                 property = property.Trim();
                 value = value.Trim();
 
-                ConsoleEmul.WriteLine("property: " + property + " (value: " + value + ")");
+                Debug("property: " + property + " (value: " + value + ")");
 
                 if (property.ToLowerInvariant().Equals("server"))
                 {
@@ -145,7 +145,7 @@ namespace AceQL.Client.Api.Http
                     {
                         proxyUri = null;
                     }
-                    ConsoleEmul.WriteLine("proxyUri:" + proxyUri + ":");
+                    Debug("proxyUri:" + proxyUri + ":");
                 }
                 else if (property.ToLowerInvariant().Equals("proxyusername"))
                 {
