@@ -30,7 +30,7 @@ namespace AceQL.Client.Api.Util
     internal static class FrameworkDebug
     {
         /** The file that contain the classes to debug in user.home */
-        private static String KAWANSOFT_DEBUG_INI = "kawansoft-debug.ini";
+        private static String ACEQL_DEBUG_CSHARP_INI = "aceql-debug-csharp.ini";
 
         /** Stores the classes to debug */
         private static HashSet<String> CLASSES_TO_DEBUG = new HashSet<String>();
@@ -42,18 +42,18 @@ namespace AceQL.Client.Api.Util
         /// <returns><c>true</c> if the specified class name is set; otherwise, <c>false</c>.</returns>
         internal static bool IsSet(string className)
         {
-            load();
+            Load();
             return CLASSES_TO_DEBUG.Contains(className);
         }
 
-        private static void load()
+        private static void Load()
         {
             if (CLASSES_TO_DEBUG.Count > 0)
             {
                 return;
             }
 
-            String filePath = FileUtil2.GetUserFolderPath() + "/" + KAWANSOFT_DEBUG_INI;
+            String filePath = FileUtil2.GetUserFolderPath() + "/" + ACEQL_DEBUG_CSHARP_INI;
 
             if (! File.Exists(filePath))
             {
