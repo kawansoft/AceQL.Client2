@@ -30,7 +30,7 @@ namespace AceQL.Client.Api.Util
     internal static class FrameworkDebug
     {
         /** The file that contain the classes to debug in user.home */
-        private static String ACEQL_DEBUG_CSHARP_INI = "aceql-debug-csharp.ini";
+        private static String ACEQL_DEBUG_FILE = "aceql-debug-csharp.ini";
 
         /** Stores the classes to debug */
         private static HashSet<String> CLASSES_TO_DEBUG = new HashSet<String>();
@@ -53,7 +53,7 @@ namespace AceQL.Client.Api.Util
                 return;
             }
 
-            String filePath = FileUtil2.GetUserFolderPath() + "/" + ACEQL_DEBUG_CSHARP_INI;
+            String filePath = FileUtil2.GetUserFolderPath() + "/" + ACEQL_DEBUG_FILE;
 
             if (! File.Exists(filePath))
             {
