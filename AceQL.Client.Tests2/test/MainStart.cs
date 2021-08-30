@@ -53,7 +53,7 @@ namespace AceQL.Client.Test
 
         public static void Main(string[] args)
         {
-            int mainToLaunch = 0;
+            int mainToLaunch = 8;
 
             if (mainToLaunch == 0)
             {
@@ -91,7 +91,7 @@ namespace AceQL.Client.Test
             }
             else if (mainToLaunch == 8)
             {
-                AceQLTestClose.TheMain(args);
+                AceQLTestNoClose.TheMain(args);
             }
             else if (mainToLaunch == 9)
             {
