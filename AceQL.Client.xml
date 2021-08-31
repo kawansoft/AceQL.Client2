@@ -4,29 +4,6 @@
         <name>AceQL.Client</name>
     </assembly>
     <members>
-        <member name="T:AceQL.Client.Api.Batch.PreparedStatementsBatchDto">
-            <summary>
-            Class PreparedStatementsBatchDto.
-            </summary>
-        </member>
-        <member name="M:AceQL.Client.Api.Batch.PreparedStatementsBatchDto.#ctor(System.Collections.Generic.List{AceQL.Client.Api.Batch.PrepStatementParamsHolder})">
-            <summary>
-            Initializes a new instance of the <see cref="T:AceQL.Client.Api.Batch.PreparedStatementsBatchDto"/> class.
-            </summary>
-            <param name="prepStatementParamsHolderList">The prep statement parameters holder list.</param>
-        </member>
-        <member name="P:AceQL.Client.Api.Batch.PreparedStatementsBatchDto.prepStatementParamsHolderList">
-            <summary>
-            Gets or sets the prep statement parameters holder list. THE PROPERTY MUST BE IN LOWERCASE FIRST CHAR FOR HOST TO DESERIALIZE.
-            </summary>
-            <value>The prep statement parameters holder list.</value>
-        </member>
-        <member name="M:AceQL.Client.Api.Batch.PreparedStatementsBatchDto.ToString">
-            <summary>
-            Returns a <see cref="T:System.String" /> that represents this instance.
-            </summary>
-            <returns>A <see cref="T:System.String" /> that represents this instance.</returns>
-        </member>
         <member name="T:AceQL.Client.Api.Batch.PrepStatementParamsHolder">
             <summary>
             Class PrepStatementParamsHolder. Allows to store all parameters of a Prepared Statement
@@ -359,21 +336,6 @@
             Closes the connection to the remote database and closes the http session.
             </summary>
         </member>
-        <member name="T:AceQL.Client.Api.Http.ConnectionStringDecoder">
-            <summary>
-            Class ConnectionStringDecoder. Allows to decode the elemeents of the connection string.
-            </summary>
-        </member>
-        <member name="M:AceQL.Client.Api.Http.ConnectionStringDecoder.Decode(System.String)">
-            <summary>
-            Decodes the specified connection string.
-            </summary>
-            <param name="connectionString">The connection string.</param>
-            <exception cref="T:System.ArgumentException">connectionString does not contain a ; separator: " + connectionString</exception>
-            <exception cref="T:System.ArgumentException">connectionString element token does not contain a = separator: " + line</exception>
-            <exception cref="T:System.ArgumentException">Can not find left of = in connectionString element token. Please correct connection string: " + line</exception>
-            <exception cref="T:System.ArgumentException">Can not find right of = in connectionString element token. Please correct connection string: " + line</exception>
-        </member>
         <member name="T:AceQL.Client.Api.Http.DefaultWebProxyCreator">
             <summary>
             Class DefaultWebProxyCreator. Allows to get the <see cref="P:System.Net.WebRequest.DefaultWebProxy"/> or <c>System.Net.WebRequest.GetSystemProxy()</c> proxy value to use. 
@@ -549,7 +511,7 @@
             <returns>String.</returns>
             <exception cref="T:System.ArgumentNullException">url is null!</exception>
         </member>
-        <member name="M:AceQL.Client.Api.Http.HttpManager.SetSimpleTracer(AceQL.Client.Src.Api.Util.SimpleTracer)">
+        <member name="M:AceQL.Client.Api.Http.HttpManager.SetSimpleTracer(AceQL.Client.Api.Util.SimpleTracer)">
             <summary>
             Allowso the parent AceQLHttpApi to set the simple tracer.
             </summary>
@@ -621,6 +583,21 @@
             <param name="host">
               <see cref="T:System.Uri" /> of the host whose proxy usage is to be verified.</param>
             <returns><c>true</c> if the proxy server should not be used for <paramref name="host" />�; else <c>false</c>.</returns>
+        </member>
+        <member name="T:AceQL.Client.Api.Http.ConnectionStringDecoder">
+            <summary>
+            Class ConnectionStringDecoder. Allows to decode the elements of the connection string.
+            </summary>
+        </member>
+        <member name="M:AceQL.Client.Api.Http.ConnectionStringDecoder.Decode(System.String)">
+            <summary>
+            Decodes the specified connection string.
+            </summary>
+            <param name="connectionString">The connection string.</param>
+            <exception cref="T:System.ArgumentException">connectionString does not contain a ; separator: " + connectionString</exception>
+            <exception cref="T:System.ArgumentException">connectionString element token does not contain a = separator: " + line</exception>
+            <exception cref="T:System.ArgumentException">Can not find left of = in connectionString element token. Please correct connection string: " + line</exception>
+            <exception cref="T:System.ArgumentException">Can not find right of = in connectionString element token. Please correct connection string: " + line</exception>
         </member>
         <member name="T:AceQL.Client.Api.Metadata.Dto.JdbcDatabaseMetaDataDto">
             <summary>
@@ -1783,6 +1760,24 @@
             </summary>
             <returns>A unique File on the system.</returns>
         </member>
+        <member name="T:AceQL.Client.Api.Util.FrameworkDebug">
+            <summary>
+            Class FrameworkDebug.
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Util.FrameworkDebug.ACEQL_DEBUG_FILE">
+            The file that contain the classes to debug in user.home 
+        </member>
+        <member name="F:AceQL.Client.Api.Util.FrameworkDebug.CLASSES_TO_DEBUG">
+            Stores the classes to debug 
+        </member>
+        <member name="M:AceQL.Client.Api.Util.FrameworkDebug.IsSet(System.String)">
+            <summary>
+            Determines whether the specified class name is set.
+            </summary>
+            <param name="className">Name of the class.</param>
+            <returns><c>true</c> if the specified class name is set; otherwise, <c>false</c>.</returns>
+        </member>
         <member name="T:AceQL.Client.Api.Util.OutParamBuilder">
             <summary>
             Class OutParamBuilder.
@@ -1857,6 +1852,56 @@
             <summary>
             Releases all resources used by the current instance of the <see cref="T:AceQL.Client.Api.Util.OutParamBuilder"/> class. 
             This is recommended in order to delete the local corresponding temporary files.
+            </summary>
+        </member>
+        <member name="T:AceQL.Client.Api.Util.ParametersOutIndex">
+            <summary>
+            Class for getting with JSON the out parameter indexes and values.
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Util.ParametersOutIndex.parameterIndex">
+            <summary>
+            The parameter name
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Util.ParametersOutIndex.theValue">
+            <summary>
+            The value
+            </summary>
+        </member>
+        <member name="P:AceQL.Client.Api.Util.ParametersOutIndex.ParameterIndex">
+            <summary>
+            Specifies the out parameter index.
+            </summary>
+        </member>
+        <member name="P:AceQL.Client.Api.Util.ParametersOutIndex.Value">
+            <summary>
+            Specifies the out parameter value.
+            </summary>
+        </member>
+        <member name="T:AceQL.Client.Api.Util.ParametersOutName">
+            <summary>
+            Class for getting with JSON the out parameter names and values.
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Util.ParametersOutName.parameterName">
+            <summary>
+            The parameter name
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Util.ParametersOutName.theValue">
+            <summary>
+            The value
+            </summary>
+        </member>
+        <member name="P:AceQL.Client.Api.Util.ParametersOutName.ParameterName">
+            <summary>
+            Specifies the out parameter name.
+            </summary>
+        </member>
+        <member name="P:AceQL.Client.Api.Util.ParametersOutName.Value">
+            <summary>
+            Specifies the out parameter value.
             </summary>
         </member>
         <member name="T:AceQL.Client.Api.Util.Parms">
@@ -2060,6 +2105,50 @@
             </summary>
             <param name="s">The s.</param>
         </member>
+        <member name="T:AceQL.Client.Api.Util.SimpleTracer">
+            <summary>
+            Class Tracer. Allows to create a single instance for a trace action.
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Util.SimpleTracer.traceOn">
+            <summary>
+            The trace on
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Util.SimpleTracer.filePath">
+            <summary>
+            The trace filePath for debug
+            </summary>
+        </member>
+        <member name="M:AceQL.Client.Api.Util.SimpleTracer.IsTraceOn">
+            <summary>
+            Says if trace is on
+            </summary>
+            <returns>true if trace is on</returns>
+        </member>
+        <member name="M:AceQL.Client.Api.Util.SimpleTracer.SetTraceOn(System.Boolean)">
+            <summary>
+            Sets the trace on/off
+            </summary>
+            <param name="traceOn">if true, trace will be on; else race will be off</param>
+        </member>
+        <member name="M:AceQL.Client.Api.Util.SimpleTracer.Trace">
+            <summary>
+            Traces this instance.
+            </summary>
+        </member>
+        <member name="M:AceQL.Client.Api.Util.SimpleTracer.GetTraceFileName">
+            <summary>
+            Gets the name of the trace filePath.
+            </summary>
+            <returns>The name name fo the trace filePath</returns>
+        </member>
+        <member name="M:AceQL.Client.Api.Util.SimpleTracer.Trace(System.String)">
+            <summary>
+            Traces the specified string.
+            </summary>
+            <param name="contents">The string to trace</param>
+        </member>
         <member name="T:AceQL.Client.Api.Util.StreamResultAnalyzer">
             <summary>
             Class <see cref="T:AceQL.Client.Api.Util.StreamResultAnalyzer"/>. Allows to analyze the result of a downloaded result of a SQL query stored in a local PC filePath.
@@ -2117,6 +2206,71 @@
             Gets the remote stack trace.
             </summary>
             <returns>The remote stack trace.</returns>
+        </member>
+        <member name="T:AceQL.Client.Api.Util.StringUtils">
+            <summary>
+            Class StringUtils. Utilities fro String management.
+            </summary>
+        </member>
+        <member name="M:AceQL.Client.Api.Util.StringUtils.SubstringBefore(System.String,System.String)">
+            <summary>
+            Gets the substring before the first occurrence of a separator. The separator is not returned.
+            </summary>
+            <param name="str">The string.</param>
+            <param name="separator">The separator.</param>
+            <returns>System.String.</returns>
+        </member>
+        <member name="T:AceQL.Client.Api.Util.UserLoginStore">
+            <summary>
+            Stores the session Id per serverUrl/username/database triplet in order to
+            get new AceQL Connection with /get_connection without new login action.
+            </summary>
+        </member>
+        <member name="M:AceQL.Client.Api.Util.UserLoginStore.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:AceQL.Client.Api.Util.UserLoginStore"/> class.
+            </summary>
+            <param name="serverUrl">The AceQL server URL.</param>
+            <param name="username">the client username.</param>
+            <param name="database">The database to which users wants to connect</param>
+            <exception cref="T:System.ArgumentNullException">
+            serverUrl is null!
+            or
+            username is null!
+            or
+            database is null!
+            </exception>
+        </member>
+        <member name="M:AceQL.Client.Api.Util.UserLoginStore.IsAlreadyLogged">
+            <summary>
+            Says if user is already logged (ie. it exist a session_if for (serverUrl, username, database) triplet.
+            </summary>
+            <returns>
+              <c>true</c> if [is already logged]; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:AceQL.Client.Api.Util.UserLoginStore.GetSessionId">
+            <summary>
+            Returns the session If of logged user with (serverUrl, username, database) triplet.
+            </summary>
+            <returns>the stored session Id for the (serverUrl, username, database) triplet.</returns>
+        </member>
+        <member name="M:AceQL.Client.Api.Util.UserLoginStore.SetSessionId(System.String)">
+            <summary>
+            Stores the session Id of a logged user with (serverUrl, username, database) triplet.
+            </summary>
+            <param name="sessionId">The session Id of a logged user.</param>
+        </member>
+        <member name="M:AceQL.Client.Api.Util.UserLoginStore.Remove">
+            <summary>
+            Removes (serverUrl, username, database) triplet. This is to be called at /logout API.
+            </summary>
+        </member>
+        <member name="M:AceQL.Client.Api.Util.UserLoginStore.BuildKey">
+            <summary>
+            Builds the key.
+            </summary>
+            <returns>The built key</returns>
         </member>
         <member name="T:AceQL.Client.Api.AceQLCommand">
             <summary>Represents a SQL statement to execute against a remote SQL database.</summary>
@@ -2285,7 +2439,7 @@
             Adds a set of parameters to this PreparedStatement object's batch of commands.
             </summary>
         </member>
-        <member name="M:AceQL.Client.Api.AceQLCommand.ExecuteBatch(System.Threading.CancellationToken)">
+        <member name="M:AceQL.Client.Api.AceQLCommand.ExecuteBatchAsync(System.Threading.CancellationToken)">
             <summary>
             Submits a batch of commands to the database for execution and if all commands execute successfully, 
             returns an array of update counts.
@@ -2299,7 +2453,7 @@
             The elements of the array are ordered according to the order in which commands were added to the batch.</returns>
             <exception cref="T:AceQL.Client.Api.AceQLException">If any Exception occurs.</exception>
         </member>
-        <member name="M:AceQL.Client.Api.AceQLCommand.ExecuteBatch">
+        <member name="M:AceQL.Client.Api.AceQLCommand.ExecuteBatchAsync">
             <summary>
             Executes the Batch
             </summary>
@@ -2568,6 +2722,20 @@
             Gets the connection information.
             </summary>
             <value>The connection information.</value>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLConnectionUtil.IsBatchSupported(AceQL.Client.Api.AceQLConnection)">
+            <summary>
+            Determines whether [is batch supported] [the specified connection].
+            </summary>
+            <param name="connection">The connection.</param>
+            <returns>Task&lt;System.Boolean&gt;.</returns>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLConnectionUtil.ExtractRawServerVersion(System.String)">
+            <summary>
+            Extracts the raw server version.
+            </summary>
+            <param name="serverVersionNumber">The server version number.</param>
+            <returns>System.String.</returns>
         </member>
         <member name="T:AceQL.Client.Api.AceQLCredential">
             <summary>
@@ -3402,7 +3570,7 @@
             </summary>
         </member>
         <member name="F:AceQL.Client.Api.AceQLProgressIndicator.percent">
-            <summary>   The perccent progress value set by upload thread.</summary>
+            <summary>   The percent progress value set by upload thread.</summary>
         </member>
         <member name="P:AceQL.Client.Api.AceQLProgressIndicator.Percent">
             <summary>
@@ -3614,7 +3782,7 @@
         <member name="P:AceQL.Client.Api.ConnectionInfo.GzipResult">
             <summary>
             Gets the value indicating whether SQL result sets are returned compressed with the GZIP filePath format
-            before download. Defaults to true.
+            before download. Defaults to <c>false</c>.
             </summary>
             <value>True if SQL result sets are returned compressed with the GZIP filePath format
             before download.</value>
@@ -3723,165 +3891,6 @@
             </para>
             </summary>
             <returns> the password </returns>
-        </member>
-        <member name="T:AceQL.Client.Tests.Test.ParametersOutIndex">
-            <summary>
-            Class for getting with JSON the out parameter indexes and values.
-            </summary>
-        </member>
-        <member name="F:AceQL.Client.Tests.Test.ParametersOutIndex.parameterIndex">
-            <summary>
-            The parameter name
-            </summary>
-        </member>
-        <member name="F:AceQL.Client.Tests.Test.ParametersOutIndex.theValue">
-            <summary>
-            The value
-            </summary>
-        </member>
-        <member name="P:AceQL.Client.Tests.Test.ParametersOutIndex.ParameterIndex">
-            <summary>
-            Specifies the out parameter index.
-            </summary>
-        </member>
-        <member name="P:AceQL.Client.Tests.Test.ParametersOutIndex.Value">
-            <summary>
-            Specifies the out parameter value.
-            </summary>
-        </member>
-        <member name="T:AceQL.Client.Tests.Test.ParametersOutName">
-            <summary>
-            Class for getting with JSON the out parameter names and values.
-            </summary>
-        </member>
-        <member name="F:AceQL.Client.Tests.Test.ParametersOutName.parameterName">
-            <summary>
-            The parameter name
-            </summary>
-        </member>
-        <member name="F:AceQL.Client.Tests.Test.ParametersOutName.theValue">
-            <summary>
-            The value
-            </summary>
-        </member>
-        <member name="P:AceQL.Client.Tests.Test.ParametersOutName.ParameterName">
-            <summary>
-            Specifies the out parameter name.
-            </summary>
-        </member>
-        <member name="P:AceQL.Client.Tests.Test.ParametersOutName.Value">
-            <summary>
-            Specifies the out parameter value.
-            </summary>
-        </member>
-        <member name="T:AceQL.Client.Src.Api.Util.SimpleTracer">
-            <summary>
-            Class Tracer. Allows to create a single instance for a trace action.
-            </summary>
-        </member>
-        <member name="F:AceQL.Client.Src.Api.Util.SimpleTracer.traceOn">
-            <summary>
-            The trace on
-            </summary>
-        </member>
-        <member name="F:AceQL.Client.Src.Api.Util.SimpleTracer.filePath">
-            <summary>
-            The trace filePath for debug
-            </summary>
-        </member>
-        <member name="M:AceQL.Client.Src.Api.Util.SimpleTracer.IsTraceOn">
-            <summary>
-            Says if trace is on
-            </summary>
-            <returns>true if trace is on</returns>
-        </member>
-        <member name="M:AceQL.Client.Src.Api.Util.SimpleTracer.SetTraceOn(System.Boolean)">
-            <summary>
-            Sets the trace on/off
-            </summary>
-            <param name="traceOn">if true, trace will be on; else race will be off</param>
-        </member>
-        <member name="M:AceQL.Client.Src.Api.Util.SimpleTracer.Trace">
-            <summary>
-            Traces this instance.
-            </summary>
-        </member>
-        <member name="M:AceQL.Client.Src.Api.Util.SimpleTracer.GetTraceFileName">
-            <summary>
-            Gets the name of the trace filePath.
-            </summary>
-            <returns>The name name fo the trace filePath</returns>
-        </member>
-        <member name="M:AceQL.Client.Src.Api.Util.SimpleTracer.Trace(System.String)">
-            <summary>
-            Traces the specified string.
-            </summary>
-            <param name="contents">The string to trace</param>
-        </member>
-        <member name="T:AceQL.Client.Src.Api.Util.StringUtils">
-            <summary>
-            Class StringUtils. Utilities fro String management.
-            </summary>
-        </member>
-        <member name="M:AceQL.Client.Src.Api.Util.StringUtils.SubstringBefore(System.String,System.String)">
-            <summary>
-            Gets the substring before the first occurrence of a separator. The separator is not returned.
-            </summary>
-            <param name="str">The string.</param>
-            <param name="separator">The separator.</param>
-            <returns>System.String.</returns>
-        </member>
-        <member name="T:AceQL.Client.Src.Api.Util.UserLoginStore">
-            <summary>
-            Stores the session Id per serverUrl/username/database triplet in order to
-            get new AceQL Connection with /get_connection without new login action.
-            </summary>
-        </member>
-        <member name="M:AceQL.Client.Src.Api.Util.UserLoginStore.#ctor(System.String,System.String,System.String)">
-            <summary>
-            Initializes a new instance of the <see cref="T:AceQL.Client.Src.Api.Util.UserLoginStore"/> class.
-            </summary>
-            <param name="serverUrl">The AceQL server URL.</param>
-            <param name="username">the client username.</param>
-            <param name="database">The database to which users wants to connect</param>
-            <exception cref="T:System.ArgumentNullException">
-            serverUrl is null!
-            or
-            username is null!
-            or
-            database is null!
-            </exception>
-        </member>
-        <member name="M:AceQL.Client.Src.Api.Util.UserLoginStore.IsAlreadyLogged">
-            <summary>
-            Says if user is already logged (ie. it exist a session_if for (serverUrl, username, database) triplet.
-            </summary>
-            <returns>
-              <c>true</c> if [is already logged]; otherwise, <c>false</c>.
-            </returns>
-        </member>
-        <member name="M:AceQL.Client.Src.Api.Util.UserLoginStore.GetSessionId">
-            <summary>
-            Returns the session If of logged user with (serverUrl, username, database) triplet.
-            </summary>
-            <returns>the stored session Id for the (serverUrl, username, database) triplet.</returns>
-        </member>
-        <member name="M:AceQL.Client.Src.Api.Util.UserLoginStore.SetSessionId(System.String)">
-            <summary>
-            Stores the session Id of a logged user with (serverUrl, username, database) triplet.
-            </summary>
-            <param name="sessionId">The session Id of a logged user.</param>
-        </member>
-        <member name="M:AceQL.Client.Src.Api.Util.UserLoginStore.Remove">
-            <summary>
-            Removes (serverUrl, username, database) triplet. This is to be called at /logout API.
-            </summary>
-        </member>
-        <member name="M:AceQL.Client.Src.Api.Util.UserLoginStore.BuildKey">
-            <summary>
-            Builds the key.
-            </summary>
-            <returns>The built key</returns>
         </member>
     </members>
 </doc>

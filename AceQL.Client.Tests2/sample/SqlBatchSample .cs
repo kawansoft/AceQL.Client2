@@ -27,14 +27,14 @@ using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace AceQL.Client.Test.Dml.Batch
+namespace AceQL.Client.Sample
 {
     /// <summary>
     /// This example: 
     /// 1) Inserts a Customer and an Order on a remote database. 
     /// 2) Displays the inserted raws on the console with two SELECT executed on the remote database.
     /// </summary>
-    public class SqlBatchTest
+    public class SqlBatchSample 
     {
         /// <summary>
         /// The connection to the remote database
@@ -60,7 +60,7 @@ namespace AceQL.Client.Test.Dml.Batch
                 // server connection into the pool
                 using (AceQLConnection connection = await ConnectionCreator.ConnectionCreateAsync().ConfigureAwait(false))
                 {
-                    SqlBatchTest sqlBatchTest = new SqlBatchTest(
+                    SqlBatchSample  sqlBatchTest = new SqlBatchSample (
                         connection);
                     AceQLConsole.WriteLine("Connection created....");
 
@@ -88,7 +88,7 @@ namespace AceQL.Client.Test.Dml.Batch
         /// Constructor.
         /// </summary>
         /// <param name="connection">The AceQL connection to remote database.</param>
-        public SqlBatchTest(AceQLConnection connection)
+        public SqlBatchSample (AceQLConnection connection)
         {
             this.connection = connection;
         }
@@ -102,28 +102,32 @@ namespace AceQL.Client.Test.Dml.Batch
             string sql ="insert into customer values (@parm1, @parm2, @parm3, @parm4, @parm5, @parm6, @parm7, @parm8)";
             AceQLCommand command = new AceQLCommand(sql, connection);
 
-            for (int i = 1; i < 10; i++)
-            {
-                int customer_id = i;
+            command.Parameters.AddWithValue("@parm1", 1);
+            command.Parameters.AddWithValue("@parm2", "Sir");
+            command.Parameters.AddWithValue("@parm3", "John");
+            command.Parameters.AddWithValue("@parm4", "Smith");
+            command.Parameters.AddWithValue("@parm5", "1 U.S. Rte 66");
+            command.Parameters.AddWithValue("@parm6", "Hydro");
+            command.Parameters.AddWithValue("@parm7", "OK 730482");
+            command.Parameters.AddWithValue("@parm8", "(405) 297 - 2391");
+            command.AddBatch(); 
 
-                command.Parameters.AddWithValue("@parm1", customer_id);
-                command.Parameters.AddWithValue("@parm2", "Sir" + i ); // HACK NDP
-                command.Parameters.AddWithValue("@parm3", "André_" + customer_id);
-                command.Parameters.Add(new AceQLParameter("@parm4", "Name_" + customer_id));
-                command.Parameters.AddWithValue("@parm5", customer_id + ", road Sixty-Six");
-                command.Parameters.AddWithValue("@parm6", "Town_" + customer_id);
-                command.Parameters.AddWithValue("@parm7", customer_id + "0000");
-                command.Parameters.Add(new AceQLParameter("@parm8", new AceQLNullValue(AceQLNullType.VARCHAR))); //null value for NULL SQL insert.
+            command.Parameters.AddWithValue("@parm1", 2);
+            command.Parameters.AddWithValue("@parm2", "Miss");
+            command.Parameters.AddWithValue("@parm3", "Melanie");
+            command.Parameters.AddWithValue("@parm4", "Jones");
+            command.Parameters.AddWithValue("@parm5", "1000 U.S. Rte 66");
+            command.Parameters.AddWithValue("@parm6", "Sayre");
+            command.Parameters.AddWithValue("@parm7", "OK 73662");
+            command.Parameters.AddWithValue("@parm8", "(405) 299 - 3359");
+            command.AddBatch();
 
-                command.AddBatch();
-            }
-
-            CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
-            int [] results = await command.ExecuteBatchAsync(cancellationTokenSource.Token);
+            // Executes the batch. All INSERT orders are uploaded at once:
+            int [] results = await command.ExecuteBatchAsync();
 
             foreach (int theResult in results)
             {
-                AceQLConsole.WriteLine(theResult + "");
+                Console.WriteLine(theResult);
             }
         }
 

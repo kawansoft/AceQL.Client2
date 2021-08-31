@@ -683,13 +683,13 @@ namespace AceQL.Client.Api
         /// <returns>an array of update counts containing one element for each command in the batch. 
         /// The elements of the array are ordered according to the order in which commands were added to the batch.</returns>
         /// <exception cref="AceQL.Client.Api.AceQLException">If any Exception occurs.</exception>
-        public async Task<int[]> ExecuteBatch(CancellationToken cancellationToken)
+        public async Task<int[]> ExecuteBatchAsync(CancellationToken cancellationToken)
         {
             try
             {
                 // Global var avoids to propagate cancellationToken as parameter to all methods... 
                 aceQLHttpApi.SetCancellationToken(cancellationToken);
-                return await ExecuteBatch().ConfigureAwait(false);
+                return await ExecuteBatchAsync().ConfigureAwait(false);
             }
             finally
             {
@@ -701,7 +701,7 @@ namespace AceQL.Client.Api
         /// Executes the Batch
         /// </summary>
         /// <returns></returns>
-        public async Task<int[]> ExecuteBatch()
+        public async Task<int[]> ExecuteBatchAsync()
         {
             if (this.batchFileParameters == null || ! new FileInfo(this.batchFileParameters).Exists)
             {
