@@ -2455,9 +2455,16 @@
         </member>
         <member name="M:AceQL.Client.Api.AceQLCommand.ExecuteBatchAsync">
             <summary>
-            Executes the Batch
+            Submits a batch of commands to the database for execution and if all commands execute successfully, 
+            returns an array of update counts.
+            The int elements of the array that is returned are ordered to correspond to the commands in the batch, 
+            which are ordered according to the order in which they were added to the batch.
+            <para/>The cancellation token can be used to can be used to request that the operation 
+            be abandoned before the http request timeout.
             </summary>
-            <returns></returns>
+            <returns>an array of update counts containing one element for each command in the batch. 
+            The elements of the array are ordered according to the order in which commands were added to the batch.</returns>
+            <exception cref="T:AceQL.Client.Api.AceQLException">If any Exception occurs.</exception>
         </member>
         <member name="M:AceQL.Client.Api.AceQLCommand.ExecuteUpdateAsStatementAsync">
             <summary>

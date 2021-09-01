@@ -90,7 +90,7 @@ The SDK is licensed with the liberal [Apache 2.0](https://www.apache.org/license
 
 ## AceQL Server side compatibility
 
-This version requires AceQL HTTP v5.0.2+ server version. 
+This version requires AceQL HTTP v7.2.+ server version. It requires version 8.0+ in order to use batch commands. 
 
 ## AceQL C# Client SDK installation
 
@@ -118,7 +118,7 @@ Large content (query results, BLOBs/CLOBs, etc.) is transferred using files. It 
 
 Every HTTP exchange between the client and server side is time-consuming, because the client side  waits for the server's response.
 
-Try to avoid coding SQL calls inside loops, as this can reduce execution speed. Each SQL call will send an http request and wait for the response from the server.
+Try to avoid coding SQL calls inside loops, as this can reduce execution speed. Each SQL call will send an http request and wait for the response from the server. 
 
 Note that AceQL is optimized as much as possible:
 
