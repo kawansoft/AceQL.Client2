@@ -13,19 +13,17 @@
 
 <img src="https://www.aceql.com/img/AceQL-Schema-min.jpg" alt="AceQL Draw"/>
 
-* [Fundamentals](#fundamentals)
-  
+   * [Fundamentals](#fundamentals)
       * [AceQL C# Client SDK Online Documentation](#aceql-c-client-sdk-online-documentation)
-          * [Contributors](#contributors)
-          * [Technical operating environment](#technical-operating-environment)
-          * [License](#license)
-          * [AceQL Server side compatibility](#aceql-server-side-compatibility)
-          * [AceQL C# Client SDK installation](#aceql-c-client-sdk-installation)
-          * [Data transport](#data-transport)
+      * [Contributors](#contributors)
+      * [Technical operating environment](#technical-operating-environment)
+      * [License](#license)
+      * [AceQL Server side compatibility](#aceql-server-side-compatibility)
+      * [AceQL C# Client SDK installation](#aceql-c-client-sdk-installation)
+      * [Data transport](#data-transport)
          * [Transport format](#transport-format)
          * [Content streaming and memory management](#content-streaming-and-memory-management)
-          * [Best practices for fast response time](#best-practices-for-fast-response-time)
-  
+      * [Best practices for fast response time](#best-practices-for-fast-response-time)
    * [Implementation Info](#implementation-info)
       * [The AceQL SDK classes and methods](#the-aceql-sdk-classes-and-methods)
          * [Asynchronous implementation](#asynchronous-implementation)
