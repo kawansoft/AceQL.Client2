@@ -15,7 +15,7 @@
     <FileVersion>7.0.0.0</FileVersion>
     <Version>7.0</Version>
     <Authors>KawanSoft</Authors>
-    <PackageReleaseNotes>Bulk INSERT are now possible using the AddBatch() and ExecuteBatchAsync() mehods.</PackageReleaseNotes>
+    <PackageReleaseNotes>Batch commands are now possible using the AddBatch() and ExecuteBatchAsync() methods.</PackageReleaseNotes>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageTags>SQL over http remote jdbc cloud database Xamarin</PackageTags>
     <Product>AceQL.Client</Product>
