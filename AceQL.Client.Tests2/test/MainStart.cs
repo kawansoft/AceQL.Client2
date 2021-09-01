@@ -20,6 +20,7 @@
 using AceQL.Client.Api;
 using AceQL.Client.Api.Metadata;
 using AceQL.Client.Api.Metadata.Dto;
+using AceQL.Client.Sample;
 using AceQL.Client.test.Dml;
 using AceQL.Client.Test.Connection;
 using AceQL.Client.Test.Dml.Batch;
@@ -100,6 +101,10 @@ namespace AceQL.Client.Test
             else if (mainToLaunch == 10)
             {
                 SqlBatchTest.TheMain(args);
+            }
+            else if (mainToLaunch == 11)
+            {
+                SqlBatchSample.TheMain(args);
             }
         }
 

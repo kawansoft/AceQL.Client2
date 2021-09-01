@@ -34,7 +34,7 @@ namespace AceQL.Client.Sample
     /// 1) Inserts a Customer and an Order on a remote database. 
     /// 2) Displays the inserted raws on the console with two SELECT executed on the remote database.
     /// </summary>
-    public class SqlBatchSample 
+    public class SqlBatchSample
     {
         /// <summary>
         /// The connection to the remote database
@@ -60,7 +60,7 @@ namespace AceQL.Client.Sample
                 // server connection into the pool
                 using (AceQLConnection connection = await ConnectionCreator.ConnectionCreateAsync().ConfigureAwait(false))
                 {
-                    SqlBatchSample  sqlBatchTest = new SqlBatchSample (
+                    SqlBatchSample sqlBatchTest = new SqlBatchSample(
                         connection);
                     AceQLConsole.WriteLine("Connection created....");
 
@@ -88,7 +88,7 @@ namespace AceQL.Client.Sample
         /// Constructor.
         /// </summary>
         /// <param name="connection">The AceQL connection to remote database.</param>
-        public SqlBatchSample (AceQLConnection connection)
+        public SqlBatchSample(AceQLConnection connection)
         {
             this.connection = connection;
         }
@@ -99,37 +99,46 @@ namespace AceQL.Client.Sample
         /// <exception cref="AceQLException">If any Exception occurs.</exception>
         public async Task InsertUsingBatch()
         {
-            string sql ="insert into customer values (@parm1, @parm2, @parm3, @parm4, @parm5, @parm6, @parm7, @parm8)";
+            string sql = "insert into customer values (@parm1, @parm2, @parm3, @parm4, @parm5, @parm6, @parm7, @parm8)";
             AceQLCommand command = new AceQLCommand(sql, connection);
 
-            command.Parameters.AddWithValue("@parm1", 1);
-            command.Parameters.AddWithValue("@parm2", "Sir");
-            command.Parameters.AddWithValue("@parm3", "John");
-            command.Parameters.AddWithValue("@parm4", "Smith");
-            command.Parameters.AddWithValue("@parm5", "1 U.S. Rte 66");
-            command.Parameters.AddWithValue("@parm6", "Hydro");
-            command.Parameters.AddWithValue("@parm7", "OK 730482");
-            command.Parameters.AddWithValue("@parm8", "(405) 297 - 2391");
-            command.AddBatch(); 
+            // We do the INSERTs in a transaction because it's faster:
+            AceQLTransaction transaction = await connection.BeginTransactionAsync();
 
-            command.Parameters.AddWithValue("@parm1", 2);
-            command.Parameters.AddWithValue("@parm2", "Miss");
-            command.Parameters.AddWithValue("@parm3", "Melanie");
-            command.Parameters.AddWithValue("@parm4", "Jones");
-            command.Parameters.AddWithValue("@parm5", "1000 U.S. Rte 66");
-            command.Parameters.AddWithValue("@parm6", "Sayre");
-            command.Parameters.AddWithValue("@parm7", "OK 73662");
-            command.Parameters.AddWithValue("@parm8", "(405) 299 - 3359");
-            command.AddBatch();
-
-            // Executes the batch. All INSERT orders are uploaded at once:
-            int [] results = await command.ExecuteBatchAsync();
-
-            foreach (int theResult in results)
+            try
             {
-                Console.WriteLine(theResult);
+                // Add first set of parameters
+                command.Parameters.AddWithValue("@parm1", 1);
+                command.Parameters.AddWithValue("@parm2", "Sir");
+                command.Parameters.AddWithValue("@parm3", "John");
+                command.Parameters.AddWithValue("@parm4", "Smith");
+                command.Parameters.AddWithValue("@parm5", "1 U.S. Rte 66");
+                command.Parameters.AddWithValue("@parm6", "Hydro");
+                command.Parameters.AddWithValue("@parm7", "OK 730482");
+                command.Parameters.AddWithValue("@parm8", "(405) 297 - 2391");
+                command.AddBatch();
+
+                // Add a second set of parameters
+                command.Parameters.AddWithValue("@parm1", 2);
+                command.Parameters.AddWithValue("@parm2", "Miss");
+                command.Parameters.AddWithValue("@parm3", "Melanie");
+                command.Parameters.AddWithValue("@parm4", "Jones");
+                command.Parameters.AddWithValue("@parm5", "1000 U.S. Rte 66");
+                command.Parameters.AddWithValue("@parm6", "Sayre");
+                command.Parameters.AddWithValue("@parm7", "OK 73662");
+                command.Parameters.AddWithValue("@parm8", "(405) 299 - 3359");
+                command.AddBatch();
+
+                // Executes the batch. All INSERT orders are uploaded at once:
+                int[] results = await command.ExecuteBatchAsync();
+                await transaction.CommitAsync();
+
+                // Do whatever with the results...
+            }
+            catch (Exception)
+            {
+                await transaction.RollbackAsync();
             }
         }
-
     }
 }

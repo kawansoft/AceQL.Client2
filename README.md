@@ -5,24 +5,27 @@
 
 # AceQL HTTP 
 
-## C# Client SDK v6.3 - User Guide
+## C# Client SDK v7.0 - User Guide
 
-## June 11, 2021
+## September 1, 2021
 
 <img src="https://www.aceql.com/favicon.png" alt="AceQ HTTP Icon"/>
 
 <img src="https://www.aceql.com/img/AceQL-Schema-min.jpg" alt="AceQL Draw"/>
 
-   * [Fundamentals](#fundamentals)
-      * [Contributors](#contributors)
-      * [Technical operating environment](#technical-operating-environment)
-      * [License](#license)
-      * [AceQL Server side compatibility](#aceql-server-side-compatibility)
-      * [AceQL C# Client SDK installation](#aceql-c-client-sdk-installation)
-      * [Data transport](#data-transport)
+* [Fundamentals](#fundamentals)
+  
+      * [AceQL C# Client SDK Online Documentation](#aceql-c-client-sdk-online-documentation)
+          * [Contributors](#contributors)
+          * [Technical operating environment](#technical-operating-environment)
+          * [License](#license)
+          * [AceQL Server side compatibility](#aceql-server-side-compatibility)
+          * [AceQL C# Client SDK installation](#aceql-c-client-sdk-installation)
+          * [Data transport](#data-transport)
          * [Transport format](#transport-format)
          * [Content streaming and memory management](#content-streaming-and-memory-management)
-      * [Best practices for fast response time](#best-practices-for-fast-response-time)
+          * [Best practices for fast response time](#best-practices-for-fast-response-time)
+  
    * [Implementation Info](#implementation-info)
       * [The AceQL SDK classes and methods](#the-aceql-sdk-classes-and-methods)
          * [Asynchronous implementation](#asynchronous-implementation)
@@ -31,6 +34,7 @@
       * [The connection string](#the-connection-string)
          * [Using NTLM](#using-ntlm)
          * [Using a Web Proxy](#using-a-web-proxy)
+            * [Using CredentialCache values for an authenticated proxy](#using-credentialcache-values-for-an-authenticated-proxy)
       * [Handling Exceptions](#handling-exceptions)
          * [The error type](#the-error-type)
          * [Most common AceQL server messages](#most-common-aceql-server-messages)
@@ -42,6 +46,7 @@
          * [Reading NULL values](#reading-null-values)
       * [AceQLTransaction](#aceqltransaction)
          * [Precisions on transactions](#precisions-on-transactions)
+      * [Batch management](#batch-management)
       * [BLOB management](#blob-management)
          * [BLOB creation](#blob-creation)
          * [BLOB reading](#blob-reading)
@@ -66,6 +71,10 @@ C# application developers can access remote SQL databases and/or SQL databases i
 The AceQL Server operation is described in [AceQL HTTP Server Installation and Configuration Guide](https://github.com/kawansoft/aceql-http/blob/master/README.md), whose content is sometimes referred to in this User Guide. 
 
 On the remote side, like the AceQL Server access to the SQL database using Java JDBC, we will sometimes use the JDBC terminology (ResultSet, etc.) in this document. Nevertheless, knowledge of Java or JDBC is *not* a requirement.
+
+## AceQL C# Client SDK Online Documentation
+
+The Online Documentation is accessible [here](https://www.aceql.com/rest/soft_csharp/7.0/csharpdoc_sdk/html/N-AceQL.Client.Api.htm).
 
 ## Contributors
 
@@ -128,6 +137,7 @@ Note that AceQL is optimized as much as possible:
   - The rows are all dumped at once on the servlet output stream by the server
   - The client side gets the `ResultSet` content as a file.
   - All data reading commands are executed locally on the client side with forward-only reading
+- **It is highly recommended to always use  batch commands  when you have many rows to INSERT or UPDATE.**
 
 # Implementation Info
 
@@ -159,8 +169,6 @@ The AceQL SDK exposes 2 specific public classes and 1 enumeration:
 | `AceQLException`                    | Generic Exception implementation  for error reporting.  <br />See [Handling Exceptions](#handling-exceptions). |
 | `AceQLNullType`<br>`AceQLNullValue` | Enum and class that allows you to define the type of NULL  values for database updates.  See [Inserting NULL values](#inserting-null-values). |
 | `AceQLProgressIndicator`            | Allows you to  retrieve Blob upload progress as a percentage. See [Managing BLOB upload progress](#managing-blob-upload-progress). |
-
-
 
 ### Asynchronous implementation 
 
@@ -542,6 +550,67 @@ It is unnecessary to assign an `AceQLTransaction` to an `AceQLCommand`. (Because
 
 `AceQLTransaction.Dispose` calls do nothing and `AceQLTransaction`  is Disposable for ease of existing code migration.
 
+## Batch management
+
+Batch commands allows to process Bulk insert:
+
+- `AceQLCommand.addBatch()` allows to add a set of parameters.
+- `AceQLCommand.executeBatchAsync()` allow to send to the server all the parameters at once and execute the batch commands on the server.
+
+As usual, It is recommended to use batch commands inside a transaction for faster inserts on the server side:
+
+```C#
+string sql = "insert into customer values (@parm1, @parm2, @parm3, @parm4, @parm5, @parm6, @parm7, @parm8)";
+AceQLCommand command = new AceQLCommand(sql, connection);
+
+// We do the INSERTs in a transaction because it's faster:
+AceQLTransaction transaction = await connection.BeginTransactionAsync();
+
+try
+{
+    // Add first set of parameters
+    command.Parameters.AddWithValue("@parm1", 1);
+    command.Parameters.AddWithValue("@parm2", "Sir");
+    command.Parameters.AddWithValue("@parm3", "John");
+    command.Parameters.AddWithValue("@parm4", "Smith");
+    command.Parameters.AddWithValue("@parm5", "1 U.S. Rte 66");
+    command.Parameters.AddWithValue("@parm6", "Hydro");
+    command.Parameters.AddWithValue("@parm7", "OK 730482");
+    command.Parameters.AddWithValue("@parm8", "(405) 297 - 2391");
+    command.AddBatch();
+
+    // Add a second set of parameters
+    command.Parameters.AddWithValue("@parm1", 2);
+    command.Parameters.AddWithValue("@parm2", "Miss");
+    command.Parameters.AddWithValue("@parm3", "Melanie");
+    command.Parameters.AddWithValue("@parm4", "Jones");
+    command.Parameters.AddWithValue("@parm5", "1000 U.S. Rte 66");
+    command.Parameters.AddWithValue("@parm6", "Sayre");
+    command.Parameters.AddWithValue("@parm7", "OK 73662");
+    command.Parameters.AddWithValue("@parm8", "(405) 299 - 3359");
+    command.AddBatch();
+
+    // Executes the batch. All INSERT orders are uploaded at once:
+    int[] results = await command.ExecuteBatchAsync();
+    await transaction.CommitAsync();
+
+    // Do whatever with the results...
+}
+catch (Exception)
+{
+    await transaction.RollbackAsync();
+}
+```
+
+Batch commands processing is optimized in order to run as fast as possible and consume fewer possible resources:
+
+- All batch commands & parameters are send using only one upload at the start of the `Command.ExecuteBatchAsync()`  processing. 
+- The upload of the batch commands & parameters  is done using streaming techniques on the client-side. The incoming reading is also done in streaming on the server side.
+
+**It is highly recommended to always use  batch commands  when you have many rows to INSERT or UPDATE.**
+
+Note that batch commands are supported with AceQL HTTP Server version 8.0 or higher on server side.
+
 ## BLOB management
 
 The AceQL SDK supports BLOB creation and reading. 
@@ -670,8 +739,6 @@ To activate the update mechanism:
 ```
 You then can read `ProgressIndicator.Percent` property in your watching thread.
 
-
-
 ## Advanced Features
 
 ### Using outer authentication without a password  and with an AceQL Session ID
@@ -712,8 +779,6 @@ This is useful for configurations where a third party system (for instance IIS) 
 "Server=https://www.acme.com:9443/aceql; Database=myDataBase; Username=myUsername; Password=myPassword; EnableDefaultSystemAuthentication=True"
 ```
 
-
-
 ## Using the Metadata Query API 
 
 The metadata API allows:
@@ -735,7 +800,7 @@ RemoteDatabaseMetaData remoteDatabaseMetaData = connection.GetRemoteDatabaseMeta
 
 ### Downloading database schema into a file
 
-Downloading a schema into a  `File` is done through the method. See the `RemoteDatabaseMetaData` [Documentation](https://www.aceql.com/rest/soft_csharp/6.3/csharpdoc_sdk):
+Downloading a schema into a  `File` is done through the method. See the `RemoteDatabaseMetaData` [Documentation](https://www.aceql.com/rest/soft_csharp/7.0/csharpdoc_sdk):
 
 ```C#
 string userPath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
@@ -751,7 +816,7 @@ using (Stream stream = await remoteDatabaseMetaData.DbSchemaDownloadAsync())
 }
 ```
 
-See an example of the built HTML schema:  [db_schema.out.html](https://www.aceql.com/rest/soft_csharp/6.3/src/db_schema.out.html)
+See an example of the built HTML schema:  [db_schema.out.html](https://www.aceql.com/rest/soft_csharp/7.0/src/db_schema.out.html)
 
 ### Accessing remote database main properties
 
@@ -766,7 +831,7 @@ Console.WriteLine("IsReadOnly   : " + jdbcDatabaseMetaData.IsReadOnly);
 
 ### Getting Details of Tables and Columns
 
-See the `RemoteDatabaseMetaData` [Documentation](https://www.aceql.com/rest/soft_csharp/6.3/csharpdoc_sdk):
+See the `RemoteDatabaseMetaData` [Documentation](https://www.aceql.com/rest/soft_csharp/7.0/csharpdoc_sdk):
 
 ```C#
 Console.WriteLine("Get the table names:");
