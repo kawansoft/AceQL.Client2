@@ -600,7 +600,7 @@ namespace AceQL.Client.Api
         }
 
         /// <summary>
-        /// Empties this Statement object's current list of SQL commands.
+        /// Empties this current batch of commands.
         /// </summary>
         public void ClearBatch()
         {
@@ -614,7 +614,7 @@ namespace AceQL.Client.Api
         }
 
         /// <summary>
-        /// Adds a set of parameters to this PreparedStatement object's batch of commands.
+        /// Adds a set of parameters to this batch of commands.
         /// </summary>
         public void AddBatch()
         {
