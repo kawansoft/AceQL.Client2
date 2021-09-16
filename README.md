@@ -9,9 +9,9 @@
 
 ## September 1, 2021
 
-<img src="https://www.aceql.com/favicon.png" alt="AceQ HTTP Icon"/>
+<img src="https://download.aceql.com/favicon.png" alt="AceQ HTTP Icon"/>
 
-<img src="https://www.aceql.com/img/AceQL-Schema-min.jpg" alt="AceQL Draw"/>
+<img src="https://download.aceql.com/img/AceQL-Schema-min.jpg" alt="AceQL Draw"/>
 
    * [Fundamentals](#fundamentals)
       * [AceQL C# Client SDK Online Documentation](#aceql-c-client-sdk-online-documentation)
@@ -72,7 +72,7 @@ On the remote side, like the AceQL Server access to the SQL database using Java 
 
 ## AceQL C# Client SDK Online Documentation
 
-The Online Documentation is accessible [here](https://www.aceql.com/rest/soft_csharp/7.0/csharpdoc_sdk/html/N-AceQL.Client.Api.htm).
+The Online Documentation is accessible [here](https://download.aceql.com/rest/soft_csharp/7.0/csharpdoc_sdk/html/N-AceQL.Client.Api.htm).
 
 ## Contributors
 
@@ -798,7 +798,7 @@ RemoteDatabaseMetaData remoteDatabaseMetaData = connection.GetRemoteDatabaseMeta
 
 ### Downloading database schema into a file
 
-Downloading a schema into a  `File` is done through the method. See the `RemoteDatabaseMetaData` [Documentation](https://www.aceql.com/rest/soft_csharp/7.0/csharpdoc_sdk):
+Downloading a schema into a  `File` is done through the method. See the `RemoteDatabaseMetaData` [Documentation](https://download.aceql.com/rest/soft_csharp/7.0/csharpdoc_sdk):
 
 ```C#
 string userPath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
@@ -814,7 +814,7 @@ using (Stream stream = await remoteDatabaseMetaData.DbSchemaDownloadAsync())
 }
 ```
 
-See an example of the built HTML schema:  [db_schema.out.html](https://www.aceql.com/rest/soft_csharp/7.0/src/db_schema.out.html)
+See an example of the built HTML schema:  [db_schema.out.html](https://download.aceql.com/rest/soft_csharp/7.0/src/db_schema.out.html)
 
 ### Accessing remote database main properties
 
@@ -829,7 +829,7 @@ Console.WriteLine("IsReadOnly   : " + jdbcDatabaseMetaData.IsReadOnly);
 
 ### Getting Details of Tables and Columns
 
-See the `RemoteDatabaseMetaData` [Documentation](https://www.aceql.com/rest/soft_csharp/7.0/csharpdoc_sdk):
+See the `RemoteDatabaseMetaData` [Documentation](https://download.aceql.com/rest/soft_csharp/7.0/csharpdoc_sdk):
 
 ```C#
 Console.WriteLine("Get the table names:");
