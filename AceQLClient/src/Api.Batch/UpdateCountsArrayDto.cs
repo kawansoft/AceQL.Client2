@@ -26,7 +26,7 @@ namespace AceQL.Client.Api.Batch
     /// <summary>
     /// Class UpdateCountsArrayDto.
     /// </summary>
-    public class UpdateCountsArrayDto
+    internal class UpdateCountsArrayDto
     {
         private readonly String status = "OK";
         private readonly int[] updateCountsArray;

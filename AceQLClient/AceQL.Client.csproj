@@ -11,11 +11,12 @@
     <PackageLicenseExpression></PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/kawansoft/AceQL.Client2</PackageProjectUrl>
     <PackageIcon>favicon.png</PackageIcon>
-    <AssemblyVersion>7.0.0.0</AssemblyVersion>
-    <FileVersion>7.0.0.0</FileVersion>
-    <Version>7.0</Version>
+    <AssemblyVersion>7.0.1.0</AssemblyVersion>
+    <FileVersion>7.0.1.0</FileVersion>
+    <Version>7.0.1</Version>
     <Authors>KawanSoft</Authors>
-    <PackageReleaseNotes>Batch commands are now possible using the AddBatch() and ExecuteBatchAsync() methods.</PackageReleaseNotes>
+    <PackageReleaseNotes>Batch commands are now possible using the AddBatch() and ExecuteBatchAsync() methods.
+Some batch internal classes were marked as public in 7.0. This has been fixed in 7.0.1.</PackageReleaseNotes>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageTags>SQL over http remote jdbc cloud database Xamarin</PackageTags>
     <Product>AceQL.Client</Product>

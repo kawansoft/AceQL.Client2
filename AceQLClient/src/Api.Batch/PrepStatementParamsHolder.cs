@@ -26,7 +26,7 @@ namespace AceQL.Client.Api.Batch
     /// <summary>
     /// Class PrepStatementParamsHolder. Allows to store all parameters of a Prepared Statement
     /// </summary>
-    public class PrepStatementParamsHolder
+    internal class PrepStatementParamsHolder
     {
         /** All the PreparedStatement parameters and their values */
         private readonly Dictionary<string, string> statementParameters1;
