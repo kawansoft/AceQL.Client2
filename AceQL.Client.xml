@@ -1734,11 +1734,18 @@
             Class FileUtil2.
             </summary>
         </member>
+        <member name="M:AceQL.Client.Api.Util.FileUtil2.GetUserFolderPathApplicationData">
+            <summary>
+            Gets the user folder path. Not used anymore.
+            </summary>
+            <returns>The user folder path.</returns>
+        </member>
         <member name="M:AceQL.Client.Api.Util.FileUtil2.GetUserFolderPath">
             <summary>
-            Gets the user folder path.
+            Gets the user folder path in temp/.aceql directory. Better because Environment.SpecialFolder.ApplicationData access
+            is not clearly supported by Xamarin and WPF.
             </summary>
-            <returns>String.</returns>
+            <returns>The user folder path in temp/.aceql directory</returns>
         </member>
         <member name="M:AceQL.Client.Api.Util.FileUtil2.CopyHttpStreamToFile(System.String,System.IO.Stream,System.Boolean)">
             <summary>
@@ -3799,6 +3806,12 @@
             Gets a value indicating whether trace is enabled
             </summary>
             <value><c>true</c> if trace is enabled; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.ConnectionInfo.CreationDateTime">
+            <summary>
+            Gets the creation date and time of the Connection.
+            </summary>
+            <value>The creation date and time of the Connection.</value>
         </member>
         <member name="M:AceQL.Client.Api.ConnectionInfo.ToString">
             <summary>

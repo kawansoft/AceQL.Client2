@@ -299,6 +299,8 @@ namespace AceQL.Client.Api.Http
                             HttpStatusCode);
                     }
 
+                    ConnectionInfo.creationDateTime = DateTime.Now;
+
                     String theSessionId = resultAnalyzer.GetValue("session_id");
                     String theConnectionId = resultAnalyzer.GetValue("connection_id");
 

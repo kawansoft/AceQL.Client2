@@ -24,7 +24,7 @@ namespace AceQL.Client.Api.Util
     internal static class VersionValues
     {
         internal static readonly String PRODUCT = "AceQL HTTP Client SDK";
-        internal static readonly String VERSION = "v7.0.1";
-        internal static readonly String DATE = "18-Sep-2021";
+        internal static readonly String VERSION = "v7.1";
+        internal static readonly String DATE = "04-Nov-2021";
     }
 }

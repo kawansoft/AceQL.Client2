@@ -28,12 +28,12 @@ namespace AceQL.Client.Api.Util
     /// </summary>
     static class FileUtil2
     {
-      
+
         /// <summary>
-        /// Gets the user folder path.
+        /// Gets the user folder path. Not used anymore.
         /// </summary>
-        /// <returns>String.</returns>
-        public static String GetUserFolderPath()
+        /// <returns>The user folder path.</returns>
+        static String GetUserFolderPathApplicationData()
         {
             string folderPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\.aceql";
 
@@ -45,6 +45,25 @@ namespace AceQL.Client.Api.Util
 
             return folderPath;
         }
+
+        /// <summary>
+        /// Gets the user folder path in temp/.aceql directory. Better because Environment.SpecialFolder.ApplicationData access
+        /// is not clearly supported by Xamarin and WPF.
+        /// </summary>
+        /// <returns>The user folder path in temp/.aceql directory</returns>
+        public static string GetUserFolderPath()
+        {
+            string folderPath = System.IO.Path.GetTempPath() + ".aceql";
+
+            FileInfo fileInfo = new FileInfo(folderPath);
+            if (!fileInfo.Exists)
+            {
+                _ = Directory.CreateDirectory(folderPath);
+            }
+
+            return folderPath;
+        }
+
 
         /// <summary>
         /// Copies the HTTP stream to filePath.

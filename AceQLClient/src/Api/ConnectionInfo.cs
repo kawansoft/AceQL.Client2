@@ -17,6 +17,7 @@
  * limitations under the License.
  */
 
+using System;
 using System.Net;
 
 namespace AceQL.Client.Api
@@ -40,6 +41,8 @@ namespace AceQL.Client.Api
         private readonly bool enableDefaultSystemAuthentication;
         private readonly bool enableTrace;
         private readonly bool gzipResult;
+
+        internal DateTime creationDateTime; 
 
 
         /// <summary>
@@ -75,6 +78,7 @@ namespace AceQL.Client.Api
             this.enableDefaultSystemAuthentication = enableDefaultSystemAuthentication;
             this.gzipResult = gzipResult;
             this.enableTrace = enableTrace;
+
         }
 
         /// <summary>
@@ -217,6 +221,12 @@ namespace AceQL.Client.Api
             }
         }
 
+        /// <summary>
+        /// Gets the creation date and time of the Connection.
+        /// </summary>
+        /// <value>The creation date and time of the Connection.</value>
+        public DateTime CreationDateTime => creationDateTime;
+
 
         /// <summary>
         /// Returns a <see cref="System.String" /> that represents this instance. ConnectionString is not returned and password is zeroed with *.
@@ -224,7 +234,7 @@ namespace AceQL.Client.Api
         /// <returns>A <see cref="System.String" /> that represents this instance.</returns>
         public override string ToString()
         {
-            return "ConnectionInfo [server=" + server + ", database=" + database + ", username=" + username + ", isNTLM= " + isNTLM + ", sessionId=" + sessionId + ", proxyUri=" + proxyUri + ", proxyCredentials=" + proxyCredentials + ", useCredentialCache=" + useCredentialCache + ", timeout=" + timeout + ", enableDefaultSystemAuthentication=" + enableDefaultSystemAuthentication + ", gzipResult=" + gzipResult + ", enableTrace=" + enableTrace + "]";
+            return "ConnectionInfo [server=" + server + ", database=" + database + ", username=" + username + ", creationDateTime=" + creationDateTime + ", isNTLM= " + isNTLM + ", sessionId=" + sessionId + ", proxyUri=" + proxyUri + ", proxyCredentials=" + proxyCredentials + ", useCredentialCache=" + useCredentialCache + ", timeout=" + timeout + ", enableDefaultSystemAuthentication=" + enableDefaultSystemAuthentication + ", gzipResult=" + gzipResult + ", enableTrace=" + enableTrace + "]";
         }
 
     }
