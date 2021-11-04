@@ -177,9 +177,9 @@ namespace AceQL.Client.Api.Metadata
         }
 
         /// <summary>
-        /// Retourne une chaîne qui représente l'objet actif.
+        /// Returns a string that represents the active object
         /// </summary>
-        /// <returns>Chaîne qui représente l'objet actif.</returns>
+        /// <returns>String that represents the active object.</returns>
         public override String ToString()
         {
             return "Index [indexName=" + indexName + ", tableName=" + tableName + ", nonUnique=" + nonUnique

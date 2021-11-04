@@ -161,17 +161,39 @@ namespace AceQL.Client.Api.Metadata
         }
 
         /// <summary>
-        /// Retourne une chaîne qui représente l'objet actif.
+        /// Returns a string that represents the active object
         /// </summary>
-        /// <returns>Chaîne qui représente l'objet actif.</returns>
+        /// <returns>String that represents the active object.</returns>
         public override String ToString()
         {
             return "Table [tableName=" + tableName + ", tableType=" + tableType + ", remarks=" + remarks + ", columns="
-                + string.Join(",", (object[])columns.ToArray()) + ", primaryKeys=" + string.Join(",", (object[])primaryKeys.ToArray())
-                + ", indexes=" + string.Join(",", (object[])indexes.ToArray()) + ", importedforeignKeys="
-                + string.Join(",", (object[])importedforeignKeys.ToArray())
-                + ", exportedforeignKeys=" + string.Join(",", (object[])exportedforeignKeys.ToArray()) + ", catalog=" + catalog
+                + string.Join(",", ListToArray(Columns)) + ", primaryKeys=" + string.Join(",", ListToArray(primaryKeys))
+                + ", indexes=" + string.Join(",", ListToArray(indexes)) + ", importedforeignKeys="
+                + string.Join(",", ListToArray(importedforeignKeys))
+                + ", exportedforeignKeys=" + string.Join(",", ListToArray(exportedforeignKeys)) + ", catalog=" + catalog
                 + ", schema=" + schema + "]";
+        }
+
+
+        private static string[] ListToArray<T>(List<T> list)
+        {
+            List<String> theList = new List<string>();
+            foreach (T index in list)
+            {
+                theList.Add(index.ToString());
+            }
+
+            return (string[])theList.ToArray();
+        }
+
+        private string[] IndexToArray()
+        {
+            List<String> indexList = new List<string>();
+            foreach (Index index in indexes) {
+                indexList.Add(index.ToString());
+            }
+
+            return (string[])indexList.ToArray();
         }
     }
 }
