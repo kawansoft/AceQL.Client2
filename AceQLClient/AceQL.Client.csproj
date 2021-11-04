@@ -15,7 +15,7 @@
     <FileVersion>7.1.0.0</FileVersion>
     <Version>7.1</Version>
     <Authors>KawanSoft</Authors>
-    <PackageReleaseNotes>The ConnectionInfo class includes the new CreationDateTime property that indicates when the AceQL Connection wirh the remote server was established.
+    <PackageReleaseNotes>The ConnectionInfo class includes the new CreationDateTime property that indicates when the AceQL Connection with the remote server was established.
 Temporary files are now stored in System.IO.Path.GetTempPath() instead of Environment.SpecialFolder.ApplicationData, because access to ApplicationData could be denied by Xamarin and WPF.</PackageReleaseNotes>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageTags>SQL over http remote jdbc cloud database Xamarin</PackageTags>

@@ -17,6 +17,17 @@ they would do for an SQL Server database.
 The AceQL C# Client SDK is licensed under the Apache 2.0 License.
 
 
+AceQL C# Client SDK - Version 7.1 - 04-Nov-2021
+-----------------------------------------------
+
+What's New:
+- The ConnectionInfo class includes the new CreationDateTime property that 
+  indicates when the AceQL Connection with the remote server was established.
+- Temporary files are now stored in System.IO.Path.GetTempPath() instead of 
+  Environment.SpecialFolder.ApplicationData, because access to ApplicationData 
+  could be denied by Xamarin and WPF.
+
+
 AceQL C# Client SDK - Version 7.0.1 - 18-Sep-2021
 -------------------------------------------------
 
