@@ -183,17 +183,8 @@ namespace AceQL.Client.Api.Metadata
                 theList.Add(index.ToString());
             }
 
-            return (string[])theList.ToArray();
+            return theList.ToArray();
         }
 
-        private string[] IndexToArray()
-        {
-            List<String> indexList = new List<string>();
-            foreach (Index index in indexes) {
-                indexList.Add(index.ToString());
-            }
-
-            return (string[])indexList.ToArray();
-        }
     }
 }
