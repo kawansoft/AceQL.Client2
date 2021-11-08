@@ -15,7 +15,7 @@
     <FileVersion>7.2.0.0</FileVersion>
     <Version>7.2</Version>
     <Authors>KawanSoft</Authors>
-    <PackageReleaseNotes>When using Xamarin:  the WebProxy detection could in previous versions throw a NullReferenceException. This has been fixed.</PackageReleaseNotes>
+    <PackageReleaseNotes>The WebProxy detection could in previous versions throw a NullReferenceException. The bug has been reported by Xamarin users. This has been fixed.</PackageReleaseNotes>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageTags>SQL over http remote jdbc cloud database Xamarin</PackageTags>
     <Product>AceQL.Client</Product>

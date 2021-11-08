@@ -17,6 +17,20 @@ they would do for an SQL Server database.
 The AceQL C# Client SDK is licensed under the Apache 2.0 License.
 
 
+AceQL C# Client SDK - Version 7.2 - 08-Nov-2021
+-----------------------------------------------
+
+It is highly recommended to upgrade all Client SDK installations 
+to this 7.2 version because of the bug described 
+below.
+
+Bugs fixed:
+- The WebProxy detection could in previous versions throw a 
+  NullReferenceException. The bug has been reported by Xamarin users. 
+  This has been fixed.
+
+
+
 AceQL C# Client SDK - Version 7.1 - 04-Nov-2021
 -----------------------------------------------
 
