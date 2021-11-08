@@ -1,4 +1,5 @@
 ﻿using AceQL.Client.Api;
+using AceQL.Client.Api.Util;
 using System;
 using System.Collections.Generic;
 /*
@@ -40,24 +41,42 @@ namespace AceQL.Client.Api.Http
         {
             IWebProxy webProxy = null;
 
-            // See if end user has forced to use a System.Net.WebRequest.GetSystemWebProxy()
-            if (AceQLConnection.GetDefaultWebProxy() != null)
+            try
             {
-                webProxy = AceQLConnection.GetDefaultWebProxy();
+                // See if end user has forced to use a System.Net.WebRequest.GetSystemWebProxy()
+                if (AceQLConnection.GetDefaultWebProxy() != null)
+                {
+                    webProxy = AceQLConnection.GetDefaultWebProxy();
+                }
+                else
+                {
+                    webProxy = System.Net.WebRequest.DefaultWebProxy;
+                }
+
+                // 7.2 fix:
+                if (webProxy == null)
+                {
+                    return null;
+                }
+
+                // Test the secret URL, if it is bypassed, there is no Default/System proxy set, so we will return null:
+                if (webProxy.IsBypassed(new Uri(HttpClientHandlerBuilderNew.SECRET_URL)))
+                {
+                    return null;
+                }
+                else
+                {
+                    return webProxy;
+                }
             }
-            else
+            catch (Exception exception)
             {
-                webProxy = System.Net.WebRequest.DefaultWebProxy;
-            }
-          
-            // Test the secret URL, if it is bypassed, there is no Default/System proxy set, so we will return null:
-            if (webProxy.IsBypassed(new Uri(HttpClientHandlerBuilderNew.SECRET_URL))) {
+                SimpleTracer simpleTracer = new SimpleTracer();
+                simpleTracer.Trace(exception.ToString());
                 return null;
             }
-            else
-            {
-                return webProxy;
-            }
+
+
         }
     }
 }
