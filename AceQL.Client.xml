@@ -53,6 +53,37 @@
             </summary>
             <returns>A <see cref="T:System.String" /> that represents this instance.</returns>
         </member>
+        <member name="F:AceQL.Client.Api.Http.AceQLBlobApi.url">
+            <summary>
+            The URL
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Http.AceQLBlobApi.simpleTracer">
+            <summary>
+            The simple tracer
+            </summary>
+        </member>
+        <member name="P:AceQL.Client.Api.Http.AceQLBlobApi.HttpStatusCode">
+            <summary>
+            Gets the HTTP status code of hte last executed HTTP call
+            </summary>
+            <value>The HTTP status code.</value>
+        </member>
+        <member name="M:AceQL.Client.Api.Http.AceQLBlobApi.GetBlobLengthAsync(System.String)">
+            <summary>
+            Returns the server Blob/Clob length.
+            </summary>
+            <param name="blobId">the Blob/Clob Id.</param>
+            <returns>the server Blob/Clob length.</returns>
+        </member>
+        <member name="M:AceQL.Client.Api.Http.AceQLBlobApi.BlobDownloadAsync(System.String)">
+             <summary>
+             Downloads a Blob/Clob from the server.
+             </summary>
+             <param name="blobId">the Blob/Clob Id</param>
+            
+             <returns>the Blob input stream</returns>
+        </member>
         <member name="T:AceQL.Client.Api.Http.AceQLHttpApi">
             <summary>
             Class <see cref="T:AceQL.Client.Api.Http.AceQLHttpApi"/>. Allows to create a Connection to the remote server
@@ -336,6 +367,70 @@
             Closes the connection to the remote database and closes the http session.
             </summary>
         </member>
+        <member name="F:AceQL.Client.Api.Http.AceQLMetadataApi.url">
+            <summary>
+            The URL
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Http.AceQLMetadataApi.simpleTracer">
+            <summary>
+            The simple tracer
+            </summary>
+        </member>
+        <member name="P:AceQL.Client.Api.Http.AceQLMetadataApi.HttpStatusCode">
+            <summary>
+            Gets the HTTP status code of hte last executed HTTP call
+            </summary>
+            <value>The HTTP status code.</value>
+        </member>
+        <member name="M:AceQL.Client.Api.Http.AceQLMetadataApi.DbSchemaDownloadAsync(System.String,System.String)">
+            <summary>
+            Databases the schema download.
+            </summary>
+            <param name="format">The format.</param>
+            <param name="tableName">Name of the table.</param>
+            <returns>Task&lt;Stream&gt;.</returns>
+            <exception cref="T:System.ArgumentNullException">format is null!</exception>
+            <exception cref="T:AceQL.Client.Api.AceQLException">0</exception>
+            
+        </member>
+        <member name="M:AceQL.Client.Api.Http.AceQLMetadataApi.GetDbMetadataAsync">
+            <summary>
+            Gets the database metadata.
+            </summary>
+            <returns>Task&lt;System.String&gt;.</returns>
+            <exception cref="T:AceQL.Client.Api.AceQLException">
+            0
+            </exception>
+        </member>
+        <member name="M:AceQL.Client.Api.Http.AceQLMetadataApi.GetTableNamesAsync(System.String)">
+            <summary>
+            Gets the table names.
+            </summary>
+            <param name="tableType">Type of the table.</param>
+            <returns>Task&lt;TableNamesDto&gt;.</returns>
+            <exception cref="T:AceQL.Client.Api.AceQLException">
+            0
+            </exception>
+        </member>
+        <member name="M:AceQL.Client.Api.Http.AceQLMetadataApi.GetTableAsync(System.String)">
+            <summary>
+            Gets the table.
+            </summary>
+            <param name="tableName">Name of the table.</param>
+            <returns>Task&lt;TableDto&gt;.</returns>
+            <exception cref="T:AceQL.Client.Api.AceQLException">
+            0
+            </exception>
+        </member>
+        <member name="M:AceQL.Client.Api.Http.AceQLMetadataApi.CallWithGetAsync(System.String,System.String)">
+            <summary>
+            Calls the with get.
+            </summary>
+            <param name="action">The action.</param>
+            <param name="actionParameter">The action parameter.</param>
+            <returns>String.</returns>
+        </member>
         <member name="T:AceQL.Client.Api.Http.DefaultWebProxyCreator">
             <summary>
             Class DefaultWebProxyCreator. Allows to get the <see cref="P:System.Net.WebRequest.DefaultWebProxy"/> or <c>System.Net.WebRequest.GetSystemProxy()</c> proxy value to use. 
@@ -598,6 +693,39 @@
             <exception cref="T:System.ArgumentException">connectionString element token does not contain a = separator: " + line</exception>
             <exception cref="T:System.ArgumentException">Can not find left of = in connectionString element token. Please correct connection string: " + line</exception>
             <exception cref="T:System.ArgumentException">Can not find right of = in connectionString element token. Please correct connection string: " + line</exception>
+        </member>
+        <member name="T:AceQL.Client.Api.Metadata.Dto.DatabaseInfoDto">
+            <summary>
+            Class DatabaseInfoDto.
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Metadata.Dto.DatabaseInfoDto.status">
+            <summary>
+            The status
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Metadata.Dto.DatabaseInfoDto.databaseInfo">
+            <summary>
+            The database information
+            </summary>
+        </member>
+        <member name="M:AceQL.Client.Api.Metadata.Dto.DatabaseInfoDto.#ctor(AceQL.Client.Api.DatabaseInfo)">
+            <summary>
+            Initializes a new instance of the <see cref="T:AceQL.Client.Api.Metadata.Dto.DatabaseInfoDto"/> class.
+            </summary>
+            <param name="databaseInfo">The JDBC database meta data.</param>
+        </member>
+        <member name="P:AceQL.Client.Api.Metadata.Dto.DatabaseInfoDto.DatabaseInfo">
+            <summary>
+            Gets the database information.
+            </summary>
+            <value>The database information.</value>
+        </member>
+        <member name="M:AceQL.Client.Api.Metadata.Dto.DatabaseInfoDto.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents this instance.
+            </summary>
+            <returns>A <see cref="T:System.String" /> that represents this instance.</returns>
         </member>
         <member name="T:AceQL.Client.Api.Metadata.Dto.JdbcDatabaseMetaDataDto">
             <summary>
@@ -3816,6 +3944,66 @@
         <member name="M:AceQL.Client.Api.ConnectionInfo.ToString">
             <summary>
             Returns a <see cref="T:System.String" /> that represents this instance. ConnectionString is not returned and password is zeroed with *.
+            </summary>
+            <returns>A <see cref="T:System.String" /> that represents this instance.</returns>
+        </member>
+        <member name="T:AceQL.Client.Api.DatabaseInfo">
+            
+            <summary>
+            A simple shortcut class that contains main remote database and JDBC info.
+            
+            @author Nicolas de Pomereu
+            @since 8.1
+            </summary>
+        </member>
+        <member name="M:AceQL.Client.Api.DatabaseInfo.#ctor(AceQL.Client.Api.Metadata.Dto.DatabaseInfoDto)">
+            <summary>
+            Package protected Constructor </summary>
+            <param name="databaseInfoDto"> The DatabaseInfo container </param>
+        </member>
+        <member name="P:AceQL.Client.Api.DatabaseInfo.DatatabaseMajorVersion">
+            <summary>
+            Gets the database major version </summary>
+            <returns> the database major version  </returns>
+        </member>
+        <member name="P:AceQL.Client.Api.DatabaseInfo.DatabaseMinorVersion">
+            <summary>
+            Gets the database minor version </summary>
+            <returns> the database minor version  </returns>
+        </member>
+        <member name="P:AceQL.Client.Api.DatabaseInfo.DatabaseProductName">
+            <summary>
+            Gets the database product name </summary>
+            <returns> the database product name </returns>
+        </member>
+        <member name="P:AceQL.Client.Api.DatabaseInfo.DatabaseProductVersion">
+            <summary>
+            Gets the database product version </summary>
+            <returns> the database product version </returns>
+        </member>
+        <member name="P:AceQL.Client.Api.DatabaseInfo.DriverMajorVersion">
+            <summary>
+            Gets the driver major version </summary>
+            <returns> the driver major version  </returns>
+        </member>
+        <member name="P:AceQL.Client.Api.DatabaseInfo.DriverMinorVersion">
+            <summary>
+            Gets the driver minor version </summary>
+            <returns> the driver minor version  </returns>
+        </member>
+        <member name="P:AceQL.Client.Api.DatabaseInfo.DriverName">
+            <summary>
+            Gets the driver name </summary>
+            <returns> the driver name </returns>
+        </member>
+        <member name="P:AceQL.Client.Api.DatabaseInfo.DriverVersion">
+            <summary>
+            Gets the driver version </summary>
+            <returns> the driver version  </returns>
+        </member>
+        <member name="M:AceQL.Client.Api.DatabaseInfo.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents this instance.
             </summary>
             <returns>A <see cref="T:System.String" /> that represents this instance.</returns>
         </member>

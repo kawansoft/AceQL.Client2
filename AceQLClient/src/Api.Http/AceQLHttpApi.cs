@@ -764,41 +764,8 @@ namespace AceQL.Client.Api.Http
         /// <returns>the server Blob/Clob length.</returns>
         internal async Task<long> GetBlobLengthAsync(String blobId)
         {
-            if (blobId == null)
-            {
-                throw new ArgumentNullException("blobId is null!");
-            }
-
-            String action = "get_blob_length";
-
-            Dictionary<string, string> parametersMap = new Dictionary<string, string>
-            {
-                { "blob_id", blobId }
-            };
-            String result = null;
-
-            Uri urlWithaction = new Uri(url + action);
-            using (Stream input = await httpManager.CallWithPostAsync(urlWithaction, parametersMap).ConfigureAwait(false))
-            {
-
-                if (input != null)
-                {
-                    result = new StreamReader(input).ReadToEnd();
-                }
-            }
-
-            ResultAnalyzer resultAnalyzer = new ResultAnalyzer(result, HttpStatusCode);
-            if (!resultAnalyzer.IsStatusOk())
-            {
-                throw new AceQLException(resultAnalyzer.GetErrorMessage(),
-                    resultAnalyzer.GetErrorId(),
-                    resultAnalyzer.GetStackTrace(),
-                    HttpStatusCode);
-            }
-
-            String lengthStr = resultAnalyzer.GetValue("length");
-            long length = Convert.ToInt64(lengthStr);
-            return length;
+            AceQLBlobApi aceQLBlobApi = new AceQLBlobApi(httpManager, url, simpleTracer);
+            return await aceQLBlobApi.GetBlobLengthAsync(blobId).ConfigureAwait(false);
         }
 
 
@@ -810,30 +777,8 @@ namespace AceQL.Client.Api.Http
         /// <returns>the Blob input stream</returns>
         internal async Task<Stream> BlobDownloadAsync(String blobId)
         {
-            if (blobId == null)
-            {
-                throw new ArgumentNullException("blobId is null!");
-            }
-
-            try
-            {
-                String theUrl = this.url + "/blob_download?blob_id=" + blobId;
-                Stream input = await httpManager.CallWithGetReturnStreamAsync(theUrl);
-                return input;
-            }
-            catch (Exception exception)
-            {
-                simpleTracer.Trace(exception.ToString());
-
-                if (exception.GetType() == typeof(AceQLException))
-                {
-                    throw;
-                }
-                else
-                {
-                    throw new AceQLException(exception.Message, 0, exception, HttpStatusCode);
-                }
-            }
+            AceQLBlobApi aceQLBlobApi = new AceQLBlobApi(httpManager, url, simpleTracer);
+            return await aceQLBlobApi.BlobDownloadAsync(blobId).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -847,6 +792,7 @@ namespace AceQL.Client.Api.Http
         /// 
         internal async Task<Stream> DbSchemaDownloadAsync(String format, String tableName)
         {
+            /*
             if (format == null)
             {
                 throw new ArgumentNullException("format is null!");
@@ -878,6 +824,11 @@ namespace AceQL.Client.Api.Http
                     throw new AceQLException(exception.Message, 0, exception, HttpStatusCode);
                 }
             }
+            */
+
+            AceQLMetadataApi aceQLMetadataApi = new AceQLMetadataApi(httpManager, url, simpleTracer);
+            return await aceQLMetadataApi.DbSchemaDownloadAsync(format, tableName).ConfigureAwait(false);
+
         }
 
         /// <summary>
@@ -889,36 +840,8 @@ namespace AceQL.Client.Api.Http
         /// </exception>
         internal async Task<JdbcDatabaseMetaDataDto> GetDbMetadataAsync()
         {
-            try
-            {
-                String commandName = "metadata_query/get_db_metadata";
-                String result = await CallWithGetAsync(commandName, null).ConfigureAwait(false);
-
-                ResultAnalyzer resultAnalyzer = new ResultAnalyzer(result, HttpStatusCode);
-                if (!resultAnalyzer.IsStatusOk())
-                {
-                    throw new AceQLException(resultAnalyzer.GetErrorMessage(),
-                        resultAnalyzer.GetErrorId(),
-                        resultAnalyzer.GetStackTrace(),
-                        HttpStatusCode);
-                }
-
-                JdbcDatabaseMetaDataDto jdbcDatabaseMetaDataDto = JsonConvert.DeserializeObject<JdbcDatabaseMetaDataDto>(result);
-                return jdbcDatabaseMetaDataDto;
-            }
-            catch (Exception exception)
-            {
-                simpleTracer.Trace(exception.ToString());
-
-                if (exception.GetType() == typeof(AceQLException))
-                {
-                    throw;
-                }
-                else
-                {
-                    throw new AceQLException(exception.Message, 0, exception, HttpStatusCode);
-                }
-            }
+            AceQLMetadataApi aceQLMetadataApi = new AceQLMetadataApi(httpManager, url, simpleTracer);
+            return await aceQLMetadataApi.GetDbMetadataAsync().ConfigureAwait(false);
         }
 
         /// <summary>
@@ -931,52 +854,8 @@ namespace AceQL.Client.Api.Http
         /// </exception>
         internal async Task<TableNamesDto> GetTableNamesAsync(String tableType)
         {
-            try
-            {
-                String action = "metadata_query/get_table_names";
-
-                Dictionary<string, string> parametersMap = new Dictionary<string, string>();
-                if (tableType != null)
-                {
-                    parametersMap.Add("table_type", tableType);
-                }
-
-                String result = null;
-
-                Uri urlWithaction = new Uri(url + action);
-                using (Stream input = await httpManager.CallWithPostAsync(urlWithaction, parametersMap).ConfigureAwait(false))
-                {
-                    if (input != null)
-                    {
-                        result = new StreamReader(input).ReadToEnd();
-                    }
-                }
-
-                ResultAnalyzer resultAnalyzer = new ResultAnalyzer(result, HttpStatusCode);
-                if (!resultAnalyzer.IsStatusOk())
-                {
-                    throw new AceQLException(resultAnalyzer.GetErrorMessage(),
-                        resultAnalyzer.GetErrorId(),
-                        resultAnalyzer.GetStackTrace(),
-                        HttpStatusCode);
-                }
-
-                TableNamesDto tableNamesDto = JsonConvert.DeserializeObject<TableNamesDto>(result);
-                return tableNamesDto;
-            }
-            catch (Exception exception)
-            {
-                simpleTracer.Trace(exception.ToString());
-
-                if (exception.GetType() == typeof(AceQLException))
-                {
-                    throw;
-                }
-                else
-                {
-                    throw new AceQLException(exception.Message, 0, exception, HttpStatusCode);
-                }
-            }
+            AceQLMetadataApi aceQLMetadataApi = new AceQLMetadataApi(httpManager, url, simpleTracer);
+            return await aceQLMetadataApi.GetTableNamesAsync(tableType).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -989,49 +868,8 @@ namespace AceQL.Client.Api.Http
         /// </exception>
         internal async Task<TableDto> GetTableAsync(String tableName)
         {
-            try
-            {
-                String action = "metadata_query/get_table";
-
-                Dictionary<string, string> parametersMap = new Dictionary<string, string>();
-                parametersMap.Add("table_name", tableName);
-
-                String result = null;
-
-                Uri urlWithaction = new Uri(url + action);
-                using (Stream input = await httpManager.CallWithPostAsync(urlWithaction, parametersMap).ConfigureAwait(false))
-                {
-                    if (input != null)
-                    {
-                        result = new StreamReader(input).ReadToEnd();
-                    }
-                }
-
-                ResultAnalyzer resultAnalyzer = new ResultAnalyzer(result, HttpStatusCode);
-                if (!resultAnalyzer.IsStatusOk())
-                {
-                    throw new AceQLException(resultAnalyzer.GetErrorMessage(),
-                        resultAnalyzer.GetErrorId(),
-                        resultAnalyzer.GetStackTrace(),
-                        HttpStatusCode);
-                }
-
-                TableDto tableDto = JsonConvert.DeserializeObject<TableDto>(result);
-                return tableDto;
-            }
-            catch (Exception exception)
-            {
-                simpleTracer.Trace(exception.ToString());
-
-                if (exception.GetType() == typeof(AceQLException))
-                {
-                    throw;
-                }
-                else
-                {
-                    throw new AceQLException(exception.Message, 0, exception, HttpStatusCode);
-                }
-            }
+            AceQLMetadataApi aceQLMetadataApi = new AceQLMetadataApi(httpManager, url, simpleTracer);
+            return await aceQLMetadataApi.GetTableAsync(tableName).ConfigureAwait(false);
         }
 
         /// <summary>

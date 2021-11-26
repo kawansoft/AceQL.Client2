@@ -11,9 +11,9 @@
     <PackageLicenseExpression></PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/kawansoft/AceQL.Client2</PackageProjectUrl>
     <PackageIcon>favicon.png</PackageIcon>
-    <AssemblyVersion>7.2.0.0</AssemblyVersion>
-    <FileVersion>7.2.0.0</FileVersion>
-    <Version>7.2</Version>
+    <AssemblyVersion>7.3.0.0</AssemblyVersion>
+    <FileVersion>7.3.0.0</FileVersion>
+    <Version>7.3</Version>
     <Authors>KawanSoft</Authors>
     <PackageReleaseNotes>The WebProxy detection could in previous versions throw a NullReferenceException. The bug has been reported by Xamarin users. This has been fixed.</PackageReleaseNotes>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
