@@ -44,7 +44,7 @@ namespace AceQL.Client.Test
 
         public static void TestAll(string[] args)
         {
-            AceQLTest.TheMain(args);
+            AceQLTest.TheMain();
             DmlSequenceTest.TheMain(args);
             AceQLTestClose.TheMain(args);
             SqlBatchTest.TheMain(args);
@@ -85,7 +85,7 @@ namespace AceQL.Client.Test
             }
             else if (mainToLaunch == 6)
             {
-                AceQLTest.TheMain(args);
+                AceQLTest.TheMain();
                 AceQLTestMetadata.TheMain();
             }
             else if (mainToLaunch == 7)

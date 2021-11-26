@@ -123,12 +123,7 @@ namespace AceQL.Client.Api.Http
         /// <exception cref="System.ArgumentException">connectionString token does not contain a = separator: " + line</exception>
         internal AceQLHttpApi(String connectionString)
         {
-            if (connectionString == null)
-            {
-                throw new ArgumentNullException("connectionString is null!");
-            }
-
-            this.connectionString = connectionString;
+            this.connectionString = connectionString ?? throw new ArgumentNullException("connectionString is null!");
         }
 
         internal AceQLHttpApi(string connectionString, AceQLCredential credential) : this(connectionString)
@@ -539,7 +534,7 @@ namespace AceQL.Client.Api.Http
             return await httpManager.CallWithGetAsync(urlWithaction).ConfigureAwait(false);
         }
 
-        internal async Task<Stream> ExecuteQueryAsync(string cmdText, AceQLParameterCollection Parameters, bool isStoredProcedure, bool isPreparedStatement, Dictionary<string, string> statementParameters)
+        internal async Task<Stream> ExecuteQueryAsync(string cmdText,  bool isStoredProcedure, bool isPreparedStatement, Dictionary<string, string> statementParameters)
         {
             String action = "execute_query";
 
@@ -740,11 +735,8 @@ namespace AceQL.Client.Api.Http
             String theUrl = url + "blob_upload";
 
             FormUploadStream formUploadStream = new FormUploadStream();
-            HttpResponseMessage response = null;
-
-            response = await formUploadStream.UploadAsync(theUrl, proxyUri, proxyCredentials, timeout, enableDefaultSystemAuthentication, blobId, stream,
-                totalLength, progressIndicator, cancellationToken, useCancellationToken, requestHeaders).ConfigureAwait(false);
-
+            HttpResponseMessage response = await formUploadStream.UploadAsync(theUrl, proxyUri, proxyCredentials, timeout, enableDefaultSystemAuthentication, blobId, stream,
+    totalLength, progressIndicator, cancellationToken, useCancellationToken, requestHeaders).ConfigureAwait(false);
             httpManager.HttpStatusCode = response.StatusCode;
 
             Stream streamResult = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
@@ -792,40 +784,6 @@ namespace AceQL.Client.Api.Http
         /// 
         internal async Task<Stream> DbSchemaDownloadAsync(String format, String tableName)
         {
-            /*
-            if (format == null)
-            {
-                throw new ArgumentNullException("format is null!");
-            }
-
-            try
-            {
-                String theUrl = this.url + "/metadata_query/db_schema_download?format=" + format;
-
-                if (tableName != null)
-                {
-                    tableName = tableName.ToLowerInvariant();
-                    theUrl += "&table_name=" + tableName;
-                }
-
-                Stream input = await httpManager.CallWithGetReturnStreamAsync(theUrl);
-                return input;
-            }
-            catch (Exception exception)
-            {
-                simpleTracer.Trace(exception.ToString());
-
-                if (exception.GetType() == typeof(AceQLException))
-                {
-                    throw;
-                }
-                else
-                {
-                    throw new AceQLException(exception.Message, 0, exception, HttpStatusCode);
-                }
-            }
-            */
-
             AceQLMetadataApi aceQLMetadataApi = new AceQLMetadataApi(httpManager, url, simpleTracer);
             return await aceQLMetadataApi.DbSchemaDownloadAsync(format, tableName).ConfigureAwait(false);
 
@@ -873,10 +831,21 @@ namespace AceQL.Client.Api.Http
         }
 
         /// <summary>
-        /// To be call at end of each of each public aysnc(CancellationToken) calls to reset to false the usage of a CancellationToken with http calls
-        /// and some reader calls.
+        /// Gets the database information.
         /// </summary>
-        internal void ResetCancellationToken()
+        /// <returns>Task&lt;DatabaseInfo&gt;.</returns>
+        internal async Task<DatabaseInfo> GetDatabaseInfo()
+        {
+            AceQLMetadataApi aceQLMetadataApi = new AceQLMetadataApi(httpManager, url, simpleTracer);
+            DatabaseInfoDto databaseInfoDto = await aceQLMetadataApi.GetDatabaseInfoDto().ConfigureAwait(false);
+            return databaseInfoDto.DatabaseInfo;
+        }
+
+    /// <summary>
+    /// To be call at end of each of each public aysnc(CancellationToken) calls to reset to false the usage of a CancellationToken with http calls
+    /// and some reader calls.
+    /// </summary>
+    internal void ResetCancellationToken()
         {
             this.useCancellationToken = false;
         }

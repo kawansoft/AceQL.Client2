@@ -308,7 +308,7 @@ namespace AceQL.Client.Api
                 Boolean isPreparedStatement = false;
                 Dictionary<string, string> parametersMap = null;
 
-                using (Stream input = await aceQLHttpApi.ExecuteQueryAsync(cmdText, Parameters, isStoredProcedure, isPreparedStatement, parametersMap).ConfigureAwait(false))
+                using (Stream input = await aceQLHttpApi.ExecuteQueryAsync(cmdText, isStoredProcedure, isPreparedStatement, parametersMap).ConfigureAwait(false))
                 {
                     try
                     {
@@ -426,7 +426,7 @@ namespace AceQL.Client.Api
                 bool isStoredProcedure = (commandType == CommandType.StoredProcedure ? true : false);
                 bool isPreparedStatement = true;
 
-                using (Stream input = await aceQLHttpApi.ExecuteQueryAsync(cmdText, Parameters, isStoredProcedure, isPreparedStatement, statementParameters).ConfigureAwait(false))
+                using (Stream input = await aceQLHttpApi.ExecuteQueryAsync(cmdText, isStoredProcedure, isPreparedStatement, statementParameters).ConfigureAwait(false))
                 {
                     try
                     {
@@ -751,7 +751,7 @@ namespace AceQL.Client.Api
         /// </exception>
         private async Task<int> ExecuteUpdateAsStatementAsync()
         {
-            bool isStoredProcedure = (commandType == CommandType.StoredProcedure ? true : false);
+            bool isStoredProcedure = commandType == CommandType.StoredProcedure ? true : false;
             bool isPreparedStatement = false;
             Dictionary<string, string> statementParameters = null;
             return await aceQLHttpApi.ExecuteUpdateAsync(cmdText, Parameters, isStoredProcedure, isPreparedStatement, statementParameters).ConfigureAwait(false);

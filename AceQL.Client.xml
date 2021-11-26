@@ -332,6 +332,12 @@
             0
             </exception>
         </member>
+        <member name="M:AceQL.Client.Api.Http.AceQLHttpApi.GetDatabaseInfo">
+            <summary>
+            Gets the database information.
+            </summary>
+            <returns>Task&lt;DatabaseInfo&gt;.</returns>
+        </member>
         <member name="M:AceQL.Client.Api.Http.AceQLHttpApi.ResetCancellationToken">
             <summary>
             To be call at end of each of each public aysnc(CancellationToken) calls to reset to false the usage of a CancellationToken with http calls
@@ -430,6 +436,14 @@
             <param name="action">The action.</param>
             <param name="actionParameter">The action parameter.</param>
             <returns>String.</returns>
+        </member>
+        <member name="M:AceQL.Client.Api.Http.AceQLMetadataApi.GetDatabaseInfoDto">
+            <summary>
+            Gets the database information dto.
+            </summary>
+            <returns>Task&lt;DatabaseInfoDto&gt;.</returns>
+            <exception cref="T:AceQL.Client.Api.AceQLException"></exception>
+            <exception cref="T:AceQL.Client.Api.AceQLException">0</exception>
         </member>
         <member name="T:AceQL.Client.Api.Http.DefaultWebProxyCreator">
             <summary>
@@ -2724,6 +2738,13 @@
             </summary>
             <returns>RemoteDatabaseMetaData.</returns>
         </member>
+        <member name="M:AceQL.Client.Api.AceQLConnection.GetDatabaseInfo">
+             <summary>
+            *A shortcut to remote database metadata which returns remote database and
+             remote JDBC Driver main info.
+             </summary>
+             <returns>Task&lt;DatabaseInfo&gt;.</returns>
+        </member>
         <member name="M:AceQL.Client.Api.AceQLConnection.OpenAsync">
             <summary>
             Opens a connection with the remote database.
@@ -3951,15 +3972,7 @@
             
             <summary>
             A simple shortcut class that contains main remote database and JDBC info.
-            
-            @author Nicolas de Pomereu
-            @since 8.1
             </summary>
-        </member>
-        <member name="M:AceQL.Client.Api.DatabaseInfo.#ctor(AceQL.Client.Api.Metadata.Dto.DatabaseInfoDto)">
-            <summary>
-            Package protected Constructor </summary>
-            <param name="databaseInfoDto"> The DatabaseInfo container </param>
         </member>
         <member name="P:AceQL.Client.Api.DatabaseInfo.DatatabaseMajorVersion">
             <summary>

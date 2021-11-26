@@ -8,13 +8,9 @@ namespace AceQL.Client.Api
 	/// 
 	/// <summary>
 	/// A simple shortcut class that contains main remote database and JDBC info.
-	/// 
-	/// @author Nicolas de Pomereu
-	/// @since 8.1
 	/// </summary>
 	public class DatabaseInfo
 	{
-
 		private readonly int datatabaseMajorVersion;
 		private readonly int databaseMinorVersion;
 		private readonly string databaseProductName;
@@ -24,22 +20,6 @@ namespace AceQL.Client.Api
 		private readonly string driverName;
 		private readonly string driverVersion;
 
-		/// <summary>
-		/// Package protected Constructor </summary>
-		/// <param name="databaseInfoDto"> The DatabaseInfo container </param>
-
-		internal DatabaseInfo(DatabaseInfoDto databaseInfoDto)
-		{
-			DatabaseInfo theDatabaseInfo = databaseInfoDto.DatabaseInfo;
-			datatabaseMajorVersion = theDatabaseInfo.DatatabaseMajorVersion;
-			databaseMinorVersion = theDatabaseInfo.DatabaseMinorVersion;
-			databaseProductName = theDatabaseInfo.DatabaseProductName;
-			databaseProductVersion = theDatabaseInfo.DatabaseProductVersion;
-			driverMajorVersion = theDatabaseInfo.DriverMajorVersion;
-			driverMinorVersion = theDatabaseInfo.DriverMinorVersion;
-			driverName = theDatabaseInfo.DriverName;
-			driverVersion = theDatabaseInfo.DriverVersion;
-		}
 		
 		/// <summary>
 		/// Gets the database major version </summary>

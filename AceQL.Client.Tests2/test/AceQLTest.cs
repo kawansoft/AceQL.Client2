@@ -40,7 +40,7 @@ namespace AceQL.Client.Test
     {
         public static bool DO_LOOP;
 
-        public static void TheMain(string[] args)
+        public static void TheMain()
         {
             try
             {
@@ -67,30 +67,28 @@ namespace AceQL.Client.Test
 
             string connectionString = ConnectionStringCurrent.Build();
 
-            using (AceQLConnection connection = new AceQLConnection(connectionString))
+            using AceQLConnection connection = new AceQLConnection(connectionString);
+            connection.RequestRetry = true;
+            connection.AddRequestHeader("aceqlHeader1", "myAceQLHeader1");
+            connection.AddRequestHeader("aceqlHeader2", "myAceQLHeader2");
+
+            await connection.OpenAsync();
+
+            if (DO_LOOP)
             {
-                connection.RequestRetry = true;
-                connection.AddRequestHeader("aceqlHeader1", "myAceQLHeader1");
-                connection.AddRequestHeader("aceqlHeader2", "myAceQLHeader2");
-
-                await connection.OpenAsync();
-
-                if (DO_LOOP)
-                {
-                    while (true)
-                    {
-                        await ExecuteExample(connection).ConfigureAwait(false);
-                        Thread.Sleep(1000);
-                    }
-                }
-                else
+                while (true)
                 {
                     await ExecuteExample(connection).ConfigureAwait(false);
+                    Thread.Sleep(1000);
                 }
-
-
-                await connection.CloseAsync();
             }
+            else
+            {
+                await ExecuteExample(connection).ConfigureAwait(false);
+            }
+
+
+            await connection.CloseAsync();
         }
 
 
@@ -106,19 +104,13 @@ namespace AceQL.Client.Test
             AceQLConsole.WriteLine("host: " + connection.ConnectionInfo.ConnectionString);
             AceQLConsole.WriteLine("aceQLConnection.GetClientVersion(): " + AceQLConnection.GetClientVersion());
             AceQLConsole.WriteLine("aceQLConnection.GetServerVersion(): " + await connection.GetServerVersionAsync());
+            AceQLConsole.WriteLine("aceQLConnection.GetDatabaseInfo() : " + await connection.GetDatabaseInfo());
             AceQLConsole.WriteLine("AceQL local folder: ");
             AceQLConsole.WriteLine(AceQLConnection.GetAceQLLocalFolder());
             AceQLConsole.WriteLine("ConnectionInfo: " + connection.ConnectionInfo);
 
             AceQLConsole.WriteLine("Press enter to continue....");
             Console.ReadLine();
-
-            //AceQLTransaction transaction = await connection.BeginTransactionAsync();
-            //await transaction.CommitAsync();
-            //transaction.Dispose();
-
-            AceQLTransaction transaction = null;
-
             SqlDeleteTest sqlDeleteTest = new SqlDeleteTest(connection);
             await sqlDeleteTest.DeleteCustomerAll();
 
@@ -126,7 +118,7 @@ namespace AceQL.Client.Test
             for (int i = 0; i < 100; i++)
             {
                 sqlInsertTest = new SqlInsertTest(connection);
-                int rows = await sqlInsertTest.InsertCustomer(i); 
+                await sqlInsertTest.InsertCustomer(i); 
             }
 
             SqlSelectTest sqlSelectTest;
@@ -149,8 +141,11 @@ namespace AceQL.Client.Test
             sqlDeleteTest = new SqlDeleteTest(connection);
             await sqlDeleteTest.DeleteOrderlogAll();
 
-            transaction = await connection.BeginTransactionAsync();
+            //AceQLTransaction transaction = await connection.BeginTransactionAsync();
+            //await transaction.CommitAsync();
+            //transaction.Dispose();
 
+            AceQLTransaction transaction = await connection.BeginTransactionAsync();
             AceQLConsole.WriteLine("Before insert into orderlog");
             
             try

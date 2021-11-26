@@ -150,6 +150,16 @@ namespace AceQL.Client.Api
         }
 
         /// <summary>
+        ///*A shortcut to remote database metadata which returns remote database and
+        /// remote JDBC Driver main info.
+        /// </summary>
+        /// <returns>Task&lt;DatabaseInfo&gt;.</returns>
+        public async Task<DatabaseInfo> GetDatabaseInfo()
+        {
+            return await aceQLHttpApi.GetDatabaseInfo().ConfigureAwait(false);
+        }
+
+        /// <summary>
         /// Opens a connection with the remote database.
         /// </summary>
         /// <exception cref="AceQLException">If any Exception occurs.</exception>
@@ -243,6 +253,7 @@ namespace AceQL.Client.Api
                 aceQLHttpApi.ResetCancellationToken();
             }
         }
+
         /// <summary>
         /// Initializes a new <see cref="AceQLTransaction"/>object with the specified isolation level.
         /// This will put the remote connection in auto commit mode off.
