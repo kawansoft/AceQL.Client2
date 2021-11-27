@@ -11,14 +11,14 @@ namespace AceQL.Client.Api
 	/// </summary>
 	public class DatabaseInfo
 	{
-		private int datatabaseMajorVersion;
-		private int databaseMinorVersion;
-		private string databaseProductName;
-		private string databaseProductVersion;
-		private int driverMajorVersion;
-		private int driverMinorVersion;
-		private string driverName;
-		private string driverVersion;
+		private readonly int datatabaseMajorVersion;
+		private readonly int databaseMinorVersion;
+		private readonly string databaseProductName;
+		private readonly string databaseProductVersion;
+		private readonly int driverMajorVersion;
+		private readonly int driverMinorVersion;
+		private readonly string driverName;
+		private readonly string driverVersion;
 
         internal DatabaseInfo(DatabaseInfoDto databaseInfoDto)
         {
