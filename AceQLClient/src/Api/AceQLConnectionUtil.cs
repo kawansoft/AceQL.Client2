@@ -26,36 +26,69 @@ namespace AceQL.Client.Api
     internal static class AceQLConnectionUtil
     {
         internal static readonly string BATCH_MIN_SERVER_VERSION = "8.0";
+        internal static readonly string GET_DATABASE_INFO_MIN_SERVER_VERSION = "9.0";
+
         private static string SERVER_VERSION_NUMBER;
 
+   
+
         /// <summary>
-        /// Determines whether [is batch supported] [the specified connection].
+        /// Says if the current version is OK foe a feature execution.</summary>
+        /// <param name="rawServerVersion">		the current server version </param>
+        /// <param name="minServerVersion">		the minimum version for feature execution </param>
+        /// <returns> true if rawServerVersion is OK for execution </returns>
+   
+        public static bool IsCurrentVersionOk(string rawServerVersion, string minServerVersion)
+        {
+            // Because of US Culture
+            rawServerVersion = rawServerVersion.Replace(".", ",");
+            minServerVersion = minServerVersion.Replace(".", ",");
+
+            double rawServerVersionDouble = Convert.ToDouble(rawServerVersion);
+            double minServerVersionDouble = Convert.ToDouble(minServerVersion);
+            return rawServerVersionDouble >= minServerVersionDouble;
+        }
+
+
+        /// <summary>
+        /// Extracts the raw server version.
         /// </summary>
         /// <param name="connection">The connection.</param>
-        /// <returns>Task&lt;System.Boolean&gt;.</returns>
-        internal static async Task<bool>  IsBatchSupported(AceQLConnection connection)
+        /// <returns>Task&lt;System.String&gt;.</returns>
+        public static async Task<string> ExtractRawServerVersion(AceQLConnection connection)
         {
             if (SERVER_VERSION_NUMBER == null)
             {
                 SERVER_VERSION_NUMBER = await connection.GetServerVersionAsync();
             }
-
-            String rawServerVersion = ExtractRawServerVersion(SERVER_VERSION_NUMBER);
-            int comparison = String.Compare(rawServerVersion, BATCH_MIN_SERVER_VERSION, StringComparison.OrdinalIgnoreCase);
-            return comparison >= 0;
-        }
-
-        /// <summary>
-        /// Extracts the raw server version.
-        /// </summary>
-        /// <param name="serverVersionNumber">The server version number.</param>
-        /// <returns>System.String.</returns>
-        public static string ExtractRawServerVersion(string serverVersionNumber)
-        {
+            
+            String serverVersionNumber = SERVER_VERSION_NUMBER;
             String[] stringArray = serverVersionNumber.Split('v');
             String[] stringArrayFinal = stringArray[1].Split('-');
             String versionRaw = stringArrayFinal[0].Trim();
             return versionRaw;
+        }
+
+        /// <summary>
+        /// Determines whether if batch commands are supported on server side.
+        /// </summary>
+        /// <param name="connection">The connection.</param>
+        /// <returns>Task&lt;System.Boolean&gt;.</returns>
+        internal static async Task<bool> IsBatchSupported(AceQLConnection connection)
+        {
+            String rawServerVersion = await ExtractRawServerVersion(connection).ConfigureAwait(false);
+            return IsCurrentVersionOk(rawServerVersion, BATCH_MIN_SERVER_VERSION);
+        }
+
+        /// <summary>
+        /// Determines whether if GetDatabaseInfo() is supported on server side.
+        /// </summary>
+        /// <param name="connection">The connection.</param>
+        /// <returns>Task&lt;System.Boolean&gt;.</returns>
+        internal static async Task<bool> IsGetDatabaseInfoSupported(AceQLConnection connection)
+        {
+            String rawServerVersion = await ExtractRawServerVersion(connection).ConfigureAwait(false);
+            return IsCurrentVersionOk(rawServerVersion, GET_DATABASE_INFO_MIN_SERVER_VERSION);
         }
     }
 }

@@ -718,23 +718,6 @@
             The status
             </summary>
         </member>
-        <member name="F:AceQL.Client.Api.Metadata.Dto.DatabaseInfoDto.databaseInfo">
-            <summary>
-            The database information
-            </summary>
-        </member>
-        <member name="M:AceQL.Client.Api.Metadata.Dto.DatabaseInfoDto.#ctor(AceQL.Client.Api.DatabaseInfo)">
-            <summary>
-            Initializes a new instance of the <see cref="T:AceQL.Client.Api.Metadata.Dto.DatabaseInfoDto"/> class.
-            </summary>
-            <param name="databaseInfo">The JDBC database meta data.</param>
-        </member>
-        <member name="P:AceQL.Client.Api.Metadata.Dto.DatabaseInfoDto.DatabaseInfo">
-            <summary>
-            Gets the database information.
-            </summary>
-            <value>The database information.</value>
-        </member>
         <member name="M:AceQL.Client.Api.Metadata.Dto.DatabaseInfoDto.ToString">
             <summary>
             Returns a <see cref="T:System.String" /> that represents this instance.
@@ -2886,19 +2869,33 @@
             </summary>
             <value>The connection information.</value>
         </member>
+        <member name="M:AceQL.Client.Api.AceQLConnectionUtil.IsCurrentVersionOk(System.String,System.String)">
+            <summary>
+            Says if the current version is OK foe a feature execution.</summary>
+            <param name="rawServerVersion">		the current server version </param>
+            <param name="minServerVersion">		the minimum version for feature execution </param>
+            <returns> true if rawServerVersion is OK for execution </returns>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLConnectionUtil.ExtractRawServerVersion(AceQL.Client.Api.AceQLConnection)">
+            <summary>
+            Extracts the raw server version.
+            </summary>
+            <param name="connection">The connection.</param>
+            <returns>Task&lt;System.String&gt;.</returns>
+        </member>
         <member name="M:AceQL.Client.Api.AceQLConnectionUtil.IsBatchSupported(AceQL.Client.Api.AceQLConnection)">
             <summary>
-            Determines whether [is batch supported] [the specified connection].
+            Determines whether if batch commands are supported on server side.
             </summary>
             <param name="connection">The connection.</param>
             <returns>Task&lt;System.Boolean&gt;.</returns>
         </member>
-        <member name="M:AceQL.Client.Api.AceQLConnectionUtil.ExtractRawServerVersion(System.String)">
+        <member name="M:AceQL.Client.Api.AceQLConnectionUtil.IsGetDatabaseInfoSupported(AceQL.Client.Api.AceQLConnection)">
             <summary>
-            Extracts the raw server version.
+            Determines whether if GetDatabaseInfo() is supported on server side.
             </summary>
-            <param name="serverVersionNumber">The server version number.</param>
-            <returns>System.String.</returns>
+            <param name="connection">The connection.</param>
+            <returns>Task&lt;System.Boolean&gt;.</returns>
         </member>
         <member name="T:AceQL.Client.Api.AceQLCredential">
             <summary>
@@ -3973,46 +3970,6 @@
             <summary>
             A simple shortcut class that contains main remote database and JDBC info.
             </summary>
-        </member>
-        <member name="P:AceQL.Client.Api.DatabaseInfo.DatatabaseMajorVersion">
-            <summary>
-            Gets the database major version </summary>
-            <returns> the database major version  </returns>
-        </member>
-        <member name="P:AceQL.Client.Api.DatabaseInfo.DatabaseMinorVersion">
-            <summary>
-            Gets the database minor version </summary>
-            <returns> the database minor version  </returns>
-        </member>
-        <member name="P:AceQL.Client.Api.DatabaseInfo.DatabaseProductName">
-            <summary>
-            Gets the database product name </summary>
-            <returns> the database product name </returns>
-        </member>
-        <member name="P:AceQL.Client.Api.DatabaseInfo.DatabaseProductVersion">
-            <summary>
-            Gets the database product version </summary>
-            <returns> the database product version </returns>
-        </member>
-        <member name="P:AceQL.Client.Api.DatabaseInfo.DriverMajorVersion">
-            <summary>
-            Gets the driver major version </summary>
-            <returns> the driver major version  </returns>
-        </member>
-        <member name="P:AceQL.Client.Api.DatabaseInfo.DriverMinorVersion">
-            <summary>
-            Gets the driver minor version </summary>
-            <returns> the driver minor version  </returns>
-        </member>
-        <member name="P:AceQL.Client.Api.DatabaseInfo.DriverName">
-            <summary>
-            Gets the driver name </summary>
-            <returns> the driver name </returns>
-        </member>
-        <member name="P:AceQL.Client.Api.DatabaseInfo.DriverVersion">
-            <summary>
-            Gets the driver version </summary>
-            <returns> the driver version  </returns>
         </member>
         <member name="M:AceQL.Client.Api.DatabaseInfo.ToString">
             <summary>

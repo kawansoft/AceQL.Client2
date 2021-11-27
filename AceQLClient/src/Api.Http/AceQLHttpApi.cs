@@ -838,7 +838,7 @@ namespace AceQL.Client.Api.Http
         {
             AceQLMetadataApi aceQLMetadataApi = new AceQLMetadataApi(httpManager, url, simpleTracer);
             DatabaseInfoDto databaseInfoDto = await aceQLMetadataApi.GetDatabaseInfoDto().ConfigureAwait(false);
-            return databaseInfoDto.DatabaseInfo;
+            return new DatabaseInfo(databaseInfoDto);
         }
 
     /// <summary>

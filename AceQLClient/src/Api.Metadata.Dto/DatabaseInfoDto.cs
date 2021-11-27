@@ -28,25 +28,24 @@ namespace AceQL.Client.Api.Metadata.Dto
         /// </summary>
         private readonly string status = "OK";
 
-        /// <summary>
-        /// The database information
-        /// </summary>
-        private readonly DatabaseInfo databaseInfo;
+        private int datatabaseMajorVersion;
+        private int databaseMinorVersion;
+        private string databaseProductName;
+        private string databaseProductVersion;
+        private int driverMajorVersion;
+        private int driverMinorVersion;
+        private string driverName;
+        private string driverVersion;
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="DatabaseInfoDto"/> class.
-        /// </summary>
-        /// <param name="databaseInfo">The JDBC database meta data.</param>
-        public DatabaseInfoDto(DatabaseInfo databaseInfo)
-        {
-            this.databaseInfo = databaseInfo;
-        }
+        public int DatatabaseMajorVersion { get => datatabaseMajorVersion; set => datatabaseMajorVersion = value; }
+        public int DatabaseMinorVersion { get => databaseMinorVersion; set => databaseMinorVersion = value; }
+        public string DatabaseProductName { get => databaseProductName; set => databaseProductName = value; }
+        public string DatabaseProductVersion { get => databaseProductVersion; set => databaseProductVersion = value; }
+        public int DriverMajorVersion { get => driverMajorVersion; set => driverMajorVersion = value; }
+        public int DriverMinorVersion { get => driverMinorVersion; set => driverMinorVersion = value; }
+        public string DriverName { get => driverName; set => driverName = value; }
+        public string DriverVersion { get => driverVersion; set => driverVersion = value; }
 
-        /// <summary>
-        /// Gets the database information.
-        /// </summary>
-        /// <value>The database information.</value>
-        public DatabaseInfo DatabaseInfo { get => databaseInfo; }
 
         /// <summary>
         /// Returns a <see cref="System.String" /> that represents this instance.
@@ -54,7 +53,7 @@ namespace AceQL.Client.Api.Metadata.Dto
         /// <returns>A <see cref="System.String" /> that represents this instance.</returns>
         public override string ToString()
         {
-            return "DatabaseInfoDto [status=" + status + ", databaseInfo=" + databaseInfo + "]";
+            return "DatabaseInfoDto [status=" + status +  ", datatabaseMajorVersion=" + DatatabaseMajorVersion + ", databaseMinorVersion=" + DatabaseMinorVersion + ", databaseProductName=" + DatabaseProductName + ", databaseProductVersion=" + DatabaseProductVersion + ", driverMajorVersion=" + DriverMajorVersion + ", driverMinorVersion=" + DriverMinorVersion + ", driverName=" + DriverName + ", driverVersion=" + DriverVersion + "]";
         }
     }
 }

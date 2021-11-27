@@ -156,6 +156,12 @@ namespace AceQL.Client.Api
         /// <returns>Task&lt;DatabaseInfo&gt;.</returns>
         public async Task<DatabaseInfo> GetDatabaseInfo()
         {
+            if (!await AceQLConnectionUtil.IsGetDatabaseInfoSupported(this))
+            {
+                throw new NotSupportedException("AceQL Server version must be >= " + AceQLConnectionUtil.GET_DATABASE_INFO_MIN_SERVER_VERSION
+                    + " in order to call GetDatabaseInfo().");
+            }
+
             return await aceQLHttpApi.GetDatabaseInfo().ConfigureAwait(false);
         }
 
