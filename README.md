@@ -5,9 +5,9 @@
 
 # AceQL HTTP 
 
-## C# Client SDK v7.2 - User Guide
+## C# Client SDK v7.3 - User Guide
 
-## November 8, 2021
+## December 3, 2021
 
 <img src="https://docs.aceql.com/favicon.png" alt="AceQ HTTP Icon"/>
 
@@ -72,7 +72,7 @@ On the remote side, like the AceQL Server access to the SQL database using Java 
 
 ## AceQL C# Client SDK Online Documentation
 
-The Online Documentation is accessible [here](https://docs.aceql.com/rest/soft_csharp/7.2/csharpdoc_sdk/html/N-AceQL.Client.Api.htm).
+The Online Documentation is accessible [here](https://docs.aceql.com/rest/soft_csharp/7.3/csharpdoc_sdk/html/N-AceQL.Client.Api.htm).
 
 ## Contributors
 
@@ -97,7 +97,7 @@ The SDK is licensed with the liberal [Apache 2.0](https://www.apache.org/license
 
 ## AceQL Server side compatibility
 
-This version requires AceQL HTTP v7.2.+ server version. It requires version 8.0+ in order to use batch commands. 
+This version requires AceQL HTTP v7.3.+ server version. It requires version 8.0+ in order to use batch commands. 
 
 ## AceQL C# Client SDK installation
 
@@ -798,7 +798,7 @@ RemoteDatabaseMetaData remoteDatabaseMetaData = connection.GetRemoteDatabaseMeta
 
 ### Downloading database schema into a file
 
-Downloading a schema into a  `File` is done through the method. See the `RemoteDatabaseMetaData` [Documentation](https://docs.aceql.com/rest/soft_csharp/7.2/csharpdoc_sdk):
+Downloading a schema into a  `File` is done through the method. See the `RemoteDatabaseMetaData` [Documentation](https://docs.aceql.com/rest/soft_csharp/7.3/csharpdoc_sdk):
 
 ```C#
 string userPath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
@@ -814,7 +814,7 @@ using (Stream stream = await remoteDatabaseMetaData.DbSchemaDownloadAsync())
 }
 ```
 
-See an example of the built HTML schema:  [db_schema.out.html](https://docs.aceql.com/rest/soft_csharp/7.2/src/db_schema.out.html)
+See an example of the built HTML schema:  [db_schema.out.html](https://docs.aceql.com/rest/soft_csharp/7.3/src/db_schema.out.html)
 
 ### Accessing remote database main properties
 
@@ -829,7 +829,7 @@ Console.WriteLine("IsReadOnly   : " + jdbcDatabaseMetaData.IsReadOnly);
 
 ### Getting Details of Tables and Columns
 
-See the `RemoteDatabaseMetaData` [Documentation](https://docs.aceql.com/rest/soft_csharp/7.2/csharpdoc_sdk):
+See the `RemoteDatabaseMetaData` [Documentation](https://docs.aceql.com/rest/soft_csharp/7.3/csharpdoc_sdk):
 
 ```C#
 Console.WriteLine("Get the table names:");

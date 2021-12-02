@@ -3971,6 +3971,46 @@
             A simple shortcut class that contains main remote database and JDBC info.
             </summary>
         </member>
+        <member name="P:AceQL.Client.Api.DatabaseInfo.DatatabaseMajorVersion">
+            <summary>
+            Gets the database major version.
+            </summary>
+        </member>
+        <member name="P:AceQL.Client.Api.DatabaseInfo.DatabaseMinorVersion">
+            <summary>
+            Gets the database minor version.
+            </summary>
+        </member>
+        <member name="P:AceQL.Client.Api.DatabaseInfo.DatabaseProductName">
+            <summary>
+            Gets the database product name.
+            </summary>
+        </member>
+        <member name="P:AceQL.Client.Api.DatabaseInfo.DatabaseProductVersion">
+            <summary>
+             Gets the database product version.
+            </summary>
+        </member>
+        <member name="P:AceQL.Client.Api.DatabaseInfo.DriverMajorVersion">
+            <summary>
+            Gets the driver major version.
+            </summary>
+        </member>
+        <member name="P:AceQL.Client.Api.DatabaseInfo.DriverMinorVersion">
+            <summary>
+            Gets the driver minor version.
+            </summary>
+        </member>
+        <member name="P:AceQL.Client.Api.DatabaseInfo.DriverName">
+            <summary>
+            Gets the driver major version.
+            </summary>
+        </member>
+        <member name="P:AceQL.Client.Api.DatabaseInfo.DriverVersion">
+            <summary>
+            Gets the driver minor version.
+            </summary>
+        </member>
         <member name="M:AceQL.Client.Api.DatabaseInfo.ToString">
             <summary>
             Returns a <see cref="T:System.String" /> that represents this instance.

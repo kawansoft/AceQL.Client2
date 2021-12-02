@@ -32,13 +32,45 @@ namespace AceQL.Client.Api
             this.driverVersion = databaseInfoDto.DriverVersion;
         }
 
+        /// <summary>
+        /// Gets the database major version.
+        /// </summary>
         public int DatatabaseMajorVersion { get => datatabaseMajorVersion; }
-		public int DatabaseMinorVersion { get => databaseMinorVersion;}
+
+        /// <summary>
+        /// Gets the database minor version.
+        /// </summary>
+        public int DatabaseMinorVersion { get => databaseMinorVersion;}
+
+        /// <summary>
+        /// Gets the database product name.
+        /// </summary>
 		public string DatabaseProductName { get => databaseProductName;  }
+
+        /// <summary>
+        ///  Gets the database product version.
+        /// </summary>
         public string DatabaseProductVersion { get => databaseProductVersion;  }
+
+        /// <summary>
+        /// Gets the driver major version.
+        /// </summary>
         public int DriverMajorVersion { get => driverMajorVersion; }
+
+        /// <summary>
+        /// Gets the driver minor version.
+        /// </summary>
         public int DriverMinorVersion { get => driverMinorVersion; }
+
+
+        /// <summary>
+        /// Gets the driver major version.
+        /// </summary>
         public string DriverName { get => driverName;  }
+
+        /// <summary>
+        /// Gets the driver minor version.
+        /// </summary>
         public string DriverVersion { get => driverVersion;}
 
         /// <summary>
