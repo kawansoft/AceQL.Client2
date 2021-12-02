@@ -5,11 +5,11 @@ using System.Text;
 
 namespace AceQL.Client.Api
 {
-	/// 
-	/// <summary>
-	/// A simple shortcut class that contains main remote database and JDBC driver info.
-	/// </summary>
-	public class DatabaseInfo
+    /// 
+    /// <summary>
+    /// A simple shortcut class that contains the main info of the remote database and the remote JDBC driver.
+    /// </summary>
+    public class DatabaseInfo
 	{
 		private readonly int datatabaseMajorVersion;
 		private readonly int databaseMinorVersion;
