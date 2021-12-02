@@ -3968,7 +3968,7 @@
         <member name="T:AceQL.Client.Api.DatabaseInfo">
             
             <summary>
-            A simple shortcut class that contains main remote database and JDBC info.
+            A simple shortcut class that contains main remote database and JDBC driver info.
             </summary>
         </member>
         <member name="P:AceQL.Client.Api.DatabaseInfo.DatatabaseMajorVersion">
