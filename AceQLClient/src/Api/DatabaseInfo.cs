@@ -24,7 +24,7 @@ namespace AceQL.Client.Api
 {
     /// 
     /// <summary>
-    /// A simple shortcut class that contains the main info of the remote database and the remote JDBC driver.
+    /// A simple shortcut class that contains the main info of the remote database and the remote JDBC Driver.
     /// </summary>
     public class DatabaseInfo
 	{

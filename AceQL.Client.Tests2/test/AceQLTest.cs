@@ -102,9 +102,9 @@ namespace AceQL.Client.Test
             _ = Directory.CreateDirectory(AceQLTestParms.OUT_DIRECTORY);
 
             AceQLConsole.WriteLine("host: " + connection.ConnectionInfo.ConnectionString);
-            AceQLConsole.WriteLine("aceQLConnection.GetClientVersion(): " + AceQLConnection.GetClientVersion());
-            AceQLConsole.WriteLine("aceQLConnection.GetServerVersion(): " + await connection.GetServerVersionAsync());
-            AceQLConsole.WriteLine("aceQLConnection.GetDatabaseInfo() : " + await connection.GetDatabaseInfo());
+            AceQLConsole.WriteLine("aceQLConnection.GetClientVersion()     : " + AceQLConnection.GetClientVersion());
+            AceQLConsole.WriteLine("aceQLConnection.GetServerVersionAsync(): " + await connection.GetServerVersionAsync());
+            AceQLConsole.WriteLine("aceQLConnection.GetDatabaseInfoAsync() : " + await connection.GetDatabaseInfoAsync());
             AceQLConsole.WriteLine("AceQL local folder: ");
             AceQLConsole.WriteLine(AceQLConnection.GetAceQLLocalFolder());
             AceQLConsole.WriteLine("ConnectionInfo: " + connection.ConnectionInfo);

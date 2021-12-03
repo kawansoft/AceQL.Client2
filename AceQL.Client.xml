@@ -693,21 +693,6 @@
               <see cref="T:System.Uri" /> of the host whose proxy usage is to be verified.</param>
             <returns><c>true</c> if the proxy server should not be used for <paramref name="host" />�; else <c>false</c>.</returns>
         </member>
-        <member name="T:AceQL.Client.Api.Http.ConnectionStringDecoder">
-            <summary>
-            Class ConnectionStringDecoder. Allows to decode the elements of the connection string.
-            </summary>
-        </member>
-        <member name="M:AceQL.Client.Api.Http.ConnectionStringDecoder.Decode(System.String)">
-            <summary>
-            Decodes the specified connection string.
-            </summary>
-            <param name="connectionString">The connection string.</param>
-            <exception cref="T:System.ArgumentException">connectionString does not contain a ; separator: " + connectionString</exception>
-            <exception cref="T:System.ArgumentException">connectionString element token does not contain a = separator: " + line</exception>
-            <exception cref="T:System.ArgumentException">Can not find left of = in connectionString element token. Please correct connection string: " + line</exception>
-            <exception cref="T:System.ArgumentException">Can not find right of = in connectionString element token. Please correct connection string: " + line</exception>
-        </member>
         <member name="T:AceQL.Client.Api.Metadata.Dto.DatabaseInfoDto">
             <summary>
             Class DatabaseInfoDto.
@@ -1849,6 +1834,21 @@
             
              <remarks>   Nicolas De Pomereu, 19/05/2017. </remarks>
         </member>
+        <member name="T:AceQL.Client.Api.Util.ConnectionStringDecoder">
+            <summary>
+            Class ConnectionStringDecoder. Allows to decode the elements of the connection string.
+            </summary>
+        </member>
+        <member name="M:AceQL.Client.Api.Util.ConnectionStringDecoder.Decode(System.String)">
+            <summary>
+            Decodes the specified connection string.
+            </summary>
+            <param name="connectionString">The connection string.</param>
+            <exception cref="T:System.ArgumentException">connectionString does not contain a ; separator: " + connectionString</exception>
+            <exception cref="T:System.ArgumentException">connectionString element token does not contain a = separator: " + line</exception>
+            <exception cref="T:System.ArgumentException">Can not find left of = in connectionString element token. Please correct connection string: " + line</exception>
+            <exception cref="T:System.ArgumentException">Can not find right of = in connectionString element token. Please correct connection string: " + line</exception>
+        </member>
         <member name="T:AceQL.Client.Api.Util.ConsoleEmul">
             <summary>
             Console emulator as in Portable Class Library we don't have access to Console.
@@ -2721,12 +2721,12 @@
             </summary>
             <returns>RemoteDatabaseMetaData.</returns>
         </member>
-        <member name="M:AceQL.Client.Api.AceQLConnection.GetDatabaseInfo">
-             <summary>
-            *A shortcut to remote database metadata which returns remote database and
-             remote JDBC Driver main info.
-             </summary>
-             <returns>Task&lt;DatabaseInfo&gt;.</returns>
+        <member name="M:AceQL.Client.Api.AceQLConnection.GetDatabaseInfoAsync">
+            <summary>
+            A shortcut to remote database metadata which returns remote database and
+            remote JDBC Driver main info.
+            </summary>
+            <returns>Task&lt;DatabaseInfo&gt;.</returns>
         </member>
         <member name="M:AceQL.Client.Api.AceQLConnection.OpenAsync">
             <summary>
@@ -3968,7 +3968,7 @@
         <member name="T:AceQL.Client.Api.DatabaseInfo">
             
             <summary>
-            A simple shortcut class that contains the main info of the remote database and the remote JDBC driver.
+            A simple shortcut class that contains the main info of the remote database and the remote JDBC Driver.
             </summary>
         </member>
         <member name="P:AceQL.Client.Api.DatabaseInfo.DatatabaseMajorVersion">

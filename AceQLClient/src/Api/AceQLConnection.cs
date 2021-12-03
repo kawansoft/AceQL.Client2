@@ -150,11 +150,11 @@ namespace AceQL.Client.Api
         }
 
         /// <summary>
-        ///*A shortcut to remote database metadata which returns remote database and
+        /// A shortcut to remote database metadata which returns remote database and
         /// remote JDBC Driver main info.
         /// </summary>
         /// <returns>Task&lt;DatabaseInfo&gt;.</returns>
-        public async Task<DatabaseInfo> GetDatabaseInfo()
+        public async Task<DatabaseInfo> GetDatabaseInfoAsync()
         {
             if (!await AceQLConnectionUtil.IsGetDatabaseInfoSupported(this))
             {
