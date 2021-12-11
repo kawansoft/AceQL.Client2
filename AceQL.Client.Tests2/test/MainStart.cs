@@ -56,6 +56,9 @@ namespace AceQL.Client.Test
 
         public static void Main(string[] args)
         {
+            TypesUtil.TestCSharpTypes();
+            Boolean doReturn = true;
+            if (doReturn) return;
 
             int mainToLaunch = 0;
 
@@ -110,7 +113,6 @@ namespace AceQL.Client.Test
                 SqlBatchSample.TheMain(args);
             }
         }
-
 
     }
 }

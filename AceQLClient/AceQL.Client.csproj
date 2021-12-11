@@ -11,9 +11,9 @@
     <PackageLicenseExpression></PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/kawansoft/AceQL.Client2</PackageProjectUrl>
     <PackageIcon>favicon.png</PackageIcon>
-    <AssemblyVersion>7.3.0.0</AssemblyVersion>
-    <FileVersion>7.3.0.0</FileVersion>
-    <Version>7.3</Version>
+    <AssemblyVersion>7.4.0.0</AssemblyVersion>
+    <FileVersion>7.4.0.0</FileVersion>
+    <Version>7.4</Version>
     <Authors>KawanSoft</Authors>
     <PackageReleaseNotes>The new AceQLConnection.GetDatabaseInfoAsync() API allows to easily get all info about the remote database and the remote DBC Driver.</PackageReleaseNotes>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
