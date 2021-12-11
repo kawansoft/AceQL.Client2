@@ -25,7 +25,7 @@ namespace AceQL.Client.Test.Util
             AceQLConsole.WriteLine("double.GetType().Name  : " + myDouble.GetType().Name);
             AceQLConsole.WriteLine("long.GetType().Name    : " + myLong.GetType().Name);
             AceQLConsole.WriteLine("DateTime.GetType().Name: " + myDateTime.GetType().Name + " " + myDateTime.ToFileTime());
-
+            AceQLConsole.WriteLine();
             AceQLConsole.WriteLine("Press enter to continue....");
             Console.ReadLine();
         }
