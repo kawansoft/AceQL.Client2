@@ -4,11 +4,14 @@ using System.Text;
 
 namespace AceQL.Client.Api.Metadata.Dto
 {
-    internal class ServerQueryExecutorDto
+    /// <summary>
+    /// Class ServerQueryExecutorDto.
+    /// </summary>
+    public class ServerQueryExecutorDto
     {
-		private readonly string serverQueryExecutorClassName;
-		private readonly List<string> parameterTypes;
-		private readonly List<string> parameterValues;
+		private string serverQueryExecutorClassName1;
+		private List<string> parameterTypes1;
+		private List<string> parameterValues1;
 
 		/// <summary>
 		/// Constructor.
@@ -18,35 +21,38 @@ namespace AceQL.Client.Api.Metadata.Dto
 		/// <param name="parameterValues"> </param>
 		public ServerQueryExecutorDto(string serverQueryExecutorClassName, List<string> parameterTypes, List<string> parameterValues)
 		{
-			this.serverQueryExecutorClassName = serverQueryExecutorClassName;
-			this.parameterTypes = parameterTypes;
-			this.parameterValues = parameterValues;
+			this.serverQueryExecutorClassName1 = serverQueryExecutorClassName;
+			this.parameterTypes1 = parameterTypes;
+			this.parameterValues1 = parameterValues;
 		}
 
+		///THE PROPERTY MUST BE IN LOWERCASE FIRST CHAR FOR HOST TO DESERIALIZE.
 		/// <returns> the serverQueryExecutorClassName </returns>
-		public string ServerQueryExecutorClassName
+		public virtual string serverQueryExecutorClassName
 		{
 			get
 			{
-				return serverQueryExecutorClassName;
+				return serverQueryExecutorClassName1;
 			}
 		}
 
+		///THE PROPERTY MUST BE IN LOWERCASE FIRST CHAR FOR HOST TO DESERIALIZE.
 		/// <returns> the parameterTypes </returns>
-		public List<string> ParameterTypes
+		public virtual List<string> parameterTypes
 		{
 			get
 			{
-				return parameterTypes;
+				return parameterTypes1;
 			}
 		}
 
+		///THE PROPERTY MUST BE IN LOWERCASE FIRST CHAR FOR HOST TO DESERIALIZE.
 		/// <returns> the parameterValues </returns>
-		public  List<string> ParameterValues
+		public virtual List<string> parameterValues
 		{
 			get
 			{
-				return parameterValues;
+				return parameterValues1;
 			}
 		}
 

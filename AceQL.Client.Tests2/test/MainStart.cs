@@ -24,6 +24,7 @@ using AceQL.Client.Sample;
 using AceQL.Client.test.Dml;
 using AceQL.Client.Test.Connection;
 using AceQL.Client.Test.Dml.Batch;
+using AceQL.Client.Test.Executor;
 using AceQL.Client.Test.Json;
 using AceQL.Client.Test.Metadata;
 using AceQL.Client.Test.StoredProcedure;
@@ -56,7 +57,7 @@ namespace AceQL.Client.Test
 
         public static void Main(string[] args)
         {
-            int mainToLaunch = 0;
+            int mainToLaunch = 12;
 
             if (mainToLaunch == 0)
             {
@@ -107,6 +108,10 @@ namespace AceQL.Client.Test
             else if (mainToLaunch == 11)
             {
                 SqlBatchSample.TheMain(args);
+            }
+            else if (mainToLaunch == 12)
+            {
+                ServerQueryExecuteTest.TheMain(args);
             }
         }
 

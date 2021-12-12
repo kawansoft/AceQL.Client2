@@ -731,6 +731,11 @@
             </summary>
             <value>The JDBC database meta data.</value>
         </member>
+        <member name="T:AceQL.Client.Api.Metadata.Dto.ServerQueryExecutorDto">
+            <summary>
+            Class ServerQueryExecutorDto.
+            </summary>
+        </member>
         <member name="M:AceQL.Client.Api.Metadata.Dto.ServerQueryExecutorDto.#ctor(System.String,System.Collections.Generic.List{System.String},System.Collections.Generic.List{System.String})">
             <summary>
             Constructor.
@@ -739,14 +744,17 @@
             <param name="parameterTypes"> </param>
             <param name="parameterValues"> </param>
         </member>
-        <member name="P:AceQL.Client.Api.Metadata.Dto.ServerQueryExecutorDto.ServerQueryExecutorClassName">
-            <returns> the serverQueryExecutorClassName </returns>
+        <member name="P:AceQL.Client.Api.Metadata.Dto.ServerQueryExecutorDto.serverQueryExecutorClassName">
+            THE PROPERTY MUST BE IN LOWERCASE FIRST CHAR FOR HOST TO DESERIALIZE.
+             <returns> the serverQueryExecutorClassName </returns>
         </member>
-        <member name="P:AceQL.Client.Api.Metadata.Dto.ServerQueryExecutorDto.ParameterTypes">
-            <returns> the parameterTypes </returns>
+        <member name="P:AceQL.Client.Api.Metadata.Dto.ServerQueryExecutorDto.parameterTypes">
+            THE PROPERTY MUST BE IN LOWERCASE FIRST CHAR FOR HOST TO DESERIALIZE.
+             <returns> the parameterTypes </returns>
         </member>
-        <member name="P:AceQL.Client.Api.Metadata.Dto.ServerQueryExecutorDto.ParameterValues">
-            <returns> the parameterValues </returns>
+        <member name="P:AceQL.Client.Api.Metadata.Dto.ServerQueryExecutorDto.parameterValues">
+            THE PROPERTY MUST BE IN LOWERCASE FIRST CHAR FOR HOST TO DESERIALIZE.
+             <returns> the parameterValues </returns>
         </member>
         <member name="T:AceQL.Client.Api.Metadata.Dto.ServerQueryExecutorDtoBuilder">
             <summary>
@@ -2521,6 +2529,13 @@
             connection is null.
             </exception>
         </member>
+        <member name="M:AceQL.Client.Api.AceQLCommand.#ctor(AceQL.Client.Api.AceQLConnection)">
+            <summary>
+            Initializes a new instance of the <see cref="T:AceQL.Client.Api.AceQLCommand"/> class.
+            </summary>
+            <param name="connection">The connection.</param>
+            <exception cref="T:System.ArgumentNullException">connection is null!</exception>
+        </member>
         <member name="M:AceQL.Client.Api.AceQLCommand.#ctor(System.String,AceQL.Client.Api.AceQLConnection,AceQL.Client.Api.AceQLTransaction)">
             <summary>
             Initializes a new instance of the <see cref="T:AceQL.Client.Api.AceQLCommand"/> class with the text of the query and a 
@@ -2573,6 +2588,15 @@
             Note that the remote statement will always be a prepared statement if
             the command contains parameters.
             </summary>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLCommand.ExecuteServerQueryAsync(System.String,System.Collections.Generic.List{System.Object})">
+            <summary>
+            Executes a server query by calling a remote AceQL ServerQueryExecutor interface concrete implementation
+            </summary>
+            <param name="serverQueryExecutorClassName">the remote ServerQueryExecutor interface implementation name with package info.</param>
+            <param name="parameters">the parameters to pass to the remote ServerQueryExecutor.executeQuery() implementation.</param>
+            <returns>Task&lt;AceQLDataReader&gt;.</returns>
+            <exception cref="T:AceQL.Client.Api.AceQLException">0</exception>
         </member>
         <member name="M:AceQL.Client.Api.AceQLCommand.ExecuteNonQueryAsync(System.Threading.CancellationToken)">
             <summary>

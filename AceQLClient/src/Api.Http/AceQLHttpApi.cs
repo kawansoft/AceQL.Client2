@@ -547,6 +547,8 @@ namespace AceQL.Client.Api.Http
             ServerQueryExecutorDto serverQueryExecutorDto = ServerQueryExecutorDtoBuilder.Build(serverQueryExecutorClassName, parameters);
             string jsonString = JsonConvert.SerializeObject(serverQueryExecutorDto);
 
+            ConsoleEmul.WriteLine(DateTime.Now + " ExecuteServerQueryAsync.jsonString: " + jsonString);
+
             Dictionary<string, string> parametersMap = new Dictionary<string, string>
             {
                 { "gzip_result", gzipResult.ToString() },

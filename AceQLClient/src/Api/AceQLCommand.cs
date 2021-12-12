@@ -123,6 +123,25 @@ namespace AceQL.Client.Api
         }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="AceQLCommand"/> class.
+        /// </summary>
+        /// <param name="connection">The connection.</param>
+        /// <exception cref="ArgumentNullException">connection is null!</exception>
+        public AceQLCommand(AceQLConnection connection) 
+        {
+            if (connection == null)
+            {
+                throw new ArgumentNullException("connection is null!");
+            }
+
+            connection.TestConnectionOpened();
+
+            this.connection = connection;
+            this.aceQLHttpApi = connection.aceQLHttpApi;
+            this.simpleTracer = aceQLHttpApi.simpleTracer;
+        }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="AceQLCommand"/> class with the text of the query and a 
         /// <see cref="AceQLConnection"/>, and the <see cref="AceQLTransaction"/>.
         /// </summary>
@@ -240,6 +259,83 @@ namespace AceQL.Client.Api
         public void Prepare()
         {
             this.prepare = true;
+        }
+
+        /// <summary>
+        /// Executes a server query by calling a remote AceQL ServerQueryExecutor interface concrete implementation
+        /// </summary>
+        /// <param name="serverQueryExecutorClassName">the remote ServerQueryExecutor interface implementation name with package info.</param>
+        /// <param name="parameters">the parameters to pass to the remote ServerQueryExecutor.executeQuery() implementation.</param>
+        /// <returns>Task&lt;AceQLDataReader&gt;.</returns>
+        /// <exception cref="AceQLException">0</exception>
+        public async Task<AceQLDataReader> ExecuteServerQueryAsync(String serverQueryExecutorClassName, List<object> parameters)
+        {
+            try
+            {
+                string filePath = FileUtil2.GetUniqueResultSetFile();
+
+                using (Stream input = await aceQLHttpApi.ExecuteServerQueryAsync(serverQueryExecutorClassName, parameters).ConfigureAwait(false))
+                {
+                    try
+                    {
+                        FileUtil2.CopyHttpStreamToFile(filePath, input, aceQLHttpApi.GzipResult);
+                    }
+                    catch (Exception exception)
+                    {
+                        if (this.connection.RequestRetry && (this.executeQueryRetryCount < 1 || exception.Message.Contains("GZip")))
+                        {
+                            this.executeQueryRetryCount++;
+                            Boolean saveGzipResultValue = this.aceQLHttpApi.GzipResult;
+                            this.aceQLHttpApi.GzipResult = false;
+                            AceQLDataReader dataReader = await ExecuteQueryAsStatementAsync().ConfigureAwait(false);
+                            this.aceQLHttpApi.GzipResult = saveGzipResultValue;
+                            return dataReader;
+                        }
+                        else
+                        {
+                            throw;
+                        }
+                    }
+                }
+
+                this.executeQueryRetryCount = 0;
+
+                StreamResultAnalyzer streamResultAnalyzer = new StreamResultAnalyzer(filePath, aceQLHttpApi.HttpStatusCode);
+                if (!streamResultAnalyzer.IsStatusOK())
+                {
+                    throw new AceQLException(streamResultAnalyzer.GetErrorMessage(),
+                        streamResultAnalyzer.GetErrorType(),
+                        streamResultAnalyzer.GetStackTrace(),
+                        aceQLHttpApi.HttpStatusCode);
+                }
+
+                int rowsCount = 0;
+
+                using (Stream readStreamCout = File.OpenRead(filePath))
+                {
+                    RowCounter rowCounter = new RowCounter(readStreamCout);
+                    rowsCount = rowCounter.Count();
+                }
+
+                Stream readStream = File.OpenRead(filePath);
+
+                AceQLDataReader aceQLDataReader = new AceQLDataReader(filePath, readStream, rowsCount, connection);
+                return aceQLDataReader;
+
+            }
+            catch (Exception exception)
+            {
+                simpleTracer.Trace(exception.ToString());
+
+                if (exception.GetType() == typeof(AceQLException))
+                {
+                    throw;
+                }
+                else
+                {
+                    throw new AceQLException(exception.Message, 0, exception, aceQLHttpApi.HttpStatusCode);
+                }
+            }
         }
 
         /// <summary>
