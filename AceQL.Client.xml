@@ -1826,8 +1826,8 @@
             <summary>
             Dates the time to unix timestamp.
             </summary>
-            <param name="dateTime">The UNIX date time in milliseconds</param>
-            <returns>String.</returns>
+            <param name="value">The value.</param>
+            <returns>System.Int64.</returns>
         </member>
         <member name="T:AceQL.Client.Api.Util.AceQLTypes">
              <summary>   The main supported SQL types. </summary>
@@ -2350,6 +2350,24 @@
             </summary>
             <param name="str">The string.</param>
             <param name="separator">The separator.</param>
+            <returns>System.String.</returns>
+        </member>
+        <member name="T:AceQL.Client.Api.Util.TypeConverter">
+            <summary>
+            Class TypeConverter.
+            </summary>
+        </member>
+        <member name="M:AceQL.Client.Api.Util.TypeConverter.#ctor(System.Type)">
+            <summary>
+            Initializes a new instance of the <see cref="T:AceQL.Client.Api.Util.TypeConverter"/> class.
+            </summary>
+            <param name="csharpType">CSharp Type.</param>
+            <exception cref="T:System.ArgumentNullException">csharpType is null!</exception>
+        </member>
+        <member name="M:AceQL.Client.Api.Util.TypeConverter.GetJavaTypeName">
+            <summary>
+            Gets the name of the java type.
+            </summary>
             <returns>System.String.</returns>
         </member>
         <member name="T:AceQL.Client.Api.Util.UserLoginStore">

@@ -217,13 +217,13 @@ namespace AceQL.Client.Api.Util
                 {
                     String paramType = "TIMESTAMP";
                     parametersList.Add("param_type_" + paramIndex, paramType);
-                    parametersList.Add("param_value_" + paramIndex, ConvertToTimestamp((DateTime)ParmValue));
+                    parametersList.Add("param_value_" + paramIndex, ConvertToTimestamp((DateTime)ParmValue).ToString());
                 }
                 else if (ParmValue is TimeSpan)
                 {
                     String paramType = "TIME";
                     parametersList.Add("param_type_" + paramIndex, paramType);
-                    parametersList.Add("param_value_" + paramIndex, ConvertToTimestamp((DateTime)ParmValue));
+                    parametersList.Add("param_value_" + paramIndex, ConvertToTimestamp((DateTime)ParmValue).ToString());
                 }
                 else
                 {
@@ -343,21 +343,16 @@ namespace AceQL.Client.Api.Util
             return cmdText;
         }
 
-
         /// <summary>
         /// Dates the time to unix timestamp.
         /// </summary>
-        /// <param name="dateTime">The UNIX date time in milliseconds</param>
-        /// <returns>String.</returns>
-        internal static String ConvertToTimestamp(DateTime dateTime)
+        /// <param name="value">The value.</param>
+        /// <returns>System.Int64.</returns>
+        internal static long ConvertToTimestamp(DateTime value)
         {
-            double theDouble = (TimeZoneInfo.ConvertTime(dateTime, TimeZoneInfo.Utc) - new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc)).TotalMilliseconds;
-            String theTimeString = theDouble.ToString(CultureInfo.InvariantCulture);
-
-            // Remove "." or ',' depending on Locale:
-            theTimeString = StringUtils.SubstringBefore(theTimeString, ",");
-            theTimeString = StringUtils.SubstringBefore(theTimeString, ".");
-            return theTimeString;
+            DateTime Epoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+            TimeSpan elapsedTime = value - Epoch;
+            return (long)elapsedTime.TotalMilliseconds;
         }
 
         private static void Debug(string s)
