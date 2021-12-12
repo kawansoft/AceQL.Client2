@@ -551,9 +551,9 @@ namespace AceQL.Client.Api.Http
             {
                 { "gzip_result", gzipResult.ToString() },
                 { "pretty_printing", prettyPrinting.ToString()},
+                { "column_types", "true" }, // Force column_types, mandatory for C# AceQLDataReader
                 { "server_query_executor_dto", jsonString }
             };
-
 
             Uri urlWithaction = new Uri(url + action);
             Stream input = await httpManager.CallWithPostAsync(urlWithaction, parametersMap).ConfigureAwait(false);
