@@ -52,12 +52,13 @@ namespace AceQL.Client.Test
             AceQLTestColumnAsKeyName.TheMain(args);
             SqlServerStoredProcedureTestUtf8.TheMain(args);
             AceQLTestMetadata.TheMain();
+            ServerQueryExecuteTest.TheMain(args);
         }
 
 
         public static void Main(string[] args)
         {
-            int mainToLaunch = 12;
+            int mainToLaunch = 0;
 
             if (mainToLaunch == 0)
             {
