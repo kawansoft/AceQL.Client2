@@ -545,7 +545,7 @@ namespace AceQL.Client.Api.Http
             }
 
             ServerQueryExecutorDto serverQueryExecutorDto = ServerQueryExecutorDtoBuilder.Build(serverQueryExecutorClassName, parameters);
-            string jsonString = JsonConvert.SerializeObject(serverQueryExecutorDto); ;
+            string jsonString = JsonConvert.SerializeObject(serverQueryExecutorDto);
 
             Dictionary<string, string> parametersMap = new Dictionary<string, string>
             {

@@ -481,7 +481,7 @@
         </member>
         <member name="T:AceQL.Client.Api.Http.HttpClientHandlerBuilderNew">
             <summary>
-            Class HttpClientHandlerBuilder. Allows to build an HttpClientHandler.
+            Class HttpClientHandlerBuilder. Allows to Build an HttpClientHandler.
             </summary>
         </member>
         <member name="M:AceQL.Client.Api.Http.HttpClientHandlerBuilderNew.Build(System.String,System.Net.ICredentials,System.Boolean)">
@@ -730,6 +730,37 @@
             Gets the JDBC database meta data.
             </summary>
             <value>The JDBC database meta data.</value>
+        </member>
+        <member name="M:AceQL.Client.Api.Metadata.Dto.ServerQueryExecutorDto.#ctor(System.String,System.Collections.Generic.List{System.String},System.Collections.Generic.List{System.String})">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="serverQueryExecutorClassName"> </param>
+            <param name="parameterTypes"> </param>
+            <param name="parameterValues"> </param>
+        </member>
+        <member name="P:AceQL.Client.Api.Metadata.Dto.ServerQueryExecutorDto.ServerQueryExecutorClassName">
+            <returns> the serverQueryExecutorClassName </returns>
+        </member>
+        <member name="P:AceQL.Client.Api.Metadata.Dto.ServerQueryExecutorDto.ParameterTypes">
+            <returns> the parameterTypes </returns>
+        </member>
+        <member name="P:AceQL.Client.Api.Metadata.Dto.ServerQueryExecutorDto.ParameterValues">
+            <returns> the parameterValues </returns>
+        </member>
+        <member name="T:AceQL.Client.Api.Metadata.Dto.ServerQueryExecutorDtoBuilder">
+            <summary>
+            Class ServerQueryExecutorDtoBuilder. Builds a ServerQueryExecutorDto using the queryExecutorClassName and its parameters
+            </summary>
+        </member>
+        <member name="M:AceQL.Client.Api.Metadata.Dto.ServerQueryExecutorDtoBuilder.Build(System.String,System.Collections.Generic.List{System.Object})">
+            <summary>
+            Builds the specified server query executor class name.
+            </summary>
+            <param name="serverQueryExecutorClassName">Name of the server AceQL query executor class.</param>
+            <param name="parameters">The parameters.</param>
+            <returns>ServerQueryExecutorDto.</returns>
+            <exception cref="T:System.NotImplementedException"></exception>
         </member>
         <member name="T:AceQL.Client.Api.Metadata.Dto.TableDto">
             <summary>

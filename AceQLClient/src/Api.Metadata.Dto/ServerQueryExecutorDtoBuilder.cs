@@ -25,9 +25,9 @@ using System.Collections.Generic;
 namespace AceQL.Client.Api.Metadata.Dto
 {
     /// <summary>
-    /// Class ServerQueryExecutorDtoBuilder. Builds a ServerQueryExecutorDto using the erverQueryExecutorClassName and its parameters
+    /// Class ServerQueryExecutorDtoBuilder. Builds a ServerQueryExecutorDto using the queryExecutorClassName and its parameters
     /// </summary>
-    internal class ServerQueryExecutorDtoBuilder
+    internal static class ServerQueryExecutorDtoBuilder
     {
         /// <summary>
         /// Builds the specified server query executor class name.
