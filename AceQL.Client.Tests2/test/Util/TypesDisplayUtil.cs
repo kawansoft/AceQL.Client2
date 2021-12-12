@@ -61,7 +61,7 @@ namespace AceQL.Client.Test.Util
         internal static long ConvertToTimestamp(DateTime value)
         {
             DateTime Epoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
-            TimeSpan elapsedTime = value - Epoch;
+            TimeSpan elapsedTime = TimeZoneInfo.ConvertTime(value, TimeZoneInfo.Utc) - Epoch;
             long theTimestamp = (long)elapsedTime.TotalMilliseconds;
             return theTimestamp;
         }

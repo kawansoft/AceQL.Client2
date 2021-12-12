@@ -346,13 +346,32 @@ namespace AceQL.Client.Api.Util
         /// <summary>
         /// Dates the time to unix timestamp.
         /// </summary>
-        /// <param name="value">The value.</param>
-        /// <returns>System.Int64.</returns>
+        /// <param name="dateTime">The date time.</param>
+        /// <returns>The Timestamp.</returns>
         internal static long ConvertToTimestamp(DateTime value)
         {
             DateTime Epoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
-            TimeSpan elapsedTime = value - Epoch;
-            return (long)elapsedTime.TotalMilliseconds;
+            TimeSpan elapsedTime = TimeZoneInfo.ConvertTime(value, TimeZoneInfo.Utc) - Epoch;
+            long theTimestamp = (long)elapsedTime.TotalMilliseconds;
+            return theTimestamp;
+        }
+
+        /// <summary>
+        /// Converts to timestamp version 1. Uses"," and "." parsing... 
+        /// Replaced by static long ConvertToTimestamp(DateTime value).
+        /// Keep in case of troubles.
+        /// </summary>
+        /// <param name="dateTime">The date time.</param>
+        /// <returns>The Timestamp</returns>
+        internal static String ConvertToTimestampV1(DateTime dateTime)
+        {
+            double theDouble = (TimeZoneInfo.ConvertTime(dateTime, TimeZoneInfo.Utc) - new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc)).TotalMilliseconds;
+            String theTimeString = theDouble.ToString(CultureInfo.InvariantCulture);
+
+            // Remove "." or ',' depending on Locale:
+            theTimeString = StringUtils.SubstringBefore(theTimeString, ",");
+            theTimeString = StringUtils.SubstringBefore(theTimeString, ".");
+            return theTimeString;
         }
 
         private static void Debug(string s)

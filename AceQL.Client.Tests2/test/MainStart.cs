@@ -56,10 +56,6 @@ namespace AceQL.Client.Test
 
         public static void Main(string[] args)
         {
-            TypesDisplayUtil.TestCSharpTypes();
-            Boolean doReturn = false;
-            if (doReturn) return;
-
             int mainToLaunch = 0;
 
             if (mainToLaunch == 0)

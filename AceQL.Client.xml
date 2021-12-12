@@ -1857,8 +1857,17 @@
             <summary>
             Dates the time to unix timestamp.
             </summary>
-            <param name="value">The value.</param>
-            <returns>System.Int64.</returns>
+            <param name="dateTime">The date time.</param>
+            <returns>The Timestamp.</returns>
+        </member>
+        <member name="M:AceQL.Client.Api.Util.AceQLCommandUtil.ConvertToTimestampV1(System.DateTime)">
+            <summary>
+            Converts to timestamp version 1. Uses"," and "." parsing... 
+            Replaced by static long ConvertToTimestamp(DateTime value).
+            Keep in case of troubles.
+            </summary>
+            <param name="dateTime">The date time.</param>
+            <returns>The Timestamp</returns>
         </member>
         <member name="T:AceQL.Client.Api.Util.AceQLTypes">
              <summary>   The main supported SQL types. </summary>
