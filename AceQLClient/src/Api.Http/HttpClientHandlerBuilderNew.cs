@@ -30,7 +30,7 @@ using System.Threading.Tasks;
 namespace AceQL.Client.Api.Http
 {
     /// <summary>
-    /// Class HttpClientHandlerBuilder. Allows to build an HttpClientHandler.
+    /// Class HttpClientHandlerBuilder. Allows to Build an HttpClientHandler.
     /// </summary>
     static internal class HttpClientHandlerBuilderNew
     {

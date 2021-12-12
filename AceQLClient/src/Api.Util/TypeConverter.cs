@@ -30,7 +30,7 @@ namespace AceQL.Client.Api.Util
     /// </summary>
     internal class TypeConverter
     {
-        private Type csharpType;
+        private readonly Type csharpType;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TypeConverter"/> class.

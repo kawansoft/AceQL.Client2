@@ -410,7 +410,7 @@ namespace AceQL.Client.Api
             {
                 AceQLCommandUtil aceQLCommandUtil = new AceQLCommandUtil(cmdText, Parameters);
 
-                // Get the parameters and build the result set
+                // Get the parameters and Build the result set
                 Dictionary<string, string> statementParameters = aceQLCommandUtil.GetPreparedStatementParameters();
 
                 foreach (string key in statementParameters.Keys)
@@ -543,7 +543,7 @@ namespace AceQL.Client.Api
             {
                 AceQLCommandUtil aceQLCommandUtil = new AceQLCommandUtil(cmdText, Parameters);
 
-                // Get the parameters and build the result set
+                // Get the parameters and Build the result set
                 Dictionary<string, string> statementParameters = aceQLCommandUtil.GetPreparedStatementParameters();
 
                 // Uploads Blobs
@@ -642,7 +642,7 @@ namespace AceQL.Client.Api
 
             AceQLCommandUtil aceQLCommandUtil = new AceQLCommandUtil(cmdText, Parameters);
 
-            // Get the parameters and build the result set
+            // Get the parameters and Build the result set
             Dictionary<string, string> statementParameters = aceQLCommandUtil.GetPreparedStatementParameters();
 
             // We can do only one "@param" params replace with attended JDBC "?" values

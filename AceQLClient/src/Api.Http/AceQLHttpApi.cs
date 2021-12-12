@@ -53,8 +53,8 @@ namespace AceQL.Client.Api.Http
         /// <summary>
         /// The database
         /// </summary>
-        private String database ;
-        private char[] password ;
+        private String database;
+        private char[] password;
 
         /// <summary>
         /// The Web Proxy Uri
@@ -382,7 +382,7 @@ namespace AceQL.Client.Api.Http
         /// Gets the connection string.
         /// </summary>
         /// <value>The connection string.</value>
-        internal string ConnectionString { get => connectionString;}
+        internal string ConnectionString { get => connectionString; }
 
         /// <summary>
         /// Says it use has passed a CancellationToken
@@ -534,7 +534,33 @@ namespace AceQL.Client.Api.Http
             return await httpManager.CallWithGetAsync(urlWithaction).ConfigureAwait(false);
         }
 
-        internal async Task<Stream> ExecuteQueryAsync(string cmdText,  bool isStoredProcedure, bool isPreparedStatement, Dictionary<string, string> statementParameters)
+
+        internal async Task<Stream> ExecuteServerQueryAsync(String serverQueryExecutorClassName, List<Object> parameters)
+        {
+            String action = "execute_server_query";
+
+            if (parameters == null)
+            {
+                parameters = new List<object>();
+            }
+
+            ServerQueryExecutorDto serverQueryExecutorDto = ServerQueryExecutorDtoBuilder.Build(serverQueryExecutorClassName, parameters);
+            string jsonString = JsonConvert.SerializeObject(serverQueryExecutorDto); ;
+
+            Dictionary<string, string> parametersMap = new Dictionary<string, string>
+            {
+                { "gzip_result", gzipResult.ToString() },
+                { "pretty_printing", prettyPrinting.ToString()},
+                { "server_query_executor_dto", jsonString }
+            };
+
+
+            Uri urlWithaction = new Uri(url + action);
+            Stream input = await httpManager.CallWithPostAsync(urlWithaction, parametersMap).ConfigureAwait(false);
+            return input;
+        }
+
+        internal async Task<Stream> ExecuteQueryAsync(string cmdText, bool isStoredProcedure, bool isPreparedStatement, Dictionary<string, string> statementParameters)
         {
             String action = "execute_query";
 
@@ -635,7 +661,7 @@ namespace AceQL.Client.Api.Http
 
             Debug("batchFileParameters : " + batchFileParameters);
             Debug("blobId              : " + blobId);
-            
+
             long length = new FileInfo(batchFileParameters).Length;
 
             using (Stream stream = File.OpenRead(batchFileParameters))
@@ -667,7 +693,7 @@ namespace AceQL.Client.Api.Http
 
             UpdateCountsArrayDto updateCountsArrayDto = JsonConvert.DeserializeObject<UpdateCountsArrayDto>(result);
             int[] updateCountsArray = updateCountsArrayDto.GetUpdateCountsArray();
-	        return updateCountsArray;
+            return updateCountsArray;
         }
 
         /// <summary>
@@ -841,11 +867,11 @@ namespace AceQL.Client.Api.Http
             return new DatabaseInfo(databaseInfoDto);
         }
 
-    /// <summary>
-    /// To be call at end of each of each public aysnc(CancellationToken) calls to reset to false the usage of a CancellationToken with http calls
-    /// and some reader calls.
-    /// </summary>
-    internal void ResetCancellationToken()
+        /// <summary>
+        /// To be call at end of each of each public aysnc(CancellationToken) calls to reset to false the usage of a CancellationToken with http calls
+        /// and some reader calls.
+        /// </summary>
+        internal void ResetCancellationToken()
         {
             this.useCancellationToken = false;
         }
