@@ -17,10 +17,13 @@ they would do for an SQL Server database.
 The AceQL C# Client SDK is licensed under the Apache 2.0 License.
 
 
-AceQL C# Client SDK - Version 7.4 - 11-Dec-2021
+AceQL C# Client SDK - Version 7.4 - 13-Dec-2021
 -----------------------------------------------
 
 What's new:
+- The new AceQLExecuteServerQueryAsync method allows
+  calling a remote server class that returns directly an AceQLDataReader.
+  See User Documentation.
 - Internal AceQLCommandUtil.ConvertToTimestamp() function has been rewritten
   in order to avoid to parse commas and points.
 
