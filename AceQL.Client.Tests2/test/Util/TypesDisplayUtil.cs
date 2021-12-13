@@ -32,21 +32,22 @@ namespace AceQL.Client.Test.Util
             long myLong = 42L;
             DateTime myDateTime = DateTime.Now;
 
-            AceQLConsole.WriteLine("bool    : " + myBool.GetType().Name);
-            AceQLConsole.WriteLine("short   : " + myShort.GetType().Name);
-            AceQLConsole.WriteLine("int     : " + myInt.GetType().Name);
-            AceQLConsole.WriteLine("String  : " + myString.GetType().Name);
-            AceQLConsole.WriteLine("string  : " + mystring.GetType().Name);
-            AceQLConsole.WriteLine("float   : " + myFloat.GetType().Name);
-            AceQLConsole.WriteLine("double  : " + myDouble.GetType().Name);
-            AceQLConsole.WriteLine("long    : " + myLong.GetType().Name);
-            AceQLConsole.WriteLine("DateTime Old: " + myDateTime.GetType().Name + " " + ConvertToTimestampOld(myDateTime));
-            AceQLConsole.WriteLine("DateTime New: " + myDateTime.GetType().Name + " " + ConvertToTimestamp(myDateTime).ToString());
-            AceQLConsole.WriteLine();
-            AceQLConsole.WriteLine("Press enter to continue....");
+            Console.WriteLine("bool    : " + myBool.GetType().Name);
+            Console.WriteLine("short   : " + myShort.GetType().Name);
+            Console.WriteLine("int     : " + myInt.GetType().Name);
+            Console.WriteLine("String  : " + myString.GetType().Name);
+            Console.WriteLine("string  : " + mystring.GetType().Name);
+            Console.WriteLine("float   : " + myFloat.GetType().Name);
+            Console.WriteLine("double  : " + myDouble.GetType().Name);
+            Console.WriteLine("long    : " + myLong.GetType().Name);
+            //Console.WriteLine("DateTime Old: " + myDateTime.GetType().Name + " " + ConvertToTimestampOld(myDateTime));
+            //Console.WriteLine("DateTime New: " + myDateTime.GetType().Name + " " + ConvertToTimestamp(myDateTime).ToString());
+            Console.WriteLine();
+            Console.WriteLine("Press enter to continue....");
             Console.ReadLine();
         }
 
+        /*
         internal static String ConvertToTimestampOld(DateTime dateTime)
         {
             double theDouble = (TimeZoneInfo.ConvertTime(dateTime, TimeZoneInfo.Utc) - new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc)).TotalMilliseconds;
@@ -65,6 +66,6 @@ namespace AceQL.Client.Test.Util
             long theTimestamp = (long)elapsedTime.TotalMilliseconds;
             return theTimestamp;
         }
-
+        */
     }
 }

@@ -114,6 +114,10 @@ namespace AceQL.Client.Test
             {
                 ServerQueryExecuteTest.TheMain(args);
             }
+            else if (mainToLaunch == 13)
+            {
+                TypesDisplayUtil.TestCSharpTypes();
+            }
         }
 
     }

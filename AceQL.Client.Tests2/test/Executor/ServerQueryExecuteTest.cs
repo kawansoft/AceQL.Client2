@@ -75,7 +75,7 @@ namespace AceQL.Client.Test.Executor
 
             String serverQueryExecutorClassName = "org.kawanfw.test.api.server.executor.MyServerQueryExecutor";
             List<object> parameters = new List<object>();
-            parameters.Add(6);
+            parameters.Add(1);
 
             // Our dataReader must be disposed to delete underlying downloaded files
             using (AceQLDataReader dataReader = await command.ExecuteServerQueryAsync(serverQueryExecutorClassName, parameters))
