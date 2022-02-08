@@ -51,12 +51,15 @@
          * [Managing BLOB upload progress](#managing-blob-upload-progress)
       * [Advanced Features](#advanced-features)
          * [Calling AceQL Java stored procedures](#calling-aceql-java-stored-procedures)
-         * [Using outer authentication without a password  and with an AceQL Session ID](#using-outer-authentication-without-a-password--and-with-an-aceql-                                  session-id)
+         * [Using outer authentication without a password  and with an AceQL Session ID](#using-outer-authentication-without-a-password--and-with-an-aceql-session-id)
          * [Enable default system authentication](#enable-default-system-authentication)
       * [Using the Metadata Query API](#using-the-metadata-query-api)
          * [Downloading database schema into a file](#downloading-database-schema-into-a-file)
          * [Accessing remote database main properties](#accessing-remote-database-main-properties)
          * [Getting Details of Tables and Columns](#getting-details-of-tables-and-columns)
+
+
+
 
 
 
