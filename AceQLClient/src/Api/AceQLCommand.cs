@@ -270,7 +270,7 @@ namespace AceQL.Client.Api
         /// <exception cref="AceQLException">0</exception>
         public async Task<AceQLDataReader> ExecuteServerQueryAsync(String serverQueryExecutorClassName, List<object> parameters)
         {
-            if (!await AceQLConnectionUtil.IsGetDatabaseInfoSupported(connection))
+            if (!await AceQLConnectionUtil.IsExecuteServerQuerySupported(connection))
             {
                 throw new NotSupportedException("AceQL Server version must be >= " + AceQLConnectionUtil.EXECUTE_SERVER_QUERY_MIN_SERVER_VERSION
                     + " in order to call ExecuteServerQueryAsync().");
