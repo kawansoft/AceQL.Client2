@@ -27,6 +27,7 @@ namespace AceQL.Client.Api
     {
         internal static readonly string BATCH_MIN_SERVER_VERSION = "8.0";
         internal static readonly string GET_DATABASE_INFO_MIN_SERVER_VERSION = "9.0";
+        internal static readonly string EXECUTE_SERVER_QUERY_MIN_SERVER_VERSION = "10.1";
 
         private static string SERVER_VERSION_NUMBER;
 
@@ -89,6 +90,17 @@ namespace AceQL.Client.Api
         {
             String rawServerVersion = await ExtractRawServerVersion(connection).ConfigureAwait(false);
             return IsCurrentVersionOk(rawServerVersion, GET_DATABASE_INFO_MIN_SERVER_VERSION);
+        }
+
+        /// <summary>
+        /// Determines whether is AceQLCommand.ExecuteServerQueryAsync supported on server side.
+        /// </summary>
+        /// <param name="connection">The connection.</param>
+        /// <returns><c>true</c> if AceQLCommand.ExecuteServerQueryAsync supported on server side. otherwise, <c>false</c>.</returns>
+        internal static async Task<bool> IsExecuteServerQuerySupported(AceQLConnection connection)
+        {
+            String rawServerVersion = await ExtractRawServerVersion(connection).ConfigureAwait(false);
+            return IsCurrentVersionOk(rawServerVersion, EXECUTE_SERVER_QUERY_MIN_SERVER_VERSION);
         }
     }
 }

@@ -2979,6 +2979,13 @@
             <param name="connection">The connection.</param>
             <returns>Task&lt;System.Boolean&gt;.</returns>
         </member>
+        <member name="M:AceQL.Client.Api.AceQLConnectionUtil.IsExecuteServerQuerySupported(AceQL.Client.Api.AceQLConnection)">
+            <summary>
+            Determines whether is AceQLCommand.ExecuteServerQueryAsync supported on server side.
+            </summary>
+            <param name="connection">The connection.</param>
+            <returns><c>true</c> if AceQLCommand.ExecuteServerQueryAsync supported on server side. otherwise, <c>false</c>.</returns>
+        </member>
         <member name="T:AceQL.Client.Api.AceQLCredential">
             <summary>
             <see cref="T:AceQL.Client.Api.AceQLCredential"/> provides a more secure way than using a connection string to specify the username, password or Session ID for a login attempt.

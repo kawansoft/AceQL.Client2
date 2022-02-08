@@ -7,7 +7,7 @@
     <PackageId>AceQL.Client</PackageId>
     <Company>KawanSoft</Company>
     <Description>AceQL allows C# and Xamarin developers to access remote SQL databases and/or SQL databases in the cloud by simply including standard SQL calls in their code. AceQL operates with AceQL HTTP on server side. See www.aceql.com for more info.</Description>
-    <Copyright>Copyright © 2021</Copyright>
+    <Copyright>Copyright © 2022</Copyright>
     <PackageLicenseExpression></PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/kawansoft/AceQL.Client2</PackageProjectUrl>
     <PackageIcon>favicon.png</PackageIcon>

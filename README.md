@@ -5,9 +5,9 @@
 
 # AceQL HTTP 
 
-## C# Client SDK v7.3 - User Guide
+## C# Client SDK v7.4 - User Guide
 
-## December 3, 2021
+## February 8, 2022
 
 <img src="https://docs.aceql.com/favicon.png" alt="AceQ HTTP Icon"/>
 
@@ -50,12 +50,14 @@
          * [BLOB reading](#blob-reading)
          * [Managing BLOB upload progress](#managing-blob-upload-progress)
       * [Advanced Features](#advanced-features)
-         * [Using outer authentication without a password  and with an AceQL Session ID](#using-outer-authentication-without-a-password--and-with-an-aceql-session-id)
+         * [Calling AceQL Java stored procedures](#calling-aceql-java-stored-procedures)
+         * [Using outer authentication without a password  and with an AceQL Session ID](#using-outer-authentication-without-a-password--and-with-an-aceql-                                  session-id)
          * [Enable default system authentication](#enable-default-system-authentication)
       * [Using the Metadata Query API](#using-the-metadata-query-api)
          * [Downloading database schema into a file](#downloading-database-schema-into-a-file)
          * [Accessing remote database main properties](#accessing-remote-database-main-properties)
          * [Getting Details of Tables and Columns](#getting-details-of-tables-and-columns)
+
 
 
 # Fundamentals 
@@ -72,7 +74,7 @@ On the remote side, like the AceQL Server access to the SQL database using Java 
 
 ## AceQL C# Client SDK Online Documentation
 
-The Online Documentation is accessible [here](https://docs.aceql.com/rest/soft_csharp/7.3/csharpdoc_sdk/html/N-AceQL.Client.Api.htm).
+The Online Documentation is accessible [here](https://docs.aceql.com/rest/soft_csharp/7.4/csharpdoc_sdk/html/N-AceQL.Client.Api.htm).
 
 ## Contributors
 
@@ -97,7 +99,7 @@ The SDK is licensed with the liberal [Apache 2.0](https://www.apache.org/license
 
 ## AceQL Server side compatibility
 
-This version requires AceQL HTTP v7.3.+ server version. It requires version 8.0+ in order to use batch commands. 
+This version requires AceQL HTTP version 8.0+ in order to use batch commands and version 10.1+ to execute AceQL Java stored procedures (see below). 
 
 ## AceQL C# Client SDK installation
 
@@ -739,6 +741,48 @@ You then can read `ProgressIndicator.Percent` property in your watching thread.
 
 ## Advanced Features
 
+### Calling AceQL Java stored procedures
+
+The AceQL client SDK allows executing a remote server class that implements the AceQL Server
+
+`org.kawanfw.sql.api.server.executor.ServerQueryExecutor` interface and that returns an `AceQLDataReader`.
+
+See the `org.kawanfw.sql.api.server.executor.ServerQueryExecutor` [Javadoc](https://docs.aceql.com/rest/soft/10.2/javadoc/org/kawanfw/sql/api/server/executor/ServerQueryExecutor.html).
+
+The usage on the client side is straightforward with the `AceQLCommand.ExecuteServerQueryAsync()` method:
+
+```C#
+public async Task ExecuteServerQueryAsync(AceQLConnection connection)
+{
+    AceQLCommand command = new AceQLCommand(connection);
+
+    // Define the server Java class name to call
+    String serverclassName = "com.mycompany.MyServerQueryExecutor";
+    
+    // Define the parameters list to pass to the server
+    List<object> parameters = new List<object>();
+    parameters.Add(1);
+
+    // Our dataReader must be disposed to delete underlying downloaded files
+    // Call the remote com.mycompany.MyServerQueryExecutor.executeQuery method
+    // and get the result
+    using AceQLDataReader dataReader = await command.ExecuteServerQueryAsync(serverclassName, parameters);
+    while (dataReader.Read())
+    {
+        AceQLConsole.WriteLine();
+        AceQLConsole.WriteLine("" + DateTime.Now);
+        int i = 0;
+        AceQLConsole.WriteLine(
+            "customer_id   : " + dataReader.GetValue(i++) + "\n"
+            + "customer_title: " + dataReader.GetValue(i++) + "\n"
+            + "fname         : " + dataReader.GetValue(i++) + "\n"
+            + "lname         : " + dataReader.GetValue(i++));
+    }
+}
+```
+
+
+
 ### Using outer authentication without a password  and with an AceQL Session ID
 
 Some working environments (Intranet, etc.) require that the client user authenticates himself without a password. Thus, it is not possible for this users to authenticate though the AceQL client SDK.
@@ -798,7 +842,7 @@ RemoteDatabaseMetaData remoteDatabaseMetaData = connection.GetRemoteDatabaseMeta
 
 ### Downloading database schema into a file
 
-Downloading a schema into a  `File` is done through the method. See the `RemoteDatabaseMetaData` [Documentation](https://docs.aceql.com/rest/soft_csharp/7.3/csharpdoc_sdk):
+Downloading a schema into a  `File` is done through the method. See the `RemoteDatabaseMetaData` [Documentation](https://docs.aceql.com/rest/soft_csharp/7.4/csharpdoc_sdk):
 
 ```C#
 string userPath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
@@ -814,7 +858,7 @@ using (Stream stream = await remoteDatabaseMetaData.DbSchemaDownloadAsync())
 }
 ```
 
-See an example of the built HTML schema:  [db_schema.out.html](https://docs.aceql.com/rest/soft_csharp/7.3/src/db_schema.out.html)
+See an example of the built HTML schema:  [db_schema.out.html](https://docs.aceql.com/rest/soft_csharp/7.4/src/db_schema.out.html)
 
 ### Accessing remote database main properties
 
@@ -829,7 +873,7 @@ Console.WriteLine("IsReadOnly   : " + jdbcDatabaseMetaData.IsReadOnly);
 
 ### Getting Details of Tables and Columns
 
-See the `RemoteDatabaseMetaData` [Documentation](https://docs.aceql.com/rest/soft_csharp/7.3/csharpdoc_sdk):
+See the `RemoteDatabaseMetaData` [Documentation](https://docs.aceql.com/rest/soft_csharp/7.4/csharpdoc_sdk):
 
 ```C#
 Console.WriteLine("Get the table names:");

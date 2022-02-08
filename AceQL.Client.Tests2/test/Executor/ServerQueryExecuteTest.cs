@@ -58,106 +58,43 @@ namespace AceQL.Client.Test.Executor
 
             using (AceQLConnection connection = await ConnectionCreator.ConnectionCreateAsync().ConfigureAwait(false))
             {
-                ServerQueryExecuteTest serverQueryExecuteTest = new ServerQueryExecuteTest(connection);
-                await serverQueryExecuteTest.ExecuteServerQueryAsync();
+                ServerQueryExecuteTest serverQueryExecuteTest = new ServerQueryExecuteTest();
+                await serverQueryExecuteTest.ExecuteServerQueryAsync(connection);
             }
 
         }
 
-        public ServerQueryExecuteTest(AceQLConnection connection)
-        {
-            this.connection = connection;
-        }
-
-        public async Task ExecuteServerQueryAsync()
+        /// <summary>
+        /// Calls an AceQL Java stored procedure
+        /// </summary>
+        /// <param name="connection">The connection.</param>
+        /// <returns>A Task representing the asynchronous operation.</returns>
+        public async Task ExecuteServerQueryAsync(AceQLConnection connection)
         {
             AceQLCommand command = new AceQLCommand(connection);
 
-            String serverQueryExecutorClassName = "org.kawanfw.test.api.server.executor.MyServerQueryExecutor";
+            // Define the server Java class name to call
+            String serverclassName = "com.mycompany.MyServerQueryExecutor";
+
+            // Define the parameters list to pass to the server
             List<object> parameters = new List<object>();
             parameters.Add(1);
 
             // Our dataReader must be disposed to delete underlying downloaded files
-            using (AceQLDataReader dataReader = await command.ExecuteServerQueryAsync(serverQueryExecutorClassName, parameters))
+            // Call the remote com.mycompany.MyServerQueryExecutor.executeQuery method
+            // and get the result
+            using AceQLDataReader dataReader = await command.ExecuteServerQueryAsync(serverclassName, parameters);
+            while (dataReader.Read())
             {
-                //await dataReader.ReadAsync(new CancellationTokenSource().Token)
-                while (dataReader.Read())
-                {
-                    AceQLConsole.WriteLine();
-                    AceQLConsole.WriteLine("" + DateTime.Now);
-                    int i = 0;
-                    AceQLConsole.WriteLine("GetValue: " + dataReader.GetValue(i++) + "\n"
-                        + "GetValue: " + dataReader.GetValue(i++) + "\n"
-                        + "GetValue: " + dataReader.GetValue(i++) + "\n"
-                        + "GetValue: " + dataReader.GetValue(i++) + "\n"
-                        + "GetValue: " + dataReader.GetValue(i++) + "\n"
-                        + "GetValue: " + dataReader.GetValue(i++) + "\n"
-                        + "GetValue: " + dataReader.GetValue(i++) + "\n"
-                        + "GetValue: " + dataReader.GetValue(i));
-                }
+                AceQLConsole.WriteLine();
+                AceQLConsole.WriteLine("" + DateTime.Now);
+                int i = 0;
+                AceQLConsole.WriteLine(
+                    "customer_id   : " + dataReader.GetValue(i++) + "\n"
+                    + "customer_title: " + dataReader.GetValue(i++) + "\n"
+                    + "fname         : " + dataReader.GetValue(i++) + "\n"
+                    + "lname         : " + dataReader.GetValue(i++));
             }
         }
-
-        public async Task SelectOneCustomer()
-        {
-            string sql = "select * from customer where customer_id >=1 limit 1";
-            AceQLCommand command = new AceQLCommand(sql, connection);
-
-            // Our dataReader must be disposed to delete underlying downloaded files
-            using (AceQLDataReader dataReader = await command.ExecuteReaderAsync())
-            {
-                //await dataReader.ReadAsync(new CancellationTokenSource().Token)
-                while (dataReader.Read())
-                {
-                    AceQLConsole.WriteLine();
-                    AceQLConsole.WriteLine("" + DateTime.Now);
-                    int i = 0;
-                    AceQLConsole.WriteLine("GetValue: " + dataReader.GetValue(i++) + "\n"
-                        + "GetValue: " + dataReader.GetValue(i++) + "\n"
-                        + "GetValue: " + dataReader.GetValue(i++) + "\n"
-                        + "GetValue: " + dataReader.GetValue(i++) + "\n"
-                        + "GetValue: " + dataReader.GetValue(i++) + "\n"
-                        + "GetValue: " + dataReader.GetValue(i++) + "\n"
-                        + "GetValue: " + dataReader.GetValue(i++) + "\n"
-                        + "GetValue: " + dataReader.GetValue(i));
-                }
-            }
-        }
-
-        public async Task SelectCustomers()
-        {
-            string sql = "select * from customer where customer_id > @parm1";
-            AceQLCommand command = new AceQLCommand(sql, connection);
-            command.Parameters.AddWithValue("@parm1", 1);
-
-            // Our dataReader must be disposed to delete underlying downloaded files
-            using (AceQLDataReader dataReader = await command.ExecuteReaderAsync())
-            {
-                //await dataReader.ReadAsync(new CancellationTokenSource().Token)
-                while (dataReader.Read())
-                {
-                    AceQLConsole.WriteLine();
-                    AceQLConsole.WriteLine("" + DateTime.Now);
-                    int i = 0;
-                    AceQLConsole.WriteLine("GetValue: " + dataReader.GetValue(i++) + "\n"
-                        + "GetValue: " + dataReader.GetValue(i++) + "\n"
-                        + "GetValue: " + dataReader.GetValue(i++) + "\n"
-                        + "GetValue: " + dataReader.GetValue(i++) + "\n"
-                        + "GetValue: " + dataReader.GetValue(i++) + "\n"
-                        + "GetValue: " + dataReader.GetValue(i++) + "\n"
-                        + "GetValue: " + dataReader.GetValue(i++) + "\n"
-                        + "GetValue: " + dataReader.GetValue(i));
-                }
-            }
-        }
-
-        public async Task<int> SelectMaxCustomers()
-        {
-            string sql = "select max(customer_id) from customer";
-            AceQLCommand command = new AceQLCommand(sql, connection);
-            int maxCustomerId = (Int32)await command.ExecuteScalar();
-            return maxCustomerId;
-        }
-
     }
 }
