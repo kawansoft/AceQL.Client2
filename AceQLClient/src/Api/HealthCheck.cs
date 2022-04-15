@@ -39,7 +39,7 @@ namespace AceQL.Client.Api
         internal SimpleTracer simpleTracer = new SimpleTracer();
 
         /// <summary>
-        /// Returns the AceQLException thrown if a <c>Ping()</c> returns false
+        /// The AceQLException thrown if a <c>Ping()</c> returns false
         /// </summary>
         /// <value>The AceQLException thrown if a <c>Ping()</c> returns false.</value>
         public AceQLException AceQLException { get => aceQLException; }

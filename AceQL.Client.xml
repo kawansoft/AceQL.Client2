@@ -4120,7 +4120,7 @@
         </member>
         <member name="P:AceQL.Client.Api.HealthCheck.AceQLException">
             <summary>
-            Returns the AceQLException thrown if a <c>Ping()</c> returns false
+            The AceQLException thrown if a <c>Ping()</c> returns false
             </summary>
             <value>The AceQLException thrown if a <c>Ping()</c> returns false.</value>
         </member>
