@@ -21,7 +21,7 @@ AceQL C# Client SDK - Version 7.5 - 15-Apr-2022
 -----------------------------------------------
 
 What's new:
-- The he new HealthCheck API allows checking the remote server's
+- The new HealthCheck API allows checking the remote server's
   availability & response time. It will be enhanced in future
   versions. See AceQL.Client.Api.HealthCheck documentation and class.
 
