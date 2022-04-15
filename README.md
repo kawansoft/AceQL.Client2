@@ -5,9 +5,9 @@
 
 # AceQL HTTP 
 
-## C# Client SDK v7.4 - User Guide
+## C# Client SDK v7.5 - User Guide
 
-## February 8, 2022
+## April 15, 2022
 
 <img src="https://docs.aceql.com/favicon.png" alt="AceQ HTTP Icon"/>
 
@@ -77,7 +77,7 @@ On the remote side, like the AceQL Server access to the SQL database using Java 
 
 ## AceQL C# Client SDK Online Documentation
 
-The Online Documentation is accessible [here](https://docs.aceql.com/rest/soft_csharp/7.4/csharpdoc_sdk/html/N-AceQL.Client.Api.htm).
+The Online Documentation is accessible [here](https://docs.aceql.com/rest/soft_csharp/7.5/csharpdoc_sdk/html/N-AceQL.Client.Api.htm).
 
 ## Contributors
 
@@ -426,14 +426,7 @@ It is unnecessary to dispose an `AceQLCommand`. `AceQLCommand.Dispose` calls do 
 
 NULL values are handled in a specific way, because the remote server must know the type of the NULL value.
 
-*The previous SDK v1.x & v2.0 syntax using directly the `AceQLNullType` `enum` values **is not anymore supported** :*
-
-```C#
-// OBSOLETE v1.0 & 2.0syntax. Will trigger a runtime exception on Parameter creation:
-command.Parameters.Add(new AceQLParameter("@phone", AceQLNullType.VARCHAR);
-```
-
-Use from now on the `AceQLNullValue` class together with the `AceQLNullType` `enum` to pass the NULL type to the `AceQLParameter`. An `AceQLNullValue` instance is created by passing the parameter's `AceQLNullType` value to the constructor: 
+Use the `AceQLNullValue` class together with the `AceQLNullType` `enum` to pass the NULL type to the `AceQLParameter`. An `AceQLNullValue` instance is created by passing the parameter's `AceQLNullType` value to the constructor: 
 
 ```c#
 // We don't know the phone number:
@@ -845,7 +838,7 @@ RemoteDatabaseMetaData remoteDatabaseMetaData = connection.GetRemoteDatabaseMeta
 
 ### Downloading database schema into a file
 
-Downloading a schema into a  `File` is done through the method. See the `RemoteDatabaseMetaData` [Documentation](https://docs.aceql.com/rest/soft_csharp/7.4/csharpdoc_sdk):
+Downloading a schema into a  `File` is done through the method. See the `RemoteDatabaseMetaData` [Documentation](https://docs.aceql.com/rest/soft_csharp/7.5/csharpdoc_sdk):
 
 ```C#
 string userPath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
@@ -861,7 +854,7 @@ using (Stream stream = await remoteDatabaseMetaData.DbSchemaDownloadAsync())
 }
 ```
 
-See an example of the built HTML schema:  [db_schema.out.html](https://docs.aceql.com/rest/soft_csharp/7.4/src/db_schema.out.html)
+See an example of the built HTML schema:  [db_schema.out.html](https://docs.aceql.com/rest/soft_csharp/7.5/src/db_schema.out.html)
 
 ### Accessing remote database main properties
 
@@ -876,7 +869,7 @@ Console.WriteLine("IsReadOnly   : " + jdbcDatabaseMetaData.IsReadOnly);
 
 ### Getting Details of Tables and Columns
 
-See the `RemoteDatabaseMetaData` [Documentation](https://docs.aceql.com/rest/soft_csharp/7.4/csharpdoc_sdk):
+See the `RemoteDatabaseMetaData` [Documentation](https://docs.aceql.com/rest/soft_csharp/7.5/csharpdoc_sdk):
 
 ```C#
 Console.WriteLine("Get the table names:");
