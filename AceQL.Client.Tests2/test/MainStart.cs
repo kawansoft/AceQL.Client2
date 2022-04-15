@@ -25,6 +25,7 @@ using AceQL.Client.test.Dml;
 using AceQL.Client.Test.Connection;
 using AceQL.Client.Test.Dml.Batch;
 using AceQL.Client.Test.Executor;
+using AceQL.Client.Test.HealthChecks.Test;
 using AceQL.Client.Test.Json;
 using AceQL.Client.Test.Metadata;
 using AceQL.Client.Test.StoredProcedure;
@@ -45,9 +46,9 @@ namespace AceQL.Client.Test
 
         public static void TestAll(string[] args)
         {
+            HealthCheckTest.TheMain(args);
             AceQLTest.TheMain();
             DmlSequenceTest.TheMain(args);
-            AceQLTestClose.TheMain(args);
             SqlBatchTest.TheMain(args);
             AceQLTestColumnAsKeyName.TheMain(args);
             SqlServerStoredProcedureTestUtf8.TheMain(args);

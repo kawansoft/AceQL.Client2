@@ -56,7 +56,11 @@ namespace AceQL.Client.Api.Metadata.Dto
 			}
 		}
 
-		public override string ToString()
+        /// <summary>
+        /// Returns a <see cref="System.String" /> that represents this instance.
+        /// </summary>
+        /// <returns>A <see cref="System.String" /> that represents this instance.</returns>
+        public override string ToString()
 		{
 			return "ServerQueryExecutorDto [serverQueryExecutorClassName=" + serverQueryExecutorClassName + ", parameterTypes=" + parameterTypes + ", parameterValues=" + parameterValues + "]";
 		}

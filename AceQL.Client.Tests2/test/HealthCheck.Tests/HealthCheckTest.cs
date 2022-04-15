@@ -1,11 +1,11 @@
 ﻿/*
- * This filePath is part of AceQL C# Client SDK.
+ * This file is part of AceQL C# Client SDK.
  * AceQL C# Client SDK: Remote SQL access over HTTP with AceQL HTTP.                                 
  * Copyright (C) 2021,  KawanSoft SAS
  * (http://www.kawansoft.com). All rights reserved.                                
  *                                                                               
  * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this filePath except in compliance with the License.
+ * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  * 
  *     http://www.apache.org/licenses/LICENSE-2.0
@@ -18,18 +18,23 @@
  */
 
 using AceQL.Client.Api;
+using AceQL.Client.Api.Http;
 using AceQL.Client.Test.Connection;
+using AceQL.Client.Test.Dml;
 using AceQL.Client.Test.Util;
 using System;
-using System.Collections.Generic;
-using System.Text;
+using System.IO;
+using System.Net;
+using System.Threading;
 using System.Threading.Tasks;
 
-namespace AceQL.Client.Test.Executor
+namespace AceQL.Client.Test.HealthChecks.Test
 {
-    public class ServerQueryExecuteTest
+    /// <summary>
+    /// Tests the HealtCheck class.
+    /// </summary>
+    public static class HealthCheckTest
     {
-
         public static void TheMain(string[] args)
         {
             try
@@ -51,49 +56,30 @@ namespace AceQL.Client.Test.Executor
 
         static async Task DoIt()
         {
-
             var netCoreVer = System.Environment.Version; // 3.0.0
             AceQLConsole.WriteLine(netCoreVer + "");
 
             using (AceQLConnection connection = await ConnectionCreator.ConnectionCreateAsync().ConfigureAwait(false))
             {
-                ServerQueryExecuteTest serverQueryExecuteTest = new ServerQueryExecuteTest();
-                await serverQueryExecuteTest.ExecuteServerQueryAsync(connection);
+                await ExecuteExample(connection).ConfigureAwait(false);
+                //NOT Neccessary: await connection.CloseAsync(); 
             }
-
+            
         }
 
         /// <summary>
-        /// Calls an AceQL Java stored procedure
+        /// Executes our example using an <see cref="AceQLConnection"/> 
         /// </summary>
-        /// <param name="connection">The connection.</param>
-        /// <returns>A Task representing the asynchronous operation.</returns>
-        public async Task ExecuteServerQueryAsync(AceQLConnection connection)
+        /// <param name="connection"></param>
+        public static async Task ExecuteExample(AceQLConnection connection)
         {
-            AceQLCommand command = new AceQLCommand(connection);
+            await connection.OpenAsync();
 
-            // Define the server Java class name to call
-            String serverclassName = "com.mycompany.MyServerQueryExecutor";
+            AceQLConsole.WriteLine(AceQLConnection.GetAceQLLocalFolder());
 
-            // Define the parameters list to pass to the server
-            List<object> parameters = new List<object>();
-            parameters.Add(1);
-
-            // Our dataReader must be disposed to delete underlying downloaded files
-            // Call the remote com.mycompany.MyServerQueryExecutor.executeQuery method
-            // and get the result
-            using AceQLDataReader dataReader = await command.ExecuteServerQueryAsync(serverclassName, parameters);
-            while (dataReader.Read())
-            {
-                AceQLConsole.WriteLine();
-                AceQLConsole.WriteLine("" + DateTime.Now);
-                int i = 0;
-                AceQLConsole.WriteLine(
-                    "customer_id   : " + dataReader.GetValue(i++) + "\n"
-                    + "customer_title: " + dataReader.GetValue(i++) + "\n"
-                    + "fname         : " + dataReader.GetValue(i++) + "\n"
-                    + "lname         : " + dataReader.GetValue(i++));
-            }
+            HealthCheck healthCheck = new HealthCheck(connection);
+            AceQLConsole.WriteLine("healthCheck.PingAsync()           : " + await healthCheck.PingAsync().ConfigureAwait(false));
+            AceQLConsole.WriteLine("healthCheck.GetResponseTimeAsync(): " + await healthCheck.GetResponseTimeAsync().ConfigureAwait(false));
         }
     }
 }

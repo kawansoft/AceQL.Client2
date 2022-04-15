@@ -18,7 +18,6 @@
  */
 
 
-using AceQL.Client.Api.Metadata;
 using AceQL.Client.Api.Metadata.Dto;
 using AceQL.Client.Api.Util;
 using AceQL.Client.Api.Http;
@@ -515,9 +514,8 @@ namespace AceQL.Client.Api.Http
             }
         }
 
-
         /// <summary>
-        /// Calls the with get.
+        /// Calls the action with get.
         /// </summary>
         /// <param name="action">The action.</param>
         /// <param name="actionParameter">The action parameter.</param>
