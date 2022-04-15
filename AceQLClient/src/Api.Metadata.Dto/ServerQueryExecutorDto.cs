@@ -9,9 +9,9 @@ namespace AceQL.Client.Api.Metadata.Dto
     /// </summary>
     public class ServerQueryExecutorDto
     {
-		private string serverQueryExecutorClassName1;
-		private List<string> parameterTypes1;
-		private List<string> parameterValues1;
+		private readonly string serverQueryExecutorClassName1;
+		private readonly List<string> parameterTypes1;
+		private readonly List<string> parameterValues1;
 
 		/// <summary>
 		/// Constructor.

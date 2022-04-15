@@ -21,6 +21,7 @@ using AceQL.Client.Api.Http;
 using AceQL.Client.Api.Util;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -109,7 +110,7 @@ namespace AceQL.Client.Api
                 throw new ArgumentNullException(nameof(sql));
             }
 
-            if (!sql.ToLower().StartsWith("select"))
+            if (!sql.ToLower(CultureInfo.InvariantCulture).StartsWith("select"))
             {
                 throw new ArgumentException("sql command must be a SELECT!");
             }
