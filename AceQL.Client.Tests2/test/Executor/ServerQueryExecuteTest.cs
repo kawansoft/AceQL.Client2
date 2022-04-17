@@ -79,6 +79,8 @@ namespace AceQL.Client.Test.Executor
             List<object> parameters = new List<object>();
             parameters.Add(1);
 
+            AceQLConsole.WriteLine("com.mycompany.MyServerQueryExecutor execution:");
+
             // Our dataReader must be disposed to delete underlying downloaded files
             // Call the remote com.mycompany.MyServerQueryExecutor.executeQuery method
             // and get the result
