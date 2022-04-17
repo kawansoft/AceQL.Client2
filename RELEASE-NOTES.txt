@@ -20,6 +20,8 @@ AceQL C# Client SDK - Version 7.5.1 - 17-Apr-2022
 -------------------------------------------------
 
 Bugs fixed:
+- The class ServerQueryExecutorDto designed as internal
+  was marked as public. This has been fixed.
 - Some methods designed as internal were marked as public:
   AceQLCommand.CopyHttpStreamToFile(), 
   AceQLParameter.ContainsBlob(). 
