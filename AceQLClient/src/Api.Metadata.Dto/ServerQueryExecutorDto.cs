@@ -7,7 +7,7 @@ namespace AceQL.Client.Api.Metadata.Dto
     /// <summary>
     /// Class ServerQueryExecutorDto.
     /// </summary>
-    public class ServerQueryExecutorDto
+    internal class ServerQueryExecutorDto
     {
 		private readonly string serverQueryExecutorClassName1;
 		private readonly List<string> parameterTypes1;
