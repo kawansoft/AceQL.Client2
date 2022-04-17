@@ -28,6 +28,7 @@ Bugs fixed:
   a CancellationToken parameter was missing. 
   This has been fixed.
 
+
 AceQL C# Client SDK - Version 7.5 - 15-Apr-2022
 -----------------------------------------------
 
