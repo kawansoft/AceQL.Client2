@@ -127,7 +127,7 @@ namespace AceQL.Client.Api
         /// </summary>
         /// <param name="connection">The connection.</param>
         /// <exception cref="ArgumentNullException">connection is null!</exception>
-        public AceQLCommand(AceQLConnection connection) 
+        public AceQLCommand(AceQLConnection connection)
         {
             if (connection == null)
             {
@@ -204,7 +204,7 @@ namespace AceQL.Client.Api
         /// <para/>The cancellation token can be used to can be used to request that the operation be abandoned before the http request timeout.
         /// </summary>
         /// <param name="cancellationToken">The cancellation instruction.</param>
-        /// <returns>An <see cref="AceQLDataReader"/>object.</returns>
+        /// <returns>An <see cref="AceQLDataReader"/> object.</returns>
         /// <exception cref="AceQL.Client.Api.AceQLException">If any Exception occurs.</exception>
         public async Task<AceQLDataReader> ExecuteReaderAsync(CancellationToken cancellationToken)
         {
@@ -259,6 +259,28 @@ namespace AceQL.Client.Api
         public void Prepare()
         {
             this.prepare = true;
+        }
+ 
+        /// <summary>
+        /// Executes a server query by calling a remote AceQL ServerQueryExecutor interface concrete implementation.
+        /// </summary>
+        /// <param name="serverQueryExecutorClassName">the remote ServerQueryExecutor interface implementation name with package info.</param>
+        /// <param name="parameters">the parameters to pass to the remote ServerQueryExecutor.executeQuery() implementation.</param>
+        /// <param name="cancellationToken">The cancellation instruction.</param>
+        /// <returns>Task&lt;AceQLDataReader&gt;.</returns>
+        /// <exception cref="AceQLException">0</exception>
+        public async Task<AceQLDataReader> ExecuteServerQueryAsync(String serverQueryExecutorClassName, List<object> parameters, CancellationToken cancellationToken)
+        {
+            try
+            {
+                // Global var avoids to propagate cancellationToken as parameter to all methods... 
+                aceQLHttpApi.SetCancellationToken(cancellationToken);
+                return await ExecuteServerQueryAsync(serverQueryExecutorClassName, parameters).ConfigureAwait(false);
+            }
+            finally
+            {
+                aceQLHttpApi.ResetCancellationToken();
+            }
         }
 
         /// <summary>
@@ -602,11 +624,11 @@ namespace AceQL.Client.Api
 
 
         /// <summary>
-        /// Copies the HTTP stream to filePath.
+        /// Copies the HTTP stream to filePath.Utility method yto keep for debug.
         /// </summary>
         /// <param name="path">The path.</param>
         /// <param name="input">The input.</param>
-        public void CopyHttpStreamToFile(String path, Stream input)
+        internal void CopyHttpStreamToFile(String path, Stream input)
         {
             if (input != null)
             {
@@ -812,12 +834,12 @@ namespace AceQL.Client.Api
         /// <exception cref="AceQL.Client.Api.AceQLException">If any Exception occurs.</exception>
         public async Task<int[]> ExecuteBatchAsync()
         {
-            if (this.batchFileParameters == null || ! new FileInfo(this.batchFileParameters).Exists)
+            if (this.batchFileParameters == null || !new FileInfo(this.batchFileParameters).Exists)
             {
                 throw new NotSupportedException("Cannot call executeBatch: addBatch() has never been called.");
             }
 
-            if (! await AceQLConnectionUtil.IsBatchSupported(connection))
+            if (!await AceQLConnectionUtil.IsBatchSupported(connection))
             {
                 throw new NotSupportedException("AceQL Server version must be >= " + AceQLConnectionUtil.BATCH_MIN_SERVER_VERSION
                     + " in order to call PreparedStatement.executeBatch().");

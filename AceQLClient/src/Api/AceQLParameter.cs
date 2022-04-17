@@ -292,7 +292,7 @@ namespace AceQL.Client.Api
         /// (Used to deny to call executeBatch() on this kind of table.
         /// </summary>
         /// <value><c>true</c> if  parameters list contains a CLOB/BLOB; otherwise, <c>false</c>.</value>
-        public bool ParamContainBlob { get => paramContainBlob; set => paramContainBlob = value; }
+        internal bool ParamContainBlob { get => paramContainBlob; set => paramContainBlob = value; }
 
         /// <summary>
         /// Gets a string that contains <see cref="AceQLParameter"/>.ParameterName

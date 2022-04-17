@@ -16,6 +16,17 @@ they would do for an SQL Server database.
 
 The AceQL C# Client SDK is licensed under the Apache 2.0 License.
 
+AceQL C# Client SDK - Version 7.5.1 - 17-Apr-2022
+-------------------------------------------------
+
+Bugs fixed:
+- Some methods designed as internal were marked as public:
+  AceQLCommand.CopyHttpStreamToFile(), 
+  AceQLParameter.ContainsBlob(). 
+  This has been fixed.
+- The AceQLCommand.ExecuteServerQueryAsync() implementation with
+  a CancellationToken parameter was missing. 
+  This has been fixed.
 
 AceQL C# Client SDK - Version 7.5 - 15-Apr-2022
 -----------------------------------------------
