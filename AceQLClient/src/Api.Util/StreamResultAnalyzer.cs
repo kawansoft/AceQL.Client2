@@ -49,8 +49,6 @@ namespace AceQL.Client.Api.Util
         // The JSON filePath containing Result Set
         private readonly string filePath;
 
-        public HttpStatusCode HttpStatusCode => httpStatusCode;
-
 
         /// <summary>
         /// Initializes a new instance of the <see cref="StreamResultAnalyzer"/> class.
@@ -70,6 +68,17 @@ namespace AceQL.Client.Api.Util
         /// <returns><c>true</c> if [is status ok]; otherwise, <c>false</c>.</returns>
         internal bool IsStatusOK()
         {
+            if (!File.Exists(filePath))
+            {
+                this.errorType = "0";
+                errorMessage = "Unknown error.";
+                if (httpStatusCode != HttpStatusCode.OK)
+                {
+                    errorMessage = "HTTP FAILURE " + (int)httpStatusCode + " (" + httpStatusCode + ")";
+                }
+                return false;
+            }
+
             using (Stream stream = File.OpenRead(filePath))
             {
                 TextReader textReader = new StreamReader(stream);
