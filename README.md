@@ -7,7 +7,7 @@
 
 ## C# Client SDK v7.6 - User Guide
 
-## June 8, 2022
+## June 11, 2022
 
 <img src="https://docs.aceql.com/favicon.png" alt="AceQ HTTP Icon"/>
 
