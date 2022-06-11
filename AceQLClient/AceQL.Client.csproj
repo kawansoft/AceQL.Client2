@@ -11,9 +11,9 @@
     <PackageLicenseExpression></PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/kawansoft/AceQL.Client2</PackageProjectUrl>
     <PackageIcon>favicon.png</PackageIcon>
-    <AssemblyVersion>7.5.1.0</AssemblyVersion>
-    <FileVersion>7.5.1.0</FileVersion>
-    <Version>7.6</Version>
+    <AssemblyVersion>7.5.2.0</AssemblyVersion>
+    <FileVersion>7.5.2.0</FileVersion>
+    <Version>7.5.2</Version>
     <Authors>KawanSoft</Authors>
     <PackageReleaseNotes>The new HealthCheck API allows checking the remote server's availability &amp; response time. It will be enhanced in future versions.</PackageReleaseNotes>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
