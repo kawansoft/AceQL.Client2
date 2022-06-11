@@ -15,7 +15,7 @@
     <FileVersion>7.5.2.0</FileVersion>
     <Version>7.5.2</Version>
     <Authors>KawanSoft</Authors>
-    <PackageReleaseNotes>The new HealthCheck API allows checking the remote server's availability &amp; response time. It will be enhanced in future versions.</PackageReleaseNotes>
+    <PackageReleaseNotes>Some error messages have been enhanced</PackageReleaseNotes>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageTags>SQL over http remote jdbc cloud database Xamarin</PackageTags>
     <Product>AceQL.Client</Product>
