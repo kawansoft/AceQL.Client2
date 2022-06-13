@@ -28,7 +28,9 @@ using AceQL.Client.Test.Executor;
 using AceQL.Client.Test.HealthChecks.Test;
 using AceQL.Client.Test.Json;
 using AceQL.Client.Test.Metadata;
+using AceQL.Client.Test.Metadata.misc;
 using AceQL.Client.Test.StoredProcedure;
+using AceQL.Client.Test.test.misc;
 using AceQL.Client.Test.Util;
 using Newtonsoft.Json;
 using System;
@@ -48,7 +50,7 @@ namespace AceQL.Client.Test
         public static void TestAll(string[] args)
         {
             HealthCheckTest.TheMain(args);
-            AceQLTest.TheMain();
+            AceQLTestHeaders.TheMain();
             DmlSequenceTest.TheMain(args);
             SqlBatchTest.TheMain(args);
             AceQLTestColumnAsKeyName.TheMain(args);
@@ -87,7 +89,7 @@ namespace AceQL.Client.Test
             }
             else if (mainToLaunch == 6)
             {
-                AceQLTest.TheMain();
+                AceQLTestHeaders.TheMain();
                 AceQLTestMetadata.TheMain();
             }
             else if (mainToLaunch == 7)

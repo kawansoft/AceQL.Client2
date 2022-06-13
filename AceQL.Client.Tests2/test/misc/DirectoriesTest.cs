@@ -5,7 +5,7 @@ using System.IO;
 using System.Text;
 using Windows.Storage;
 
-namespace AceQL.Client.Test
+namespace AceQL.Client.Test.Metadata.misc
 {
     public class DirectoriesTest
     {
@@ -22,7 +22,7 @@ namespace AceQL.Client.Test
                 _ = Directory.CreateDirectory(folderPathTemp);
             }
 
-            var tmp = System.IO.Path.GetTempPath();
+            var tmp = Path.GetTempPath();
 
             Console.WriteLine("folderPath   : " + folderPath);
             Console.WriteLine("folderPathTemp: " + folderPathTemp);

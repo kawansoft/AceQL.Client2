@@ -31,12 +31,12 @@ using System.Threading.Tasks;
 using AceQL.Client.Test.Dml.Blob;
 using AceQL.Client.test.Dml.Blob;
 
-namespace AceQL.Client.Test
+namespace AceQL.Client.Test.test.misc
 {
     /// <summary>
     /// Tests AceQL client SDK by calling all APIs.
     /// </summary>
-    public static class AceQLTest
+    public static class AceQLTestHeaders
     {
         public static bool DO_LOOP;
 
@@ -61,8 +61,8 @@ namespace AceQL.Client.Test
 
         static async Task DoIt()
         {
- 
-            var netCoreVer = System.Environment.Version; // 3.0.0
+
+            var netCoreVer = Environment.Version; // 3.0.0
             AceQLConsole.WriteLine(netCoreVer + "");
 
             string connectionString = ConnectionStringCurrent.Build();
@@ -118,7 +118,7 @@ namespace AceQL.Client.Test
             for (int i = 0; i < 100; i++)
             {
                 sqlInsertTest = new SqlInsertTest(connection);
-                await sqlInsertTest.InsertCustomer(i); 
+                await sqlInsertTest.InsertCustomer(i);
             }
 
             SqlSelectTest sqlSelectTest;
@@ -147,13 +147,13 @@ namespace AceQL.Client.Test
 
             AceQLTransaction transaction = await connection.BeginTransactionAsync();
             AceQLConsole.WriteLine("Before insert into orderlog");
-            
+
             try
             {
                 string blobPath = AceQLTestParms.IN_DIRECTORY + "username_koala.jpg";
                 for (int j = 1; j < 4; j++)
                 {
-                    SqlBlobInsertTest sqlInsertBlobTest  = new SqlBlobInsertTest(connection);
+                    SqlBlobInsertTest sqlInsertBlobTest = new SqlBlobInsertTest(connection);
                     await sqlInsertBlobTest.BlobUpload(j, j, blobPath);
                 }
 

@@ -15,7 +15,7 @@
     <FileVersion>7.5.2.0</FileVersion>
     <Version>7.5.2</Version>
     <Authors>KawanSoft</Authors>
-    <PackageReleaseNotes>Some error messages have been enhanced</PackageReleaseNotes>
+    <PackageReleaseNotes>Some error messages have been enhanced.</PackageReleaseNotes>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageTags>SQL over http remote jdbc cloud database Xamarin</PackageTags>
     <Product>AceQL.Client</Product>

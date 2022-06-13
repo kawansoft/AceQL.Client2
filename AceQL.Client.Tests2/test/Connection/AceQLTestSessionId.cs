@@ -19,6 +19,7 @@
 
 using AceQL.Client.Api;
 using AceQL.Client.Test.Util;
+using AceQL.Client.Test.test.misc;
 using System;
 using System.IO;
 using System.Threading;
@@ -72,7 +73,7 @@ namespace AceQL.Client.Test.Connection
                 using (AceQLConnection connection = new AceQLConnection(connectionString))
                 {
                     await connection.OpenAsync();
-                    await AceQLTest.ExecuteExample(connection).ConfigureAwait(false);
+                    await AceQLTestHeaders.ExecuteExample(connection).ConfigureAwait(false);
                     await connection.CloseAsync();
                 }
             }
@@ -86,7 +87,7 @@ namespace AceQL.Client.Test.Connection
                 {
                     connection.Credential = credential;
                     await connection.OpenAsync();
-                    await AceQLTest.ExecuteExample(connection).ConfigureAwait(false);
+                    await AceQLTestHeaders.ExecuteExample(connection).ConfigureAwait(false);
                     await connection.CloseAsync();
                 }
             }

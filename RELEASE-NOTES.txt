@@ -17,8 +17,8 @@ they would do for an SQL Server database.
 The AceQL C# Client SDK is licensed under the Apache 2.0 License.
 
 
-AceQL C# Client SDK - Version 7.6 - 11-Jun-2022
------------------------------------------------
+AceQL C# Client SDK - Version 7.5.2 - 13-Jun-2022
+-------------------------------------------------
 
 What's New:
 - Display a more detailled error message if the JSON parser

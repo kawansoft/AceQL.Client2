@@ -28,12 +28,12 @@ using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace AceQL.Client.Test
+namespace AceQL.Client.Test.Metadata.misc
 {
     /// <summary>
-    /// Tests a SELECT with an implicit close() call.
+    /// Tests a SELECT with NO close() call at end of execution.
     /// </summary>
-    public static class AceQLTestClose
+    public static class AceQLTestNoClose
     {
         public static void TheMain(string[] args)
         {
@@ -56,16 +56,15 @@ namespace AceQL.Client.Test
 
         static async Task DoIt()
         {
- 
-            var netCoreVer = System.Environment.Version; // 3.0.0
-            AceQLConsole.WriteLine(netCoreVer + "");
 
-            using (AceQLConnection connection = await ConnectionCreator.ConnectionCreateAsync().ConfigureAwait(false))
-            {
-                await ExecuteExample(connection).ConfigureAwait(false);
-                //NOT Neccessary: await connection.CloseAsync(); 
-            }
-            
+            var netCoreVer = Environment.Version; // 3.0.0
+            AceQLConsole.WriteLine(netCoreVer + "");
+            AceQLConsole.WriteLine("Connection will NOT be closed...");
+
+            AceQLConnection connection = await ConnectionCreator.ConnectionCreateAsync().ConfigureAwait(false);
+            await ExecuteExample(connection).ConfigureAwait(false);
+            AceQLConsole.WriteLine("Done!");
+
         }
 
         /// <summary>
@@ -74,10 +73,6 @@ namespace AceQL.Client.Test
         /// <param name="connection"></param>
         public static async Task ExecuteExample(AceQLConnection connection)
         {
-            AceQLConsole.WriteLine("Before connection.OpenAsync()");
-            await connection.OpenAsync();
-            AceQLConsole.WriteLine("After connection.OpenAsync()");
-
             AceQLConsole.WriteLine("Host: " + connection.ConnectionInfo.ConnectionString);
             AceQLConsole.WriteLine("aceQLConnection.GetClientVersion(): " + AceQLConnection.GetClientVersion());
             AceQLConsole.WriteLine("aceQLConnection.GetServerVersion(): " + await connection.GetServerVersionAsync());
