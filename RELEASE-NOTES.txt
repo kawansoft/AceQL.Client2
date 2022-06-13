@@ -21,7 +21,7 @@ AceQL C# Client SDK - Version 7.5.2 - 13-Jun-2022
 -------------------------------------------------
 
 What's New:
-- Display a more detailled error message if the JSON parser
+- Display a more detailed error message if the JSON parser
   can not find the JSON file of a downloaded ResultSet. 
   (StreamResultAnalyzer.cs).
 
