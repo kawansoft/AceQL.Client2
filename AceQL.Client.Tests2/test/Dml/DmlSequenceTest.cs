@@ -210,7 +210,7 @@ namespace AceQL.Client.test.Dml
                     else
                     {
                         AceQLConsole.WriteLine("Get values using column name values:");
-                        int i = 0;
+
                         customerId = dataReader.GetInt32(dataReader.GetOrdinal("customer_id"));
                         itemId = dataReader.GetInt32(dataReader.GetOrdinal("item_id"));
                         description = dataReader.GetString(dataReader.GetOrdinal("description"));

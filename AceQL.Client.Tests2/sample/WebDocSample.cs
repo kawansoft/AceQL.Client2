@@ -382,7 +382,7 @@ namespace AceQL.Client.Sample
                 await command.ExecuteNonQueryAsync();
                 await transaction.CommitAsync();
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 // Transaction must always be terminated by a CommitAsync() or RollbackAsync()
                 await transaction.RollbackAsync();

@@ -29,7 +29,7 @@ namespace AceQL.Client.Test.Dml
 {
     public class SqlInsertTest
     {
-        private AceQLConnection connection;
+        private readonly AceQLConnection connection;
 
         public SqlInsertTest(AceQLConnection connection)
         {

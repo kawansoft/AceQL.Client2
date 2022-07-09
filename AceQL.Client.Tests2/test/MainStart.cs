@@ -61,7 +61,7 @@ namespace AceQL.Client.Test
 
         public static void Main(string[] args)
         {
-            int mainToLaunch = 0;
+            int mainToLaunch = 14;
 
             if (mainToLaunch == 0)
             {
@@ -120,6 +120,11 @@ namespace AceQL.Client.Test
             else if (mainToLaunch == 13)
             {
                 TypesDisplayUtil.TestCSharpTypes();
+            }
+            else if (mainToLaunch == 14)
+            {
+                SqlServerTest sqlServerTest = new SqlServerTest();
+                sqlServerTest.ExecuteSomeSql();
             }
         }
 
