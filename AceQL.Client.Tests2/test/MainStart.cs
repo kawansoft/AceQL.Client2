@@ -61,7 +61,7 @@ namespace AceQL.Client.Test
 
         public static void Main(string[] args)
         {
-            int mainToLaunch = 14;
+            int mainToLaunch = 0;
 
             if (mainToLaunch == 0)
             {
