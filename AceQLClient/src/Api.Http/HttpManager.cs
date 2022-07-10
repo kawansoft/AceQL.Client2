@@ -29,7 +29,7 @@ using System.Threading.Tasks;
 namespace AceQL.Client.Api.Http
 {
     /// <summary>
-    /// Class HttpManager. A wrapped HttpClient tool that van do everything
+    /// Class HttpManager. A wrapped HttpClient tool that can do everything
     /// </summary>
     internal class HttpManager : IDisposable
     {
