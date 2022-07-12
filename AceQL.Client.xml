@@ -514,7 +514,7 @@
         </member>
         <member name="T:AceQL.Client.Api.Http.HttpManager">
             <summary>
-            Class HttpManager. A wrapped HttpClient tool that van do everything
+            Class HttpManager. A wrapped HttpClient tool that can do everything
             </summary>
         </member>
         <member name="F:AceQL.Client.Api.Http.HttpManager.timeout">
