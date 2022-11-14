@@ -133,6 +133,9 @@ namespace AceQL.Client.Test
             }
             else if (mainToLaunch == 16)
             {
+                //System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
+                //Encoding.GetEncoding(932);
+                //Console.OutputEncoding = System.Text.Encoding.UTF8;
                 //SpecialSequenceTest.TheMain(args);
                 SqlBatchTest.TheMain(args);
             }

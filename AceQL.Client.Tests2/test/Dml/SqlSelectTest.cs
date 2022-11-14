@@ -21,6 +21,7 @@ using AceQL.Client.Api;
 using AceQL.Client.Test.Util;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -58,6 +59,8 @@ namespace AceQL.Client.Test.Dml
                         + "GetValue: " + dataReader.GetValue(i++) + "\n"
                         + "GetValue: " + dataReader.GetValue(i++) + "\n"
                         + "GetValue: " + dataReader.GetValue(i));
+
+                    File.WriteAllText(@"C:\Users\ndepo\WriteText.txt", dataReader.GetValue(2) + "");
                 }
             }
         }

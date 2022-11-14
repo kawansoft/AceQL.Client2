@@ -97,7 +97,7 @@ namespace AceQL.Client.Test.Dml.Batch
         }
 
         /// <summary>
-        /// Example of MS SQL Server Stored Procedure.
+        /// Example Batch Insert
         /// </summary>
         /// <exception cref="AceQLException">If any Exception occurs.</exception>
         public async Task InsertUsingBatch()
@@ -111,7 +111,7 @@ namespace AceQL.Client.Test.Dml.Batch
 
                 command.Parameters.AddWithValue("@parm1", customer_id);
                 command.Parameters.AddWithValue("@parm2", "Sir" + i ); // HACK NDP
-                command.Parameters.AddWithValue("@parm3", "ложился_" + customer_id);
+                command.Parameters.AddWithValue("@parm3", "久しぶりに早く寝た_" + customer_id);
                 command.Parameters.Add(new AceQLParameter("@parm4", "Name_" + customer_id));
                 command.Parameters.AddWithValue("@parm5", customer_id + ", road Sixty-Six");
                 command.Parameters.AddWithValue("@parm6", "Town_" + customer_id);
