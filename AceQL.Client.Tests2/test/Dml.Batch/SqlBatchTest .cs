@@ -67,6 +67,9 @@ namespace AceQL.Client.Test.Dml.Batch
                     SqlDeleteTest sqlDeleteTest = new SqlDeleteTest(connection);
                     await sqlDeleteTest.DeleteCustomerAll();
                     await sqlBatchTest.InsertUsingBatch().ConfigureAwait(false);
+
+                    SqlSelectTest sqlSelectTest = new SqlSelectTest(connection);
+                    await sqlSelectTest.SelectCustomerExecute();
                 }
 
                 AceQLConsole.WriteLine();
@@ -108,7 +111,7 @@ namespace AceQL.Client.Test.Dml.Batch
 
                 command.Parameters.AddWithValue("@parm1", customer_id);
                 command.Parameters.AddWithValue("@parm2", "Sir" + i ); // HACK NDP
-                command.Parameters.AddWithValue("@parm3", "André_" + customer_id);
+                command.Parameters.AddWithValue("@parm3", "ложился_" + customer_id);
                 command.Parameters.Add(new AceQLParameter("@parm4", "Name_" + customer_id));
                 command.Parameters.AddWithValue("@parm5", customer_id + ", road Sixty-Six");
                 command.Parameters.AddWithValue("@parm6", "Town_" + customer_id);

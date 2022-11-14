@@ -133,7 +133,8 @@ namespace AceQL.Client.Test
             }
             else if (mainToLaunch == 16)
             {
-                SpecialSequenceTest.TheMain(args);
+                //SpecialSequenceTest.TheMain(args);
+                SqlBatchTest.TheMain(args);
             }
         }
 
