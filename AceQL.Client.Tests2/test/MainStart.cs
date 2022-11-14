@@ -61,7 +61,7 @@ namespace AceQL.Client.Test
 
         public static void Main(string[] args)
         {
-            int mainToLaunch = 0;
+            int mainToLaunch = 16;
 
             if (mainToLaunch == 0)
             {
@@ -125,6 +125,15 @@ namespace AceQL.Client.Test
             {
                 SqlServerTest sqlServerTest = new SqlServerTest();
                 sqlServerTest.ExecuteSomeSql();
+            }
+            else if (mainToLaunch == 15)
+            {
+                SqlServerTest sqlServerTest = new SqlServerTest();
+                sqlServerTest.ExecuteSomeSql();
+            }
+            else if (mainToLaunch == 16)
+            {
+                SpecialSequenceTest.TheMain(args);
             }
         }
 

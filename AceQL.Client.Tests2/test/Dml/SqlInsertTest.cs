@@ -44,7 +44,7 @@ namespace AceQL.Client.Test.Dml
 
             command.Parameters.AddWithValue("@parm1", customerId);
             command.Parameters.AddWithValue("@parm2", ""); // HACK NDP
-            command.Parameters.AddWithValue("@parm3", "André_" + customerId);
+            command.Parameters.AddWithValue("@parm3", "ложился_" + customerId);
             command.Parameters.Add(new AceQLParameter("@parm4", "Name_" + customerId));
             command.Parameters.AddWithValue("@parm5", customerId + ", road 66");
             command.Parameters.AddWithValue("@parm6", "Town_" + customerId);
