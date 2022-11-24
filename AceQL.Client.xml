@@ -709,6 +709,32 @@
             </summary>
             <returns>A <see cref="T:System.String" /> that represents this instance.</returns>
         </member>
+        <member name="T:AceQL.Client.Api.Metadata.Dto.HealthCheckInfoDto">
+            <summary>
+            Class HealthCheckInfoDto.
+            </summary>
+        </member>
+        <member name="P:AceQL.Client.Api.Metadata.Dto.HealthCheckInfoDto.Status">
+            <returns> the status </returns>
+        </member>
+        <member name="P:AceQL.Client.Api.Metadata.Dto.HealthCheckInfoDto.InitMemory">
+            <returns> the initMemory </returns>
+        </member>
+        <member name="P:AceQL.Client.Api.Metadata.Dto.HealthCheckInfoDto.UsedMemory">
+            <returns> the usedMemory </returns>
+        </member>
+        <member name="P:AceQL.Client.Api.Metadata.Dto.HealthCheckInfoDto.MaxMemory">
+            <returns> the maxMemory </returns>
+        </member>
+        <member name="P:AceQL.Client.Api.Metadata.Dto.HealthCheckInfoDto.CommittedMemory">
+            <returns> the committedMemory </returns>
+        </member>
+        <member name="M:AceQL.Client.Api.Metadata.Dto.HealthCheckInfoDto.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents this instance.
+            </summary>
+            <returns>A <see cref="T:System.String" /> that represents this instance.</returns>
+        </member>
         <member name="T:AceQL.Client.Api.Metadata.Dto.JdbcDatabaseMetaDataDto">
             <summary>
             Class JdbcDatabaseMetaDataDto.

@@ -55,6 +55,9 @@ namespace AceQL.Client.Api.Util
 
             String filePath = FileUtil2.GetUserFolderPath() + "/" + ACEQL_DEBUG_FILE;
 
+            //HACK 
+            Console.WriteLine("aceql-debug-csharp.ini path: " + filePath);
+
             if (! File.Exists(filePath))
             {
                 return;
