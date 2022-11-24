@@ -65,6 +65,31 @@ namespace AceQL.Client.Test.Connection
             return Create(serverUrlLocalhost, database, username, password, AUTHENTICATED_PROXY_OFF);
         }
 
+        public static String CreateLocalMySql()
+        {
+            string database = "sampledb_mysql";
+            string username = "user1";
+            string password = "password1";
+            return Create(serverUrlLocalhost, database, username, password, AUTHENTICATED_PROXY_OFF);
+        }
+
+        public static String CreateLocalSqlServer()
+        {
+            string database = "sampledb_sql_server";
+            string username = "user1";
+            string password = "password1";
+            return Create(serverUrlLocalhost, database, username, password, AUTHENTICATED_PROXY_OFF);
+        }
+
+        public static String CreateLocalOracleDatabase()
+        {
+            string database = "XE";
+            string username = "user1";
+            string password = "password1";
+            return Create(serverUrlLocalhost, database, username, password, AUTHENTICATED_PROXY_OFF);
+        }
+
+
         /// <summary>
         /// Creates the default connection with sampledb and with a LDAP authentication.
         /// Other value: username = "CN=L. Eagle,O=Sue\\2C Grabbit and Runn,C=GB";

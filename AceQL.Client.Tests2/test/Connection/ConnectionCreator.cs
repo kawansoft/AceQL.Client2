@@ -50,5 +50,68 @@ namespace AceQL.Client.Test.Connection
 
             return theConnection;
         }
+
+        /// <summary>
+        /// RemoteConnection Quick Start client example.
+        /// Creates a Connection to a MySQL database and open it.
+        /// </summary>
+        /// <returns>The connection to the remote database</returns>
+        /// <exception cref="AceQLException">If any Exception occurs.</exception>
+        public static async Task<AceQLConnection> ConnectionCreateMySqlAsync()
+        {
+            string connectionString = ConnectionStringBuilderFactory.CreateLocalMySql();
+
+            AceQLConnection theConnection = new AceQLConnection(connectionString);
+
+            // Opens the connection with the remote database.
+            // On the server side, a JDBC connection is extracted from the connection 
+            // pool created by the server at startup. The connection will remain ours 
+            // during the session.
+            await theConnection.OpenAsync();
+
+            return theConnection;
+        }
+
+        /// <summary>
+        /// RemoteConnection Quick Start client example.
+        /// Creates a Connection to a SQL Server database and open it.
+        /// </summary>
+        /// <returns>The connection to the remote database</returns>
+        /// <exception cref="AceQLException">If any Exception occurs.</exception>
+        public static async Task<AceQLConnection> ConnectionCreateSqlServerAsync()
+        {
+            string connectionString = ConnectionStringBuilderFactory.CreateLocalSqlServer();
+
+            AceQLConnection theConnection = new AceQLConnection(connectionString);
+
+            // Opens the connection with the remote database.
+            // On the server side, a JDBC connection is extracted from the connection 
+            // pool created by the server at startup. The connection will remain ours 
+            // during the session.
+            await theConnection.OpenAsync();
+
+            return theConnection;
+        }
+
+        /// <summary>
+        /// RemoteConnection Quick Start client example.
+        /// Creates a Connection to an Oracle database and open it.
+        /// </summary>
+        /// <returns>The connection to the remote database</returns>
+        /// <exception cref="AceQLException">If any Exception occurs.</exception>
+        public static async Task<AceQLConnection> ConnectionCreateOracleDatabaseAsync()
+        {
+            string connectionString = ConnectionStringBuilderFactory.CreateLocalOracleDatabase();
+
+            AceQLConnection theConnection = new AceQLConnection(connectionString);
+
+            // Opens the connection with the remote database.
+            // On the server side, a JDBC connection is extracted from the connection 
+            // pool created by the server at startup. The connection will remain ours 
+            // during the session.
+            await theConnection.OpenAsync();
+
+            return theConnection;
+        }
     }
 }
