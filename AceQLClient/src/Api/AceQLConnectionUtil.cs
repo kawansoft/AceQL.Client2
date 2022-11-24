@@ -29,6 +29,9 @@ namespace AceQL.Client.Api
         internal static readonly string GET_DATABASE_INFO_MIN_SERVER_VERSION = "9.0";
         internal static readonly string EXECUTE_SERVER_QUERY_MIN_SERVER_VERSION = "10.1";
 
+        // Minimum version for HealthCheck.getHealthCheckInfo()
+        internal static readonly string GET_HEALTH_CHECK_INFO_MIN_SERVER_VERSION = "12.0";
+
         private static string SERVER_VERSION_NUMBER;
 
    
@@ -96,11 +99,23 @@ namespace AceQL.Client.Api
         /// Determines whether is AceQLCommand.ExecuteServerQueryAsync supported on server side.
         /// </summary>
         /// <param name="connection">The connection.</param>
-        /// <returns><c>true</c> if AceQLCommand.ExecuteServerQueryAsync supported on server side. otherwise, <c>false</c>.</returns>
+        /// <returns><c>true</c> if AceQLCommand.ExecuteServerQueryAsync is supported on server side. otherwise, <c>false</c>.</returns>
         internal static async Task<bool> IsExecuteServerQuerySupported(AceQLConnection connection)
         {
             String rawServerVersion = await ExtractRawServerVersion(connection).ConfigureAwait(false);
             return IsCurrentVersionOk(rawServerVersion, EXECUTE_SERVER_QUERY_MIN_SERVER_VERSION);
         }
+
+        /// <summary>
+        /// Determines whether HealthCheck.getHealthCheckInfo() is supported on server side.
+        /// </summary>
+        /// <param name="connection">The connection.</param>
+        /// <returns><c>true</c> if HealthCheck.getHealthCheckInfo() is supported on server side. otherwise, <c>false</c>.</returns>
+        internal static async Task<bool> IsHealthCheckInfoSupported(AceQLConnection connection)
+        {
+            String rawServerVersion = await ExtractRawServerVersion(connection).ConfigureAwait(false);
+            return IsCurrentVersionOk(rawServerVersion, GET_HEALTH_CHECK_INFO_MIN_SERVER_VERSION);
+        }
+
     }
 }

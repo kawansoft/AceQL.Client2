@@ -62,7 +62,22 @@ namespace AceQL.Client.Test
 
         public static void Main(string[] args)
         {
+            string folderPath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+            folderPath += "\\.kawansoft";
+
             int mainToLaunch = 0;
+
+            String filepath = folderPath + "\\aceql-csharp-test.txt";
+
+            if (File.Exists(filepath))
+            {
+                Console.WriteLine("Using mainToLaunch in: " + filepath);
+                String mainToLaunchStr = File.ReadAllText(filepath);
+                mainToLaunchStr = mainToLaunchStr.Trim();
+                mainToLaunch = int.Parse(mainToLaunchStr);
+            }
+
+            Console.WriteLine("mainToLaunch: " + mainToLaunch);
 
             if (mainToLaunch == 0)
             {

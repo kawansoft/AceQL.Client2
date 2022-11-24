@@ -3059,7 +3059,14 @@
             Determines whether is AceQLCommand.ExecuteServerQueryAsync supported on server side.
             </summary>
             <param name="connection">The connection.</param>
-            <returns><c>true</c> if AceQLCommand.ExecuteServerQueryAsync supported on server side. otherwise, <c>false</c>.</returns>
+            <returns><c>true</c> if AceQLCommand.ExecuteServerQueryAsync is supported on server side. otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLConnectionUtil.IsHealthCheckInfoSupported(AceQL.Client.Api.AceQLConnection)">
+            <summary>
+            Determines whether HealthCheck.getHealthCheckInfo() is supported on server side.
+            </summary>
+            <param name="connection">The connection.</param>
+            <returns><c>true</c> if HealthCheck.getHealthCheckInfo() is supported on server side. otherwise, <c>false</c>.</returns>
         </member>
         <member name="T:AceQL.Client.Api.AceQLCredential">
             <summary>

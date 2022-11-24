@@ -117,6 +117,12 @@ namespace AceQL.Client.Api
         /// <exception cref="AceQL.Client.Api.HealthCheck.AceQLException"></exception>
         public async Task<HealthCheckInfo> GetHealthCheckInfoAsync()
         {
+            if (!await AceQLConnectionUtil.IsHealthCheckInfoSupported(connection))
+            {
+                throw new NotSupportedException("AceQL Server version must be >= " + AceQLConnectionUtil.GET_HEALTH_CHECK_INFO_MIN_SERVER_VERSION
+                    + " in order to call GetHealthCheckInfoAsync().");
+            }
+
             AceQLHttpApi aceQLHttpApi = connection.aceQLHttpApi;
 
             HealthCheckInfoDto healthCheckInfoDto = await aceQLHttpApi.GetHealthCheckInfoDtoAsync().ConfigureAwait(false);
