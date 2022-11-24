@@ -19,9 +19,11 @@
 
 using AceQL.Client.Api;
 using AceQL.Client.Api.Http;
+using AceQL.Client.Api.Metadata.Dto;
 using AceQL.Client.Test.Connection;
 using AceQL.Client.Test.Dml;
 using AceQL.Client.Test.Util;
+using Newtonsoft.Json;
 using System;
 using System.IO;
 using System.Net;
@@ -54,6 +56,17 @@ namespace AceQL.Client.Test.HealthChecks.Test
             }
         }
 
+        private static void TestHealthCheckInfoDtoJson()
+        {
+            String filePath = "C:/Users/ndepo/.kawansoft/HealthCheckInfoDto.txt";
+            String content = File.ReadAllText(filePath);
+            AceQLConsole.WriteLine(content);
+            AceQLConsole.WriteLine();
+
+            HealthCheckInfoDto healthCheckInfoDto = JsonConvert.DeserializeObject<HealthCheckInfoDto>(content);
+            AceQLConsole.WriteLine(healthCheckInfoDto.ToString());
+        }
+
         static async Task DoIt()
         {
             var netCoreVer = System.Environment.Version; // 3.0.0
@@ -78,8 +91,11 @@ namespace AceQL.Client.Test.HealthChecks.Test
             AceQLConsole.WriteLine(AceQLConnection.GetAceQLLocalFolder());
 
             HealthCheck healthCheck = new HealthCheck(connection);
-            AceQLConsole.WriteLine("healthCheck.PingAsync()           : " + await healthCheck.PingAsync().ConfigureAwait(false));
-            AceQLConsole.WriteLine("healthCheck.GetResponseTimeAsync(): " + await healthCheck.GetResponseTimeAsync().ConfigureAwait(false));
+            AceQLConsole.WriteLine("healthCheck.PingAsync()              : " + await healthCheck.PingAsync().ConfigureAwait(false));
+            AceQLConsole.WriteLine("healthCheck.GetResponseTimeAsync()   : " + await healthCheck.GetResponseTimeAsync().ConfigureAwait(false));
+
+            // Complementary Health Check Info
+            AceQLConsole.WriteLine("healthCheck.GetHealthCheckInfoAsync(): " + await healthCheck.GetHealthCheckInfoAsync().ConfigureAwait(false));
         }
     }
 }

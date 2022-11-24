@@ -18,7 +18,9 @@
  */
 
 using AceQL.Client.Api.Http;
+using AceQL.Client.Api.Metadata.Dto;
 using AceQL.Client.Api.Util;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -33,9 +35,18 @@ namespace AceQL.Client.Api
     /// </summary>
     public class HealthCheck
     {
+        /// <summary>
+        /// The connection
+        /// </summary>
         private readonly AceQLConnection connection;
+        /// <summary>
+        /// The ace ql exception
+        /// </summary>
         private AceQLException aceQLException;
 
+        /// <summary>
+        /// The simple tracer
+        /// </summary>
         internal SimpleTracer simpleTracer = new SimpleTracer();
 
         /// <summary>
@@ -45,7 +56,7 @@ namespace AceQL.Client.Api
         public AceQLException AceQLException { get => aceQLException; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="HealthCheck"/> class.
+        /// Initializes a new instance of the <see cref="HealthCheck" /> class.
         /// </summary>
         /// <param name="connection">The AceQL connection.</param>
         /// <exception cref="System.ArgumentNullException">connection is null!</exception>
@@ -58,6 +69,7 @@ namespace AceQL.Client.Api
         /// Pings the AceQL server servlet.
         /// </summary>
         /// <returns><c>true</c> if the the AceQL server main servlet is pingable, else <c>false</c>.</returns>
+        /// <exception cref="AceQL.Client.Api.HealthCheck.AceQLException"></exception>
         public async Task<bool> PingAsync()
         {
             AceQLHttpApi aceQLHttpApi = connection.aceQLHttpApi;
@@ -97,12 +109,37 @@ namespace AceQL.Client.Api
             }
         }
 
+
         /// <summary>
-        /// Gets the response time of a SQL statement called on the remote database defined 
+        /// Get server health check information.
+        /// </summary>
+        /// <returns>A Task&lt;HealthCheckInfo&gt; representing the server's health check information</returns>
+        /// <exception cref="AceQL.Client.Api.HealthCheck.AceQLException"></exception>
+        public async Task<HealthCheckInfo> GetHealthCheckInfoAsync()
+        {
+            AceQLHttpApi aceQLHttpApi = connection.aceQLHttpApi;
+
+            HealthCheckInfoDto healthCheckInfoDto = await aceQLHttpApi.GetHealthCheckInfoDtoAsync().ConfigureAwait(false);
+
+            HealthCheckInfo healthCheckInfo = new HealthCheckInfo();
+            healthCheckInfo.SetCommittedMemory(healthCheckInfoDto.CommittedMemory);
+            healthCheckInfo.SetInitMemory(healthCheckInfoDto.InitMemory);
+            healthCheckInfo.SetMaxMemory(healthCheckInfoDto.MaxMemory);
+            healthCheckInfo.SetUsedMemory(healthCheckInfoDto.UsedMemory);
+                
+            return healthCheckInfo;
+
+        }
+
+
+        /// <summary>
+        /// Gets the response time of a SQL statement called on the remote database defined
         /// by the underlying <c>connection</c> (must be a SELECT).
         /// </summary>
         /// <param name="sql">The SQL SELECT command.</param>
         /// <returns>The response time in milliseconds</returns>
+        /// <exception cref="System.ArgumentNullException">sql</exception>
+        /// <exception cref="System.ArgumentException">sql command must be a SELECT!</exception>
         public async Task<double> GetResponseTimeAsync(string sql)
         {
             if (sql == null)
@@ -130,7 +167,7 @@ namespace AceQL.Client.Api
         }
 
         /// <summary>
-        /// Gets the response time of a "select 1" SQL statement called on the remote database defined 
+        /// Gets the response time of a "select 1" SQL statement called on the remote database defined
         /// by the underlying <c>connection</c>.
         /// </summary>
         /// <returns>The response time in milliseconds</returns>

@@ -55,6 +55,7 @@ namespace AceQL.Client.Test
             SqlBatchTest.TheMain(args);
             AceQLTestColumnAsKeyName.TheMain(args);
             SqlServerStoredProcedureTestUtf8.TheMain(args);
+            OracleStoredProcedureTest.TheMain(args);
             AceQLTestMetadata.TheMain();
         }
 
@@ -128,10 +129,13 @@ namespace AceQL.Client.Test
             }
             else if (mainToLaunch == 15)
             {
-                SqlServerTest sqlServerTest = new SqlServerTest();
-                sqlServerTest.ExecuteSomeSql();
+                HealthCheckTest.TheMain(args);
             }
             else if (mainToLaunch == 16)
+            {
+                OracleStoredProcedureTest.TheMain(args);
+            }
+            else if (mainToLaunch == 17)
             {
                 //System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
                 //Encoding.GetEncoding(932);

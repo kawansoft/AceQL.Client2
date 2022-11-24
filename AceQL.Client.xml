@@ -84,6 +84,39 @@
             
              <returns>the Blob input stream</returns>
         </member>
+        <member name="F:AceQL.Client.Api.Http.AceQLHealthCheckInfoApi.url">
+            <summary>
+            The URL
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.Http.AceQLHealthCheckInfoApi.simpleTracer">
+            <summary>
+            The simple tracer
+            </summary>
+        </member>
+        <member name="P:AceQL.Client.Api.Http.AceQLHealthCheckInfoApi.HttpStatusCode">
+            <summary>
+            Gets the HTTP status code of hte last executed HTTP call
+            </summary>
+            <value>The HTTP status code.</value>
+        </member>
+        <member name="M:AceQL.Client.Api.Http.AceQLHealthCheckInfoApi.GetHealthCheckInfoDtoAsync">
+            <summary>
+            Gets the HealthCheck DTO
+            </summary>
+            <returns>HealthCheckInfoDto.</returns>
+            <exception cref="T:AceQL.Client.Api.AceQLException">
+            0
+            </exception>
+        </member>
+        <member name="M:AceQL.Client.Api.Http.AceQLHealthCheckInfoApi.CallWithGetAsync(System.String,System.String)">
+            <summary>
+            Calls the with get.
+            </summary>
+            <param name="action">The action.</param>
+            <param name="actionParameter">The action parameter.</param>
+            <returns>String.</returns>
+        </member>
         <member name="T:AceQL.Client.Api.Http.AceQLHttpApi">
             <summary>
             Class <see cref="T:AceQL.Client.Api.Http.AceQLHttpApi"/>. Allows to create a Connection to the remote server
@@ -4154,6 +4187,21 @@
             check database access response time.
             </summary>
         </member>
+        <member name="F:AceQL.Client.Api.HealthCheck.connection">
+            <summary>
+            The connection
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.HealthCheck.aceQLException">
+            <summary>
+            The ace ql exception
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.HealthCheck.simpleTracer">
+            <summary>
+            The simple tracer
+            </summary>
+        </member>
         <member name="P:AceQL.Client.Api.HealthCheck.AceQLException">
             <summary>
             The AceQLException thrown if a <c>Ping()</c> returns false
@@ -4162,7 +4210,7 @@
         </member>
         <member name="M:AceQL.Client.Api.HealthCheck.#ctor(AceQL.Client.Api.AceQLConnection)">
             <summary>
-            Initializes a new instance of the <see cref="T:AceQL.Client.Api.HealthCheck"/> class.
+            Initializes a new instance of the <see cref="T:AceQL.Client.Api.HealthCheck" /> class.
             </summary>
             <param name="connection">The AceQL connection.</param>
             <exception cref="T:System.ArgumentNullException">connection is null!</exception>
@@ -4172,21 +4220,86 @@
             Pings the AceQL server servlet.
             </summary>
             <returns><c>true</c> if the the AceQL server main servlet is pingable, else <c>false</c>.</returns>
+            <exception cref="P:AceQL.Client.Api.HealthCheck.AceQLException"></exception>
+        </member>
+        <member name="M:AceQL.Client.Api.HealthCheck.GetHealthCheckInfoAsync">
+            <summary>
+            Get server health check information.
+            </summary>
+            <returns>A Task&lt;HealthCheckInfo&gt; representing the server's health check information</returns>
+            <exception cref="P:AceQL.Client.Api.HealthCheck.AceQLException"></exception>
         </member>
         <member name="M:AceQL.Client.Api.HealthCheck.GetResponseTimeAsync(System.String)">
             <summary>
-            Gets the response time of a SQL statement called on the remote database defined 
+            Gets the response time of a SQL statement called on the remote database defined
             by the underlying <c>connection</c> (must be a SELECT).
             </summary>
             <param name="sql">The SQL SELECT command.</param>
             <returns>The response time in milliseconds</returns>
+            <exception cref="T:System.ArgumentNullException">sql</exception>
+            <exception cref="T:System.ArgumentException">sql command must be a SELECT!</exception>
         </member>
         <member name="M:AceQL.Client.Api.HealthCheck.GetResponseTimeAsync">
             <summary>
-            Gets the response time of a "select 1" SQL statement called on the remote database defined 
+            Gets the response time of a "select 1" SQL statement called on the remote database defined
             by the underlying <c>connection</c>.
             </summary>
             <returns>The response time in milliseconds</returns>
+        </member>
+        <member name="T:AceQL.Client.Api.HealthCheckInfo">
+            <summary>
+            Contains health check info about running AceQL HTTP on remote server.
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.HealthCheckInfo.initMemory">
+            <summary>
+            The initialize memory
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.HealthCheckInfo.usedMemory">
+            <summary>
+            The used memory
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.HealthCheckInfo.maxMemory">
+            <summary>
+            The maximum memory
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.HealthCheckInfo.committedMemory">
+            <summary>
+            The committed memory
+            </summary>
+        </member>
+        <member name="P:AceQL.Client.Api.HealthCheckInfo.InitMemory">
+            <summary>
+            Gets the initialize memory.
+            </summary>
+            <value>The initialize memory.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.HealthCheckInfo.UsedMemory">
+            <summary>
+            Gets the used memory.
+            </summary>
+            <value>The used memory.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.HealthCheckInfo.MaxMemory">
+            <summary>
+            Gets the maximum memory.
+            </summary>
+            <value>The maximum memory.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.HealthCheckInfo.CommittedMemory">
+            <summary>
+            Gets the committed memory.
+            </summary>
+            <value>The committed memory.</value>
+        </member>
+        <member name="M:AceQL.Client.Api.HealthCheckInfo.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents this instance.
+            </summary>
+            <returns>A <see cref="T:System.String" /> that represents this instance.</returns>
         </member>
         <member name="T:AceQL.Client.Api.IsolationLevel">
             <summary>

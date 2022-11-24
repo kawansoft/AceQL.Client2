@@ -28,9 +28,7 @@ using System.Threading.Tasks;
 namespace AceQL.Client.Test.StoredProcedure
 {
     /// <summary>
-    /// This example: 
-    /// 1) Inserts a Customer and an Order on a remote database. 
-    /// 2) Displays the inserted raws on the console with two SELECT executed on the remote database.
+    /// This example calls an Oracle stored procedure that returns a SELECT result.
     /// </summary>
     public class OracleStoredProcedureTest
     {
@@ -53,18 +51,14 @@ namespace AceQL.Client.Test.StoredProcedure
         {
             try
             {
-
-                // Make sure connection is always closed in order to close and release
-                // server connection into the pool
-                //using (AceQLConnection theConnection = await ConnectionCreator.ConnectionCreateAsync().ConfigureAwait(false))
                 using (AceQLConnection theConnection
                     = await ConnectionCreator.ConnectionCreateOracleDatabaseAsync().ConfigureAwait(false))
                 {
-                    OracleStoredProcedureTest myRemoteConnection = new OracleStoredProcedureTest(
+                    OracleStoredProcedureTest oracleStoredProcedureTest = new OracleStoredProcedureTest(
                         theConnection);
                     AceQLConsole.WriteLine("Connection created....");
 
-                    await myRemoteConnection.CallStoredProcedure().ConfigureAwait(false);
+                    await oracleStoredProcedureTest.CallStoredProcedure().ConfigureAwait(false);
                     await theConnection.CloseAsync();
                     AceQLConsole.WriteLine("The end...");
                 }
@@ -99,7 +93,7 @@ namespace AceQL.Client.Test.StoredProcedure
         /// <exception cref="AceQLException">If any Exception occurs.</exception>
         public async Task CallStoredProcedure()
         {
-            string sql = "call demoSp(@parm1, @parm2)";
+            string sql = "{ call PROCEDURE2(@parm1, ?) }";
 
             AceQLCommand command = new AceQLCommand(sql, connection);
             command.CommandType = CommandType.StoredProcedure;

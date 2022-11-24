@@ -814,6 +814,14 @@ namespace AceQL.Client.Api.Http
             return await aceQLMetadataApi.DbSchemaDownloadAsync(format, tableName).ConfigureAwait(false);
 
         }
+         
+                
+        internal async Task<HealthCheckInfoDto> GetHealthCheckInfoDtoAsync()
+        {
+            AceQLHealthCheckInfoApi aceQLHealthCheckInfoApi = new AceQLHealthCheckInfoApi(httpManager, url, simpleTracer);
+            return await aceQLHealthCheckInfoApi.GetHealthCheckInfoDtoAsync().ConfigureAwait(false);
+        }
+
 
         /// <summary>
         /// Gets the database metadata.
