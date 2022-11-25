@@ -28,11 +28,13 @@ namespace AceQL.Client.Api
         internal static readonly string BATCH_MIN_SERVER_VERSION = "8.0";
         internal static readonly string GET_DATABASE_INFO_MIN_SERVER_VERSION = "9.0";
         internal static readonly string EXECUTE_SERVER_QUERY_MIN_SERVER_VERSION = "10.1";
+        internal static readonly string SERVER_VERSION_12 = "12.0";
 
         // Minimum version for HealthCheck.getHealthCheckInfo()
         internal static readonly string GET_HEALTH_CHECK_INFO_MIN_SERVER_VERSION = "12.0";
 
         private static string SERVER_VERSION_NUMBER;
+
 
    
 
@@ -117,5 +119,15 @@ namespace AceQL.Client.Api
             return IsCurrentVersionOk(rawServerVersion, GET_HEALTH_CHECK_INFO_MIN_SERVER_VERSION);
         }
 
+        /// <summary>
+        /// Determines whether /[is version12 or higher] [the specified connection].
+        /// </summary>
+        /// <param name="connection">The connection.</param>
+        /// <returns><c>true</c> if [is version12 or higher] [the specified connection]; otherwise, <c>false</c>.</returns>
+        internal static async Task<bool> IsVersion12OrHigher(AceQLConnection connection)
+        {
+            String rawServerVersion = await ExtractRawServerVersion(connection).ConfigureAwait(false);
+            return IsCurrentVersionOk(rawServerVersion, SERVER_VERSION_12);
+        }
     }
 }

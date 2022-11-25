@@ -75,6 +75,7 @@ namespace AceQL.Client.Api
 
         // For batch, contain all SQL orders, one per line, in text mode: 
         private String batchFileParameters;
+        private DatabaseInfo databaseInfo;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="AceQLCommand"/> class.
@@ -238,6 +239,18 @@ namespace AceQL.Client.Api
             if (connection == null)
             {
                 throw new ArgumentNullException("connection is null!");
+            }
+
+            // Oracle Database Select query requires server > 12.0
+            bool isStoredProcedure = (commandType == CommandType.StoredProcedure ? true : false);
+            if (isStoredProcedure && ! await AceQLConnectionUtil.IsVersion12OrHigher(connection).ConfigureAwait(false) && databaseInfo == null)
+            {
+                this.databaseInfo =  await connection.GetDatabaseInfoAsync().ConfigureAwait(false);
+                if (this.databaseInfo.DatabaseProductName.ToLowerInvariant().Contains("oracle"))
+                {
+                    throw new NotSupportedException("AceQL Server version must be >= " + AceQLConnectionUtil.SERVER_VERSION_12
+                        + " in order to call an Oracle stored procedure with a SELECT.");
+                }
             }
 
             // Statement wit parameters are always prepared statement

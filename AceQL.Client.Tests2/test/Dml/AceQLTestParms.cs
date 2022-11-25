@@ -29,5 +29,7 @@ namespace AceQL.Client.Test.Dml
     {
         public static string IN_DIRECTORY = AceQLConnection.GetAceQLLocalFolder() + "\\";
         public static string OUT_DIRECTORY = IN_DIRECTORY + "out\\";
+
+        public const string FIRSTNAME = "André_";
     }
 }

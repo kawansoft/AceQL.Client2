@@ -18,6 +18,7 @@
  */
 
 using AceQL.Client.Api;
+using AceQL.Client.Test.Dml;
 using AceQL.Client.Test.Util;
 using System;
 using System.Collections.Generic;
@@ -236,7 +237,7 @@ namespace AceQL.Client.Sample
 
                 command.Parameters.AddWithValue("@parm1", customer_id);
                 command.Parameters.AddWithValue("@parm2", "Sir");
-                command.Parameters.AddWithValue("@parm3", "André_" + customer_id);
+                command.Parameters.AddWithValue("@parm3", AceQLTestParms.FIRSTNAME + customer_id);
                 command.Parameters.Add(new AceQLParameter("@parm4", "Name_" + customer_id));
                 command.Parameters.AddWithValue("@parm5", customer_id + ", road 66");
                 command.Parameters.AddWithValue("@parm6", "Town_" + customer_id);

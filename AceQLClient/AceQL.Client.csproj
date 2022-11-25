@@ -11,9 +11,9 @@
     <PackageLicenseExpression></PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/kawansoft/AceQL.Client2</PackageProjectUrl>
     <PackageIcon>favicon.png</PackageIcon>
-    <AssemblyVersion>7.5.2.0</AssemblyVersion>
-    <FileVersion>7.5.2.0</FileVersion>
-    <Version>7.5.2</Version>
+    <AssemblyVersion>7.6.0.0</AssemblyVersion>
+    <FileVersion>7.6.0.0</FileVersion>
+    <Version>7.6.0</Version>
     <Authors>KawanSoft</Authors>
     <PackageReleaseNotes>Some error messages have been enhanced.</PackageReleaseNotes>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>

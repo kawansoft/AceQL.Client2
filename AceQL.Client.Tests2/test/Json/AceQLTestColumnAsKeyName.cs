@@ -33,6 +33,7 @@ namespace AceQL.Client.Test.Json
     /// </summary>
     static class AceQLTestColumnAsKeyName
     {
+
         public static void TheMain(string[] args)
         {
             try
@@ -100,7 +101,7 @@ namespace AceQL.Client.Test.Json
 
                 command.Parameters.AddWithValue("@parm1", customer_id);
                 command.Parameters.AddWithValue("@parm2", "Sir");
-                command.Parameters.AddWithValue("@parm3", "André_" + customer_id);
+                command.Parameters.AddWithValue("@parm3", AceQLTestParms.FIRSTNAME + customer_id);
                 command.Parameters.Add(new AceQLParameter("@parm4", "Name_" + customer_id));
                 command.Parameters.AddWithValue("@parm5", customer_id + "_row_2");
                 command.Parameters.AddWithValue("@parm6", customer_id + "_row_count");
