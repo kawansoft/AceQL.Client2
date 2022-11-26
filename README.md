@@ -13,7 +13,52 @@
 
 <img src="https://docs.aceql.com/img/AceQL-Schema-min.jpg" alt="AceQL Draw"/>
 
-
+* [Fundamentals](#fundamentals)
+   * [AceQL C# Client SDK Online Documentation](#aceql-c-client-sdk-online-documentation)
+   * [Contributors](#contributors)
+   * [Technical operating environment](#technical-operating-environment)
+   * [License](#license)
+   * [AceQL Server side compatibility](#aceql-server-side-compatibility)
+   * [AceQL C# Client SDK installation](#aceql-c-client-sdk-installation)
+   * [Data transport](#data-transport)
+      * [Transport format](#transport-format)
+      * [Content streaming and memory management](#content-streaming-and-memory-management)
+   * [Best practices for fast response time](#best-practices-for-fast-response-time)
+* [Implementation Info](#implementation-info)
+   * [The AceQL SDK classes and methods](#the-aceql-sdk-classes-and-methods)
+      * [Asynchronous implementation](#asynchronous-implementation)
+   * [Data types](#data-types)
+* [Using the AceQL C# Client SDK](#using-the-aceql-c-client-sdk)
+   * [The connection string](#the-connection-string)
+      * [Using NTLM](#using-ntlm)
+      * [Using a Web Proxy](#using-a-web-proxy)
+         * [Using CredentialCache values for an authenticated proxy](#using-credentialcache-values-for-an-authenticated-proxy)
+   * [Handling Exceptions](#handling-exceptions)
+      * [The error type](#the-error-type)
+      * [Most common AceQL server messages](#most-common-aceql-server-messages)
+      * [HTTP Status Codes](#http-status-codes)
+   * [AceQLConnection: Connection Creation &amp; Close](#aceqlconnection-connection-creation--close)
+   * [AceQLCommand: executing SQL statements](#aceqlcommand-executing-sql-statements)
+      * [Inserting NULL values](#inserting-null-values)
+   * [AceQLDataReader: getting queries result](#aceqldatareader-getting-queries-result)
+      * [Reading NULL values](#reading-null-values)
+   * [AceQLTransaction](#aceqltransaction)
+      * [Precisions on transactions](#precisions-on-transactions)
+   * [Using Stored Procedures](#using-stored-procedures)
+      * [Using Oracle Database stored procedures with SELECT calls](#using-oracle-database-stored-procedures-with-select-calls)
+   * [Batch management](#batch-management)
+   * [BLOB management](#blob-management)
+      * [BLOB creation](#blob-creation)
+      * [BLOB reading](#blob-reading)
+      * [Managing BLOB upload progress](#managing-blob-upload-progress)
+   * [Advanced Features](#advanced-features)
+      * [Calling AceQL Java stored procedures](#calling-aceql-java-stored-procedures)
+      * [Using outer authentication without a password  and with an AceQL Session ID](#using-outer-authentication-without-a-password--and-with-an-aceql-session-id)
+      * [Enable default system authentication](#enable-default-system-authentication)
+   * [Using the Metadata Query API](#using-the-metadata-query-api)
+      * [Downloading database schema into a file](#downloading-database-schema-into-a-file)
+      * [Accessing remote database main properties](#accessing-remote-database-main-properties)
+      * [Getting Details of Tables and Columns](#getting-details-of-tables-and-columns)
 
 
 # Fundamentals 
@@ -501,7 +546,7 @@ It is unnecessary to assign an `AceQLTransaction` to an `AceQLCommand`. (Because
 
 ## Using Stored Procedures
 
-Stored procedures are supported for MySQL/MariaDB, PotsgreSQL, SQL Server, and Oracle Database. The parameter's direction may be specified.  The standard syntax is the same for all database products :
+Stored procedures are supported for MySQL/MariaDB, PotsgreSQL, SQL Server, and Oracle Database. The parameter's direction may be specified.  The standard syntax is the same for all database products:
 
 ```C#
 string sql = "{call ProcedureName(@parm1, @parm2, @parm3)}";
