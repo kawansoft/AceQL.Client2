@@ -4197,8 +4197,8 @@
         </member>
         <member name="T:AceQL.Client.Api.HealthCheck">
             <summary>
-            Class HealthCheck. Allows testing if the remote AceQL servlet is accessible with a ping, and to
-            check database access response time.
+            Class HealthCheck. Allows testing if the remote AceQL servlet is accessible with a ping, to
+            check database access response time, and gathering server memory info.
             </summary>
         </member>
         <member name="F:AceQL.Client.Api.HealthCheck.connection">
@@ -4236,11 +4236,11 @@
             <returns><c>true</c> if the the AceQL server main servlet is pingable, else <c>false</c>.</returns>
             <exception cref="P:AceQL.Client.Api.HealthCheck.AceQLException"></exception>
         </member>
-        <member name="M:AceQL.Client.Api.HealthCheck.GetHealthCheckInfoAsync">
+        <member name="M:AceQL.Client.Api.HealthCheck.GetServerMemoryInfoAsync">
             <summary>
             Get server health check information.
             </summary>
-            <returns>A Task&lt;HealthCheckInfo&gt; representing the server's health check information</returns>
+            <returns>A Task&lt;ServerMemoryInfo&gt; representing the server's health check information</returns>
             <exception cref="P:AceQL.Client.Api.HealthCheck.AceQLException"></exception>
         </member>
         <member name="M:AceQL.Client.Api.HealthCheck.GetResponseTimeAsync(System.String)">
@@ -4259,61 +4259,6 @@
             by the underlying <c>connection</c>.
             </summary>
             <returns>The response time in milliseconds</returns>
-        </member>
-        <member name="T:AceQL.Client.Api.HealthCheckInfo">
-            <summary>
-            Contains health check info about running AceQL HTTP on remote server.
-            </summary>
-        </member>
-        <member name="F:AceQL.Client.Api.HealthCheckInfo.initMemory">
-            <summary>
-            The initialize memory
-            </summary>
-        </member>
-        <member name="F:AceQL.Client.Api.HealthCheckInfo.usedMemory">
-            <summary>
-            The used memory
-            </summary>
-        </member>
-        <member name="F:AceQL.Client.Api.HealthCheckInfo.maxMemory">
-            <summary>
-            The maximum memory
-            </summary>
-        </member>
-        <member name="F:AceQL.Client.Api.HealthCheckInfo.committedMemory">
-            <summary>
-            The committed memory
-            </summary>
-        </member>
-        <member name="P:AceQL.Client.Api.HealthCheckInfo.InitMemory">
-            <summary>
-            Gets the initialize memory.
-            </summary>
-            <value>The initialize memory.</value>
-        </member>
-        <member name="P:AceQL.Client.Api.HealthCheckInfo.UsedMemory">
-            <summary>
-            Gets the used memory.
-            </summary>
-            <value>The used memory.</value>
-        </member>
-        <member name="P:AceQL.Client.Api.HealthCheckInfo.MaxMemory">
-            <summary>
-            Gets the maximum memory.
-            </summary>
-            <value>The maximum memory.</value>
-        </member>
-        <member name="P:AceQL.Client.Api.HealthCheckInfo.CommittedMemory">
-            <summary>
-            Gets the committed memory.
-            </summary>
-            <value>The committed memory.</value>
-        </member>
-        <member name="M:AceQL.Client.Api.HealthCheckInfo.ToString">
-            <summary>
-            Returns a <see cref="T:System.String" /> that represents this instance.
-            </summary>
-            <returns>A <see cref="T:System.String" /> that represents this instance.</returns>
         </member>
         <member name="T:AceQL.Client.Api.IsolationLevel">
             <summary>
@@ -4407,6 +4352,73 @@
             </para>
             </summary>
             <returns> the password </returns>
+        </member>
+        <member name="T:AceQL.Client.Api.ServerMemoryInfo">
+            <summary>
+            Contains health check Java memory info of the AceQL server running instance. 
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.ServerMemoryInfo.initMemory">
+            <summary>
+            The initialize memory
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.ServerMemoryInfo.usedMemory">
+            <summary>
+            The used memory
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.ServerMemoryInfo.maxMemory">
+            <summary>
+            The maximum memory
+            </summary>
+        </member>
+        <member name="F:AceQL.Client.Api.ServerMemoryInfo.committedMemory">
+            <summary>
+            The committed memory
+            </summary>
+        </member>
+        <member name="P:AceQL.Client.Api.ServerMemoryInfo.InitMemory">
+            <summary>
+            Returns the amount of memory in bytes that the Java virtual machine
+            initially requests from the operating system for memory management.
+            This method returns -1 if the initial memory size is undefined.
+            </summary>
+             <value>The initial size of memory in bytes.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.ServerMemoryInfo.UsedMemory">
+            <summary>
+            Returns the amount of used memory in bytes.
+            </summary>
+            <value>the amount of used memory in bytes.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.ServerMemoryInfo.MaxMemory">
+             <summary>
+             Returns the maximum amount of memory in bytes that can be
+             used for memory management.  This method returns <tt>-1</tt>
+             if the maximum memory size is undefined.
+            
+             This amount of memory is not guaranteed to be available
+             for memory management if it is greater than the amount of
+             committed memory.  The Java virtual machine may fail to allocate
+             memory even if the amount of used memory does not exceed this
+             maximum size.
+             </summary>
+             <value>The maximum amount of memory in bytes; -1 if undefined.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.ServerMemoryInfo.CommittedMemory">
+            <summary>
+            Returns the amount of memory in bytes that is committed for
+            the Java virtual machine to use.  This amount of memory is
+            guaranteed for the Java virtual machine to use.
+            </summary>
+            <value>The amount of committed memory in bytes.</value>
+        </member>
+        <member name="M:AceQL.Client.Api.ServerMemoryInfo.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents this instance.
+            </summary>
+            <returns>A <see cref="T:System.String" /> that represents this instance.</returns>
         </member>
     </members>
 </doc>

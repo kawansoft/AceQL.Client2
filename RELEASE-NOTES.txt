@@ -17,6 +17,18 @@ they would do for an SQL Server database.
 The AceQL C# Client SDK is licensed under the Apache 2.0 License.
 
 
+AceQL C# Client SDK - Version 7.6 - 26-Nov-2022
+-----------------------------------------------
+
+What's new:
+- Oracle stored procedures with SELECT calls are now 
+  supported. See User Guide.
+- The new HealthCheck.getServerMemoryInfoAsync() API allows
+  gathering memory info of the AceQL server running instance. 
+  See documentation at:
+  https://docs.aceql.com/rest/soft_csharp/7.6/csharpdoc_sdk/
+
+
 AceQL C# Client SDK - Version 7.5.2 - 13-Jun-2022
 -------------------------------------------------
 

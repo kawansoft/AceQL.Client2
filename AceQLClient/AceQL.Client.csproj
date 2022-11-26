@@ -15,7 +15,8 @@
     <FileVersion>7.6.0.0</FileVersion>
     <Version>7.6.0</Version>
     <Authors>KawanSoft</Authors>
-    <PackageReleaseNotes>Some error messages have been enhanced.</PackageReleaseNotes>
+    <PackageReleaseNotes>Oracle stored procedures with SELECT calls are now supported.
+The new HealthCheck.GetServerMemoryInfoAsync() API allows gathering memory info of the AceQL server running instance. </PackageReleaseNotes>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageTags>SQL over http remote jdbc cloud database Xamarin</PackageTags>
     <Product>AceQL.Client</Product>

@@ -23,9 +23,9 @@ using System.Text;
 namespace AceQL.Client.Api
 {
     /// <summary>
-    /// Contains health check info about running AceQL HTTP on remote server.
+    /// Contains health check Java memory info of the AceQL server running instance. 
     /// </summary>
-    public class HealthCheckInfo
+    public class ServerMemoryInfo
 	{
 
         /// <summary>
@@ -65,25 +65,40 @@ namespace AceQL.Client.Api
             this.usedMemory = usedMemory;
         }
 
-        /// <summary>
-        /// Gets the initialize memory.
-        /// </summary>
-        /// <value>The initialize memory.</value>
+        ///<summary>
+        ///Returns the amount of memory in bytes that the Java virtual machine
+        ///initially requests from the operating system for memory management.
+        ///This method returns -1 if the initial memory size is undefined.
+        ///</summary>
+        /// <value>The initial size of memory in bytes.</value>
         public long InitMemory { get => initMemory; }
+
         /// <summary>
-        /// Gets the used memory.
+        /// Returns the amount of used memory in bytes.
         /// </summary>
-        /// <value>The used memory.</value>
+        /// <value>the amount of used memory in bytes.</value>
         public long UsedMemory { get => usedMemory; }
+
         /// <summary>
-        /// Gets the maximum memory.
+        /// Returns the maximum amount of memory in bytes that can be
+        /// used for memory management.  This method returns <tt>-1</tt>
+        /// if the maximum memory size is undefined.
+        ///
+        /// This amount of memory is not guaranteed to be available
+        /// for memory management if it is greater than the amount of
+        /// committed memory.  The Java virtual machine may fail to allocate
+        /// memory even if the amount of used memory does not exceed this
+        /// maximum size.
         /// </summary>
-        /// <value>The maximum memory.</value>
+        /// <value>The maximum amount of memory in bytes; -1 if undefined.</value>
         public long MaxMemory { get => maxMemory; }
+
         /// <summary>
-        /// Gets the committed memory.
+        /// Returns the amount of memory in bytes that is committed for
+        /// the Java virtual machine to use.  This amount of memory is
+        /// guaranteed for the Java virtual machine to use.
         /// </summary>
-        /// <value>The committed memory.</value>
+        /// <value>The amount of committed memory in bytes.</value>
         public long CommittedMemory { get => committedMemory; }
 
 
@@ -93,7 +108,7 @@ namespace AceQL.Client.Api
         /// <returns>A <see cref="System.String" /> that represents this instance.</returns>
         public override string ToString()
 		{
-			return "HealthCheckInfo [initMemory=" + InitMemory + ", usedMemory=" + UsedMemory + ", maxMemory=" + MaxMemory + ", committedMemory=" + CommittedMemory + "]";
+			return "ServerMemoryInfo [initMemory=" + InitMemory + ", usedMemory=" + UsedMemory + ", maxMemory=" + MaxMemory + ", committedMemory=" + CommittedMemory + "]";
 		}
 
     }

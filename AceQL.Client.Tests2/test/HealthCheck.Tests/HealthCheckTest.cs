@@ -56,7 +56,7 @@ namespace AceQL.Client.Test.HealthChecks.Test
             }
         }
 
-        private static void TestHealthCheckInfoDtoJson()
+        public static void TestHealthCheckInfoDtoJson()
         {
             String filePath = "C:/Users/ndepo/.kawansoft/HealthCheckInfoDto.txt";
             String content = File.ReadAllText(filePath);
@@ -91,11 +91,11 @@ namespace AceQL.Client.Test.HealthChecks.Test
             AceQLConsole.WriteLine(AceQLConnection.GetAceQLLocalFolder());
 
             HealthCheck healthCheck = new HealthCheck(connection);
-            AceQLConsole.WriteLine("healthCheck.PingAsync()              : " + await healthCheck.PingAsync().ConfigureAwait(false));
-            AceQLConsole.WriteLine("healthCheck.GetResponseTimeAsync()   : " + await healthCheck.GetResponseTimeAsync().ConfigureAwait(false));
+            AceQLConsole.WriteLine("healthCheck.PingAsync()               : " + await healthCheck.PingAsync().ConfigureAwait(false));
+            AceQLConsole.WriteLine("healthCheck.GetResponseTimeAsync()    : " + await healthCheck.GetResponseTimeAsync().ConfigureAwait(false));
 
             // Complementary Health Check Info
-            AceQLConsole.WriteLine("healthCheck.GetHealthCheckInfoAsync(): " + await healthCheck.GetHealthCheckInfoAsync().ConfigureAwait(false));
+            AceQLConsole.WriteLine("healthCheck.GetServerMemoryInfoAsync(): " + await healthCheck.GetServerMemoryInfoAsync().ConfigureAwait(false));
         }
     }
 }

@@ -30,8 +30,8 @@ using System.Threading.Tasks;
 namespace AceQL.Client.Api
 {
     /// <summary>
-    /// Class HealthCheck. Allows testing if the remote AceQL servlet is accessible with a ping, and to
-    /// check database access response time.
+    /// Class HealthCheck. Allows testing if the remote AceQL servlet is accessible with a ping, to
+    /// check database access response time, and gathering server memory info.
     /// </summary>
     public class HealthCheck
     {
@@ -113,27 +113,27 @@ namespace AceQL.Client.Api
         /// <summary>
         /// Get server health check information.
         /// </summary>
-        /// <returns>A Task&lt;HealthCheckInfo&gt; representing the server's health check information</returns>
+        /// <returns>A Task&lt;ServerMemoryInfo&gt; representing the server's health check information</returns>
         /// <exception cref="AceQL.Client.Api.HealthCheck.AceQLException"></exception>
-        public async Task<HealthCheckInfo> GetHealthCheckInfoAsync()
+        public async Task<ServerMemoryInfo> GetServerMemoryInfoAsync()
         {
             if (!await AceQLConnectionUtil.IsHealthCheckInfoSupported(connection))
             {
                 throw new NotSupportedException("AceQL Server version must be >= " + AceQLConnectionUtil.GET_HEALTH_CHECK_INFO_MIN_SERVER_VERSION
-                    + " in order to call GetHealthCheckInfoAsync().");
+                    + " in order to call GetServerMemoryInfoAsync().");
             }
 
             AceQLHttpApi aceQLHttpApi = connection.aceQLHttpApi;
 
             HealthCheckInfoDto healthCheckInfoDto = await aceQLHttpApi.GetHealthCheckInfoDtoAsync().ConfigureAwait(false);
 
-            HealthCheckInfo healthCheckInfo = new HealthCheckInfo();
-            healthCheckInfo.SetCommittedMemory(healthCheckInfoDto.CommittedMemory);
-            healthCheckInfo.SetInitMemory(healthCheckInfoDto.InitMemory);
-            healthCheckInfo.SetMaxMemory(healthCheckInfoDto.MaxMemory);
-            healthCheckInfo.SetUsedMemory(healthCheckInfoDto.UsedMemory);
+            ServerMemoryInfo serverMemoryInfo = new ServerMemoryInfo();
+            serverMemoryInfo.SetCommittedMemory(healthCheckInfoDto.CommittedMemory);
+            serverMemoryInfo.SetInitMemory(healthCheckInfoDto.InitMemory);
+            serverMemoryInfo.SetMaxMemory(healthCheckInfoDto.MaxMemory);
+            serverMemoryInfo.SetUsedMemory(healthCheckInfoDto.UsedMemory);
                 
-            return healthCheckInfo;
+            return serverMemoryInfo;
 
         }
 
