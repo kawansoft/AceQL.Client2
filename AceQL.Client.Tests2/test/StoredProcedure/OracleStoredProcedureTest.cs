@@ -106,15 +106,11 @@ namespace AceQL.Client.Test.StoredProcedure
             AceQLConsole.WriteLine("BEFORE execute @parm1: " + aceQLParameter1.ParameterName + " / " + aceQLParameter1.Value);
             AceQLConsole.WriteLine();
 
-            // Our dataReader must be disposed to delete underlying downloaded files
-            using (AceQLDataReader dataReader = await command.ExecuteReaderAsync())
+            using AceQLDataReader dataReader = await command.ExecuteReaderAsync();
+            while (dataReader.Read())
             {
-                //await dataReader.ReadAsync(new CancellationTokenSource().Token)
-                while (dataReader.Read())
-                {
-                    int i = 0;
-                    AceQLConsole.WriteLine("GetValue: " + dataReader.GetValue(i));
-                }
+                int i = 0;
+                AceQLConsole.WriteLine("Customer ID: " + dataReader.GetValue(i));
             }
         }
      

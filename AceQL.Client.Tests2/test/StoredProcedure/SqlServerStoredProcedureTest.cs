@@ -109,7 +109,7 @@ namespace AceQL.Client.Test.StoredProcedure
                 return;
             }
 
-            string sql = "{call ProcedureName(@parm1, @parm2, @parm3)}";
+            string sql = "{call MY_STORED_PROCEDURE(@parm1, @parm2, @parm3)}";
 
             AceQLCommand command = new AceQLCommand(sql, connection);
             command.CommandType = CommandType.StoredProcedure;

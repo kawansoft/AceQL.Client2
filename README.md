@@ -5,60 +5,13 @@
 
 # AceQL HTTP 
 
-## C# Client SDK v7.5.2 - User Guide
+## C# Client SDK v7.6 - User Guide
 
-## June 13, 2022
+## November 26, 2022
 
 <img src="https://docs.aceql.com/favicon.png" alt="AceQ HTTP Icon"/>
 
 <img src="https://docs.aceql.com/img/AceQL-Schema-min.jpg" alt="AceQL Draw"/>
-
-   * [Fundamentals](#fundamentals)
-      * [AceQL C# Client SDK Online Documentation](#aceql-c-client-sdk-online-documentation)
-      * [Contributors](#contributors)
-      * [Technical operating environment](#technical-operating-environment)
-      * [License](#license)
-      * [AceQL Server side compatibility](#aceql-server-side-compatibility)
-      * [AceQL C# Client SDK installation](#aceql-c-client-sdk-installation)
-      * [Data transport](#data-transport)
-         * [Transport format](#transport-format)
-         * [Content streaming and memory management](#content-streaming-and-memory-management)
-      * [Best practices for fast response time](#best-practices-for-fast-response-time)
-   * [Implementation Info](#implementation-info)
-      * [The AceQL SDK classes and methods](#the-aceql-sdk-classes-and-methods)
-         * [Asynchronous implementation](#asynchronous-implementation)
-      * [Data types](#data-types)
-   * [Using the AceQL C# Client SDK](#using-the-aceql-c-client-sdk)
-      * [The connection string](#the-connection-string)
-         * [Using NTLM](#using-ntlm)
-         * [Using a Web Proxy](#using-a-web-proxy)
-            * [Using CredentialCache values for an authenticated proxy](#using-credentialcache-values-for-an-authenticated-proxy)
-      * [Handling Exceptions](#handling-exceptions)
-         * [The error type](#the-error-type)
-         * [Most common AceQL server messages](#most-common-aceql-server-messages)
-         * [HTTP Status Codes](#http-status-codes)
-      * [AceQLConnection: Connection Creation &amp; Close](#aceqlconnection-connection-creation--close)
-      * [AceQLCommand: executing SQL statements](#aceqlcommand-executing-sql-statements)
-         * [Inserting NULL values](#inserting-null-values)
-      * [AceQLDataReader: getting queries result](#aceqldatareader-getting-queries-result)
-         * [Reading NULL values](#reading-null-values)
-      * [AceQLTransaction](#aceqltransaction)
-         * [Precisions on transactions](#precisions-on-transactions)
-      * [Batch management](#batch-management)
-      * [BLOB management](#blob-management)
-         * [BLOB creation](#blob-creation)
-         * [BLOB reading](#blob-reading)
-         * [Managing BLOB upload progress](#managing-blob-upload-progress)
-      * [Advanced Features](#advanced-features)
-         * [Calling AceQL Java stored procedures](#calling-aceql-java-stored-procedures)
-         * [Using outer authentication without a password  and with an AceQL Session ID](#using-outer-authentication-without-a-password--and-with-an-aceql-session-id)
-         * [Enable default system authentication](#enable-default-system-authentication)
-      * [Using the Metadata Query API](#using-the-metadata-query-api)
-         * [Downloading database schema into a file](#downloading-database-schema-into-a-file)
-         * [Accessing remote database main properties](#accessing-remote-database-main-properties)
-         * [Getting Details of Tables and Columns](#getting-details-of-tables-and-columns)
-
-
 
 
 
@@ -77,7 +30,7 @@ On the remote side, like the AceQL Server access to the SQL database using Java 
 
 ## AceQL C# Client SDK Online Documentation
 
-The Online Documentation is accessible [here](https://docs.aceql.com/rest/soft_csharp/7.5.2/csharpdoc_sdk/html/N-AceQL.Client.Api.htm).
+The Online Documentation is accessible [here](https://docs.aceql.com/rest/soft_csharp/7.6/csharpdoc_sdk/html/N-AceQL.Client.Api.htm).
 
 ## Contributors
 
@@ -546,6 +499,77 @@ It is unnecessary to assign an `AceQLTransaction` to an `AceQLCommand`. (Because
 
 `AceQLTransaction.Dispose` calls do nothing and `AceQLTransaction`  is Disposable for ease of existing code migration.
 
+## Using Stored Procedures
+
+Stored procedures are supported for MySQL/MariaDB, PotsgreSQL, SQL Server, and Oracle Database. The parameter's direction may be specified.  The standard syntax is the same for all database products :
+
+```C#
+string sql = "{call ProcedureName(@parm1, @parm2, @parm3)}";
+
+AceQLCommand command = new AceQLCommand(sql, connection);
+command.CommandType = CommandType.StoredProcedure;
+
+AceQLParameter aceQLParameter2 = new AceQLParameter("@parm2", 2)
+{
+    Direction = ParameterDirection.InputOutput
+};
+
+// Direction defaults to IN
+AceQLParameter aceQLParameter1 = new AceQLParameter("@parm1", 0);
+
+AceQLParameter aceQLParameter3 = new AceQLParameter("@parm3")
+{
+    Direction = ParameterDirection.Output
+};
+
+command.Parameters.Add(aceQLParameter1);
+command.Parameters.Add(aceQLParameter2);
+command.Parameters.Add(aceQLParameter3);
+
+await command.ExecuteNonQueryAsync(); // 
+
+// Or AceQLDataReader dataReader = await command.ExecuteReaderAsync();
+// for a SELECT call.
+```
+
+### Using Oracle Database stored procedures with SELECT calls
+
+Oracle Database stored procedures with SELECT calls are supported starting AceQL HTTP server version 12.0. The last parameter must be a `?` in order to signify to the AceQL HTTP server that the stored procedure is a SELECT call.
+
+Assuming this Oracle Database stored procedure that executes a SELECT call:
+
+```plsql
+-- ORACLE_SELECT_CUSTOMER stored procedure
+-- Executes a SELECT on customer table with 
+-- customer_id as IN parameter
+create or replace PROCEDURE ORACLE_SELECT_CUSTOMER 
+    (p_customer_id NUMBER, p_rc OUT sys_refcursor) AS 
+BEGIN
+    OPEN p_rc
+    For select customer_id from customer where customer_id > p_customer_id;
+END ORACLE_SELECT_CUSTOMER;
+```
+
+The C# code for calling `ORACLE_SELECT_CUSTOMER`  and print back all `customer_id` > 2 would be:
+
+```C#
+string sql = "{ call ORACLE_SELECT_CUSTOMER(@parm1, ?) }";
+
+AceQLCommand command = new AceQLCommand(sql, connection);
+command.CommandType = CommandType.StoredProcedure;
+
+AceQLParameter aceQLParameter1 = new AceQLParameter("@parm1", 2);
+
+command.Parameters.Add(aceQLParameter1);
+
+using AceQLDataReader dataReader = await command.ExecuteReaderAsync();
+while (dataReader.Read())
+{
+    int i = 0;
+    AceQLConsole.WriteLine("Customer ID: " + dataReader.GetValue(i));
+}
+```
+
 ## Batch management
 
 Batch commands allows to process Bulk insert:
@@ -838,7 +862,7 @@ RemoteDatabaseMetaData remoteDatabaseMetaData = connection.GetRemoteDatabaseMeta
 
 ### Downloading database schema into a file
 
-Downloading a schema into a  `File` is done through the method. See the `RemoteDatabaseMetaData` [Documentation](https://docs.aceql.com/rest/soft_csharp/7.5.2/csharpdoc_sdk):
+Downloading a schema into a  `File` is done through the method. See the `RemoteDatabaseMetaData` [Documentation](https://docs.aceql.com/rest/soft_csharp/7.6/csharpdoc_sdk):
 
 ```C#
 string userPath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
@@ -854,7 +878,7 @@ using (Stream stream = await remoteDatabaseMetaData.DbSchemaDownloadAsync())
 }
 ```
 
-See an example of the built HTML schema:  [db_schema.out.html](https://docs.aceql.com/rest/soft_csharp/7.5.2/src/db_schema.out.html)
+See an example of the built HTML schema:  [db_schema.out.html](https://docs.aceql.com/rest/soft_csharp/7.6/src/db_schema.out.html)
 
 ### Accessing remote database main properties
 
@@ -869,7 +893,7 @@ Console.WriteLine("IsReadOnly   : " + jdbcDatabaseMetaData.IsReadOnly);
 
 ### Getting Details of Tables and Columns
 
-See the `RemoteDatabaseMetaData` [Documentation](https://docs.aceql.com/rest/soft_csharp/7.5.2/csharpdoc_sdk):
+See the `RemoteDatabaseMetaData` [Documentation](https://docs.aceql.com/rest/soft_csharp/7.6/csharpdoc_sdk):
 
 ```C#
 Console.WriteLine("Get the table names:");

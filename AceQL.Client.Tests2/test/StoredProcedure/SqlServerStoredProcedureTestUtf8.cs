@@ -116,7 +116,7 @@ namespace AceQL.Client.Test.StoredProcedure
             AceQLCommand command = new AceQLCommand(sql, connection);
             command.CommandType = CommandType.StoredProcedure;
 
-            String parm1 = "टेस्ट";
+            String parm1 = "Name";
             AceQLParameter aceQLParameter1 = new AceQLParameter("@parm1", parm1)
             {
                 Direction = ParameterDirection.Input
