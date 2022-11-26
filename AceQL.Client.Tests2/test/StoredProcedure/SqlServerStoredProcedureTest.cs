@@ -58,7 +58,7 @@ namespace AceQL.Client.Test.StoredProcedure
 
                 // Make sure connection is always closed in order to close and release
                 // server connection into the pool
-                using (AceQLConnection theConnection = await ConnectionCreator.ConnectionCreateAsync().ConfigureAwait(false))
+                using (AceQLConnection theConnection = await ConnectionCreator.ConnectionCreateSqlServerAsync().ConfigureAwait(false))
                 {
                     SqlServerStoredProcedureTest sqlServerStoredProcedureTest = new SqlServerStoredProcedureTest(
                         theConnection);

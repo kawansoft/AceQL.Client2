@@ -93,7 +93,7 @@ namespace AceQL.Client.Test.StoredProcedure
         /// <exception cref="AceQLException">If any Exception occurs.</exception>
         public async Task CallStoredProcedure()
         {
-            string sql = "{ call PROCEDURE2(@parm1, ?) }";
+            string sql = "{ call ORACLE_SELECT_CUSTOMER(@parm1, ?) }";
 
             AceQLCommand command = new AceQLCommand(sql, connection);
             command.CommandType = CommandType.StoredProcedure;
