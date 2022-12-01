@@ -28,7 +28,8 @@ using System.Threading.Tasks;
 namespace AceQL.Client.Test.StoredProcedure
 {
     /// <summary>
-    /// This example calls an Oracle stored procedure that returns a SELECT result.
+    ///  This class shows how to use AceQL C# Client SDK in order to call
+    /// Oracle stored procedures.
     /// </summary>
     public class OracleStoredProcedureTest
     {
@@ -95,6 +96,11 @@ namespace AceQL.Client.Test.StoredProcedure
         public async Task StoredProcedureOracleSelectCustomer()
         {
             /**
+            --
+            -- Oracle stored procedure sample with a SELECT.
+            -- Returns all customer_id from customer table 
+            -- that are > to the input value p_customer_id
+            -- 
             create or replace PROCEDURE ORACLE_SELECT_CUSTOMER 
                 (p_customer_id NUMBER, p_rc OUT sys_refcursor) AS 
             BEGIN
@@ -134,6 +140,10 @@ namespace AceQL.Client.Test.StoredProcedure
         {
 
             /**
+            --
+            -- Oracle stored procedure sample with a compute.
+            -- Returns in OUT param2 the sum of IN param1 and IN/OU param2
+            -- 
             create or replace PROCEDURE ORACLE_IN_OUT 
             (
               PARAM1 IN NUMBER 
@@ -171,8 +181,6 @@ namespace AceQL.Client.Test.StoredProcedure
 
             AceQLConsole.WriteLine("Done StoredProcedureOracleInOut!");
             AceQLConsole.WriteLine();
-
-
 
         }
 
