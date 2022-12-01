@@ -58,7 +58,8 @@ namespace AceQL.Client.Test.StoredProcedure
                         theConnection);
                     AceQLConsole.WriteLine("Connection created....");
 
-                    await oracleStoredProcedureTest.CallStoredProcedure().ConfigureAwait(false);
+                    await oracleStoredProcedureTest.StoredProcedureOracleSelectCustomer().ConfigureAwait(false);
+                    await oracleStoredProcedureTest.StoredProcedureOracleInOut().ConfigureAwait(false);
                     await theConnection.CloseAsync();
                     AceQLConsole.WriteLine("The end...");
                 }
@@ -88,11 +89,20 @@ namespace AceQL.Client.Test.StoredProcedure
         }
 
         /// <summary>
-        /// Example of MySQL Stored Procedure.
+        /// Example of Oracle Stored Procedure with a SELECT call
         /// </summary>
         /// <exception cref="AceQLException">If any Exception occurs.</exception>
-        public async Task CallStoredProcedure()
+        public async Task StoredProcedureOracleSelectCustomer()
         {
+            /**
+            create or replace PROCEDURE ORACLE_SELECT_CUSTOMER 
+                (p_customer_id NUMBER, p_rc OUT sys_refcursor) AS 
+            BEGIN
+                OPEN p_rc
+                For select customer_id from customer where customer_id > p_customer_id;
+            END ORACLE_SELECT_CUSTOMER;
+             */
+
             string sql = "{ call ORACLE_SELECT_CUSTOMER(@parm1, ?) }";
 
             AceQLCommand command = new AceQLCommand(sql, connection);
@@ -112,7 +122,59 @@ namespace AceQL.Client.Test.StoredProcedure
                 int i = 0;
                 AceQLConsole.WriteLine("Customer ID: " + dataReader.GetValue(i));
             }
+            AceQLConsole.WriteLine("Done StoredProcedureOracleSelectCustomer!");
+            AceQLConsole.WriteLine();
         }
-     
+
+        /// <summary>
+        /// Example of Oracle Stored Procedure with IN & OUT parameters
+        /// </summary>
+        /// <exception cref="AceQLException">If any Exception occurs.</exception>
+        public async Task StoredProcedureOracleInOut()
+        {
+
+            /**
+            create or replace PROCEDURE ORACLE_IN_OUT 
+            (
+              PARAM1 IN NUMBER 
+            , PARAM2 IN OUT NUMBER 
+            ) AS 
+            BEGIN
+              param2 := param1 + param2;
+            END ORACLE_IN_OUT;
+            */
+
+            string sql = "{ call ORACLE_IN_OUT(@parm1, @parm2) }";
+
+            AceQLCommand command = new AceQLCommand(sql, connection);
+            command.CommandType = CommandType.StoredProcedure;
+
+            AceQLParameter aceQLParameter1 = new AceQLParameter("@parm1", 1);
+
+            AceQLParameter aceQLParameter2 = new AceQLParameter("@parm2", 2)
+            {
+                Direction = ParameterDirection.InputOutput
+            };
+
+            command.Parameters.Add(aceQLParameter1);
+            command.Parameters.Add(aceQLParameter2);
+
+            AceQLConsole.WriteLine(sql);
+            AceQLConsole.WriteLine("BEFORE execute @parm1: " + aceQLParameter1.ParameterName + " / " + aceQLParameter1.Value);
+            AceQLConsole.WriteLine("BEFORE execute @parm2: " + aceQLParameter2.ParameterName + " / " + aceQLParameter2.Value);
+            AceQLConsole.WriteLine();
+
+            await command.ExecuteNonQueryAsync();
+
+            AceQLConsole.WriteLine();
+            AceQLConsole.WriteLine("AFTER execute @parm2: " + aceQLParameter2.ParameterName + " / " + aceQLParameter2.Value + " (" + aceQLParameter2.Value.GetType() + ")");
+
+            AceQLConsole.WriteLine("Done StoredProcedureOracleInOut!");
+            AceQLConsole.WriteLine();
+
+
+
+        }
+
     }
 }
