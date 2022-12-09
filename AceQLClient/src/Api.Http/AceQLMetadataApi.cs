@@ -293,5 +293,45 @@ namespace AceQL.Client.Api.Http
                 }
             }
         }
+
+        /// <summary>
+        /// Gets the limits information dto.
+        /// </summary>
+        /// <returns>Task&lt;DatabaseInfoDto&gt;.</returns>
+        /// <exception cref="AceQLException"></exception>
+        /// <exception cref="AceQLException">0</exception>
+        internal async Task<LimitsInfoDto> GetLimitsInfoDto()
+        {
+            try
+            {
+                String commandName = "get_limits_info";
+                String result = await CallWithGetAsync(commandName, null).ConfigureAwait(false);
+
+                ResultAnalyzer resultAnalyzer = new ResultAnalyzer(result, HttpStatusCode);
+                if (!resultAnalyzer.IsStatusOk())
+                {
+                    throw new AceQLException(resultAnalyzer.GetErrorMessage(),
+                        resultAnalyzer.GetErrorId(),
+                        resultAnalyzer.GetStackTrace(),
+                        HttpStatusCode);
+                }
+
+                LimitsInfoDto limitsInfoDto = JsonConvert.DeserializeObject<LimitsInfoDto>(result);
+                return limitsInfoDto;
+            }
+            catch (Exception exception)
+            {
+                simpleTracer.Trace(exception.ToString());
+
+                if (exception.GetType() == typeof(AceQLException))
+                {
+                    throw;
+                }
+                else
+                {
+                    throw new AceQLException(exception.Message, 0, exception, HttpStatusCode);
+                }
+            }
+        }
     }
 }

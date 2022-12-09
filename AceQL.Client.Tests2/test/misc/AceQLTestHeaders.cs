@@ -104,7 +104,10 @@ namespace AceQL.Client.Test.test.misc
             AceQLConsole.WriteLine("host: " + connection.ConnectionInfo.ConnectionString);
             AceQLConsole.WriteLine("aceQLConnection.GetClientVersion()     : " + AceQLConnection.GetClientVersion());
             AceQLConsole.WriteLine("aceQLConnection.GetServerVersionAsync(): " + await connection.GetServerVersionAsync());
+            
             AceQLConsole.WriteLine("aceQLConnection.GetDatabaseInfoAsync() : " + await connection.GetDatabaseInfoAsync());
+            AceQLConsole.WriteLine("aceQLConnection.GetLimitsInfoAsync()   : " + await connection.GetLimitsInfoAsync());
+
             AceQLConsole.WriteLine("AceQL local folder: ");
             AceQLConsole.WriteLine(AceQLConnection.GetAceQLLocalFolder());
             AceQLConsole.WriteLine("ConnectionInfo: " + connection.ConnectionInfo);

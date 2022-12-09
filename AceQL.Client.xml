@@ -371,6 +371,12 @@
             </summary>
             <returns>Task&lt;DatabaseInfo&gt;.</returns>
         </member>
+        <member name="M:AceQL.Client.Api.Http.AceQLHttpApi.GetLimitsInfo">
+            <summary>
+            Gets the mimits information.
+            </summary>
+            <returns>Task&lt;DatabaseInfo&gt;.</returns>
+        </member>
         <member name="M:AceQL.Client.Api.Http.AceQLHttpApi.ResetCancellationToken">
             <summary>
             To be call at end of each of each public aysnc(CancellationToken) calls to reset to false the usage of a CancellationToken with http calls
@@ -473,6 +479,14 @@
         <member name="M:AceQL.Client.Api.Http.AceQLMetadataApi.GetDatabaseInfoDto">
             <summary>
             Gets the database information dto.
+            </summary>
+            <returns>Task&lt;DatabaseInfoDto&gt;.</returns>
+            <exception cref="T:AceQL.Client.Api.AceQLException"></exception>
+            <exception cref="T:AceQL.Client.Api.AceQLException">0</exception>
+        </member>
+        <member name="M:AceQL.Client.Api.Http.AceQLMetadataApi.GetLimitsInfoDto">
+            <summary>
+            Gets the limits information dto.
             </summary>
             <returns>Task&lt;DatabaseInfoDto&gt;.</returns>
             <exception cref="T:AceQL.Client.Api.AceQLException"></exception>
@@ -789,6 +803,17 @@
             Gets the JDBC database meta data.
             </summary>
             <value>The JDBC database meta data.</value>
+        </member>
+        <member name="T:AceQL.Client.Api.Metadata.Dto.LimitsInfoDto">
+            <summary>
+            Class LimitsInfoDto.
+            </summary>
+        </member>
+        <member name="M:AceQL.Client.Api.Metadata.Dto.LimitsInfoDto.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents this instance.
+            </summary>
+            <returns>A <see cref="T:System.String" /> that represents this instance.</returns>
         </member>
         <member name="T:AceQL.Client.Api.Metadata.Dto.ServerQueryExecutorDto">
             <summary>
@@ -2885,6 +2910,12 @@
             </summary>
             <returns>Task&lt;DatabaseInfo&gt;.</returns>
         </member>
+        <member name="M:AceQL.Client.Api.AceQLConnection.GetLimitsInfoAsync">
+            <summary>
+             Gives info of limits defined on server side.
+            </summary>
+            <returns>Task&lt;DatabaseInfo&gt;.</returns>
+        </member>
         <member name="M:AceQL.Client.Api.AceQLConnection.OpenAsync">
             <summary>
             Opens a connection with the remote database.
@@ -3050,6 +3081,13 @@
         <member name="M:AceQL.Client.Api.AceQLConnectionUtil.IsGetDatabaseInfoSupported(AceQL.Client.Api.AceQLConnection)">
             <summary>
             Determines whether if GetDatabaseInfo() is supported on server side.
+            </summary>
+            <param name="connection">The connection.</param>
+            <returns>Task&lt;System.Boolean&gt;.</returns>
+        </member>
+        <member name="M:AceQL.Client.Api.AceQLConnectionUtil.IsGetLimitsInfoSupported(AceQL.Client.Api.AceQLConnection)">
+            <summary>
+            Determines whether if GetLimitsInfo() is supported on server side.
             </summary>
             <param name="connection">The connection.</param>
             <returns>Task&lt;System.Boolean&gt;.</returns>
@@ -4289,6 +4327,39 @@
              <summary>
             A range lock is placed, preventing other users from updating or inserting rows into the dataset until the transaction is complete.
              </summary>
+        </member>
+        <member name="T:AceQL.Client.Api.LimitsInfo">
+            <summary>
+            A simple shortcut class that contains main remote database limits info:
+            maxRows: the maximum number of SQL rows that may be returned to the
+            client by the AceQL server.
+            maxBlobLength: the maximum length allowed for a Blob upload.
+            
+            </summary>
+        </member>
+        <member name="M:AceQL.Client.Api.LimitsInfo.#ctor(AceQL.Client.Api.Metadata.Dto.LimitsInfoDto)">
+            <summary>
+            Constructor. </summary>
+            <param name="limitsInfoDto">	the Limits DTO </param>
+        </member>
+        <member name="P:AceQL.Client.Api.LimitsInfo.MaxRows">
+            <summary>
+            Gets the maximum number of SQL rows that may be returned to the client by the
+            AceQL server.
+            </summary>
+            <returns> the maximum number of SQL rows that may be returned to the client by
+                    the AceQL server. </returns>
+        </member>
+        <member name="P:AceQL.Client.Api.LimitsInfo.MaxBlobLength">
+            <summary>
+            Gets the maximum length allowed for a Blob upload. </summary>
+            <returns> the maximum length allowed for a Blob upload. </returns>
+        </member>
+        <member name="M:AceQL.Client.Api.LimitsInfo.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents this instance.
+            </summary>
+            <returns>A <see cref="T:System.String" /> that represents this instance.</returns>
         </member>
         <member name="T:AceQL.Client.Api.ParameterDirection">
             <summary>

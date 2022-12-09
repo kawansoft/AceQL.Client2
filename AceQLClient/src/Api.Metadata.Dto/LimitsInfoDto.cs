@@ -16,15 +16,33 @@
  * See the License for the specific language governing permissions and
  * limitations under the License. 
  */
-
 using System;
+using System.Collections.Generic;
+using System.Text;
 
-namespace AceQL.Client.Api.Util
+namespace AceQL.Client.Api.Metadata.Dto
 {
-    internal static class VersionValues
+    /// <summary>
+    /// Class LimitsInfoDto.
+    /// </summary>
+    internal class LimitsInfoDto
     {
-        internal static readonly String PRODUCT = "AceQL HTTP Client SDK";
-        internal static readonly String VERSION = "v7.6.1";
-        internal static readonly String DATE = "09-Dec-2022";
+        private string status = "OK";
+        private long maxRows = 0;
+        private long maxBlobLength = 0;
+
+        public string Status { get => status; set => status = value; }
+        public long MaxRows { get => maxRows; set => maxRows = value; }
+        public long MaxBlobLength { get => maxBlobLength; set => maxBlobLength = value; }
+
+        /// <summary>
+        /// Returns a <see cref="System.String" /> that represents this instance.
+        /// </summary>
+        /// <returns>A <see cref="System.String" /> that represents this instance.</returns>
+        public override string ToString()
+        {
+            return "LimitsInfoDto [status=" + status + ", maxRows=" + maxRows + ", maxBlobLength=" + maxBlobLength + "]";
+        }
+
     }
 }

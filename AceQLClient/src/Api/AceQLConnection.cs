@@ -166,6 +166,21 @@ namespace AceQL.Client.Api
         }
 
         /// <summary>
+        ///  Gives info of limits defined on server side.
+        /// </summary>
+        /// <returns>Task&lt;DatabaseInfo&gt;.</returns>
+        public async Task<LimitsInfo> GetLimitsInfoAsync()
+        {
+            if (!await AceQLConnectionUtil.IsGetLimitsInfoSupported(this))
+            {
+                throw new NotSupportedException("AceQL Server version must be >= " + AceQLConnectionUtil.GET_LIMITS_INFO_MIN_SERVER_VERSION
+                    + " in order to call GetLimitsInfoAsync().");
+            }
+
+            return await aceQLHttpApi.GetLimitsInfo().ConfigureAwait(false);
+        }
+
+        /// <summary>
         /// Opens a connection with the remote database.
         /// </summary>
         /// <exception cref="AceQLException">If any Exception occurs.</exception>

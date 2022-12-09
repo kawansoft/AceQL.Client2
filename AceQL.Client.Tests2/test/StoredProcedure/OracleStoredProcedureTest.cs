@@ -139,16 +139,16 @@ namespace AceQL.Client.Test.StoredProcedure
         public async Task StoredProcedureOracleSelectCustomer2()
         {
             /**
-            create or replace PROCEDURE ORACLE_SELECT_CUSTOMER_2 
+            create or replace PROCEDURE ORACLE_SELECT_CUSTOMER 
                 (p_customer_id IN OUT NUMBER, p_customer_name VARCHAR, p_rc OUT sys_refcursor) AS 
             BEGIN
                 OPEN p_rc
                 For select customer_id, lname from customer where customer_id > p_customer_id
                 and lname <> p_customer_name;
-            END ORACLE_SELECT_CUSTOMER_2;
+            END ORACLE_SELECT_CUSTOMER;
              */
 
-            string sql = "{ call ORACLE_SELECT_CUSTOMER_2(@parm1, @parm2, ?) }";
+            string sql = "{ call ORACLE_SELECT_CUSTOMER(@parm1, @parm2, ?) }";
 
             AceQLCommand command = new AceQLCommand(sql, connection);
             command.CommandType = CommandType.StoredProcedure;
@@ -191,21 +191,19 @@ namespace AceQL.Client.Test.StoredProcedure
         {
 
             /**
-            --
-            -- Oracle stored procedure sample with a compute.
-            -- Returns in OUT param2 the sum of IN param1 and IN/OU param2
-            -- 
-            create or replace PROCEDURE ORACLE_IN_OUT 
+            create or replace PROCEDURE ORACLE_IN_OUT
             (
               PARAM1 IN NUMBER 
-            , PARAM2 IN OUT NUMBER 
+            , PARAM2 IN OUT NUMBER
+            , PARAM3 IN OUT VARCHAR 
             ) AS 
             BEGIN
               param2 := param1 + param2;
+              param3 := param3 || ' 42! ';
             END ORACLE_IN_OUT;
             */
 
-            string sql = "{ call ORACLE_IN_OUT(@parm1, @parm2) }";
+            string sql = "{ call ORACLE_IN_OUT(@parm1, @parm2, @parm3) }";
 
             AceQLCommand command = new AceQLCommand(sql, connection);
             command.CommandType = CommandType.StoredProcedure;
@@ -217,18 +215,27 @@ namespace AceQL.Client.Test.StoredProcedure
                 Direction = ParameterDirection.InputOutput
             };
 
+
+            AceQLParameter aceQLParameter3 = new AceQLParameter("@parm3", "Life is:")
+            {
+                Direction = ParameterDirection.InputOutput
+            };
+
             command.Parameters.Add(aceQLParameter1);
             command.Parameters.Add(aceQLParameter2);
+            command.Parameters.Add(aceQLParameter3);
 
             AceQLConsole.WriteLine(sql);
             AceQLConsole.WriteLine("BEFORE execute @parm1: " + aceQLParameter1.ParameterName + " / " + aceQLParameter1.Value);
             AceQLConsole.WriteLine("BEFORE execute @parm2: " + aceQLParameter2.ParameterName + " / " + aceQLParameter2.Value);
+            AceQLConsole.WriteLine("BEFORE execute @parm3: " + aceQLParameter3.ParameterName + " / " + aceQLParameter3.Value);
             AceQLConsole.WriteLine();
 
             await command.ExecuteNonQueryAsync();
 
             AceQLConsole.WriteLine();
             AceQLConsole.WriteLine("AFTER execute @parm2: " + aceQLParameter2.ParameterName + " / " + aceQLParameter2.Value + " (" + aceQLParameter2.Value.GetType() + ")");
+            AceQLConsole.WriteLine("AFTER execute @parm3: " + aceQLParameter3.ParameterName + " / " + aceQLParameter3.Value + " (" + aceQLParameter3.Value.GetType() + ")");
 
             AceQLConsole.WriteLine("Done StoredProcedureOracleInOut!");
             AceQLConsole.WriteLine();

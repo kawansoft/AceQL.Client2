@@ -90,9 +90,15 @@ namespace AceQL.Client.Test.HealthChecks.Test
 
             AceQLConsole.WriteLine(AceQLConnection.GetAceQLLocalFolder());
 
+            AceQLConsole.WriteLine("aceQLConnection.GetDatabaseInfoAsync() : " + await connection.GetDatabaseInfoAsync());
+            AceQLConsole.WriteLine("aceQLConnection.GetLimitsInfoAsync()   : " + await connection.GetLimitsInfoAsync());
+            AceQLConsole.WriteLine();
+
             HealthCheck healthCheck = new HealthCheck(connection);
             AceQLConsole.WriteLine("healthCheck.PingAsync()               : " + await healthCheck.PingAsync().ConfigureAwait(false));
             AceQLConsole.WriteLine("healthCheck.GetResponseTimeAsync()    : " + await healthCheck.GetResponseTimeAsync().ConfigureAwait(false));
+            
+  
 
             // Complementary Health Check Info
             AceQLConsole.WriteLine("healthCheck.GetServerMemoryInfoAsync(): " + await healthCheck.GetServerMemoryInfoAsync().ConfigureAwait(false));

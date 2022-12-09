@@ -33,17 +33,17 @@ namespace AceQL.Client.Api
         // Minimum version for HealthCheck.getHealthCheckInfo()
         internal static readonly string GET_HEALTH_CHECK_INFO_MIN_SERVER_VERSION = "12.0";
 
+        internal static readonly string GET_LIMITS_INFO_MIN_SERVER_VERSION = "12.2";
+
         private static string SERVER_VERSION_NUMBER;
 
-
-   
 
         /// <summary>
         /// Says if the current version is OK foe a feature execution.</summary>
         /// <param name="rawServerVersion">		the current server version </param>
         /// <param name="minServerVersion">		the minimum version for feature execution </param>
         /// <returns> true if rawServerVersion is OK for execution </returns>
-   
+
         public static bool IsCurrentVersionOk(string rawServerVersion, string minServerVersion)
         {
             // Because of US Culture
@@ -95,6 +95,17 @@ namespace AceQL.Client.Api
         {
             String rawServerVersion = await ExtractRawServerVersion(connection).ConfigureAwait(false);
             return IsCurrentVersionOk(rawServerVersion, GET_DATABASE_INFO_MIN_SERVER_VERSION);
+        }
+
+        /// <summary>
+        /// Determines whether if GetLimitsInfo() is supported on server side.
+        /// </summary>
+        /// <param name="connection">The connection.</param>
+        /// <returns>Task&lt;System.Boolean&gt;.</returns>
+        internal static async Task<bool> IsGetLimitsInfoSupported(AceQLConnection connection)
+        {
+            String rawServerVersion = await ExtractRawServerVersion(connection).ConfigureAwait(false);
+            return IsCurrentVersionOk(rawServerVersion, GET_LIMITS_INFO_MIN_SERVER_VERSION);
         }
 
         /// <summary>
