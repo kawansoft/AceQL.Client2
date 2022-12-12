@@ -26,6 +26,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -802,7 +803,7 @@ namespace AceQL.Client.Api
             }
 
             String jsonString = JsonConvert.SerializeObject(paramsHolder);
-            File.AppendAllText(this.batchFileParameters, jsonString + Environment.NewLine);
+            File.AppendAllText(this.batchFileParameters, jsonString + Environment.NewLine, Encoding.ASCII);
 
             this.parameters = new AceQLParameterCollection(cmdText);
 
