@@ -5,9 +5,9 @@
 
 # AceQL HTTP 
 
-## C# Client SDK v7.6 - User Guide
+## C# Client SDK v7.7 - User Guide
 
-## November 26, 2022
+## December 12, 2022
 
 <img src="https://docs.aceql.com/favicon.png" alt="AceQ HTTP Icon"/>
 
@@ -75,7 +75,7 @@ On the remote side, like the AceQL Server access to the SQL database using Java 
 
 ## AceQL C# Client SDK Online Documentation
 
-The Online Documentation is accessible [here](https://docs.aceql.com/rest/soft_csharp/7.6/csharpdoc_sdk/html/N-AceQL.Client.Api.htm).
+The Online Documentation is accessible [here](https://docs.aceql.com/rest/soft_csharp/7.7/csharpdoc_sdk/html/N-AceQL.Client.Api.htm).
 
 ## Contributors
 
@@ -907,7 +907,7 @@ RemoteDatabaseMetaData remoteDatabaseMetaData = connection.GetRemoteDatabaseMeta
 
 ### Downloading database schema into a file
 
-Downloading a schema into a  `File` is done through the method. See the `RemoteDatabaseMetaData` [Documentation](https://docs.aceql.com/rest/soft_csharp/7.6/csharpdoc_sdk):
+Downloading a schema into a  `File` is done through the method. See the `RemoteDatabaseMetaData` [Documentation](https://docs.aceql.com/rest/soft_csharp/7.7/csharpdoc_sdk):
 
 ```C#
 string userPath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
@@ -923,7 +923,7 @@ using (Stream stream = await remoteDatabaseMetaData.DbSchemaDownloadAsync())
 }
 ```
 
-See an example of the built HTML schema:  [db_schema.out.html](https://docs.aceql.com/rest/soft_csharp/7.6/src/db_schema.out.html)
+See an example of the built HTML schema:  [db_schema.out.html](https://docs.aceql.com/rest/soft_csharp/7.7/src/db_schema.out.html)
 
 ### Accessing remote database main properties
 
@@ -938,7 +938,7 @@ Console.WriteLine("IsReadOnly   : " + jdbcDatabaseMetaData.IsReadOnly);
 
 ### Getting Details of Tables and Columns
 
-See the `RemoteDatabaseMetaData` [Documentation](https://docs.aceql.com/rest/soft_csharp/7.6/csharpdoc_sdk):
+See the `RemoteDatabaseMetaData` [Documentation](https://docs.aceql.com/rest/soft_csharp/7.7/csharpdoc_sdk):
 
 ```C#
 Console.WriteLine("Get the table names:");
