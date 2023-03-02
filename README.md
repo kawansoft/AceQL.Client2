@@ -7,7 +7,7 @@
 
 ## C# Client SDK v7.7 - User Guide
 
-## December 12, 2022
+## March 2, 2023
 
 <img src="https://docs.aceql.com/favicon.png" alt="AceQ HTTP Icon"/>
 
@@ -100,7 +100,7 @@ The SDK is licensed with the liberal [Apache 2.0](https://www.apache.org/license
 
 ## AceQL Server side compatibility
 
-This version requires AceQL HTTP version 8.0+ in order to use batch commands and version 10.1+ to execute AceQL Java stored procedures (see below). 
+This version requires AceQL HTTP version 12.2+ on the server side.
 
 ## AceQL C# Client SDK installation
 

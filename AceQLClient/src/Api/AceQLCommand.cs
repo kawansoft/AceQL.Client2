@@ -549,7 +549,7 @@ namespace AceQL.Client.Api
                 AceQLCommandUtil aceQLCommandUtil = new AceQLCommandUtil(cmdText, Parameters);
 
                 // Get the parameters and Build the result set
-                Dictionary<string, string> statementParameters = aceQLCommandUtil.GetPreparedStatementParameters();
+                Dictionary<string, string> statementParameters = aceQLCommandUtil.GetPreparedStatementParameters(false);
 
                 foreach (string key in statementParameters.Keys)
                 {
@@ -682,7 +682,7 @@ namespace AceQL.Client.Api
                 AceQLCommandUtil aceQLCommandUtil = new AceQLCommandUtil(cmdText, Parameters);
 
                 // Get the parameters and Build the result set
-                Dictionary<string, string> statementParameters = aceQLCommandUtil.GetPreparedStatementParameters();
+                Dictionary<string, string> statementParameters = aceQLCommandUtil.GetPreparedStatementParameters(false);
 
                 // Uploads Blobs
                 List<string> blobIds = aceQLCommandUtil.BlobIds;
@@ -781,7 +781,7 @@ namespace AceQL.Client.Api
             AceQLCommandUtil aceQLCommandUtil = new AceQLCommandUtil(cmdText, Parameters);
 
             // Get the parameters and Build the result set
-            Dictionary<string, string> statementParameters = aceQLCommandUtil.GetPreparedStatementParameters();
+            Dictionary<string, string> statementParameters = aceQLCommandUtil.GetPreparedStatementParameters(true);
 
             // We can do only one "@param" params replace with attended JDBC "?" values
             if (this.cmdTextWithQuestionMarks == null)
@@ -803,7 +803,7 @@ namespace AceQL.Client.Api
             }
 
             String jsonString = JsonConvert.SerializeObject(paramsHolder);
-            File.AppendAllText(this.batchFileParameters, jsonString + Environment.NewLine, Encoding.ASCII);
+            File.AppendAllText(this.batchFileParameters, jsonString + Environment.NewLine);
 
             this.parameters = new AceQLParameterCollection(cmdText);
 

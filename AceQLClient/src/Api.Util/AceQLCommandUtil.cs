@@ -118,7 +118,7 @@ namespace AceQL.Client.Api.Util
         /// Gets the prepared statement parameters.
         /// </summary>
         /// <returns>The Parameters List</returns>
-        internal Dictionary<string, string> GetPreparedStatementParameters()
+        internal Dictionary<string, string> GetPreparedStatementParameters(bool doHtmlEncode)
         {
             HashSet<String> theParamsSetInSqlCommand = GetValidParamsInSqlCommand();
             CheckAllParametersExistInSqlCommand(theParamsSetInSqlCommand, this.Parameters);
@@ -175,7 +175,14 @@ namespace AceQL.Client.Api.Util
                 {
                     String paramType = "VARCHAR";
                     parametersList.Add("param_type_" + paramIndex, paramType);
-                    parametersList.Add("param_value_" + paramIndex, ParmValue.ToString());
+
+                    String strValue = ParmValue.ToString();
+                    if (doHtmlEncode)
+                    {
+                        strValue = WebUtility.HtmlEncode(strValue);
+                    }
+
+                    parametersList.Add("param_value_" + paramIndex, strValue);
                 }
                 else if (ParmValue is long)
                 {

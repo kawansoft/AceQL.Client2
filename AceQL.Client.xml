@@ -1914,7 +1914,7 @@
             Parameters is null!
             </exception>
         </member>
-        <member name="M:AceQL.Client.Api.Util.AceQLCommandUtil.GetPreparedStatementParameters">
+        <member name="M:AceQL.Client.Api.Util.AceQLCommandUtil.GetPreparedStatementParameters(System.Boolean)">
             <summary>
             Gets the prepared statement parameters.
             </summary>

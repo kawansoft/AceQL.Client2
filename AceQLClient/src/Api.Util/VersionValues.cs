@@ -23,8 +23,8 @@ namespace AceQL.Client.Api.Util
 {
     internal static class VersionValues
     {
-        internal static readonly String PRODUCT = "AceQL HTTP Client SDK";
+        internal static readonly String PRODUCT = "AceQL HTTP Client JDBC Driver";
         internal static readonly String VERSION = "v7.7";
-        internal static readonly String DATE = "12-Dec-2022";
+        internal static readonly String DATE = "02-Mar-2022";
     }
 }
