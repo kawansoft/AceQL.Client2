@@ -3071,44 +3071,9 @@
             <param name="connection">The connection.</param>
             <returns>Task&lt;System.String&gt;.</returns>
         </member>
-        <member name="M:AceQL.Client.Api.AceQLConnectionUtil.IsBatchSupported(AceQL.Client.Api.AceQLConnection)">
+        <member name="M:AceQL.Client.Api.AceQLConnectionUtil.IsVersion12_2OrHigher(AceQL.Client.Api.AceQLConnection)">
             <summary>
-            Determines whether if batch commands are supported on server side.
-            </summary>
-            <param name="connection">The connection.</param>
-            <returns>Task&lt;System.Boolean&gt;.</returns>
-        </member>
-        <member name="M:AceQL.Client.Api.AceQLConnectionUtil.IsGetDatabaseInfoSupported(AceQL.Client.Api.AceQLConnection)">
-            <summary>
-            Determines whether if GetDatabaseInfo() is supported on server side.
-            </summary>
-            <param name="connection">The connection.</param>
-            <returns>Task&lt;System.Boolean&gt;.</returns>
-        </member>
-        <member name="M:AceQL.Client.Api.AceQLConnectionUtil.IsGetLimitsInfoSupported(AceQL.Client.Api.AceQLConnection)">
-            <summary>
-            Determines whether if GetLimitsInfo() is supported on server side.
-            </summary>
-            <param name="connection">The connection.</param>
-            <returns>Task&lt;System.Boolean&gt;.</returns>
-        </member>
-        <member name="M:AceQL.Client.Api.AceQLConnectionUtil.IsExecuteServerQuerySupported(AceQL.Client.Api.AceQLConnection)">
-            <summary>
-            Determines whether is AceQLCommand.ExecuteServerQueryAsync supported on server side.
-            </summary>
-            <param name="connection">The connection.</param>
-            <returns><c>true</c> if AceQLCommand.ExecuteServerQueryAsync is supported on server side. otherwise, <c>false</c>.</returns>
-        </member>
-        <member name="M:AceQL.Client.Api.AceQLConnectionUtil.IsHealthCheckInfoSupported(AceQL.Client.Api.AceQLConnection)">
-            <summary>
-            Determines whether HealthCheck.getHealthCheckInfo() is supported on server side.
-            </summary>
-            <param name="connection">The connection.</param>
-            <returns><c>true</c> if HealthCheck.getHealthCheckInfo() is supported on server side. otherwise, <c>false</c>.</returns>
-        </member>
-        <member name="M:AceQL.Client.Api.AceQLConnectionUtil.IsVersion12OrHigher(AceQL.Client.Api.AceQLConnection)">
-            <summary>
-            Determines whether /[is version12 or higher] [the specified connection].
+            Determines whether /[is version 12.2 or higher] [the specified connection].
             </summary>
             <param name="connection">The connection.</param>
             <returns><c>true</c> if [is version12 or higher] [the specified connection]; otherwise, <c>false</c>.</returns>

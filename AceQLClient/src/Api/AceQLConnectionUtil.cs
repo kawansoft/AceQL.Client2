@@ -1,7 +1,7 @@
 ﻿/*
  * This filePath is part of AceQL C# Client SDK.
  * AceQL C# Client SDK: Remote SQL access over HTTP with AceQL HTTP.                                 
- * Copyright (C) 2022,  KawanSoft SAS
+ * Copyright (C) 2023,  KawanSoft SAS
  * (http://www.kawansoft.com). All rights reserved.                                
  *                                                                               
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -25,18 +25,8 @@ namespace AceQL.Client.Api
 {
     internal static class AceQLConnectionUtil
     {
-        internal static readonly string BATCH_MIN_SERVER_VERSION = "8.0";
-        internal static readonly string GET_DATABASE_INFO_MIN_SERVER_VERSION = "9.0";
-        internal static readonly string EXECUTE_SERVER_QUERY_MIN_SERVER_VERSION = "10.1";
-        internal static readonly string SERVER_VERSION_12 = "12.0";
-
-        // Minimum version for HealthCheck.getHealthCheckInfo()
-        internal static readonly string GET_HEALTH_CHECK_INFO_MIN_SERVER_VERSION = "12.0";
-
-        internal static readonly string GET_LIMITS_INFO_MIN_SERVER_VERSION = "12.2";
-
+        internal static readonly string SERVER_VERSION_12_2 = "12.2";
         private static string SERVER_VERSION_NUMBER;
-
 
         /// <summary>
         /// Says if the current version is OK foe a feature execution.</summary>
@@ -76,69 +66,14 @@ namespace AceQL.Client.Api
         }
 
         /// <summary>
-        /// Determines whether if batch commands are supported on server side.
-        /// </summary>
-        /// <param name="connection">The connection.</param>
-        /// <returns>Task&lt;System.Boolean&gt;.</returns>
-        internal static async Task<bool> IsBatchSupported(AceQLConnection connection)
-        {
-            String rawServerVersion = await ExtractRawServerVersion(connection).ConfigureAwait(false);
-            return IsCurrentVersionOk(rawServerVersion, BATCH_MIN_SERVER_VERSION);
-        }
-
-        /// <summary>
-        /// Determines whether if GetDatabaseInfo() is supported on server side.
-        /// </summary>
-        /// <param name="connection">The connection.</param>
-        /// <returns>Task&lt;System.Boolean&gt;.</returns>
-        internal static async Task<bool> IsGetDatabaseInfoSupported(AceQLConnection connection)
-        {
-            String rawServerVersion = await ExtractRawServerVersion(connection).ConfigureAwait(false);
-            return IsCurrentVersionOk(rawServerVersion, GET_DATABASE_INFO_MIN_SERVER_VERSION);
-        }
-
-        /// <summary>
-        /// Determines whether if GetLimitsInfo() is supported on server side.
-        /// </summary>
-        /// <param name="connection">The connection.</param>
-        /// <returns>Task&lt;System.Boolean&gt;.</returns>
-        internal static async Task<bool> IsGetLimitsInfoSupported(AceQLConnection connection)
-        {
-            String rawServerVersion = await ExtractRawServerVersion(connection).ConfigureAwait(false);
-            return IsCurrentVersionOk(rawServerVersion, GET_LIMITS_INFO_MIN_SERVER_VERSION);
-        }
-
-        /// <summary>
-        /// Determines whether is AceQLCommand.ExecuteServerQueryAsync supported on server side.
-        /// </summary>
-        /// <param name="connection">The connection.</param>
-        /// <returns><c>true</c> if AceQLCommand.ExecuteServerQueryAsync is supported on server side. otherwise, <c>false</c>.</returns>
-        internal static async Task<bool> IsExecuteServerQuerySupported(AceQLConnection connection)
-        {
-            String rawServerVersion = await ExtractRawServerVersion(connection).ConfigureAwait(false);
-            return IsCurrentVersionOk(rawServerVersion, EXECUTE_SERVER_QUERY_MIN_SERVER_VERSION);
-        }
-
-        /// <summary>
-        /// Determines whether HealthCheck.getHealthCheckInfo() is supported on server side.
-        /// </summary>
-        /// <param name="connection">The connection.</param>
-        /// <returns><c>true</c> if HealthCheck.getHealthCheckInfo() is supported on server side. otherwise, <c>false</c>.</returns>
-        internal static async Task<bool> IsHealthCheckInfoSupported(AceQLConnection connection)
-        {
-            String rawServerVersion = await ExtractRawServerVersion(connection).ConfigureAwait(false);
-            return IsCurrentVersionOk(rawServerVersion, GET_HEALTH_CHECK_INFO_MIN_SERVER_VERSION);
-        }
-
-        /// <summary>
-        /// Determines whether /[is version12 or higher] [the specified connection].
+        /// Determines whether /[is version 12.2 or higher] [the specified connection].
         /// </summary>
         /// <param name="connection">The connection.</param>
         /// <returns><c>true</c> if [is version12 or higher] [the specified connection]; otherwise, <c>false</c>.</returns>
-        internal static async Task<bool> IsVersion12OrHigher(AceQLConnection connection)
+        internal static async Task<bool> IsVersion12_2OrHigher(AceQLConnection connection)
         {
             String rawServerVersion = await ExtractRawServerVersion(connection).ConfigureAwait(false);
-            return IsCurrentVersionOk(rawServerVersion, SERVER_VERSION_12);
+            return IsCurrentVersionOk(rawServerVersion, SERVER_VERSION_12_2);
         }
     }
 }

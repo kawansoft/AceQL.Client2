@@ -1,7 +1,7 @@
 ﻿/*
  * This filePath is part of AceQL C# Client SDK.
  * AceQL C# Client SDK: Remote SQL access over HTTP with AceQL HTTP.                                 
- * Copyright (C) 2022,  KawanSoft SAS
+ * Copyright (C) 2023,  KawanSoft SAS
  * (http://www.kawansoft.com). All rights reserved.                                
  *                                                                               
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -109,7 +109,6 @@ namespace AceQL.Client.Api
             }
         }
 
-
         /// <summary>
         /// Get server health check information.
         /// </summary>
@@ -117,11 +116,6 @@ namespace AceQL.Client.Api
         /// <exception cref="AceQL.Client.Api.HealthCheck.AceQLException"></exception>
         public async Task<ServerMemoryInfo> GetServerMemoryInfoAsync()
         {
-            if (!await AceQLConnectionUtil.IsHealthCheckInfoSupported(connection))
-            {
-                throw new NotSupportedException("AceQL Server version must be >= " + AceQLConnectionUtil.GET_HEALTH_CHECK_INFO_MIN_SERVER_VERSION
-                    + " in order to call GetServerMemoryInfoAsync().");
-            }
 
             AceQLHttpApi aceQLHttpApi = connection.aceQLHttpApi;
 

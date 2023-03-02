@@ -1,7 +1,7 @@
 ﻿/*
  * This filePath is part of AceQL C# Client SDK.
  * AceQL C# Client SDK: Remote SQL access over HTTP with AceQL HTTP.                                 
- * Copyright (C) 2022,  KawanSoft SAS
+ * Copyright (C) 2023,  KawanSoft SAS
  * (http://www.kawansoft.com). All rights reserved.                                
  *                                                                               
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -242,16 +242,11 @@ namespace AceQL.Client.Api
                 throw new ArgumentNullException("connection is null!");
             }
 
-            // Oracle Database Select query requires server > 12.0
-            bool isStoredProcedure = (commandType == CommandType.StoredProcedure ? true : false);
-            if (isStoredProcedure && ! await AceQLConnectionUtil.IsVersion12OrHigher(connection).ConfigureAwait(false) && databaseInfo == null)
+
+            if (!await AceQLConnectionUtil.IsVersion12_2OrHigher(connection).ConfigureAwait(false))
             {
-                this.databaseInfo =  await connection.GetDatabaseInfoAsync().ConfigureAwait(false);
-                if (this.databaseInfo.DatabaseProductName.ToLowerInvariant().Contains("oracle"))
-                {
-                    throw new NotSupportedException("AceQL Server version must be >= " + AceQLConnectionUtil.SERVER_VERSION_12
-                        + " in order to call an Oracle stored procedure with a SELECT.");
-                }
+                throw new NotSupportedException("AceQL Server version must be >= " + AceQLConnectionUtil.SERVER_VERSION_12_2
+                    + " in order to use the AceQL C# Client SDK.");
             }
 
             // Statement wit parameters are always prepared statement
@@ -306,12 +301,7 @@ namespace AceQL.Client.Api
         /// <exception cref="AceQLException">0</exception>
         public async Task<AceQLDataReader> ExecuteServerQueryAsync(String serverQueryExecutorClassName, List<object> parameters)
         {
-            if (!await AceQLConnectionUtil.IsExecuteServerQuerySupported(connection))
-            {
-                throw new NotSupportedException("AceQL Server version must be >= " + AceQLConnectionUtil.EXECUTE_SERVER_QUERY_MIN_SERVER_VERSION
-                    + " in order to call ExecuteServerQueryAsync().");
-            }
-
+  
             try
             {
                 string filePath = FileUtil2.GetUniqueResultSetFile();
@@ -646,9 +636,7 @@ namespace AceQL.Client.Api
         {
             if (input != null)
             {
-                //if (aceQLHttpApi.GzipResult)
-                bool GzipResult = true;
-                if (GzipResult)
+                if (aceQLHttpApi.GzipResult)
                 {
                     using (GZipStream decompressionStream = new GZipStream(input, CompressionMode.Decompress))
                     {
@@ -851,12 +839,6 @@ namespace AceQL.Client.Api
             if (this.batchFileParameters == null || !new FileInfo(this.batchFileParameters).Exists)
             {
                 throw new NotSupportedException("Cannot call executeBatch: addBatch() has never been called.");
-            }
-
-            if (!await AceQLConnectionUtil.IsBatchSupported(connection))
-            {
-                throw new NotSupportedException("AceQL Server version must be >= " + AceQLConnectionUtil.BATCH_MIN_SERVER_VERSION
-                    + " in order to call PreparedStatement.executeBatch().");
             }
 
             try

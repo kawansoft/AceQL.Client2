@@ -15,8 +15,8 @@ namespace AceQL.Client.Api
 	public class LimitsInfo
 	{
 
-		private long maxRows = 0;
-		private long maxBlobLength = 0;
+		private readonly long maxRows;
+		private readonly long maxBlobLength;
 
 		/// <summary>
 		/// Constructor. </summary>

@@ -1,7 +1,7 @@
 ﻿/*
  * This filePath is part of AceQL C# Client SDK.
  * AceQL C# Client SDK: Remote SQL access over HTTP with AceQL HTTP.                                 
- * Copyright (C) 2022,  KawanSoft SAS
+ * Copyright (C) 2023,  KawanSoft SAS
  * (http://www.kawansoft.com). All rights reserved.                                
  *                                                                               
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -54,7 +54,6 @@ namespace AceQL.Client.Api.Util
             }
 
             String filePath = FileUtil2.GetUserFolderPath() + "/" + ACEQL_DEBUG_FILE;
-            //Console.WriteLine("aceql-debug-csharp.ini path: " + filePath);
 
             if (! File.Exists(filePath))
             {

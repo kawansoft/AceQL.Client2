@@ -1,7 +1,7 @@
 ﻿/*
  * This filePath is part of AceQL C# Client SDK.
  * AceQL C# Client SDK: Remote SQL access over HTTP with AceQL HTTP.                                 
- * Copyright (C) 2022,  KawanSoft SAS
+ * Copyright (C) 2023,  KawanSoft SAS
  * (http://www.kawansoft.com). All rights reserved.                                
  *                                                                               
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -156,12 +156,6 @@ namespace AceQL.Client.Api
         /// <returns>Task&lt;DatabaseInfo&gt;.</returns>
         public async Task<DatabaseInfo> GetDatabaseInfoAsync()
         {
-            if (!await AceQLConnectionUtil.IsGetDatabaseInfoSupported(this))
-            {
-                throw new NotSupportedException("AceQL Server version must be >= " + AceQLConnectionUtil.GET_DATABASE_INFO_MIN_SERVER_VERSION
-                    + " in order to call GetDatabaseInfo().");
-            }
-
             return await aceQLHttpApi.GetDatabaseInfo().ConfigureAwait(false);
         }
 
@@ -171,12 +165,6 @@ namespace AceQL.Client.Api
         /// <returns>Task&lt;DatabaseInfo&gt;.</returns>
         public async Task<LimitsInfo> GetLimitsInfoAsync()
         {
-            if (!await AceQLConnectionUtil.IsGetLimitsInfoSupported(this))
-            {
-                throw new NotSupportedException("AceQL Server version must be >= " + AceQLConnectionUtil.GET_LIMITS_INFO_MIN_SERVER_VERSION
-                    + " in order to call GetLimitsInfoAsync().");
-            }
-
             return await aceQLHttpApi.GetLimitsInfo().ConfigureAwait(false);
         }
 
