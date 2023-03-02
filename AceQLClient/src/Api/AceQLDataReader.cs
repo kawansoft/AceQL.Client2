@@ -300,15 +300,7 @@ namespace AceQL.Client.Api
         /// <exception cref="System.NotSupportedException"></exception>
         public byte GetByte(int ordinal)
         {
-            bool throwExcepion = true;
-            if (throwExcepion)
-            {
-                throw new NotSupportedException();
-            }
-            else
-            {
-                return 0;
-            }
+            throw new NotSupportedException();
         }
 
         /// <summary>
