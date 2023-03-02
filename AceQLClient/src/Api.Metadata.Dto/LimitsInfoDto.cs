@@ -28,8 +28,8 @@ namespace AceQL.Client.Api.Metadata.Dto
     internal class LimitsInfoDto
     {
         private string status = "OK";
-        private long maxRows = 0;
-        private long maxBlobLength = 0;
+        private long maxRows;
+        private long maxBlobLength;
 
         public string Status { get => status; set => status = value; }
         public long MaxRows { get => maxRows; set => maxRows = value; }

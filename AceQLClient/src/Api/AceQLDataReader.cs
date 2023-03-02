@@ -323,15 +323,7 @@ namespace AceQL.Client.Api
         /// <exception cref="System.NotSupportedException"></exception>
         public long GetBytes(int ordinal, long dataOffset, byte[] buffer, int bufferOffset, int length)
         {
-            bool throwExcepion = true;
-            if (throwExcepion)
-            {
-                throw new NotSupportedException();
-            }
-            else
-            {
-                return 0;
-            }
+            throw new NotSupportedException();
         }
 
         /// <summary>
