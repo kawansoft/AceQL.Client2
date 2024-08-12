@@ -17,6 +17,14 @@ they would do for an SQL Server database.
 The AceQL C# Client SDK is licensed under the Apache 2.0 License.
 
 
+AceQL C# Client SDK - Version 7.8 - 12-Aug-2024
+-----------------------------------------------
+
+What's new:
+- You can now define a maximum number of retries for failed HTTP calls, 
+  with a configurable delay between each retry.
+
+
 AceQL C# Client SDK - Version 7.7 - 03-Mar-2023
 -----------------------------------------------
 

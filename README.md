@@ -5,9 +5,9 @@
 
 # AceQL HTTP 
 
-## C# Client SDK v7.7 - User Guide
+## C# Client SDK v7.8 - User Guide
 
-## March 2, 2023
+## August 12, 2024
 
 <img src="https://docs.aceql.com/favicon.png" alt="AceQ HTTP Icon"/>
 
@@ -59,7 +59,7 @@
       * [Downloading database schema into a file](#downloading-database-schema-into-a-file)
       * [Accessing remote database main properties](#accessing-remote-database-main-properties)
       * [Getting Details of Tables and Columns](#getting-details-of-tables-and-columns)
-
+* [Implementing Retry Logic in HTTP Requests (Experimental)](#implementing-retry-logic-in-http-requests-experimental)
 
 # Fundamentals 
 
@@ -75,7 +75,7 @@ On the remote side, like the AceQL Server access to the SQL database using Java 
 
 ## AceQL C# Client SDK Online Documentation
 
-The Online Documentation is accessible [here](https://docs.aceql.com/rest/soft_csharp/7.7/csharpdoc_sdk/html/N-AceQL.Client.Api.htm).
+The Online Documentation is accessible [here](https://docs.aceql.com/rest/soft_csharp/7.8/csharpdoc_sdk/html/N-AceQL.Client.Api.htm).
 
 ## Contributors
 
@@ -140,20 +140,7 @@ Note that AceQL is optimized as much as possible:
   - All data reading commands are executed locally on the client side with forward-only reading
 - **It is highly recommended to always use  batch commands  when you have many rows to INSERT or UPDATE.**
 
-## *[Advertisement] 📢* 
 
-## *Explore Sqlephant for Streamlined SQL Development! 🐘*
-
-Sqlephant brings a heap of benefits to your SQL workflow:
-
-- 🚄 **Swift Schema Generation**: Auto-infer types and generate schemas.
-- 🛠 **SQL Fixers**: Easily manage SQL requests and injection issues.
-- 📦 **SQL Wrapper Generation**: Full support for C#, Java, PHP, and Python.
-- 🔄 **SQL CRUD Generation**: Automate CRUD operations seamlessly.
-
-**✨ Optimize Your Development: Save Time, Reduce Bugs, Eliminate Tedious Work!**
-
-👉 Explore [**Sqlephant**](https://www.sqlephant.com) and elevate your SQL development experience!
 
 ---
 
@@ -213,6 +200,22 @@ The main server side JDBC data types for columns are supported:
 Boolean, Blob/Clob, Integer, Short, Double, Float, BigDecimal, Long, String, Date, Time, Timestamp, URL and Array.
 
 Note that the AceQL SDK does not allow you to specify data types to use; data types are implicitly chosen with the `AceQLParameter` values.
+
+## *[Advertisement] 📢*
+
+## *Transform Your Development with ChatMotor API! 🚀*
+
+[ChatMotor](https://www.chatmotor.ai/) API is designed to make your development life easier by handling the complexities of OpenAI and ChatGPT:
+
+- 🌟 **Seamless Integration**: No need to learn the intricacies of OpenAI APIs and their limitations. ChatMotor handles chunking, HTTP errors, and retry management.
+- 📄 **Excel Handling**: Allow your end user to easily process and manipulate large Excel files using simple prompts. Much easier for them than endless VBA or painful Python coding.
+- 📝 **Unlimited Input Sizes**: Seamlessly handle prompts that exceed 4096 tokens with automatic sequencing and parallel task threading for speed, allowing you to treat large inputs without dwelling on the details.
+- 🎙️ **Hassle-Free Transcriptions**: Simply provide the audio files for transcription, regardless of format and size. ChatMotor handles everything, including gigantic files, and delivers a clean, formatted text file.
+- 🌐 **Advanced Translation**: Handle documents of any size with ease. Just pass them to the API, and it will manage everything, delivering accurate and fast results.
+
+**✨ Faster and Easier Delivery for Your End User: Save Time, Reduce Complexity, and Focus on What Matters!**
+
+👉 Explore [**ChatMotor**](https://www.chatmotor.ai) and revolutionize your development workflow!
 
 # Using the AceQL C# Client SDK
 
@@ -924,7 +927,7 @@ RemoteDatabaseMetaData remoteDatabaseMetaData = connection.GetRemoteDatabaseMeta
 
 ### Downloading database schema into a file
 
-Downloading a schema into a  `File` is done through the method. See the `RemoteDatabaseMetaData` [Documentation](https://docs.aceql.com/rest/soft_csharp/7.7/csharpdoc_sdk):
+Downloading a schema into a  `File` is done through the method. See the `RemoteDatabaseMetaData` [Documentation](https://docs.aceql.com/rest/soft_csharp/7.8/csharpdoc_sdk):
 
 ```C#
 string userPath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
@@ -940,7 +943,7 @@ using (Stream stream = await remoteDatabaseMetaData.DbSchemaDownloadAsync())
 }
 ```
 
-See an example of the built HTML schema:  [db_schema.out.html](https://docs.aceql.com/rest/soft_csharp/7.7/src/db_schema.out.html)
+See an example of the built HTML schema:  [db_schema.out.html](https://docs.aceql.com/rest/soft_csharp/7.8/src/db_schema.out.html)
 
 ### Accessing remote database main properties
 
@@ -955,7 +958,7 @@ Console.WriteLine("IsReadOnly   : " + jdbcDatabaseMetaData.IsReadOnly);
 
 ### Getting Details of Tables and Columns
 
-See the `RemoteDatabaseMetaData` [Documentation](https://docs.aceql.com/rest/soft_csharp/7.7/csharpdoc_sdk):
+See the `RemoteDatabaseMetaData` [Documentation](https://docs.aceql.com/rest/soft_csharp/7.8/csharpdoc_sdk):
 
 ```C#
 Console.WriteLine("Get the table names:");
@@ -974,7 +977,21 @@ foreach (String tableName in tableNames)
 }
 ```
 
+## Implementing Retry Logic in HTTP Requests (Experimental)
 
+In networked applications, transient failures can cause HTTP requests to fail. To handle this, you can configure retry logic using the `ConnectionInfo` class.
+
+- **`MaxRetries`**: Sets the number of retry attempts after a failure. For example, `ConnectionInfo.MaxRetries = 3` retries the request up to three times.
+- **`RetryIntervalMs`**: Specifies the delay between retries in milliseconds. For instance, `ConnectionInfo.RetryIntervalMs = 1000` adds a 1-second pause between retries.
+
+Example configuration:
+
+```C#
+ConnectionInfo.MaxRetries = 3;
+ConnectionInfo.RetryIntervalMs = 1000;
+```
+
+This setup retries failed requests up to three times with a 1-second interval between attempts.
 
 ------
 
