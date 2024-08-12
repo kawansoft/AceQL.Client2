@@ -30,6 +30,8 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using AceQL.Client.Api.Batch;
+using AceQL.Client.src.Api.Http;
+using AceQL.Client.src.Api;
 
 namespace AceQL.Client.Api.Http
 {
@@ -182,8 +184,22 @@ namespace AceQL.Client.Api.Http
                 bool enableTrace = connectionStringDecoder.EnableTrace;
                 this.gzipResult = connectionStringDecoder.GzipResult;
 
-                connectionInfo = new ConnectionInfo(connectionString, server, database, username, isNTLM, sessionId, proxyUri, proxyCredentials,
-                    useCredentialCache, timeout, enableDefaultSystemAuthentication, gzipResult, enableTrace);
+                ConnectionInfoHolder connectionInfoHolder = new ConnectionInfoHolder();
+                connectionInfoHolder.ConnectionString = this.connectionString;
+                connectionInfoHolder.Server = this.server;
+                connectionInfoHolder.Database = this.database;
+                connectionInfoHolder.Username = this.username;
+                connectionInfoHolder.IsNTLM = isNTLM;
+                connectionInfoHolder.SessionId = sessionId;
+                connectionInfoHolder.ProxyUri = this.proxyUri;
+                connectionInfoHolder.ProxyCredentials = this.proxyCredentials;
+                connectionInfoHolder.UseCredentialCache = this.useCredentialCache;
+                connectionInfoHolder.Timeout = this.timeout;
+                connectionInfoHolder.EnableDefaultSystemAuthentication = this.enableDefaultSystemAuthentication;
+                connectionInfoHolder.GzipResult = this.gzipResult;
+                connectionInfoHolder.EnableTrace = enableTrace;
+
+                connectionInfo = new ConnectionInfo(connectionInfoHolder);
 
                 if (enableTrace)
                 {
@@ -225,8 +241,15 @@ namespace AceQL.Client.Api.Http
 
                 this.username = username ?? throw new ArgumentNullException("Username keyword not found in connection string or AceQLCredential not set.");
 
+                HttpManagerHolder httpManagerHolder = new HttpManagerHolder();
+                httpManagerHolder.ProxyUri = proxyUri;
+                httpManagerHolder.Timeout = timeout;
+                httpManagerHolder.ProxyCredentials = proxyCredentials;
+                httpManagerHolder.EnableDefaultSystemAuthentication = enableDefaultSystemAuthentication;
+                httpManagerHolder.RequestHeaders = requestHeaders;
+
                 // Create the HttpManager instance
-                this.httpManager = new HttpManager(proxyUri, proxyCredentials, timeout, enableDefaultSystemAuthentication, requestHeaders);
+                this.httpManager = new HttpManager(httpManagerHolder);
                 this.httpManager.SetSimpleTracer(simpleTracer);
 
                 Debug("httpManager.Proxy: " + httpManager.Proxy);

@@ -7,15 +7,15 @@
     <PackageId>AceQL.Client</PackageId>
     <Company>KawanSoft</Company>
     <Description>AceQL allows C# and Xamarin developers to access remote SQL databases and/or SQL databases in the cloud by simply including standard SQL calls in their code. AceQL operates with AceQL HTTP on server side. See www.aceql.com for more info.</Description>
-    <Copyright>Copyright © 2023</Copyright>
+    <Copyright>Copyright © 2024</Copyright>
     <PackageLicenseExpression></PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/kawansoft/AceQL.Client2</PackageProjectUrl>
     <PackageIcon>favicon.png</PackageIcon>
-    <AssemblyVersion>7.7.0.0</AssemblyVersion>
-    <FileVersion>7.7.0.0</FileVersion>
-    <Version>7.7.0</Version>
+    <AssemblyVersion>7.8.0.0</AssemblyVersion>
+    <FileVersion>7.8.0.0</FileVersion>
+    <Version>7.8.0</Version>
     <Authors>KawanSoft</Authors>
-    <PackageReleaseNotes>This verisons allos get info about limits set on the server side: maximum rows available for a SELECT and maximum allowed length for a BLOB upload</PackageReleaseNotes>
+    <PackageReleaseNotes>This version allows to define a maximum number of retries for failed HTTP calls,  with a configurable delay between each retry. (Experimental).</PackageReleaseNotes>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageTags>SQL over http remote jdbc cloud database Xamarin</PackageTags>
     <Product>AceQL.Client</Product>

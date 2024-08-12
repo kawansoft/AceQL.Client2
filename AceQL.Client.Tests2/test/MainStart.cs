@@ -48,6 +48,10 @@ namespace AceQL.Client.Test
 
         public static void TestAll(string[] args)
         {
+
+            ConnectionInfo.MaxRetries = 3;
+            ConnectionInfo.RetryIntervalMs= 1000;
+
             HealthCheckTest.TheMain(args);
             AceQLTestHeaders.TheMain();
             DmlSequenceTest.TheMain(args);

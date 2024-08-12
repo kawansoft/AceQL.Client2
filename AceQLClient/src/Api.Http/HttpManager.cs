@@ -18,6 +18,7 @@
  */
 
 using AceQL.Client.Api.Util;
+using AceQL.Client.src.Api.Http;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -40,6 +41,8 @@ namespace AceQL.Client.Api.Http
         /// The timeout in milliseconds
         /// </summary>
         private readonly int timeout;
+        private int maxRetries = ConnectionInfo.MaxRetries;
+        private int retryIntervalMs = ConnectionInfo.RetryIntervalMs;
 
         /// <summary>
         /// The HTTP status code
@@ -64,14 +67,17 @@ namespace AceQL.Client.Api.Http
         /// <summary>
         /// Initializes a new instance of the <see cref="HttpManager"/> class.
         /// </summary>
-        /// <param name="proxyUri">The proxy URI.</param>
-        /// <param name="proxyCredentials">The proxy credentials.</param>
-        /// <param name="timeout">The timeout.</param>
-        /// <param name="enableDefaultSystemAuthentication">if set to <c>true</c> [enable default system authentication].</param>
-        /// <param name="requestHeaders">The request headers to add to all requests.</param>
-        public HttpManager(string proxyUri, ICredentials proxyCredentials, int timeout, bool enableDefaultSystemAuthentication, Dictionary<string, string> requestHeaders)
+        /// <param name="httpManagerHolder">The HTTP manager holder.</param>
+        public HttpManager(HttpManagerHolder httpManagerHolder)
         {
-            this.timeout = timeout;
+            this.timeout = httpManagerHolder.Timeout;
+            this.maxRetries = httpManagerHolder.MaxRetries;
+            this.retryIntervalMs = httpManagerHolder.RetryIntervalMs;
+
+            string proxyUri = httpManagerHolder.ProxyUri;
+            ICredentials proxyCredentials = httpManagerHolder.ProxyCredentials;
+            bool enableDefaultSystemAuthentication = httpManagerHolder.EnableDefaultSystemAuthentication;
+            Dictionary<string, string> requestHeaders = httpManagerHolder.RequestHeaders;
             BuildHttpClient(proxyUri, proxyCredentials, enableDefaultSystemAuthentication, requestHeaders);
         }
 
@@ -151,6 +157,19 @@ namespace AceQL.Client.Api.Http
         /// <returns>Stream.</returns>
         internal async Task<Stream> CallWithGetReturnStreamAsync(String url)
         {
+            if (ConnectionInfo.MaxRetries == 0)
+            {
+                return await CallWithGetReturnStreamAsyncClassic(url).ConfigureAwait(false);
+            }
+            else
+            {
+                return await CallWithGetReturnStreamAsyncRetry(url).ConfigureAwait(false);
+            }
+
+        }
+
+        private async Task<Stream> CallWithGetReturnStreamAsyncClassic(string url)
+        {
             if (timeout != 0)
             {
                 long nanoseconds = 1000000 * timeout;
@@ -173,7 +192,7 @@ namespace AceQL.Client.Api.Http
             // Allows a retry for 407, because can happen time to time with Web proxies 
             if (this.httpStatusCode.Equals(HttpStatusCode.ProxyAuthenticationRequired))
             {
-                while(proxyAuthenticationCallCount < HttpRetryManager.ProxyAuthenticationCallLimit)
+                while (proxyAuthenticationCallCount < HttpRetryManager.ProxyAuthenticationCallLimit)
                 {
                     proxyAuthenticationCallCount++;
                     Stream input = await CallWithGetReturnStreamAsync(url).ConfigureAwait(false);
@@ -203,6 +222,20 @@ namespace AceQL.Client.Api.Http
         /// postParameters is null!
         /// </exception>
         public async Task<Stream> CallWithPostAsync(Uri theUrl, Dictionary<string, string> parameters)
+        {
+            if (ConnectionInfo.MaxRetries == 0)
+            {
+                return await CallWithPostAsyncClassic(theUrl, parameters).ConfigureAwait(false);
+            }
+            else
+            {
+                return await CallWithPostAsyncRetry(theUrl, parameters).ConfigureAwait(false);
+            }
+
+
+        }
+
+        private async Task<Stream> CallWithPostAsyncClassic(Uri theUrl, Dictionary<string, string> parameters)
         {
             if (theUrl == null)
             {
@@ -349,5 +382,161 @@ namespace AceQL.Client.Api.Http
         {
             httpClient.Dispose();
         }
+
+        // Experimental Stuff:
+
+        public async Task<Stream> CallWithPostAsyncRetry(Uri theUrl, Dictionary<string, string> parameters)
+        {
+            int attempt = 0;
+
+            if (theUrl == null)
+            {
+                throw new ArgumentNullException(nameof(theUrl), "URL cannot be null!");
+            }
+
+            if (parameters == null)
+            {
+                throw new ArgumentNullException(nameof(parameters), "Post parameters cannot be null!");
+            }
+
+            if (timeout != 0)
+            {
+                long nanoseconds = 1000000 * timeout;
+                httpClient.Timeout = new TimeSpan(nanoseconds / 100);
+            }
+
+            var postData = new List<KeyValuePair<string, string>>();
+
+            foreach (var param in parameters)
+            {
+                postData.Add(new KeyValuePair<string, string>(param.Key, param.Value));
+            }
+
+            HttpContent content = new FormUrlEncodedContent(postData);
+
+            while (true)
+            {
+                try
+                {
+                    HttpResponseMessage response;
+                    if (!UseCancellationToken)
+                    {
+                        response = await httpClient.PostAsync(theUrl, content).ConfigureAwait(false);
+                    }
+                    else
+                    {
+                        response = await httpClient.PostAsync(theUrl, content, cancellationToken).ConfigureAwait(false);
+                    }
+
+                    this.httpStatusCode = response.StatusCode;
+
+                    // Handle Proxy Authentication Required (407) with retry logic
+                    if (this.httpStatusCode == HttpStatusCode.ProxyAuthenticationRequired)
+                    {
+                        while (proxyAuthenticationCallCount < HttpRetryManager.ProxyAuthenticationCallLimit)
+                        {
+                            proxyAuthenticationCallCount++;
+                            Stream input = await CallWithPostAsyncRetry(theUrl, parameters).ConfigureAwait(false);
+                            if (this.httpStatusCode != HttpStatusCode.ProxyAuthenticationRequired)
+                            {
+                                proxyAuthenticationCallCount = 0;
+                                return input;
+                            }
+                        }
+                    }
+
+                    // If the status code is not a success code, consider it a failure
+                    if (!response.IsSuccessStatusCode)
+                    {
+                        throw new HttpRequestException($"Request failed with status code {response.StatusCode}");
+                    }
+
+                    // Return the response stream if successful
+                    return await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
+                }
+                catch (HttpRequestException) when (attempt < maxRetries)
+                {
+                    attempt++;
+                    await Task.Delay(retryIntervalMs).ConfigureAwait(false);
+                }
+                catch (TaskCanceledException) when (attempt < maxRetries)
+                {
+                    // Handle timeout and cancellation token exceptions
+                    attempt++;
+                    await Task.Delay(retryIntervalMs).ConfigureAwait(false);
+                }
+            }
+        }
+
+        internal async Task<Stream> CallWithGetReturnStreamAsyncRetry(string url)
+        {
+            int attempt = 0;
+
+            if (url == null)
+            {
+                throw new ArgumentNullException(nameof(url), "URL cannot be null!");
+            }
+
+            if (timeout != 0)
+            {
+                long nanoseconds = 1000000 * timeout;
+                httpClient.Timeout = new TimeSpan(nanoseconds / 100);
+            }
+
+            while (true)
+            {
+                try
+                {
+                    HttpResponseMessage response;
+                    if (!UseCancellationToken)
+                    {
+                        response = await httpClient.GetAsync(url, HttpCompletionOption.ResponseHeadersRead).ConfigureAwait(false);
+                    }
+                    else
+                    {
+                        response = await httpClient.GetAsync(url, HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
+                    }
+
+                    this.httpStatusCode = response.StatusCode;
+
+                    // Handle Proxy Authentication Required (407) with retry logic
+                    if (this.httpStatusCode == HttpStatusCode.ProxyAuthenticationRequired)
+                    {
+                        while (proxyAuthenticationCallCount < HttpRetryManager.ProxyAuthenticationCallLimit)
+                        {
+                            proxyAuthenticationCallCount++;
+                            Stream input = await CallWithGetReturnStreamAsyncRetry(url).ConfigureAwait(false);
+                            if (this.httpStatusCode != HttpStatusCode.ProxyAuthenticationRequired)
+                            {
+                                proxyAuthenticationCallCount = 0;
+                                return input;
+                            }
+                        }
+                    }
+
+                    // If the status code is not a success code, consider it a failure
+                    if (!response.IsSuccessStatusCode)
+                    {
+                        throw new HttpRequestException($"Request failed with status code {response.StatusCode}");
+                    }
+
+                    // Return the response stream if successful
+                    return await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
+                }
+                catch (HttpRequestException) when (attempt < maxRetries)
+                {
+                    attempt++;
+                    await Task.Delay(retryIntervalMs).ConfigureAwait(false);
+                }
+                catch (TaskCanceledException) when (attempt < maxRetries)
+                {
+                    // Handle timeout and cancellation token exceptions
+                    attempt++;
+                    await Task.Delay(retryIntervalMs).ConfigureAwait(false);
+                }
+            }
+        }
+
+
     }
 }

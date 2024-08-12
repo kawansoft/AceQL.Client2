@@ -584,15 +584,11 @@
             The proxy. Is null if no Defaut/System proxy and no used defined proxy.
             </summary>
         </member>
-        <member name="M:AceQL.Client.Api.Http.HttpManager.#ctor(System.String,System.Net.ICredentials,System.Int32,System.Boolean,System.Collections.Generic.Dictionary{System.String,System.String})">
+        <member name="M:AceQL.Client.Api.Http.HttpManager.#ctor(AceQL.Client.src.Api.Http.HttpManagerHolder)">
             <summary>
             Initializes a new instance of the <see cref="T:AceQL.Client.Api.Http.HttpManager"/> class.
             </summary>
-            <param name="proxyUri">The proxy URI.</param>
-            <param name="proxyCredentials">The proxy credentials.</param>
-            <param name="timeout">The timeout.</param>
-            <param name="enableDefaultSystemAuthentication">if set to <c>true</c> [enable default system authentication].</param>
-            <param name="requestHeaders">The request headers to add to all requests.</param>
+            <param name="httpManagerHolder">The HTTP manager holder.</param>
         </member>
         <member name="M:AceQL.Client.Api.Http.HttpManager.BuildHttpClient(System.String,System.Net.ICredentials,System.Boolean,System.Collections.Generic.Dictionary{System.String,System.String})">
             <summary>
@@ -4036,24 +4032,6 @@
             Class ConnectionInfo. Contains all info about Connections. Password cannot be retrieved for the sake of security.
             </summary>
         </member>
-        <member name="M:AceQL.Client.Api.ConnectionInfo.#ctor(System.String,System.String,System.String,System.String,System.Boolean,System.String,System.String,System.Net.ICredentials,System.Boolean,System.Int32,System.Boolean,System.Boolean,System.Boolean)">
-            <summary>
-            Initializes a new instance of the <see cref="T:AceQL.Client.Api.ConnectionInfo"/> class.
-            </summary>
-            <param name="connectionString">The connection string.</param>
-            <param name="server">The remote server to connect on.</param>
-            <param name="database">The current remote database in use.</param>
-            <param name="username">The username.</param>
-            <param name="isNTLM">if set to <c>true</c> [is NTLM].</param>
-            <param name="sessionId">The AceQL Server Session ID (will replace the password).</param>
-            <param name="proxyUri">The proxy URI.</param>
-            <param name="proxyCredentials">The proxy credentials.</param>
-            <param name="useCredentialCache">if set to <c>true</c> use credential cache.</param>
-            <param name="timeout">The seconds to wait before the request times out.</param>
-            <param name="enableDefaultSystemAuthentication">if set to <c>true</c> enable default system authentication.</param>
-            <param name="gzipResult">if set to <c>true</c> Result Sets will be gzipped on server side.</param>
-            <param name="enableTrace">if set to <c>true</c> trace will be enabled.</param>
-        </member>
         <member name="P:AceQL.Client.Api.ConnectionInfo.ConnectionString">
             <summary>
             Gets or the connection string used to connect to the remote database.
@@ -4139,6 +4117,18 @@
             Gets the creation date and time of the Connection.
             </summary>
             <value>The creation date and time of the Connection.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.ConnectionInfo.MaxRetries">
+            <summary>
+            Gets or sets the maximum retries.
+            </summary>
+            <value>The maximum retries.</value>
+        </member>
+        <member name="P:AceQL.Client.Api.ConnectionInfo.RetryIntervalMs">
+            <summary>
+            Gets or sets the retry interval ms.
+            </summary>
+            <value>The retry interval ms.</value>
         </member>
         <member name="M:AceQL.Client.Api.ConnectionInfo.ToString">
             <summary>
@@ -4455,6 +4445,11 @@
             Returns a <see cref="T:System.String" /> that represents this instance.
             </summary>
             <returns>A <see cref="T:System.String" /> that represents this instance.</returns>
+        </member>
+        <member name="T:AceQL.Client.src.Api.ConnectionInfoHolder">
+            <summary>
+            Class ConnectionInfoHolder.
+            </summary>
         </member>
     </members>
 </doc>

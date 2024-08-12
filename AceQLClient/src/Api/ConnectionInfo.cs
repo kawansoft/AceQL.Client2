@@ -17,6 +17,7 @@
  * limitations under the License.
  */
 
+using AceQL.Client.src.Api;
 using System;
 using System.Net;
 
@@ -42,44 +43,29 @@ namespace AceQL.Client.Api
         private readonly bool enableTrace;
         private readonly bool gzipResult;
 
-        internal DateTime creationDateTime; 
+        internal DateTime creationDateTime;
 
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ConnectionInfo"/> class.
-        /// </summary>
-        /// <param name="connectionString">The connection string.</param>
-        /// <param name="server">The remote server to connect on.</param>
-        /// <param name="database">The current remote database in use.</param>
-        /// <param name="username">The username.</param>
-        /// <param name="isNTLM">if set to <c>true</c> [is NTLM].</param>
-        /// <param name="sessionId">The AceQL Server Session ID (will replace the password).</param>
-        /// <param name="proxyUri">The proxy URI.</param>
-        /// <param name="proxyCredentials">The proxy credentials.</param>
-        /// <param name="useCredentialCache">if set to <c>true</c> use credential cache.</param>
-        /// <param name="timeout">The seconds to wait before the request times out.</param>
-        /// <param name="enableDefaultSystemAuthentication">if set to <c>true</c> enable default system authentication.</param>
-        /// <param name="gzipResult">if set to <c>true</c> Result Sets will be gzipped on server side.</param>
-        /// <param name="enableTrace">if set to <c>true</c> trace will be enabled.</param>
-        internal ConnectionInfo(string connectionString, string server, string database, string username, bool isNTLM,
-            string sessionId, string proxyUri, ICredentials proxyCredentials, bool useCredentialCache,
-            int timeout, bool enableDefaultSystemAuthentication, bool gzipResult, bool enableTrace)
+        private static int maxRetries = 0;
+        private static int retryIntervalMs = 0;
+        
+        internal ConnectionInfo(ConnectionInfoHolder connectionInfoHolder)
         {
-            this.connectionString = connectionString;
-            this.server = server;
-            this.database = database;
-            this.username = username;
-            this.isNTLM = isNTLM;
-            this.sessionId = sessionId;
-            this.proxyUri = proxyUri;
-            this.proxyCredentials = proxyCredentials;
-            this.useCredentialCache = useCredentialCache;
-            this.timeout = timeout;
-            this.enableDefaultSystemAuthentication = enableDefaultSystemAuthentication;
-            this.gzipResult = gzipResult;
-            this.enableTrace = enableTrace;
+            this.connectionString = connectionInfoHolder.ConnectionString;
+            this.server = connectionInfoHolder.Server;
+            this.database = connectionInfoHolder.Database;
+            this.username = connectionInfoHolder.Username;
+            this.isNTLM = connectionInfoHolder.IsNTLM;
+            this.sessionId = connectionInfoHolder.SessionId;
+            this.proxyUri = connectionInfoHolder.ProxyUri;
+            this.proxyCredentials = connectionInfoHolder.ProxyCredentials;
+            this.useCredentialCache = connectionInfoHolder.UseCredentialCache;
+            this.timeout = connectionInfoHolder.Timeout;
+            this.enableDefaultSystemAuthentication = connectionInfoHolder.EnableDefaultSystemAuthentication;
+            this.gzipResult = connectionInfoHolder.GzipResult;
+            this.enableTrace = connectionInfoHolder.EnableTrace;
 
         }
+
 
         /// <summary>
         /// Gets or the connection string used to connect to the remote database.
@@ -226,6 +212,18 @@ namespace AceQL.Client.Api
         /// </summary>
         /// <value>The creation date and time of the Connection.</value>
         public DateTime CreationDateTime => creationDateTime;
+
+        /// <summary>
+        /// Gets or sets the maximum retries.
+        /// </summary>
+        /// <value>The maximum retries.</value>
+        public static int MaxRetries { get => maxRetries; set => maxRetries = value; }
+
+        /// <summary>
+        /// Gets or sets the retry interval ms.
+        /// </summary>
+        /// <value>The retry interval ms.</value>
+        public static int RetryIntervalMs { get => retryIntervalMs; set => retryIntervalMs = value; }
 
 
         /// <summary>
