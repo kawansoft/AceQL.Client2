@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
-using Windows.Storage;
 
 namespace AceQL.Client.Test.Metadata.misc
 {
@@ -11,21 +10,21 @@ namespace AceQL.Client.Test.Metadata.misc
     {
         public static void DisplayDirectories()
         {
-            string folderPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\.aceql";
+            //string folderPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\.aceql";
+            //StorageFolder localFolder = ApplicationData.Current.TemporaryFolder;
+            //string folderPathTemp = localFolder.Path + ".aceql";
 
-            StorageFolder localFolder = ApplicationData.Current.TemporaryFolder;
-            string folderPathTemp = localFolder.Path + ".aceql";
+            string folderPath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "\\.aceql";
 
-            FileInfo fileInfo = new FileInfo(folderPathTemp);
+            FileInfo fileInfo = new FileInfo(folderPath);
             if (!fileInfo.Exists)
             {
-                _ = Directory.CreateDirectory(folderPathTemp);
+                _ = Directory.CreateDirectory(folderPath);
             }
 
             var tmp = Path.GetTempPath();
 
             Console.WriteLine("folderPath   : " + folderPath);
-            Console.WriteLine("folderPathTemp: " + folderPathTemp);
             Console.WriteLine();
 
             Console.WriteLine("AceQLConnection.GetAceQLLocalFolder(): " + AceQLConnection.GetAceQLLocalFolder());

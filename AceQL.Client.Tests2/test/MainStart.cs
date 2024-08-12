@@ -40,7 +40,6 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
-using Windows.Storage;
 
 namespace AceQL.Client.Test
 {
